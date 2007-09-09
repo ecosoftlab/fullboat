@@ -15,9 +15,23 @@ class User < ActiveRecord::Base
   before_save               :encrypt_password
   before_create             :make_activation_code
   
+  composed_of :name, 
+              :class_name => "Name", 
+              :mapping => [ # database    ruby 
+                          [ :first_name,  :first    ], 
+                          [ :last_name,   :last     ]]
+  
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation
+  
+  def to_s
+    self.name
+  end
+  
+  def to_param
+    self.login
+  end
   
   # Activates the user in the database.
   def activate
@@ -31,7 +45,19 @@ class User < ActiveRecord::Base
     # the existence of an activation code means they have not activated yet
     activation_code.nil?
   end
-
+  
+  def active?
+    self.status == :active
+  end
+  
+  def inactive?
+    self.status == :inactive
+  end
+  
+  def banned?
+    self.status == :banned
+  end
+  
   # Returns true if the user has just been activated.
   def recently_activated?
     @activated
@@ -82,19 +108,19 @@ class User < ActiveRecord::Base
     save(false)
   end
 
-  protected
-    # before filter 
-    def encrypt_password
-      return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
-      self.crypted_password = encrypt(password)
-    end
-    
-    def password_required?
-      crypted_password.blank? || !password.blank?
-    end
-    
-    def make_activation_code
-      self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
-    end 
+protected
+
+  def encrypt_password
+    return if password.blank?
+    self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
+    self.crypted_password = encrypt(password)
+  end
+  
+  def password_required?
+    crypted_password.blank? || !password.blank?
+  end
+  
+  def make_activation_code
+    self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+  end 
 end

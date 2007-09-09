@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :login_required, :only => [:manage]
 
   def new
     # new.rhtml
@@ -21,6 +22,10 @@ class UsersController < ApplicationController
       flash[:notice] = "Signup complete!"
     end
     redirect_back_or_default('/')
+  end
+  
+  def manage
+    @users = User.find(:all)
   end
 
 end
