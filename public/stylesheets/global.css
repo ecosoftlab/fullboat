@@ -142,6 +142,13 @@ h1, h2, h3, #navigation li{
 	float:left;
 }
 
+	#sidebar ul{
+		padding:0 15px;
+	}
+	#sidebar ul li{
+		margin:0.4em 0;
+	}
+
 #content{
 	width:585px;
 	margin:0 10px 0 0;
@@ -222,6 +229,8 @@ form legend{
 	border-bottom: 2px #535353 solid;
 	margin: 0.3em 0 1.7em 0;
 	padding: 0.3em 0 1.1em 0;
+	display:block;
+	width:100%;
 }
 
 form ol{
@@ -273,6 +282,10 @@ th {
 td {
 	padding-top: 0.3em;
 	padding-bottom: 0.3em;
+}
+
+td.option{
+	width:16px;
 }
 
 td,th{

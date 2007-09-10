@@ -20,4 +20,8 @@ module ApplicationHelper
   def br_tag
     tag("br")
   end
+  
+  def icon(name, format = 'png')
+    image_tag("icon_#{name}.#{format}", :size => '16x16', :alt => name.capitalize)
+  end
 end

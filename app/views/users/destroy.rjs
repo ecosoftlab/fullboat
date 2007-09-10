@@ -1,0 +1,1 @@
+page[@user.dom_id].visual_effect :fade, :duration => 1.5

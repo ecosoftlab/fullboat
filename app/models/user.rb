@@ -33,6 +33,28 @@ class User < ActiveRecord::Base
     self.login
   end
   
+  def <=>(person)
+    self.name <=> person.name
+  end
+  
+  def self.<=>(klass)
+    self.to_s <=> klass.to_s
+  end
+  
+  def email_address_with_name
+    "\"#{self.name.to_s}\" <#{self.email}>"
+  end
+  
+  def name=(fullname)
+    name = fullname.split(/\s/)
+    self[:last_name], self[:first_name] = name.pop, name.join(" ")
+  end
+  
+  def self.find_by_name(name)
+    p = Person.new(:name => name)
+    find_by_first_name_and_last_name(p.name.first, p.name.last)
+  end
+  
   # Activates the user in the database.
   def activate
     @activated = true
