@@ -1,6 +1,6 @@
-class CreateUnderwritingConctracts < ActiveRecord::Migration
+class CreateUnderwritingContracts < ActiveRecord::Migration
   def self.up
-    create_table :underwriting_conctracts do |t|
+    create_table :underwriting_contracts do |t|
       t.column :name, :string
       t.column :body, :text
       t.column :underwriter, :string
@@ -16,6 +16,6 @@ class CreateUnderwritingConctracts < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :underwriting_conctracts
+    drop_table :underwriting_contracts
   end
 end
