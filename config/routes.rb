@@ -1,4 +1,22 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :underwriting_contracts
+
+  map.resources :plays
+
+  map.resources :tags
+  
+  map.resources :psas
+
+  map.resources :promos
+
+  map.resources :playlists
+
+  map.resources :schedules
+
+  map.resources :contributors
+
+  map.resources :programs
+
   map.resources :sessions
   map.resources :users,
                 :collection => {:manage => :get}

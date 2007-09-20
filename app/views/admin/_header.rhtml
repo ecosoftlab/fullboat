@@ -3,7 +3,9 @@
 <ul id="navigation">
 	<%= navigation_tab("Users", users_path) %>
 	<%= navigation_tab("Music", "javascript:alert('Not yet implemented');") %>
-	<%= navigation_tab("Programming", "javascript:alert('Not yet implemented');") %>
+	<%= navigation_tab("Programming", programs_path) %>
 	<%= navigation_tab("Events", "javascript:alert('Not yet implemented');") %>
 	<%= navigation_tab("CMS", "javascript:alert('Not yet implemented');") %>
 </ul>
+
+<div><%= flash[:notice] %></div>
