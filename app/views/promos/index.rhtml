@@ -1,0 +1,25 @@
+<h1>Listing Promos</h1>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>Name</th>
+	    	<th>Body</th>
+	    	<th>Code</th>
+	    	<th>Is live</th>
+	    	<th>Length</th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @promos.each do |promo| %>
+  		<tr>
+		    		<td><%=h promo.name %></td>
+		    		<td><%=h promo.body %></td>
+		    		<td><%=h promo.code %></td>
+		    		<td><%=h promo.is_live %></td>
+		    		<td><%=h promo.length %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>

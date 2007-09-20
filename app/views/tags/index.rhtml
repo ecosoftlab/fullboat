@@ -1,0 +1,17 @@
+<h1>Listing Tags</h1>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>Name</th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @tags.each do |tag| %>
+  		<tr>
+		    		<td><%=h tag.name %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>

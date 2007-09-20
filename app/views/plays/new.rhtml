@@ -1,0 +1,10 @@
+<h1>Create a New Play</h1>
+
+<% remote_form_for(:play, :url => plays_path) do |f| %>
+	<fieldset id="play_details" name="Play Details" class="clearfix">
+		<%= render(:partial => "plays/form", :locals => {:f => f})%>
+    	<%= submit_tag "Create" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Back', plays_path %>

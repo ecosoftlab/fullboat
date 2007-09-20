@@ -1,0 +1,11 @@
+<h1>Editing Tag '<%= @tag%>'</h1>
+
+<% remote_form_for(:tag, :url => tag_path(@tag), :html => { :method => :put }) do |f| %>
+	<fieldset id="tag_details" name="Tag Details" class="clearfix">
+		<%= render(:partial => "tags/form", :locals => {:f => f})%>
+    	<%= submit_tag "Update" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Show', tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>

@@ -1,0 +1,28 @@
+<p>
+  <b>Name:</b>
+  <%=h @promo.name %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @promo.body %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%=h @promo.code %>
+</p>
+
+<p>
+  <b>Is live:</b>
+  <%=h @promo.is_live %>
+</p>
+
+<p>
+  <b>Length:</b>
+  <%=h @promo.length %>
+</p>
+
+
+<%= link_to 'Edit', edit_promo_path(@promo) %> |
+<%= link_to 'Back', promos_path %>

@@ -1,0 +1,23 @@
+<h1>Manage Tags</h1>
+
+<table>
+	<thead>
+  	<tr>
+    	<th>Name</th>
+		<th colspan="3"></th>
+  	</tr>
+	</thead>
+  
+	<tbody>
+<% @tags.each do |tag| %>
+	<tr id="<%= tag.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
+		<td><%= h tag.name %></td>
+    	<td><%= link_to 'Show', tag_path(tag) %></td>
+    	<td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+    	<td><%= link_to_remote 'Destroy', 
+								:url => tag_path(tag), 
+								:confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+	</tbody>
+<% end %>
+</table>

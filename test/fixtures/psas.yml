@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  name: MyString
+  body: MyText
+  code: MyString
+  is_live: 
+  length: 
+  expiration_date: 2007-09-12 23:48:11
+two:
+  id: 2
+  name: MyString
+  body: MyText
+  code: MyString
+  is_live: 
+  length: 
+  expiration_date: 2007-09-12 23:48:11

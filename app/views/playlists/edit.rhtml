@@ -1,0 +1,11 @@
+<h1>Editing Playlist '<%= @playlist%>'</h1>
+
+<% remote_form_for(:playlist, :url => playlist_path(@playlist), :html => { :method => :put }) do |f| %>
+	<fieldset id="playlist_details" name="Playlist Details" class="clearfix">
+		<%= render(:partial => "playlists/form", :locals => {:f => f})%>
+    	<%= submit_tag "Update" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Show', playlist_path(@playlist) %> |
+<%= link_to 'Back', playlists_path %>

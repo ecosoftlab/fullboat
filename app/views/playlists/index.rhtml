@@ -1,0 +1,25 @@
+<h1>Listing Playlists</h1>
+
+<%= link_to "New Playlist", new_playlist_path %>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>Start time</th>
+	    	<th>End time</th>
+	    	<th>User</th>
+	    	<th>Program</th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @playlists.each do |playlist| %>
+  		<tr>
+		    		<td><%=h playlist.start_time %></td>
+		    		<td><%=h playlist.end_time %></td>
+		    		<td><%=h playlist.user_id %></td>
+		    		<td><%=h playlist.program_id %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>

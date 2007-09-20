@@ -1,0 +1,25 @@
+<div id="error" class="alert error" style="display:none;"></div>
+
+<!--[form:schedule]-->
+<fieldset id="schedule_details" class="clearfix">
+	<legend>Schedule Details</legend>
+	<ol>
+			<li>
+	    	<label for="semester">Semester</label>
+			<%= select_tag "schedule[semester]", @schedule.semester, options_from_collection_for_select(Schedule.semesters[0], Schedule.semesters, Schedule.semesters) %>
+		</li>
+			<li>
+	    	<label for="year">Year</label>
+	    	<%= f.text_field :year %>
+		</li>
+			<li>
+	    	<label for="start_date">Start date</label>
+	    	<%= f.datetime_select :start_date %>
+		</li>
+			<li>
+	    	<label for="end_date">End date</label>
+	    	<%= f.datetime_select :end_date %>
+		</li>
+		</ol>
+</fieldset>
+<!--[eoform:schedule]-->

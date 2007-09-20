@@ -1,0 +1,10 @@
+<h1>Create a New Contributor</h1>
+
+<% remote_form_for(:contributor, :url => contributors_path) do |f| %>
+	<fieldset id="contributor_details" name="Contributor Details" class="clearfix">
+		<%= render(:partial => "contributors/form", :locals => {:f => f})%>
+    	<%= submit_tag "Create" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Back', contributors_path %>

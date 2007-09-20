@@ -1,0 +1,3 @@
+page['error'].replace_html error_messages_for(:program)
+page['error'].show
+page << "new Effect.ScrollTo('alert')"

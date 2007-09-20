@@ -1,0 +1,10 @@
+<h1>Create a New Underwriting_contract</h1>
+
+<% remote_form_for(:underwriting_contract, :url => underwriting_contracts_path) do |f| %>
+	<fieldset id="underwriting_contract_details" name="Underwriting_contract Details" class="clearfix">
+		<%= render(:partial => "underwriting_contracts/form", :locals => {:f => f})%>
+    	<%= submit_tag "Create" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Back', underwriting_contracts_path %>

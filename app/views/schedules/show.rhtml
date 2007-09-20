@@ -1,0 +1,23 @@
+<p>
+  <b>Semester:</b>
+  <%=h @schedule.semester %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%=h @schedule.year %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%=h @schedule.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%=h @schedule.end_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
+<%= link_to 'Back', schedules_path %>

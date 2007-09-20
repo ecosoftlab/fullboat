@@ -1,0 +1,217 @@
+/* Scaffold Jitsu Basic CSS */
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,table,th,td,embed,object{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img,abbr{border:0;}
+address,caption,cite,code,dfn,em,h1,h2,h3,h4,h5,h6,strong,th,var,legend{font-style:normal;font-weight:normal;}
+ul, ol {list-style-type:square;list-style:none;}
+cite{display:block;}
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:1.0em;}
+q:before,q:after{content:'';}
+a{text-decoration:none;}
+
+html>body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 12px "Helvetica", "Arial", helvetica, arial, verdana, sans-serif;
+}
+
+body {
+	color: #231F20;
+	background: #fff;
+}
+
+h1 {
+	font-size: 2.4em;
+	line-height: 1em;
+	margin-top: 0.6em;
+	margin-bottom: 0.67em;
+}
+
+h2 {
+	font-size: 1.6667em;
+	line-height: 1.286em;
+	margin-top: 1.06em;
+	margin-bottom: 0.643em;
+}
+
+h3 {
+	font-size: 1.23em;
+	line-height: 1.186em;
+	margin-top: 0.96em;
+	margin-bottom: 0.443em;
+}
+
+p {
+	font-size: 1.0em;
+	line-height: 1.4em;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+a{
+	color: #231F20;
+	text-decoration: underline;
+}
+
+a:hover{
+	color: #fff;
+	background-color: #231F20;
+	text-decoration: none;
+}
+
+/* Basic Form Styling */
+
+form{
+	float: left;
+	margin: 10px 0 30px 0;
+}
+
+form fieldset{
+	width: 400px;
+}
+
+form ol{
+	padding: 0;
+}
+
+form label{
+	width: 80px;
+	font-weight: bold;
+}
+
+form textarea.summary{
+	height: 8em;
+}
+
+input[type^="text"], input[type^="password"], select{
+	font-size: 1.4em;
+	max-width: 313px;
+}
+
+input[type^="file"]{
+	width: 200px;
+}
+
+input[type^="submit"]{
+	margin-top: 30px;
+}
+
+select{
+	margin: 0.6em 0;
+}
+
+label{
+	font-size: 1.15em;
+	margin: 0.3em 0 0.1em 0;
+	padding: 0;
+	display: block;
+}
+
+li.inline-label input{
+	margin: 0 10px 0 0;
+}
+
+li.inline-label label{
+	display: inline;
+}
+
+form legend{
+	font-size: 1.3em;
+	font-weight: bold;
+	border-bottom: 2px #535353 solid;
+	margin: 0.3em 0 1.7em 0;
+	padding: 0.3em 0 1.1em 0;
+}
+
+form ol{
+	clear: both;
+	list-style: none;
+	padding: 0.4em 0;
+	margin: 0.3em 0;
+}
+
+form ol li{
+	margin: 0.8em 0;
+}
+
+form label{
+	padding: 0.6em 0 0.1em 0;
+	margin: 0.2em 0 0.1em 0;
+}
+
+form label input{
+	margin: 0 0.85em 0 0;
+}
+
+span.explanatory{
+	color: #777;
+	font-size: 75%;
+	font-weight: normal;
+	margin: 0 0.3em 0 0.5em;
+}
+
+span.explanatory:before{
+	content: "(";
+}
+
+span.explanatory:after{
+	content: ")";
+}
+
+table {
+	margin: 10px 0
+}
+
+th {
+	text-align: left;
+	font-weight: bold;
+	color: #444;
+	border-bottom: 1px #444 solid
+}
+
+td {
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+}
+
+tr.stripe td{
+	background:#ccc;
+}
+
+tbody tr:hover td{
+	background:#999;
+} 
+
+/* Utility Functions */
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+/* Hide from IE Mac \*/
+.clearfix {
+	display: block;
+}
+
+/* End hide from IE Mac */
+.break{
+	clear: both;
+}
+
+.spacer {
+	clear: both;
+	height: 1px;
+	float: none
+}

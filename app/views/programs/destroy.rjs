@@ -1,0 +1,1 @@
+page[@program.dom_id].visual_effect :fade

@@ -1,0 +1,11 @@
+<h1>Editing Underwriting_contract '<%= @underwriting_contract%>'</h1>
+
+<% remote_form_for(:underwriting_contract, :url => underwriting_contract_path(@underwriting_contract), :html => { :method => :put }) do |f| %>
+	<fieldset id="underwriting_contract_details" name="Underwriting_contract Details" class="clearfix">
+		<%= render(:partial => "underwriting_contracts/form", :locals => {:f => f})%>
+    	<%= submit_tag "Update" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Show', underwriting_contract_path(@underwriting_contract) %> |
+<%= link_to 'Back', underwriting_contracts_path %>

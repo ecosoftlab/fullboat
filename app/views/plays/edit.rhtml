@@ -1,0 +1,11 @@
+<h1>Editing Play '<%= @play%>'</h1>
+
+<% remote_form_for(:play, :url => play_path(@play), :html => { :method => :put }) do |f| %>
+	<fieldset id="play_details" name="Play Details" class="clearfix">
+		<%= render(:partial => "plays/form", :locals => {:f => f})%>
+    	<%= submit_tag "Update" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Show', play_path(@play) %> |
+<%= link_to 'Back', plays_path %>

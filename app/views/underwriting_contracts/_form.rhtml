@@ -1,0 +1,41 @@
+<div id="error" class="alert error" style="display:none;"></div>
+
+<!--[form:underwriting_contract]-->
+<fieldset id="underwriting_contract_details" class="clearfix">
+	<legend>Underwriting_contract Details</legend>
+	<ol>
+			<li>
+	    	<label for="name">Name</label>
+	    	<%= f.text_field :name %>
+		</li>
+			<li>
+	    	<label for="body">Body</label>
+	    	<%= f.text_area :body %>
+		</li>
+			<li>
+	    	<label for="underwriter">Underwriter</label>
+	    	<%= f.text_field :underwriter %>
+		</li>
+			<li>
+	    	<label for="contat_name">Contat name</label>
+	    	<%= f.text_field :contat_name %>
+		</li>
+			<li>
+	    	<label for="contact_email">Contact email</label>
+	    	<%= f.text_field :contact_email %>
+		</li>
+			<li>
+	    	<label for="contact_phone">Contact phone</label>
+	    	<%= f.text_field :contact_phone %>
+		</li>
+			<li>
+	    	<label for="contract_url">Contract url</label>
+	    	<%= f.text_field :contract_url %>
+		</li>
+			<li>
+	    	<label for="expiration_date">Expiration date</label>
+	    	<%= f.datetime_select :expiration_date %>
+		</li>
+		</ol>
+</fieldset>
+<!--[eoform:underwriting_contract]-->

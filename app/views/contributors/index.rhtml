@@ -1,0 +1,29 @@
+<h1>Listing Contributors</h1>
+
+<%= link_to "New Contributor", new_contributor_path %>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>First name</th>
+	    	<th>Last name</th>
+	    	<th>Email</th>
+	    	<th>Phone</th>
+			<th colspan="3"></th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @contributors.each do |contributor| %>
+	<tr id="<%= contributor.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
+		    		<td><%=h contributor.first_name %></td>
+		    		<td><%=h contributor.last_name %></td>
+		    		<td><%=h contributor.email %></td>
+		    		<td><%=h contributor.phone %></td>
+			    	<td class="option"><%= link_to icon("show"), contributor_path(contributor) %></td>
+			    	<td class="option"><%= link_to icon("edit"), edit_contributor_path(contributor) %></td>
+    				<td class="option"><%= link_to_remote icon("trash"), :url => contributor_path(contributor), :confirm => 'Are you sure?', :method => :delete %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>
