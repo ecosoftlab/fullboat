@@ -2,9 +2,142 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 1) do
+ActiveRecord::Schema.define(:version => 15) do
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'enum' for column 'affiliation'
+  create_table "contributors", :force => true do |t|
+    t.column "first_name", :string
+    t.column "last_name",  :string
+    t.column "email",      :string
+    t.column "phone",      :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "contributors_programs", :id => false, :force => true do |t|
+    t.column "program_id",     :integer
+    t.column "contributor_id", :integer
+  end
+
+  create_table "playlists", :force => true do |t|
+    t.column "start_time", :datetime
+    t.column "end_time",   :datetime
+    t.column "user_id",    :integer
+    t.column "program_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "plays", :force => true do |t|
+    t.column "playlist_id", :integer
+    t.column "parent_id",   :integer
+    t.column "track_name",  :string
+    t.column "is_request",  :boolean
+    t.column "is_bincut",   :boolean
+    t.column "is_marked",   :boolean
+    t.column "type",        :enum,     :limit => [:psa, :album, :promo, :underwriting_contract]
+    t.column "created_at",  :datetime
+    t.column "updated_at",  :datetime
+  end
+
+  create_table "programs", :force => true do |t|
+    t.column "name",         :string
+    t.column "start_hour",   :integer
+    t.column "end_hour",     :integer
+    t.column "promo_id",     :integer
+    t.column "url",          :string
+    t.column "created_at",   :datetime
+    t.column "updated_at",   :datetime
+    t.column "day",          :enum,     :limit => [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday]
+    t.column "start_minute", :integer
+    t.column "end_minute",   :integer
+    t.column "category",     :enum,     :limit => [:music, :public_affairs],                                               :default => :music
+  end
+
+  create_table "programs_schedules", :id => false, :force => true do |t|
+    t.column "program_id",  :integer
+    t.column "schedule_id", :integer
+  end
+
+  create_table "programs_tags", :id => false, :force => true do |t|
+    t.column "program_id", :integer
+    t.column "tag_id",     :integer
+  end
+
+  create_table "programs_underwriting_contracts", :id => false, :force => true do |t|
+    t.column "program_id",               :integer
+    t.column "underwriting_contract_id", :integer
+  end
+
+  create_table "programs_users", :id => false, :force => true do |t|
+    t.column "program_id", :integer
+    t.column "user_id",    :integer
+  end
+
+  create_table "promos", :force => true do |t|
+    t.column "name",       :string
+    t.column "body",       :text
+    t.column "code",       :string
+    t.column "is_live",    :boolean
+    t.column "length",     :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "psas", :force => true do |t|
+    t.column "name",            :string
+    t.column "body",            :text
+    t.column "code",            :string
+    t.column "is_live",         :boolean
+    t.column "length",          :integer
+    t.column "expiration_date", :datetime
+    t.column "created_at",      :datetime
+    t.column "updated_at",      :datetime
+  end
+
+  create_table "schedules", :force => true do |t|
+    t.column "semester",   :enum,     :limit => [:fall, :spring, :summer]
+    t.column "year",       :integer
+    t.column "start_date", :datetime
+    t.column "end_date",   :datetime
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "tags", :force => true do |t|
+    t.column "name",       :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "underwriting_contracts", :force => true do |t|
+    t.column "name",            :string
+    t.column "body",            :text
+    t.column "underwriter",     :string
+    t.column "contat_name",     :string
+    t.column "contact_email",   :string
+    t.column "contact_phone",   :string
+    t.column "contract_url",    :string
+    t.column "expiration_date", :datetime
+    t.column "created_at",      :datetime
+    t.column "updated_at",      :datetime
+  end
+
+  create_table "users", :force => true do |t|
+    t.column "login",                     :string
+    t.column "email",                     :string
+    t.column "crypted_password",          :string,   :limit => 40
+    t.column "salt",                      :string,   :limit => 40
+    t.column "first_name",                :string
+    t.column "last_name",                 :string
+    t.column "phone",                     :string
+    t.column "affiliation",               :enum,     :limit => [:undergraduate, :graduate, :alumni, :community, :faculty, :staff]
+    t.column "status",                    :enum,     :limit => [:active, :inactive, :banned]
+    t.column "remember_token",            :string
+    t.column "remember_token_expires_at", :datetime
+    t.column "activation_code",           :string,   :limit => 40
+    t.column "activated_at",              :datetime
+    t.column "created_at",                :datetime
+    t.column "updated_at",                :datetime
+  end
 
 end
