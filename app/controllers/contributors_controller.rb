@@ -63,7 +63,7 @@ class ContributorsController < ApplicationController
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @contributor.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
     end
   end
 
@@ -79,7 +79,7 @@ class ContributorsController < ApplicationController
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @contributor.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
       end
     end
   end

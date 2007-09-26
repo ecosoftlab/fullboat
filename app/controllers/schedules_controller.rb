@@ -56,14 +56,14 @@ class SchedulesController < ApplicationController
       flash[:notice] = 'Schedule was successfully created.'
       format.html { redirect_to schedules_url }
       format.xml  { head :created, :location => schedule_url(@schedule) }
-      format.js   { render :template => :success }
+      format.js   { render :action =>  :success }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @schedule.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
     end
   end
 
@@ -77,11 +77,11 @@ class SchedulesController < ApplicationController
         flash[:notice] = "Schedule '#{@schedule}' was successfully updated."
         format.html { redirect_to schedule_url(@schedule) }
         format.xml  { head :ok }
-        format.js   { render :template => :success }
+        format.js   { render :action =>  :success }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @schedule.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
       end
     end
   end

@@ -56,14 +56,14 @@ class UnderwritingContractsController < ApplicationController
       flash[:notice] = 'UnderwritingContract was successfully created.'
       format.html { redirect_to underwriting_contract_url(@underwriting_contract) }
       format.xml  { head :created, :location => underwriting_contract_url(@underwriting_contract) }
-      format.js   { render :template => :success }
+      format.js   { render :action =>  :success }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @underwriting_contract.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
     end
   end
 
@@ -77,11 +77,11 @@ class UnderwritingContractsController < ApplicationController
         flash[:notice] = "UnderwritingContract '#{@underwriting_contract}' was successfully updated."
         format.html { redirect_to underwriting_contract_url(@underwriting_contract) }
         format.xml  { head :ok }
-        format.js   { render :template => :success }
+        format.js   { render :action =>  :success }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @underwriting_contract.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
       end
     end
   end

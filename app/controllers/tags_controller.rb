@@ -56,14 +56,14 @@ class TagsController < ApplicationController
       flash[:notice] = 'Tag was successfully created.'
       format.html { redirect_to tag_url(@tag) }
       format.xml  { head :created, :location => tag_url(@tag) }
-      format.js   { render :template => :success }
+      format.js   { render :action =>  :success }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @tag.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
     end
   end
 
@@ -77,11 +77,11 @@ class TagsController < ApplicationController
         flash[:notice] = "Tag '#{@tag}' was successfully updated."
         format.html { redirect_to tag_url(@tag) }
         format.xml  { head :ok }
-        format.js   { render :template => :success }
+        format.js   { render :action =>  :success }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @tag.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
       end
     end
   end

@@ -57,14 +57,14 @@ class ProgramsController < ApplicationController
       flash[:notice] = 'Program was successfully created.'
       format.html { redirect_to program_url(@program) }
       format.xml  { head :created, :location => program_url(@program) }
-      format.js   { render :template => :success }
+      format.js   { render :action =>  :success }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @program.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
     end
   end
 
@@ -78,11 +78,11 @@ class ProgramsController < ApplicationController
         flash[:notice] = "Program '#{@program}' was successfully updated."
         format.html { redirect_to program_url(@program) }
         format.xml  { head :ok }
-        format.js   { render :template => :success }
+        format.js   { render :action =>  :success }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @program.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
       end
     end
   end

@@ -57,14 +57,14 @@ class PlaylistsController < ApplicationController
       flash[:notice] = 'Playlist was successfully created.'
       format.html { redirect_to playlist_url(@playlist) }
       format.xml  { head :created, :location => playlist_url(@playlist) }
-      format.js   { render :template => :success }
+      format.js   { render :action => :success }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @playlist.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
     end
   end
 
@@ -80,7 +80,7 @@ class PlaylistsController < ApplicationController
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @playlist.errors.to_xml }
-        format.js   { render :template => :error }
+        format.js   { render :action =>  :error }
       end
     end
   end
