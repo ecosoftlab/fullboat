@@ -55,7 +55,7 @@ class ProgramsController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = 'Program was successfully created.'
-      format.html { redirect_to program_url(@program) }
+      format.html { redirect_to programs_url }
       format.xml  { head :created, :location => program_url(@program) }
       format.js   { render :action =>  :success }
     end
@@ -94,7 +94,7 @@ class ProgramsController < ApplicationController
     @program.destroy
 
     respond_to do |format|
-      flash[:notice] = "Program '#{@program}' was destroyed."
+      # flash[:notice] = "Program '#{@program}' was destroyed."
       format.html { redirect_to programs_url }
       format.xml  { head :ok }
       format.js   # destroy.rjs

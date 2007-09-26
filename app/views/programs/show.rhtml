@@ -9,13 +9,13 @@
 </p>
 
 <p>
-  <b>Start hour:</b>
-  <%=h @program.start_hour %>
+  <b>Start:</b>
+  <%=h @program.start_hour %>: <%=h @program.start_minute %>
 </p>
 
 <p>
-  <b>End hour:</b>
-  <%=h @program.end_hour %>
+  <b>End:</b>
+  <%=h @program.end_hour %>: <%=h @program.end_minute %>
 </p>
 
 <p>
@@ -32,7 +32,6 @@
   <b>Url:</b>
   <%=h @program.url %>
 </p>
-
 
 <%= link_to 'Edit', edit_program_path(@program) %> |
 <%= link_to 'Back', programs_path %>

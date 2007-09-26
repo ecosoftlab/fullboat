@@ -21,6 +21,11 @@ module ApplicationHelper
     tag("br")
   end
   
+  def capitalized_options_for_select(arr)
+    arr.map{|a| [a.to_s.capitalize,a.to_s]}
+  end
+  
+  
   def icon(name, format = 'png')
     image_tag("icon_#{name}.#{format}", :size => '16x16', :alt => name.capitalize)
   end

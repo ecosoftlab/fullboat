@@ -13,13 +13,10 @@
 	    	<%= f.datetime_select :end_time %>
 		</li>
 			<li>
-	    	<label for="user_id">User</label>
-	    	<%= f.text_field :user_id %>
-		</li>
-			<li>
 	    	<label for="program_id">Program</label>
-	    	<%= f.text_field :program_id %>
+	    	<%= f.select :program_id, Program.find_all.map{|p| [p.name,p.id]}<<["_Random",nil] %>
 		</li>
+		<%= f.hidden_field :user_id, current_user.id%>
 		</ol>
 </fieldset>
 <!--[eoform:playlist]-->

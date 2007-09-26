@@ -17,8 +17,8 @@
 	    	<%= f.text_field :code %>
 		</li>
 			<li>
-	    	<label for="is_live">Is live</label>
-	    	<%= f.text_field :is_live %>
+	    	<label for="is_live">Is this a live promo?</label>
+	    	<%= f.check_box :is_live, {}, "true", "false" %>
 		</li>
 			<li>
 	    	<label for="length">Length</label>

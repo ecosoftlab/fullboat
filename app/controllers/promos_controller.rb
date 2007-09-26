@@ -55,7 +55,7 @@ class PromosController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = 'Promo was successfully created.'
-      format.html { redirect_to promo_url(@promo) }
+      format.html { redirect_to promos_url }
       format.xml  { head :created, :location => promo_url(@promo) }
       format.js   { render :action =>  :success }
     end

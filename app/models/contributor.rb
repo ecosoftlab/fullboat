@@ -2,6 +2,8 @@ class Contributor < ActiveRecord::Base
 
   validates_length_of       :email,     :within => 3..100
   validates_length_of       :phone,     :within => 6..12
+
+  has_and_belongs_to_many :programs
   
   composed_of :name, 
               :class_name => "Name", 
@@ -10,7 +12,7 @@ class Contributor < ActiveRecord::Base
                           [ :last_name,   :last     ]]
 
   def to_s
-    self.name
+    self.name.to_s
   end
   
   def email_address_with_name

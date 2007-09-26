@@ -10,23 +10,25 @@
 		</li>
 			<li>
 	    	<label for="day">Day</label>
-	    	<%= f.text_field :day %>
+			<%= f.select :day, capitalized_options_for_select(Program.days) %>
 		</li>
 			<li>
-	    	<label for="start_hour">Start hour</label>
-	    	<%= f.text_field :start_hour %>
+	    	<label>Start time</label>
+			<%= f.select :start_hour, capitalized_options_for_select(Program.hours) %>:
+			<%= f.select :start_minute, capitalized_options_for_select(Program.minutes) %>
 		</li>
 			<li>
-	    	<label for="end_hour">End hour</label>
-	    	<%= f.text_field :end_hour %>
+	    	<label>End time</label>
+			<%= f.select :end_hour, capitalized_options_for_select(Program.hours) %>:
+			<%= f.select :end_minute, capitalized_options_for_select(Program.minutes) %>
 		</li>
 			<li>
 	    	<label for="promo_id">Promo</label>
 	    	<%= f.text_field :promo_id %>
 		</li>
 			<li>
-	    	<label for="type">Type</label>
-	    	<%= f.text_field :type %>
+	    	<label for="category">Category</label>
+			<%= f.select :category, capitalized_options_for_select(Program.categories) %>
 		</li>
 			<li>
 	    	<label for="url">Url</label>
