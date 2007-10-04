@@ -1,0 +1,25 @@
+<div id="error" class="alert error" style="display:none;"></div>
+
+<% form_tag sessions_path do -%>
+	<!--[form:login]-->
+	<fieldset id="login_details" class="clearfix">
+		<legend>Please Log In</legend>
+		<ol>
+			<li>
+		    	<label for="login">Login</label>
+		    	<%= text_field_tag 'login' %>
+			</li>
+			<li>
+				<label for="password">Password</label>
+				<%= password_field_tag 'password' %>
+			</li>
+			<li class="inline-label">
+				<label for="remember_me"><%= check_box_tag 'remember_me' %> Remember me:</label>
+			</li>
+			<li>
+				<%= submit_tag 'Log in' %>
+			</li>
+		</ol>
+	</fieldset>
+	<!--[eoform:login]-->
+<% end -%>

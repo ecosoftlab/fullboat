@@ -1,0 +1,6 @@
+<h1>Editing User '<%= link_to(h(@user), user_path(@user)) %>'</h1>
+
+<% remote_form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |f| -%>
+	<%= render(:partial => 'users/form', :locals => {:f => f})%>
+	<%= submit_tag 'Update' %>
+<% end -%>
