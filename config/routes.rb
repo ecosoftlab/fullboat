@@ -1,30 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :underwriting_contracts
-
-  map.resources :plays,
-                :collection => {:manage => :get}
-
-  map.resources :tags
-  
-  map.resources :psas,
-                :collection => {:manage => :get}
-
-  map.resources :promos,
-                :collection => {:manage => :get}
-
-  map.resources :playlists,
-                :collection => {:manage => :get}
-
-  map.resources :schedules,
-                :collection => {:manage => :get}
-
-  map.resources :contributors,
-                :collection => {:manage => :get}
-
-
-  map.resources :programs,
-                :collection => {:manage => :get}
-
   map.resources :sessions
   map.resources :users,
                 :collection => {:manage => :get}

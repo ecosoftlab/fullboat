@@ -78,5 +78,11 @@ class UsersController < ApplicationController
     end
     redirect_back_or_default('/')
   end
+  
+  def callback_programs
+    @user = User.find(params[:id])
+    @albums = @user.albums
+    render :template => 'callbacks/programs'
+  end
 
 end

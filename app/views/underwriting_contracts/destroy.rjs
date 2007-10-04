@@ -1,1 +1,0 @@
-page[@underwriting_contract.dom_id].visual_effect :fade

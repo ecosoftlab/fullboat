@@ -1,1 +1,0 @@
-page[@schedule.dom_id].visual_effect :fade
