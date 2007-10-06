@@ -2,9 +2,30 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 1) do
+ActiveRecord::Schema.define(:version => 2) do
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'enum' for column 'affiliation'
+  create_table "genres", :force => true do |t|
+    t.column "name",       :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "users", :force => true do |t|
+    t.column "login",                     :string
+    t.column "email",                     :string
+    t.column "crypted_password",          :string,   :limit => 40
+    t.column "salt",                      :string,   :limit => 40
+    t.column "first_name",                :string
+    t.column "last_name",                 :string
+    t.column "phone",                     :string
+    t.column "affiliation",               :enum,     :limit => [:undergraduate, :graduate, :alumni, :community, :faculty, :staff]
+    t.column "status",                    :enum,     :limit => [:active, :inactive, :banned]
+    t.column "remember_token",            :string
+    t.column "remember_token_expires_at", :datetime
+    t.column "activation_code",           :string,   :limit => 40
+    t.column "activated_at",              :datetime
+    t.column "created_at",                :datetime
+    t.column "updated_at",                :datetime
+  end
 
 end
