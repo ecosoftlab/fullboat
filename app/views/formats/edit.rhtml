@@ -1,0 +1,11 @@
+<h1>Editing Format '<%= @format%>'</h1>
+
+<% remote_form_for(:format, :url => format_path(@format), :html => { :method => :put }) do |f| %>
+	<fieldset id="format_details" name="Format Details" class="clearfix">
+		<%= render(:partial => "formats/form", :locals => {:f => f})%>
+    	<%= submit_tag "Update" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Show', format_path(@format) %> |
+<%= link_to 'Back', formats_path %>

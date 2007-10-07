@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :formats
+
   map.resources :genres
 
   map.resources :sessions
