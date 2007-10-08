@@ -11,6 +11,8 @@ class GenreTest < Test::Unit::TestCase
     assert !long_genre.save
     good_genre = Genre.new(:name => "rock")
     assert good_genre.save
+    duplicate_genre = Genre.new(:name => "rock")
+    assert !duplicate_genre.save
   end
 
 end
