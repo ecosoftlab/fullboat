@@ -1,0 +1,10 @@
+<h1>Create a New Promoter</h1>
+
+<% remote_form_for(:promoter, :url => promoters_path) do |f| %>
+	<fieldset id="promoter_details" name="Promoter Details" class="clearfix">
+		<%= render(:partial => "promoters/form", :locals => {:f => f})%>
+    	<%= submit_tag "Create" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Back', promoters_path %>

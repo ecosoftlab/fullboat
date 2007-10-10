@@ -1,0 +1,23 @@
+<h1>Listing Promoters</h1>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>Name</th>
+	    	<th>Contact name</th>
+	    	<th>Email</th>
+	    	<th>Phone</th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @promoters.each do |promoter| %>
+  		<tr>
+		    		<td><%=h promoter.name %></td>
+		    		<td><%=h promoter.contact_name %></td>
+		    		<td><%=h promoter.email %></td>
+		    		<td><%=h promoter.phone %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>

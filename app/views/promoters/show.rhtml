@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @promoter.name %>
+</p>
+
+<p>
+  <b>Contact name:</b>
+  <%=h @promoter.contact_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @promoter.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @promoter.phone %>
+</p>
+
+
+<%= link_to 'Edit', edit_promoter_path(@promoter) %> |
+<%= link_to 'Back', promoters_path %>

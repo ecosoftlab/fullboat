@@ -1,0 +1,11 @@
+<h1>Editing Promoter '<%= @promoter%>'</h1>
+
+<% remote_form_for(:promoter, :url => promoter_path(@promoter), :html => { :method => :put }) do |f| %>
+	<fieldset id="promoter_details" name="Promoter Details" class="clearfix">
+		<%= render(:partial => "promoters/form", :locals => {:f => f})%>
+    	<%= submit_tag "Update" %>
+	</fieldset>
+<% end %>
+
+<%= link_to 'Show', promoter_path(@promoter) %> |
+<%= link_to 'Back', promoters_path %>
