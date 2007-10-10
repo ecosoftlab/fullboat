@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :labels
+
   map.resources :formats
 
   map.resources :genres
