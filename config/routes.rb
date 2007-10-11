@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :albums
+
+  map.resources :artists
+
+  map.resources :comments
+
   map.resources :promoters
 
   map.resources :labels

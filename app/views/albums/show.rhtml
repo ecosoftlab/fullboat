@@ -1,0 +1,53 @@
+<p>
+  <b>Name:</b>
+  <%=h @album.name %>
+</p>
+
+<p>
+  <b>Artist:</b>
+  <%=h @album.artist_id %>
+</p>
+
+<p>
+  <b>Label:</b>
+  <%=h @album.label_id %>
+</p>
+
+<p>
+  <b>Promoter:</b>
+  <%=h @album.promoter_id %>
+</p>
+
+<p>
+  <b>Format:</b>
+  <%=h @album.format_id %>
+</p>
+
+<p>
+  <b>Genre:</b>
+  <%=h @album.genre_id %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%=h @album.year %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @album.status %>
+</p>
+
+<p>
+  <b>Status changed on:</b>
+  <%=h @album.status_changed_on %>
+</p>
+
+<p>
+  <b>Is compilation:</b>
+  <%=h @album.is_compilation %>
+</p>
+
+
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>
