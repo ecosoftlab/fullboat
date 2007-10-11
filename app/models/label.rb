@@ -4,7 +4,6 @@ class Label < ActiveRecord::Base
   has_many :artists, :through => :albums
   has_many :promoters, :through => :albums
   has_many :genres, :through => :albums
-  has_many :tags, :through => :albums
 
   validates_presence_of :name
   validates_length_of :name, :within => 1..100
