@@ -1,0 +1,21 @@
+<h1>Listing Reviews</h1>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>Body</th>
+	    	<th>User</th>
+	    	<th>Album</th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @reviews.each do |review| %>
+  		<tr>
+		    		<td><%=h review.body %></td>
+		    		<td><%=h review.user_id %></td>
+		    		<td><%=h review.album_id %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>
