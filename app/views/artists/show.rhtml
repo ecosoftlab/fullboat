@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @artist.name %>
+</p>
+
+<p>
+  <b>Sort name:</b>
+  <%=h @artist.sort_name %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%=h @artist.note %>
+</p>
+
+
+<%= link_to 'Edit', edit_artist_path(@artist) %> |
+<%= link_to 'Back', artists_path %>
