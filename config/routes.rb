@@ -1,28 +1,36 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :reviews
+  map.resources :reviews,
+                :collection => {:manage => :get}
 
-  map.resources :albums
+  map.resources :albums,
+                :collection => {:manage => :get}
 
-  map.resources :artists
+  map.resources :artists,
+                :collection => {:manage => :get}
 
-  map.resources :comments
+  map.resources :comments,
+                :collection => {:manage => :get}
 
-  map.resources :promoters
+  map.resources :promoters,
+                :collection => {:manage => :get}
 
-  map.resources :labels
+  map.resources :labels,
+                :collection => {:manage => :get}
 
-  map.resources :formats
+  map.resources :formats,
+                :collection => {:manage => :get}
 
-  map.resources :genres
+  map.resources :genres,
+                :collection => {:manage => :get}
 
   map.resources :sessions
   map.resources :users,
                 :collection => {:manage => :get}
-  
-  
+
+
   map.welcome '/', :controller => 'wrct', :action => 'index'
   map.admin   'admin', :controller => 'admin', :action => 'index'
-  
+
   map.login   'login', :controller => 'sessions', :action => 'new'
   map.logout  'logout', :controller => 'sessions', :action => 'destroy'
 

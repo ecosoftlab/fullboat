@@ -1,5 +1,7 @@
 class AlbumsController < ApplicationController
-  
+
+  before_filter :login_required
+
   # GET /albums
   # GET /albums.xml
   def index
@@ -16,11 +18,11 @@ class AlbumsController < ApplicationController
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @albums.to_xml }
-      format.rss  { render_rss_feed_for @albums, 
-                      options.update({:link => formatted_albums_url(:rss)}) 
+      format.rss  { render_rss_feed_for @albums,
+                      options.update({:link => formatted_albums_url(:rss)})
                   }
-      format.atom { render_atom_feed_for @albums, 
-                      options.update({:link => formatted_albums_url(:atom)}) 
+      format.atom { render_atom_feed_for @albums,
+                      options.update({:link => formatted_albums_url(:atom)})
                   }
     end
   end
@@ -58,7 +60,7 @@ class AlbumsController < ApplicationController
       format.xml  { head :created, :location => album_url(@album) }
       format.js   { render :template => 'albums/success' }
     end
-    
+
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
@@ -99,7 +101,7 @@ class AlbumsController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
+
   # GET /albums;manage
   def manage
     @albums = Album.find(:all)

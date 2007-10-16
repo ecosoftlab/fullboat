@@ -1,9 +1,10 @@
 class ArtistsController < ApplicationController
-  
+  before_filter :login_required
+
   # GET /artists
   # GET /artists.xml
   def index
-    @artists = Artist.find(:all)
+    @artists = Artist.find(:all, :order => "created_at DESC", :limit => 50)
 
     options = { :feed => { :title       => "Artists",
                            :description => "",
@@ -16,11 +17,11 @@ class ArtistsController < ApplicationController
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @artists.to_xml }
-      format.rss  { render_rss_feed_for @artists, 
-                      options.update({:link => formatted_artists_url(:rss)}) 
+      format.rss  { render_rss_feed_for @artists,
+                      options.update({:link => formatted_artists_url(:rss)})
                   }
-      format.atom { render_atom_feed_for @artists, 
-                      options.update({:link => formatted_artists_url(:atom)}) 
+      format.atom { render_atom_feed_for @artists,
+                      options.update({:link => formatted_artists_url(:atom)})
                   }
     end
   end
@@ -54,11 +55,11 @@ class ArtistsController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = 'Artist was successfully created.'
-      format.html { redirect_to artist_url(@artist) }
+      format.html { redirect_to artist_url(@artist.id) }
       format.xml  { head :created, :location => artist_url(@artist) }
       format.js   { render :template => 'artists/success' }
     end
-    
+
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
@@ -74,7 +75,7 @@ class ArtistsController < ApplicationController
 
     respond_to do |format|
       if @artist.update_attributes(params[:artist])
-        flash[:notice] = "Artist '#{@artist}' was successfully updated."
+        flash[:notice] = "Artist '#{@artist.name}' was successfully updated."
         format.html { redirect_to artist_url(@artist) }
         format.xml  { head :ok }
         format.js   { render :template => 'artists/success' }
@@ -93,15 +94,15 @@ class ArtistsController < ApplicationController
     @artist.destroy
 
     respond_to do |format|
-      flash[:notice] = "Artist '#{@artist}' was destroyed."
-      format.html { redirect_to artists_url }
+      flash[:notice] = "Artist '#{@artist.name}' was destroyed."
+      format.html { redirect_to manage_artists_url }
       format.xml  { head :ok }
       format.js   # destroy.rjs
     end
   end
-  
+
   # GET /artists;manage
   def manage
-    @artists = Artist.find(:all)
+    @artists = Artist.find(:all, :order => "created_at DESC", :limit => 50)
   end
 end
