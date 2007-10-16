@@ -1,5 +1,6 @@
 class LabelsController < ApplicationController
-  
+  before_filter :login_required
+
   # GET /labels
   # GET /labels.xml
   def index
@@ -16,11 +17,11 @@ class LabelsController < ApplicationController
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @labels.to_xml }
-      format.rss  { render_rss_feed_for @labels, 
-                      options.update({:link => formatted_labels_url(:rss)}) 
+      format.rss  { render_rss_feed_for @labels,
+                      options.update({:link => formatted_labels_url(:rss)})
                   }
-      format.atom { render_atom_feed_for @labels, 
-                      options.update({:link => formatted_labels_url(:atom)}) 
+      format.atom { render_atom_feed_for @labels,
+                      options.update({:link => formatted_labels_url(:atom)})
                   }
     end
   end
@@ -58,7 +59,7 @@ class LabelsController < ApplicationController
       format.xml  { head :created, :location => label_url(@label) }
       format.js   { render :template => 'labels/success' }
     end
-    
+
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
@@ -99,7 +100,7 @@ class LabelsController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
+
   # GET /labels;manage
   def manage
     @labels = Label.find(:all)
