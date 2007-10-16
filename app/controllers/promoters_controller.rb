@@ -1,5 +1,6 @@
 class PromotersController < ApplicationController
-  
+  before_filter :login_required
+
   # GET /promoters
   # GET /promoters.xml
   def index
@@ -16,11 +17,11 @@ class PromotersController < ApplicationController
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @promoters.to_xml }
-      format.rss  { render_rss_feed_for @promoters, 
-                      options.update({:link => formatted_promoters_url(:rss)}) 
+      format.rss  { render_rss_feed_for @promoters,
+                      options.update({:link => formatted_promoters_url(:rss)})
                   }
-      format.atom { render_atom_feed_for @promoters, 
-                      options.update({:link => formatted_promoters_url(:atom)}) 
+      format.atom { render_atom_feed_for @promoters,
+                      options.update({:link => formatted_promoters_url(:atom)})
                   }
     end
   end
@@ -58,7 +59,7 @@ class PromotersController < ApplicationController
       format.xml  { head :created, :location => promoter_url(@promoter) }
       format.js   { render :template => 'promoters/success' }
     end
-    
+
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
@@ -99,7 +100,7 @@ class PromotersController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
+
   # GET /promoters;manage
   def manage
     @promoters = Promoter.find(:all)

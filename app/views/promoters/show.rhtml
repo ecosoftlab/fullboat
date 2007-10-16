@@ -20,4 +20,4 @@
 
 
 <%= link_to 'Edit', edit_promoter_path(@promoter) %> |
-<%= link_to 'Back', promoters_path %>
+<%= link_to 'Destroy', promoter_path(@promoter), :confirm => "Are You Sure?", :method => :delete %>
