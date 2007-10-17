@@ -1,5 +1,6 @@
 class FormatsController < ApplicationController
-  
+  before_filter :login_required
+
   # GET /formats
   # GET /formats.xml
   def index
@@ -16,11 +17,11 @@ class FormatsController < ApplicationController
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @formats.to_xml }
-      format.rss  { render_rss_feed_for @formats, 
-                      options.update({:link => formatted_formats_url(:rss)}) 
+      format.rss  { render_rss_feed_for @formats,
+                      options.update({:link => formatted_formats_url(:rss)})
                   }
-      format.atom { render_atom_feed_for @formats, 
-                      options.update({:link => formatted_formats_url(:atom)}) 
+      format.atom { render_atom_feed_for @formats,
+                      options.update({:link => formatted_formats_url(:atom)})
                   }
     end
   end
@@ -58,7 +59,7 @@ class FormatsController < ApplicationController
       format.xml  { head :created, :location => format_url(@format) }
       format.js   { render :template => 'formats/success' }
     end
-    
+
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
@@ -99,7 +100,7 @@ class FormatsController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
+
   # GET /formats;manage
   def manage
     @formats = Format.find(:all)

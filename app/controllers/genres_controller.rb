@@ -1,5 +1,6 @@
 class GenresController < ApplicationController
-  
+  before_filter :login_required
+
   # GET /genres
   # GET /genres.xml
   def index
@@ -16,11 +17,11 @@ class GenresController < ApplicationController
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @genres.to_xml }
-      format.rss  { render_rss_feed_for @genres, 
-                      options.update({:link => formatted_genres_url(:rss)}) 
+      format.rss  { render_rss_feed_for @genres,
+                      options.update({:link => formatted_genres_url(:rss)})
                   }
-      format.atom { render_atom_feed_for @genres, 
-                      options.update({:link => formatted_genres_url(:atom)}) 
+      format.atom { render_atom_feed_for @genres,
+                      options.update({:link => formatted_genres_url(:atom)})
                   }
     end
   end
@@ -58,7 +59,7 @@ class GenresController < ApplicationController
       format.xml  { head :created, :location => genre_url(@genre) }
       format.js   { render :template => 'genres/success' }
     end
-    
+
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
@@ -99,7 +100,7 @@ class GenresController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
+
   # GET /genres;manage
   def manage
     @genres = Genre.find(:all)
