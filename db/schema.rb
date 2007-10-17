@@ -2,7 +2,29 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 5) do
+ActiveRecord::Schema.define(:version => 11) do
+
+# Could not dump table "albums" because of following StandardError
+#   Unknown type 'enum' for column 'status'
+
+  create_table "artists", :force => true do |t|
+    t.column "name",       :string
+    t.column "sort_name",  :string
+    t.column "note",       :text
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "artists", ["name"], :name => "index_artists_on_name"
+
+  create_table "comments", :force => true do |t|
+    t.column "body",             :text
+    t.column "commentable_id",   :integer
+    t.column "commentable_type", :string
+    t.column "user_id",          :integer
+    t.column "created_at",       :datetime
+    t.column "updated_at",       :datetime
+  end
 
   create_table "formats", :force => true do |t|
     t.column "name",       :string
@@ -10,11 +32,15 @@ ActiveRecord::Schema.define(:version => 5) do
     t.column "updated_at", :datetime
   end
 
+  add_index "formats", ["name"], :name => "index_formats_on_name"
+
   create_table "genres", :force => true do |t|
     t.column "name",       :string
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end
+
+  add_index "genres", ["name"], :name => "index_genres_on_name"
 
   create_table "labels", :force => true do |t|
     t.column "name",         :string
@@ -32,6 +58,8 @@ ActiveRecord::Schema.define(:version => 5) do
     t.column "updated_at",   :datetime
   end
 
+  add_index "labels", ["name"], :name => "index_labels_on_name"
+
   create_table "promoters", :force => true do |t|
     t.column "name",         :string
     t.column "contact_name", :string
@@ -41,22 +69,35 @@ ActiveRecord::Schema.define(:version => 5) do
     t.column "updated_at",   :datetime
   end
 
-  create_table "users", :force => true do |t|
-    t.column "login",                     :string
-    t.column "email",                     :string
-    t.column "crypted_password",          :string,   :limit => 40
-    t.column "salt",                      :string,   :limit => 40
-    t.column "first_name",                :string
-    t.column "last_name",                 :string
-    t.column "phone",                     :string
-    t.column "affiliation",               :enum,     :limit => [:undergraduate, :graduate, :alumni, :community, :faculty, :staff]
-    t.column "status",                    :enum,     :limit => [:active, :inactive, :banned]
-    t.column "remember_token",            :string
-    t.column "remember_token_expires_at", :datetime
-    t.column "activation_code",           :string,   :limit => 40
-    t.column "activated_at",              :datetime
-    t.column "created_at",                :datetime
-    t.column "updated_at",                :datetime
+  add_index "promoters", ["name"], :name => "index_promoters_on_name"
+
+  create_table "reviews", :force => true do |t|
+    t.column "body",       :text
+    t.column "user_id",    :integer
+    t.column "album_id",   :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
   end
+
+  add_index "reviews", ["user_id", "album_id"], :name => "index_reviews_on_user_id_and_album_id"
+  add_index "reviews", ["album_id"], :name => "index_reviews_on_album_id", :unique => true
+  add_index "reviews", ["user_id"], :name => "index_reviews_on_user_id"
+
+  create_table "taggings", :force => true do |t|
+    t.column "tag_id",        :integer
+    t.column "taggable_id",   :integer
+    t.column "taggable_type", :string
+    t.column "created_at",    :datetime
+  end
+
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+
+  create_table "tags", :force => true do |t|
+    t.column "name", :string
+  end
+
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'enum' for column 'affiliation'
 
 end
