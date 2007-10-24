@@ -1,10 +1,10 @@
-<h1>Editing Album '<%= @album%>'</h1>
+<h1>Editing Album '<%= @album.name %>'</h1>
 
 <% remote_form_for(:album, :url => album_path(@album), :html => { :method => :put }) do |f| %>
-	<fieldset id="album_details" name="Album Details" class="clearfix">
-		<%= render(:partial => "albums/form", :locals => {:f => f})%>
-    	<%= submit_tag "Update" %>
-	</fieldset>
+        <fieldset id="album_details" name="Album Details" class="clearfix">
+                <%= render(:partial => "albums/form", :locals => {:f => f})%>
+        <%= submit_tag "Update" %>
+        </fieldset>
 <% end %>
 
 <%= link_to 'Show', album_path(@album) %> |

@@ -1,6 +1,7 @@
 class Album < ActiveRecord::Base
   acts_as_taggable
-  has_many :comments, :as => :commentable
+  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_one :review, :dependent => :destroy
 
   belongs_to :artist
   belongs_to :label
@@ -25,7 +26,13 @@ class Album < ActiveRecord::Base
   validates_inclusion_of :is_compilation, :in => [true,false]
 
   def create_comment
-    
+
   end
-  
+
+  def self.to_string
+    self.name
+  end
+
+
+
 end

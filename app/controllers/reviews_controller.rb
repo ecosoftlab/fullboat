@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  
+
   # GET /reviews
   # GET /reviews.xml
   def index
@@ -16,11 +16,11 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @reviews.to_xml }
-      format.rss  { render_rss_feed_for @reviews, 
-                      options.update({:link => formatted_reviews_url(:rss)}) 
+      format.rss  { render_rss_feed_for @reviews,
+                      options.update({:link => formatted_reviews_url(:rss)})
                   }
-      format.atom { render_atom_feed_for @reviews, 
-                      options.update({:link => formatted_reviews_url(:atom)}) 
+      format.atom { render_atom_feed_for @reviews,
+                      options.update({:link => formatted_reviews_url(:atom)})
                   }
     end
   end
@@ -58,7 +58,7 @@ class ReviewsController < ApplicationController
       format.xml  { head :created, :location => review_url(@review) }
       format.js   { render :template => 'reviews/success' }
     end
-    
+
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
@@ -94,12 +94,12 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = "Review '#{@review}' was destroyed."
-      format.html { redirect_to reviews_url }
+      format.html { redirect_to album_url(@review.album)}
       format.xml  { head :ok }
       format.js   # destroy.rjs
     end
   end
-  
+
   # GET /reviews;manage
   def manage
     @reviews = Review.find(:all)

@@ -5,27 +5,31 @@
 
 <p>
   <b>Artist:</b>
-  <%=h @album.artist_id %>
+  <%= link_to @album.artist.name, artist_path(@album.artist_id) %>
 </p>
 
 <p>
   <b>Label:</b>
-  <%=h @album.label_id %>
+  <%= link_to @album.label.name, label_path(@album.label_id) %>
 </p>
 
 <p>
   <b>Promoter:</b>
-  <%=h @album.promoter_id %>
+  <%= link_to @album.promoter.name, promoter_path(@album.promoter_id) %>
 </p>
 
 <p>
   <b>Format:</b>
-  <%=h @album.format_id %>
+  <%= link_to @album.format.name, format_path(@album.format_id) %>
 </p>
 
 <p>
   <b>Genre:</b>
-  <%=h @album.genre_id %>
+  <%= link_to @album.genre.name, genre_path(@album.genre_id) %>
+</p>
+<p>
+  <b>Tags:</b>
+  <%=h @album.tag_list %>
 </p>
 
 <p>
@@ -48,6 +52,13 @@
   <%=h @album.is_compilation %>
 </p>
 
+<% if @album.review %>
+<p>
+  <b>Review: (<%= link_to 'Destroy', review_path(@album.review), :confirm => 'Are you sure?', :method => :delete %>) </b><br />
+  <%=h @album.review.body %><br />
+  by: <%=h @album.review.user.login %>
+</p>
+<% end %>
 
 <%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+<%= link_to 'Destroy', album_path(@album), :confirm => 'Are you sure?', :method => :delete %>
