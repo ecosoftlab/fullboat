@@ -12,321 +12,350 @@ q:before,q:after{content:'';}
 a{text-decoration:none;}
 
 html{
-	border-left:3px #f9a63c solid;
-	margin:0;
-	padding:0;
-	height:100%;
+        border-left:3px #f9a63c solid;
+        margin:0;
+        padding:0;
+        height:100%;
 }
 
 body {
-	font: 12px "Helvetica", "Arial","Verdana", helvetica, verdana, arial, verdana, sans-serif;
-	background: #333;
-	color: #fcfcfc;
-	text-shadow: #333 0px 1px 1px;
+        font: 12px "Helvetica", "Arial","Verdana", helvetica, verdana, arial, verdana, sans-serif;
+        background: #333;
+        color: #fcfcfc;
+        text-shadow: #333 0px 1px 1px;
 }
 
 h1 {
-	font-size: 2.0em;
-	font-weight:bold;
-	line-height: 1em;
-	margin-top: 0.6em;
-	margin-bottom: 0.67em;
+        font-size: 2.0em;
+        font-weight:bold;
+        line-height: 1em;
+        margin-top: 0.6em;
+        margin-bottom: 0.67em;
 }
 
 h2 {
-	font-size: 1.6667em;
-	line-height: 1.286em;
-	margin-top: 0.76em;
-	margin-bottom: 0.643em;
+        font-size: 1.6667em;
+        line-height: 1.286em;
+        margin-top: 0.76em;
+        margin-bottom: 0.643em;
 }
 
 h3 {
-	font-size: 1.23em;
-	line-height: 1.186em;
-	margin-top: 0.96em;
-	margin-bottom: 0.443em;
+        font-size: 1.23em;
+        line-height: 1.186em;
+        margin-top: 0.96em;
+        margin-bottom: 0.443em;
 }
 
 p {
-	font-size: 1.0em;
-	line-height: 1.7em;
-	margin-top: 1.5em;
-	margin-bottom: 1.5em;
+        font-size: 1.0em;
+        line-height: 1.7em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
 }
 
 a{
-	color: #fcfcfc;
-	text-decoration: underline;
+        color: #fcfcfc;
+        text-decoration: underline;
 }
 
 a:hover{
-	color: #222;
-	background-color: #fcfcfc;
-	text-decoration: none;
+        color: #222;
+        background-color: #fcfcfc;
+        text-decoration: none;
 }
 
 h1, h2, h3, #navigation li{
-	text-transform:lowercase;
-	font-variant:small-caps;
+        text-transform:lowercase;
+        font-variant:small-caps;
 }
 
 /* Content */
 
 #container{
-	width:850px;
-	margin:10px 10px 10px 85px;
-	padding:20px;
-	background:#000;
+        width:850px;
+        margin:10px 10px 10px 85px;
+        padding:20px;
+        background:#000;
 }
 
 #header{
-	margin-bottom:20px;
-	padding-bottom:10px;
-	border-bottom:2px #666 solid;
+        margin-bottom:20px;
+        padding-bottom:10px;
+        border-bottom:2px #666 solid;
 }
 
-	#logo{
-		width:160px;
-		height:80px;
-		display:block;
-		background:#000 url(../images/wrct_logo.gif) no-repeat bottom left;
-		padding:4px 0 0 0;
-		margin:0 85px 0 0;
-		float:left;
-	}
+        #logo{
+                width:160px;
+                height:80px;
+                display:block;
+                background:#000 url(../images/wrct_logo.gif) no-repeat bottom left;
+                padding:4px 0 0 0;
+                margin:0 85px 0 0;
+                float:left;
+        }
 
-	#logo:hover{
-		padding:2px 0 0 0;
-		border-top:2px #f9a63c solid;
-	}
+        #logo:hover{
+                padding:2px 0 0 0;
+                border-top:2px #f9a63c solid;
+        }
 
-	#logo *{
-		display:none;
-	}
-	
-	#navigation{
-		width:595px;
-		float:left;
-	}
-	
-		#navigation li{
-			width:160px;
-			font-size:1.3em;
-			display:block;
-			float:left;
-			margin:0 0 10px 0;
-			font-weight:bold;
-		}
-		
-		#navigation li.current a{
-			padding-top:2px;
-			border-top:2px #ccc solid;
-		}
-		
-		#navigation li a{
-			padding:0.3em;
-			display:block;
-			padding-top:4px;
-			text-decoration:none;
-		}
-		#navigation li a:hover{
-			padding-top:2px;
-			border-top:2px #f9a63c solid;
-			background:transparent;
-			color:#f9a63c;
-		}
+        #logo *{
+                display:none;
+        }
+
+        #navigation{
+                width:595px;
+                float:left;
+        }
+
+                #navigation li{
+                        width:160px;
+                        font-size:1.3em;
+                        display:block;
+                        float:left;
+                        margin:0 0 10px 0;
+                        font-weight:bold;
+                }
+
+                #navigation li.current a{
+                        padding-top:2px;
+                        border-top:2px #ccc solid;
+                }
+
+                #navigation li a{
+                        padding:0.3em;
+                        display:block;
+                        padding-top:4px;
+                        text-decoration:none;
+                }
+                #navigation li a:hover{
+                        padding-top:2px;
+                        border-top:2px #f9a63c solid;
+                        background:transparent;
+                        color:#f9a63c;
+                }
 
 #sidebar{
-	width:245px;
-	margin:0 0px 0 0;
-	float:left;
+        width:245px;
+        margin:0 0px 0 0;
+        float:left;
 }
 
-	#sidebar ul{
-		padding:0 15px;
-	}
-	#sidebar ul li{
-		margin:0.4em 0;
-	}
+        #sidebar ul{
+                padding:0 15px;
+        }
+        #sidebar ul li{
+                margin:0.4em 0;
+        }
 
 #content{
-	width:585px;
-	margin:0 10px 0 0;
-	float:left;
+        width:585px;
+        margin:0 10px 0 0;
+        float:left;
 }
 
 #footer{
-	margin-top:20px;
-	padding-top:10px;
-	border-top:2px #666 solid;
+        margin-top:20px;
+        padding-top:10px;
+        border-top:2px #666 solid;
 }
 
 #footer p{
-	font-size:80%;
-	padding:0;
-	margin:0;
+        font-size:80%;
+        padding:0;
+        margin:0;
 }
 
 /* Basic Form Styling */
 
 form{
-	float: left;
-	margin: 10px 0 30px 0;
+        float: left;
+        margin: 10px 0 30px 0;
 }
 
 form fieldset{
-	width: 400px;
+        width: 400px;
 }
 
 form ol{
-	padding: 0;
+        padding: 0;
 }
 
 form label{
-	width: 80px;
-	font-weight: bold;
+        width: 80px;
+        font-weight: bold;
 }
 
 form textarea.summary{
-	height: 8em;
+        height: 8em;
 }
 
 input[type^="text"], input[type^="password"], select{
-	font-size: 1.4em;
-	max-width: 313px;
+        font-size: 1.4em;
+        max-width: 313px;
 }
 
 input[type^="file"]{
-	width: 200px;
+        width: 200px;
 }
 
 input[type^="submit"]{
-	margin-top: 30px;
+        margin-top: 30px;
 }
 
 select{
-	margin: 0.6em 0;
+        margin: 0.6em 0;
 }
 
 label{
-	font-size: 1.15em;
-	margin: 0.3em 0 0.1em 0;
-	padding: 0;
-	display: block;
+        font-size: 1.15em;
+        margin: 0.3em 0 0.1em 0;
+        padding: 0;
+        display: block;
 }
 
 form ol li.inline-label input{
-	margin: 0 10px 0 0;
+        margin: 0 10px 0 0;
 }
 
 form ol li.inline-label label{
-	display: inline;
+        display: inline;
 }
 
 form legend{
-	font-size: 1.3em;
-	font-weight: bold;
-	border-bottom: 2px #535353 solid;
-	margin: 0.3em 0 1.7em 0;
-	padding: 0.3em 0 1.1em 0;
-	display:block;
-	width:100%;
+        font-size: 1.3em;
+        font-weight: bold;
+        border-bottom: 2px #535353 solid;
+        margin: 0.3em 0 1.7em 0;
+        padding: 0.3em 0 1.1em 0;
+        display:block;
+        width:100%;
 }
 
 form ol{
-	clear: both;
-	list-style: none;
-	padding: 0.4em 0;
-	margin: 0.3em 0;
+        clear: both;
+        list-style: none;
+        padding: 0.4em 0;
+        margin: 0.3em 0;
 }
 
 form ol li{
-	margin: 0.8em 0;
+        margin: 0.8em 0;
 }
 
 form label{
-	padding: 0.6em 0 0.1em 0;
-	margin: 0.2em 0 0.1em 0;
+        padding: 0.6em 0 0.1em 0;
+        margin: 0.2em 0 0.1em 0;
 }
 
 form label input{
-	margin: 0 0.85em 0 0;
+        margin: 0 0.85em 0 0;
 }
 
 span.explanatory{
-	color: #777;
-	font-size: 75%;
-	font-weight: normal;
-	margin: 0 0.3em 0 0.5em;
+        color: #777;
+        font-size: 75%;
+        font-weight: normal;
+        margin: 0 0.3em 0 0.5em;
 }
 
 span.explanatory:before{
-	content: "(";
+        content: "(";
 }
 
 span.explanatory:after{
-	content: ")";
+        content: ")";
 }
 
 table {
-	margin:10px 0;
+        margin:10px 0;
 }
 
 th {
-	text-align: left;
-	font-weight: bold;
-	color: #ccc;
-	border-bottom: 1px #777 solid
+        text-align: left;
+        font-weight: bold;
+        color: #ccc;
+        border-bottom: 1px #777 solid
 }
 
 td {
-	padding-top: 0.3em;
-	padding-bottom: 0.3em;
+        padding-top: 0.3em;
+        padding-bottom: 0.3em;
 }
 
 td.option{
-	width:16px;
+        width:16px;
 }
 
 td,th{
-	width:75px;
-	padding-left:5px;
-	padding-right:5px;
+        width:75px;
+        padding-left:5px;
+        padding-right:5px;
 }
 
 tr.stripe td{
-	background:#222;
+        background:#222;
 }
 
 tbody tr:hover td{
-	background:#333;
-} 
+        background:#333;
+}
 
 /* Utility Functions */
 .clearfix:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
 }
 
 .clearfix {
-	display: inline-block;
+        display: inline-block;
 }
 
 /* Hide from IE Mac \*/
 .clearfix {
-	display: block;
+        display: block;
 }
 
 /* End hide from IE Mac */
 .break{
-	clear: both;
+        clear: both;
 }
 
 .spacer {
-	clear: both;
-	height: 1px;
-	float: none
+        clear: both;
+        height: 1px;
+        float: none
+}
+
+
+
+/* Auto complete stuff */
+
+div.auto_complete {
+ width: 350px;
+ background: #fff;
+}
+ div.auto_complete ul {
+ border:1px solid #888;
+ margin:0;
+ padding:0;
+ width:100%;
+ list-style-type:none;
+}
+ div.auto_complete ul li {
+ margin:0;
+ padding:3px;
+ color: black;
+}
+ div.auto_complete ul li.selected {
+ background-color: #ffb;
+}
+ div.auto_complete ul strong.highlight {
+ color: #800;
+ margin:0;
+ padding:0;
 }
