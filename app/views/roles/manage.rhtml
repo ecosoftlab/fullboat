@@ -10,14 +10,14 @@
 	</thead>
   
 	<tbody>
-<% @roles.each do |roles| %>
-	<tr id="<%= roles.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
-		<td><%= h roles.title %></td>
-		<td><%= h roles.description %></td>
-    	<td><%= link_to 'Show', roles_path(roles) %></td>
-    	<td><%= link_to 'Edit', edit_roles_path(roles) %></td>
+<% @roles.each do |role| %>
+	<tr id="<%= role.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
+		<td><%= h role.title %></td>
+		<td><%= h role.description %></td>
+    	<td><%= link_to 'Show', role_path(role) %></td>
+    	<td><%= link_to 'Edit', edit_role_path(role) %></td>
     	<td><%= link_to_remote 'Destroy', 
-								:url => roles_path(roles), 
+								:url => role_path(role), 
 								:confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	</tbody>

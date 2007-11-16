@@ -11,32 +11,33 @@
 </head>
 
 <% content_tag :body, (@options_for_body_tag || {:id => 'standard'}) do -%>
-        <div id="container">
-                <div id="header" class="clearfix">
-                        <%= render(:partial => 'admin/header') %>
-                        <% if flash[:notice] %>
-                                <div class="alert notice">
-                                        <h2><%= flash[:notice] %></h2>
-                                </div>
-                        <% end %>
-                </div>
-
-                <div id="wrapper" class="clearfix">
-                                <div id="sidebar">
-                                <% if (sidebar = yield :sidebar) %>
-                                        <%= sidebar %>
-                                <% end %>
-                                        <%= render(:partial => 'admin/sidebar')%>
-                                </div>
-
-                        <div id="content">
-                                <%= yield %>
-                        </div>
-                </div>
-
-                <div id="footer">
-                        <%= render(:partial => 'shared/footer') %>
-                </div>
+  <div id="container">
+    <div id="header" class="clearfix">
+      <%= render(:partial => 'admin/header') %>
+      <% if flash[:notice] %>
+        <div class="alert notice">
+          <h2><%= flash[:notice] %></h2>
         </div>
+      <% end %>
+    </div>
+
+    <div id="wrapper" class="clearfix">
+      <div id="sidebar">
+        <% if (sidebar = yield :sidebar) %>
+          <%= sidebar %>
+        <% end %>
+        
+        <%= render(:partial => 'admin/sidebar')%>
+      </div>
+
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+
+    <div id="footer">
+      <%= render(:partial => 'shared/footer') %>
+    </div>
+  </div>
 <% end %>
 </html>

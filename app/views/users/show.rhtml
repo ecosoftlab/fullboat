@@ -1,1 +1,2 @@
 <h1><%= h @user %></h1>
+<h2>Last Login: <%= h time_ago_in_words(@user.updated_at) << " ago" %></h2>

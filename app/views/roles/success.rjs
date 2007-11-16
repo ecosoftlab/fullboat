@@ -1,1 +1,1 @@
-page.redirect_to roles_url(@roles)
+page.redirect_to role_url(@role)

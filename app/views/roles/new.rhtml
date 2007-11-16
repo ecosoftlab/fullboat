@@ -1,7 +1,7 @@
-<h1>Create a New Roles</h1>
+<h1>Create a New Role</h1>
 
-<% remote_form_for(:roles, :url => roles_path) do |f| %>
-	<fieldset id="roles_details" name="Roles Details" class="clearfix">
+<% remote_form_for(:role, :url => roles_path) do |f| %>
+	<fieldset id="role_details" name="Role Details" class="clearfix">
 		<%= render(:partial => "roles/form", :locals => {:f => f})%>
     	<%= submit_tag "Create" %>
 	</fieldset>

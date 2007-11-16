@@ -9,10 +9,10 @@
 	</thead>
 	
 	<tbody>
-  	<% @roles.each do |roles| %>
+  	<% @roles.each do |role| %>
   		<tr>
-		    		<td><%=h roles.title %></td>
-		    		<td><%=h roles.description %></td>
+		    		<td><%=h role.title %></td>
+		    		<td><%=h role.description %></td>
 		  		</tr>
 	<% end %>
 	</tbody>

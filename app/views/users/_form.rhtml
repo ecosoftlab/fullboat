@@ -8,10 +8,27 @@
 			<%= f.text_field :name %></li>
 		<li><label for="email">E-mail</label>
 			<%= f.text_field :email %></li>
-		<li><label>Status</label>
-			<%= select nil, nil, [["Active", "Active"], ["Inactive", "Inactive"], ["Banned", "Banned"]]%></li>
+		<% restrict_to 'admin || staph_director' do %>
+		  <li><label>Status</label>
+  			<%= select nil, nil, [["Active", "Active"], ["Inactive", "Inactive"], ["Banned", "Banned"]]%></li>
+  	<% end %>
 	</ol>
 </fieldset>
+
+<% restrict_to 'admin' do %>
+  <fieldset id="user_roles" class="clearfix">
+  	<legend>User Roles</legend>
+  	<table>
+  	<% Role.find(:all).each do |role| %>
+  	  <tr>
+  	    <td><%= check_box_tag "role_#{role}", "1", @user.roles.include?(role) %></td>
+  	    <td><label><%= h role %></label></td>
+  	    <td><%= h role.description %></td>
+  	  </tr>
+  	<% end %>
+  	</table>
+  </fieldset>
+<% end if @user %>
 
 <fieldset id="account_details" class="clearfix">
 	<legend>Account Details</legend>

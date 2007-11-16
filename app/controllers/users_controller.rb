@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :login_required
+  access_rule 'admin || staph_director', :only => [:manage, :destroy]
 
   # GET /users
   def index
@@ -11,17 +12,30 @@ class UsersController < ApplicationController
     @page_title = "Create A New User"    
   end
   
+  def show
+    @user = User.find_by_login(params[:id])
+  end
+  
   # GET /users/andrew;edit
   def edit
     @page_title = "Edit User"
-    
+        
     @user = User.find_by_login(params[:id])
+    if current_user == @user || has_permission?('admin')
+      respond_to do |format|
+        format.html # edit.rhtml
+        format.xml    { render :xml => @user.to_xml }
+      end
+    else
+      access_denied
+    end
   end
   
   # PUT /users/andrew
   def update
     @user = User.find_by_login(params[:id])
-
+    update_roles
+    
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
@@ -41,6 +55,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(params[:user])
+    update_roles
     @user.save!
     
     respond_to do |format|
@@ -83,6 +98,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @albums = @user.albums
     render :template => 'callbacks/programs'
+  end
+  
+  def manage
+    @users = User.find(:all)
+  end
+
+private
+
+  def update_roles
+    roles = params.delete_if{|k,v| ! k.include?("role_")}.keys.collect{|r| r.gsub(/^role_/, "")}
+    @user.roles = roles.collect{|r| Role.find_by_title(r)}.compact
+    @user.save
   end
 
 end

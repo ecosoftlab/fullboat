@@ -4,7 +4,7 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.xml
   def index
-    @roles = Roles.find(:all)
+    @roles = Role.find(:all)
 
     options = { :feed => { :title       => "Roles",
                            :description => "",
@@ -29,41 +29,41 @@ class RolesController < ApplicationController
   # GET /roles/1
   # GET /roles/1.xml
   def show
-    @roles = Roles.find(params[:id])
+    @role = Role.find(params[:id])
 
     respond_to do |format|
       format.html # show.rhtml
-      format.xml  { render :xml => @roles.to_xml }
+      format.xml  { render :xml => @role.to_xml }
     end
   end
 
   # GET /roles/new
   def new
-    @roles = Roles.new
+    @role = Role.new
   end
 
   # GET /roles/1;edit
   def edit
-    @roles = Roles.find(params[:id])
+    @role = Role.find(params[:id])
   end
 
   # POST /roles
   # POST /roles.xml
   def create
-    @roles = Roles.new(params[:roles])
-    @roles.save!
+    @role = Role.new(params[:role])
+    @role.save!
 
     respond_to do |format|
-      flash[:notice] = 'Roles was successfully created.'
-      format.html { redirect_to roles_url(@roles) }
-      format.xml  { head :created, :location => roles_url(@roles) }
+      flash[:notice] = 'Role was successfully created.'
+      format.html { redirect_to role_url(@role) }
+      format.xml  { head :created, :location => role_url(@role) }
       format.js   { render :template => 'roles/success' }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
-        format.xml  { render :xml => @roles.errors.to_xml }
+        format.xml  { render :xml => @role.errors.to_xml }
         format.js   { render :template => 'roles/error' }
     end
   end
@@ -71,17 +71,17 @@ class RolesController < ApplicationController
   # PUT /roles/1
   # PUT /roles/1.xml
   def update
-    @roles = Roles.find(params[:id])
+    @role = Role.find(params[:id])
 
     respond_to do |format|
-      if @roles.update_attributes(params[:roles])
-        flash[:notice] = "Roles '#{@roles}' was successfully updated."
-        format.html { redirect_to roles_url(@roles) }
+      if @role.update_attributes(params[:role])
+        flash[:notice] = "Role '#{@role}' was successfully updated."
+        format.html { redirect_to role_url(@role) }
         format.xml  { head :ok }
         format.js   { render :template => 'roles/success' }
       else
         format.html { render :action => :edit }
-        format.xml  { render :xml => @roles.errors.to_xml }
+        format.xml  { render :xml => @role.errors.to_xml }
         format.js   { render :template => 'roles/error' }
       end
     end
@@ -90,11 +90,11 @@ class RolesController < ApplicationController
   # DELETE /roles/1
   # DELETE /roles/1.xml
   def destroy
-    @roles = Roles.find(params[:id])
-    @roles.destroy
+    @role = Role.find(params[:id])
+    @role.destroy
 
     respond_to do |format|
-      flash[:notice] = "Roles '#{@roles}' was destroyed."
+      flash[:notice] = "Role '#{@role}' was destroyed."
       format.html { redirect_to roles_url }
       format.xml  { head :ok }
       format.js   # destroy.rjs
@@ -103,6 +103,6 @@ class RolesController < ApplicationController
   
   # GET /roles;manage
   def manage
-    @roles = Roles.find(:all)
+    @roles = Role.find(:all)
   end
 end

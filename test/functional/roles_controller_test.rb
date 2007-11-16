@@ -24,14 +24,14 @@ class RolesControllerTest < Test::Unit::TestCase
     assert_response :success
   end
   
-  def test_should_create_roles
-    old_count = Roles.count
-    create_roles
-    assert_equal old_count+1, Roles.count
+  def test_should_create_role
+    old_count = Role.count
+    create_role
+    assert_equal old_count+1, Role.count
     assert_redirected_to manage_roles_path
   end
 
-  def test_should_show_roles
+  def test_should_show_role
     get :show, :id => 1
     assert_response :success
   end
@@ -41,21 +41,21 @@ class RolesControllerTest < Test::Unit::TestCase
     assert_response :success
   end
   
-  def test_should_update_roles
-    put :update, :id => 1, :roles => { }
+  def test_should_update_role
+    put :update, :id => 1, :role => { }
     assert_redirected_to manage_roles_path
   end
   
-  def test_should_destroy_roles
-    old_count = Roles.count
+  def test_should_destroy_role
+    old_count = Role.count
     delete :destroy, :id => 1
-    assert_equal old_count-1, Roles.count    
+    assert_equal old_count-1, Role.count    
   end
   
 protected
 
-  def create_roles(options = {})
-    post :create, :roles => { }.merge(options) # Replace with default values
+  def create_role(options = {})
+    post :create, :role => { }.merge(options) # Replace with default values
   end
   
 end

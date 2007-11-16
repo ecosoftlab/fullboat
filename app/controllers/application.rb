@@ -9,8 +9,20 @@ class ApplicationController < ActionController::Base
   
   layout :determine_layout
   
-  
   def determine_layout
     params[:_admin] ? 'admin' : 'standard'
+  end
+  
+  def permission_granted
+    logger.info("[authentication] Permission granted to %s at %s for %s" %
+      [(logged_in? ? current_user.login : 'guest'), Time.now, request.request_uri])
+  end
+  
+  def permission_denied
+    logger.info("[authentication] Permission denied to %s at %s for %s" %
+      [(logged_in? ? current_user.login : 'guest'), Time.now, request.request_uri])
+    flash[:notice] = "Access Denied, yo"
+    flash[:access_denied] = true
+    redirect_to login_url
   end
 end
