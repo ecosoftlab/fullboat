@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :roles,
+                :collection => {:manage => :get}
+                
   map.resources :reviews,
                 :collection => {:manage => :get}
 
