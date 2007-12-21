@@ -1,9 +1,15 @@
 class ReviewsController < ApplicationController
+  before_filter :login_required, :get_album
+
+  private
+  def get_album
+    @album = Album.find(params[:album_id])
+  end
 
   # GET /reviews
   # GET /reviews.xml
   def index
-    @reviews = Review.find(:all)
+    @reviews = @Album.review
 
     options = { :feed => { :title       => "Reviews",
                            :description => "",
@@ -38,18 +44,18 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    @review = Review.new
+    @review = @album.review.new
   end
 
   # GET /reviews/1;edit
   def edit
-    @review = Review.find(params[:id])
+    @review = @album.review
   end
 
   # POST /reviews
   # POST /reviews.xml
   def create
-    @review = Review.new(params[:review])
+    @review = @album.review.new(params[:review])
     @review.save!
 
     respond_to do |format|
@@ -70,7 +76,7 @@ class ReviewsController < ApplicationController
   # PUT /reviews/1
   # PUT /reviews/1.xml
   def update
-    @review = Review.find(params[:id])
+    @review = @album.review
 
     respond_to do |format|
       if @review.update_attributes(params[:review])
@@ -89,7 +95,7 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.xml
   def destroy
-    @review = Review.find(params[:id])
+    @review = @album.review
     @review.destroy
 
     respond_to do |format|
@@ -102,6 +108,6 @@ class ReviewsController < ApplicationController
 
   # GET /reviews;manage
   def manage
-    @reviews = Review.find(:all)
+    @reviews = @album.review
   end
 end

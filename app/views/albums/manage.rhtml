@@ -1,41 +1,43 @@
 <h1>Manage Albums</h1>
 
+<%= render(:partial => 'mdtasks') %>
+
 <table>
-	<thead>
-  	<tr>
-    	<th>Name</th>
-    	<th>Artist</th>
-    	<th>Label</th>
-    	<th>Promoter</th>
-    	<th>Format</th>
-    	<th>Genre</th>
-    	<th>Year</th>
-    	<th>Status</th>
-    	<th>Status changed on</th>
-    	<th>Is compilation</th>
-		<th colspan="3"></th>
-  	</tr>
-	</thead>
-  
-	<tbody>
+        <thead>
+        <tr>
+        <th>Name</th>
+        <th>Artist</th>
+        <th>Label</th>
+        <th>Promoter</th>
+        <th>Format</th>
+        <th>Genre</th>
+        <th>Year</th>
+        <th>Status</th>
+        <th>Status changed on</th>
+        <th>Is compilation</th>
+                <th colspan="3"></th>
+        </tr>
+        </thead>
+
+        <tbody>
 <% @albums.each do |album| %>
-	<tr id="<%= album.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
-		<td><%= h album.name %></td>
-		<td><%= h album.artist_id %></td>
-		<td><%= h album.label_id %></td>
-		<td><%= h album.promoter_id %></td>
-		<td><%= h album.format_id %></td>
-		<td><%= h album.genre_id %></td>
-		<td><%= h album.year %></td>
-		<td><%= h album.status %></td>
-		<td><%= h album.status_changed_on %></td>
-		<td><%= h album.is_compilation %></td>
-    	<td><%= link_to 'Show', album_path(album) %></td>
-    	<td><%= link_to 'Edit', edit_album_path(album) %></td>
-    	<td><%= link_to_remote 'Destroy', 
-								:url => album_path(album), 
-								:confirm => 'Are you sure?', :method => :delete %></td>
-	</tr>
-	</tbody>
+        <tr id="<%= album.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
+                <td><%= h album.name %></td>
+                <td><%= h album.artist_id %></td>
+                <td><%= h album.label_id %></td>
+                <td><%= h album.promoter_id %></td>
+                <td><%= h album.format_id %></td>
+                <td><%= h album.genre_id %></td>
+                <td><%= h album.year %></td>
+                <td><%= h album.status %></td>
+                <td><%= h album.status_changed_on %></td>
+                <td><%= h album.is_compilation %></td>
+        <td><%= link_to 'Show', album_path(album) %></td>
+        <td><%= link_to 'Edit', edit_album_path(album) %></td>
+        <td><%= link_to_remote 'Destroy',
+                                                                :url => album_path(album),
+                                                                :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+        </tbody>
 <% end %>
 </table>
