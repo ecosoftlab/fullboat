@@ -6,12 +6,14 @@ ActionController::Routing::Routes.draw do |map|
                 :collection => {:manage => :get}
 
   map.resources :albums,
-                :collection => {:manage => :get}
+    :collection => {:manage => :get} do |album|
+    album.resource :review,
+                   :collection => {:manage => :get}
+    album.resources :comments,
+                    :collection => { :manage => :get}
+  end
 
   map.resources :artists,
-                :collection => {:manage => :get}
-
-  map.resources :comments,
                 :collection => {:manage => :get}
 
   map.resources :promoters,
