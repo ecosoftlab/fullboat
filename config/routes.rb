@@ -1,4 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :programs,
+                :collection => {:manage => :get} do |program|
+  
+    program.resources :playlists,
+                      :collection => {:manage => :get}
+  end
+
   map.resources :roles,
                 :collection => {:manage => :get}
                 

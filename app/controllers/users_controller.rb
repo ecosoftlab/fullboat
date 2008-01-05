@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :login_required
+  
   access_rule 'admin || staph_director', :only => [:manage, :destroy]
 
   # GET /users

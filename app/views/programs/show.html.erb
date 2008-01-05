@@ -1,0 +1,38 @@
+<p>
+  <b>Name:</b>
+  <%=h @program.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @program.description %>
+</p>
+
+<p>
+  <b>Day:</b>
+  <%=h @program.day %>
+</p>
+
+<p>
+  <b>Start hour:</b>
+  <%=h @program.start_hour %>
+</p>
+
+<p>
+  <b>End hour:</b>
+  <%=h @program.end_hour %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%=h @program.type %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @program.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_program_path(@program) %> |
+<%= link_to 'Back', programs_path %>

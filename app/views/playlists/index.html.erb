@@ -1,0 +1,23 @@
+<h1>Listing Playlists</h1>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>User</th>
+	    	<th>Program</th>
+	    	<th>Start time</th>
+	    	<th>End time</th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @playlists.each do |playlist| %>
+  		<tr>
+		    		<td><%=h playlist.user_id %></td>
+		    		<td><%=h playlist.program_id %></td>
+		    		<td><%=h playlist.start_time %></td>
+		    		<td><%=h playlist.end_time %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>

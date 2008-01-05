@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.2.3' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -13,9 +13,10 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.load_paths += %W[
     #{RAILS_ROOT}/app/models/aggregations
-    #{RAILS_ROOT}/app/models/people
-    #{RAILS_ROOT}/app/models/splash_media
   ]
+  
+  config.action_controller.session = { :session_key => "_wrct_session", 
+                                       :secret      => "lYcY0aHucGRH8Ehf43BqxezUVkW4S2dB5LtbaYVw" }
 end
 
 ActiveRecord::Base.class_eval do

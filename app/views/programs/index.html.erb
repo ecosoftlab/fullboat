@@ -1,0 +1,29 @@
+<h1>Listing Programs</h1>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>Name</th>
+	    	<th>Description</th>
+	    	<th>Day</th>
+	    	<th>Start hour</th>
+	    	<th>End hour</th>
+	    	<th>Type</th>
+	    	<th>Url</th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @programs.each do |program| %>
+  		<tr>
+		    		<td><%=h program.name %></td>
+		    		<td><%=h program.description %></td>
+		    		<td><%=h program.day %></td>
+		    		<td><%=h program.start_hour %></td>
+		    		<td><%=h program.end_hour %></td>
+		    		<td><%=h program.type %></td>
+		    		<td><%=h program.url %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>
