@@ -1,64 +1,29 @@
-<p>
-  <b>Name:</b>
-  <%=h @album.name %>
-</p>
-
-<p>
-  <b>Artist:</b>
-  <%= link_to @album.artist.name, artist_path(@album.artist_id) %>
-</p>
-
-<p>
-  <b>Label:</b>
-  <%= link_to @album.label.name, label_path(@album.label_id) %>
-</p>
-
-<p>
-  <b>Promoter:</b>
-  <%= link_to @album.promoter.name, promoter_path(@album.promoter_id) %>
-</p>
-
-<p>
-  <b>Format:</b>
-  <%= link_to @album.format.name, format_path(@album.format_id) %>
-</p>
-
-<p>
-  <b>Genre:</b>
-  <%= link_to @album.genre.name, genre_path(@album.genre_id) %>
-</p>
-<p>
-  <b>Tags:</b>
-  <%=h @album.tag_list %>
-</p>
-
-<p>
-  <b>Year:</b>
-  <%=h @album.year %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%=h @album.status %>
-</p>
-
-<p>
-  <b>Status changed on:</b>
-  <%=h @album.status_changed_on %>
-</p>
-
-<p>
-  <b>Is compilation:</b>
-  <%=h @album.is_compilation %>
-</p>
-
+<!-- hReview microformat -->
+<div id="<%= @album.dom_id %>" class="hreview">
+  <div class="item">
+    <%= image_tag("placeholder_album.jpg", :alt => "Cover for #{h(@album.name)}", :class => 'photo' )%>
+    <h1 class="fn"><%= h @album.name %></h1>
+    <h2><%= link_to @album.artist.name, artist_path(@album.artist_id) %></h2>
+  </div>
+  
+  <dl>
+    <dt>Label</dt>
+    <dd><%= @album.label ? link_to(h(@album.label), label_path(@album.label)) : "None" %></dd>
+    <dt>Year</dt>
+    <dd><%= h @album.year %></dd>
+    <dt>Genre</dt>
+    <dd><%= h @album.genre %></dd>
+  </dl>
 <% if @album.review %>
-<p>
-  <b>Review: (<%= link_to 'Destroy', review_path(@album.review), :confirm => 'Are you sure?', :method => :delete %>) </b><br />
-  <%=h @album.review.body %><br />
-  by: <%=h @album.review.user.login %>
-</p>
+  <div class="description">
+    <%= @album.review %>
+  </div>
+  <!-- hReview microformat -->
+  <cite>
+    <%= vcard(@album.review.user, :class => 'reviewer') %>
+  </cite>
 <% end %>
+</div>
 
 <%= link_to 'Edit', edit_album_path(@album) %> |
 <%= link_to 'Destroy', album_path(@album), :confirm => 'Are you sure?', :method => :delete %>

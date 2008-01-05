@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 15) do
+ActiveRecord::Schema.define(:version => 16) do
 
 # Could not dump table "albums" because of following StandardError
 #   Unknown type 'enum' for column 'status'

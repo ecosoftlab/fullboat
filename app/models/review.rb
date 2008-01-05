@@ -1,4 +1,5 @@
 class Review < ActiveRecord::Base
+  acts_as_textiled :body
 
   belongs_to :album
   belongs_to :user
@@ -7,5 +8,9 @@ class Review < ActiveRecord::Base
   validates_presence_of :user_id
 
   validates_presence_of :body
+
+  def to_s
+    self.body
+  end
 
 end

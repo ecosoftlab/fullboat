@@ -103,6 +103,6 @@ class ArtistsController < ApplicationController
 
   # GET /artists;manage
   def manage
-    @artists = Artist.find(:all, :order => "created_at DESC", :limit => 50)
+    @artists = Artist.find(:all, :order => "name ASC")
   end
 end

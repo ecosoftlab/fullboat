@@ -1,7 +1,12 @@
 class Album < ActiveRecord::Base
   acts_as_taggable
-  has_many :comments, :as => :commentable, :dependent => :destroy
-  has_one :review, :dependent => :destroy
+  
+  has_many :comments, 
+           :as => :commentable, 
+           :dependent => :destroy
+           
+  has_one  :review,   
+           :dependent => :destroy
 
   belongs_to :artist
   belongs_to :label
@@ -9,30 +14,15 @@ class Album < ActiveRecord::Base
   belongs_to :genre
   belongs_to :format
 
-  validates_presence_of :artist, :if => Proc.new{ |album| album.is_compilation == false}
-  validates_presence_of :label
+  validates_presence_of     :artist, :unless => Proc.new{ |album| album.is_compilation?}
+  validates_numericality_of :year, :allow_nil => true
 
-  validates_presence_of :genre
-  validates_presence_of :format
-
-  validates_presence_of :year
-  validates_inclusion_of :year, :in => 1000..3000
-
-  validates_presence_of :status
-  validates_columns :status
-
-  validates_presence_of :status_changed_on
-
-  validates_inclusion_of :is_compilation, :in => [true,false]
-
-  def create_comment
-
+  def to_param
+    return "#{self.id}-#{self.name.gsub(/\W/, '')}"
   end
 
-  def self.to_string
+  def to_s
     self.name
   end
-
-
 
 end
