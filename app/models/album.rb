@@ -1,4 +1,6 @@
 class Album < ActiveRecord::Base
+  @@status_values = ["TBR", "Bin", "OOB", "NIB", "N&WC", "Missing", "Library"]
+  
   acts_as_taggable
   
   has_many :comments, 
@@ -15,6 +17,9 @@ class Album < ActiveRecord::Base
   belongs_to :format
 
   validates_presence_of     :artist, :unless => Proc.new{ |album| album.is_compilation?}
+  validates_inclusion_of    :status,
+                            :within => @@status_values
+                            
   validates_numericality_of :year, :allow_nil => true
 
   def to_param

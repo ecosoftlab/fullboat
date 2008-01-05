@@ -1,20 +1,17 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
+      t.column :type,                       :string
       t.column :login,                      :string
       t.column :email,                      :string
       t.column :crypted_password,           :string,  :limit => 40
       t.column :salt,                       :string,  :limit => 40
       
+      t.column :status,                     :string
+
       t.column :first_name,                 :string
       t.column :last_name,                  :string
       t.column :phone,                      :string
-      
-      t.column :affiliation,                :enum,    
-                                            :limit => [:undergraduate, :graduate, :alumni, :community, :faculty, :staff]
-                                            
-      t.column :status,                     :enum,
-                                            :limit => [:active, :inactive, :banned]
       
       t.column :remember_token,             :string
       t.column :remember_token_expires_at,  :datetime

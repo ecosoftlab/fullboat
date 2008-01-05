@@ -1,5 +1,8 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
+  @@status_values = ["Active", "Inactive", "Banned"]
+  cattr_reader :status_values
+  
   has_and_belongs_to_many :roles
   
   has_many :playlists
@@ -16,6 +19,7 @@ class User < ActiveRecord::Base
   validates_length_of       :login,     :within => 3..40
   validates_length_of       :email,     :within => 3..100
   validates_uniqueness_of   :login,     :email, :case_sensitive => false
+  validates_inclusion_of    :status,    :within => @@status_values
   
   before_save               :encrypt_password
   before_create             :make_activation_code
@@ -151,3 +155,12 @@ protected
     self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
   end 
 end
+
+# Class instances to satisfy Type column
+
+class Undergraduate < User; end
+class Graduate      < User; end
+class Alumni        < User; end
+class Community     < User; end
+class Faculty       < User; end
+class Staff         < User; end
