@@ -1,19 +1,19 @@
 class CreateAlbums < ActiveRecord::Migration
   def self.up
     create_table :albums do |t|
-      t.column :name,               :string
-      t.column :artist_id,          :integer
-      t.column :label_id,           :integer
-      t.column :promoter_id,        :integer
-      t.column :format_id,          :integer
-      t.column :genre_id,           :integer
-      t.column :year,               :integer
-      t.column :status,             :string
-      t.column :status_changed_on,  :date
-      t.column :is_compilation,     :boolean
-
-      t.column :created_at, :datetime
-      t.column :updated_at, :datetime
+      t.string  :name            
+      t.integer :artist_id       
+      t.integer :label_id        
+      t.integer :promoter_id     
+      t.integer :format_id       
+      t.integer :genre_id        
+      t.integer :year            
+      t.string  :status          
+      t.date    :status_changed_on
+      t.boolean :is_compilation  
+                                  
+      t.datetime :created_at
+      t.datetime :updated_at
     end
   end
 

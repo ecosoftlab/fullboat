@@ -1,14 +1,14 @@
 class CreateFormats < ActiveRecord::Migration
   def self.up
     create_table :formats do |t|
-      t.column :name, :string
+      t.string   :name
 
-      t.column :created_at, :datetime
-      t.column :updated_at, :datetime
+      t.datetime :created_at
+      t.datetime :updated_at
     end
   end
 
   def self.down
-    drop_table :formats
+    drop_table   :formats
   end
 end

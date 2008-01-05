@@ -9,10 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 15) do
 
-# Could not dump table "albums" because of following StandardError
-#   Unknown type 'enum' for column 'status'
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.integer  "artist_id"
+    t.integer  "label_id"
+    t.integer  "promoter_id"
+    t.integer  "format_id"
+    t.integer  "genre_id"
+    t.integer  "year"
+    t.string   "status"
+    t.date     "status_changed_on"
+    t.boolean  "is_compilation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "albums", ["name"], :name => "index_albums_on_name"
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -25,10 +39,10 @@ ActiveRecord::Schema.define(:version => 16) do
   add_index "artists", ["name"], :name => "index_artists_on_name"
 
   create_table "comments", :force => true do |t|
-    t.text     "body"
+    t.integer  "user_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
-    t.integer  "user_id"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,7 +70,7 @@ ActiveRecord::Schema.define(:version => 16) do
     t.string   "address"
     t.string   "city"
     t.string   "state"
-    t.integer  "zip"
+    t.string   "zip"
     t.string   "country"
     t.string   "fax"
     t.string   "phone"
@@ -141,7 +155,22 @@ ActiveRecord::Schema.define(:version => 16) do
     t.string "name"
   end
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'enum' for column 'affiliation'
+  create_table "users", :force => true do |t|
+    t.string   "type"
+    t.string   "login"
+    t.string   "email"
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.string   "status"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "remember_token"
+    t.datetime "remember_token_expires_at"
+    t.string   "activation_code",           :limit => 40
+    t.datetime "activated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

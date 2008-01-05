@@ -1,21 +1,21 @@
 class CreateRoles < ActiveRecord::Migration
   def self.up
     create_table :roles do |t|
-      t.column :title,        :string
-      t.column :description,  :text
+      t.string   :title
+      t.text     :description
 
-      t.column :created_at,   :datetime
-      t.column :updated_at,   :datetime
+      t.datetime :created_at
+      t.datetime :updated_at
     end
     
     create_table :roles_users, :id => false do |t|
-      t.column :role_id,      :int
-      t.column :user_id,      :int
+      t.integer  :role_id
+      t.integer  :user_id
     end
   end
 
   def self.down
-    drop_table :roles
-    drop_table :roles_users
+    drop_table   :roles
+    drop_table   :roles_users
   end
 end

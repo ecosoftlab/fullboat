@@ -1,5 +1,6 @@
 class Album < ActiveRecord::Base
   @@status_values = ["TBR", "Bin", "OOB", "NIB", "N&WC", "Missing", "Library"]
+  cattr_reader
   
   acts_as_taggable
   

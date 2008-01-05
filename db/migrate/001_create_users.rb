@@ -1,26 +1,26 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
-      t.column :type,                       :string
-      t.column :login,                      :string
-      t.column :email,                      :string
-      t.column :crypted_password,           :string,  :limit => 40
-      t.column :salt,                       :string,  :limit => 40
-      
-      t.column :status,                     :string
-
-      t.column :first_name,                 :string
-      t.column :last_name,                  :string
-      t.column :phone,                      :string
-      
-      t.column :remember_token,             :string
-      t.column :remember_token_expires_at,  :datetime
-                                            
-      t.column :activation_code,            :string,  :limit => 40
-      t.column :activated_at,               :datetime
-                                            
-      t.column :created_at,                 :datetime
-      t.column :updated_at,                 :datetime
+      t.string   :type                    
+      t.string   :login                     
+      t.string   :email                    
+      t.string   :crypted_password, :limit => 40
+      t.string   :salt,             :limit => 40
+                                               
+      t.string   :status
+                                              
+      t.string   :first_name             
+      t.string   :last_name                  
+      t.string   :phone                   
+                                              
+      t.string   :remember_token         
+      t.datetime :remember_token_expires_at 
+                                              
+      t.string   :activation_code,  :limit => 40
+      t.datetime :activated_at          
+                                              
+      t.datetime :created_at                
+      t.datetime :updated_at                 
     end
   end
 

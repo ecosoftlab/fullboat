@@ -1,20 +1,20 @@
 class CreatePrograms < ActiveRecord::Migration
   def self.up
     create_table :programs do |t|
-      t.column :name, :string
-      t.column :description, :text
-      t.column :day, :int
-      t.column :start_hour, :int
-      t.column :end_hour, :int
-      t.column :type, :string
-      t.column :url, :string
-
-      t.column :created_at, :datetime
-      t.column :updated_at, :datetime
+      t.string   :name       
+      t.text     :description
+      t.integer  :day        
+      t.integer  :start_hour 
+      t.integer  :end_hour   
+      t.string   :type       
+      t.string   :url        
+                              
+      t.datetime :created_at 
+      t.datetime :updated_at 
     end
   end
 
   def self.down
-    drop_table :programs
+    drop_table   :programs
   end
 end

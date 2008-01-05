@@ -1,17 +1,17 @@
 class CreatePromoters < ActiveRecord::Migration
   def self.up
     create_table :promoters do |t|
-      t.column :name, :string
-      t.column :contact_name, :string
-      t.column :email, :string
-      t.column :phone, :string
-
-      t.column :created_at, :datetime
-      t.column :updated_at, :datetime
+      t.string   :name
+      t.string   :contact_name
+      t.string   :email      
+      t.string   :phone      
+                            
+      t.datetime :created_at
+      t.datetime :updated_at
     end
   end
 
   def self.down
-    drop_table :promoters
+    drop_table   :promoters
   end
 end

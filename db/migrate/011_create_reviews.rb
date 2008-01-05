@@ -1,20 +1,20 @@
 class CreateReviews < ActiveRecord::Migration
   def self.up
     create_table :reviews do |t|
-      t.column :body, :text
-      t.column :user_id, :int
-      t.column :album_id, :int
+      t.text     :body
+      t.integer  :user_id
+      t.integer  :album_id
 
-      t.column :created_at, :datetime
-      t.column :updated_at, :datetime
+      t.datetime :created_at
+      t.datetime :updated_at
     end
 
-    add_index :reviews, :user_id
-    add_index :reviews, :album_id, :unique
-    add_index :reviews, [:user_id, :album_id]
+    add_index    :reviews, :user_id
+    add_index    :reviews, :album_id, :unique
+    add_index    :reviews, [:user_id, :album_id]
   end
 
   def self.down
-    drop_table :reviews
+    drop_table   :reviews
   end
 end
