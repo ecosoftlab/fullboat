@@ -1,0 +1,10 @@
+<% artist = row %>
+
+<tr id="<%= artist.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
+	<td><%= h artist.name %></td>
+	<td><%= link_to 'Show', artist_path(artist) %></td>
+	<td><%= link_to 'Edit', edit_artist_path(artist) %></td>
+	<td><%= link_to_remote 'Destroy', 
+						              :url => artist_path(artist), 
+						              :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

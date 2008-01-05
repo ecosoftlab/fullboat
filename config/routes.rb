@@ -35,6 +35,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.welcome '/', :controller => 'wrct', :action => 'index'
   map.admin   'admin', :controller => 'admin', :action => 'index'
+  
+  map.music   'music', :controller => 'admin', :action => 'music'
+  map.production   'production', :controller => 'admin', :action => 'production'
+  map.exec   'exec', :controller => 'admin', :action => 'exec'
 
   map.login   'login', :controller => 'sessions', :action => 'new'
   map.logout  'logout', :controller => 'sessions', :action => 'destroy'

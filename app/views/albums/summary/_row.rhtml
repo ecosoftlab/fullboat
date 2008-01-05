@@ -1,0 +1,15 @@
+<% album = row %>
+<tr id="<%= album.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
+  <td><%= h album.name %></td>
+  <td><%= link_to(h(album.artist), artist_path(album.artist) %></td>
+  <td><%= link_to(h(album.label), label_path(album.label) %></td>
+  <td><%= h album.year %></td>
+  <td><%= link_to(h(album.genre), genre_path(album.genre) %></td>
+  <td><abbr title="Status was last changed <%= time_ago_in_words(album.status_changed_on) %>"><%= h album.status %></abbr></td>
+  
+  <td><%= link_to 'Show', album_path(album) %></td>
+  <td><%= link_to 'Edit', edit_album_path(album) %></td>
+  <td><%= link_to_remote 'Destroy',
+                         :url => album_path(album),
+                         :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>
