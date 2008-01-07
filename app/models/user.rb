@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :roles
   
-  has_many :playlists
   has_and_belongs_to_many :programs
+  has_many :playlists
+  
+  has_many :reviews
   
   # Virtual attribute for the unencrypted password
   attr_accessor :password
@@ -23,6 +25,7 @@ class User < ActiveRecord::Base
   
   before_save               :encrypt_password
   before_create             :make_activation_code
+  before_validation         :initialize_status
   
   composed_of :name, 
               :class_name => "Name", 
@@ -154,6 +157,12 @@ protected
   def make_activation_code
     self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
   end 
+
+private
+
+  def initialize_status
+    self[:status] ||= "Active"
+  end
 end
 
 # Class instances to satisfy Type column

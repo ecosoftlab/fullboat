@@ -1,0 +1,35 @@
+Rock
+Rock Comp
+Jazz
+Jazz Comp
+Blues
+Blues Comp
+Reggae
+Reggae Comp
+Rap
+Rap Comp
+Techno Vinyl
+Techno Vinyl Comps
+International – North America					
+International – North America Comp				
+International – Africa				
+International – Africa Comp				
+International – Europe					
+International – Europe Comp				
+International – Asia				
+International – Asia Comp				
+International – Oceana				
+International – Oceana Comp				
+International – South America				
+International – South America Comp				
+Spoken Word
+Spoken Word Comp
+Classical
+Classical Comp
+Soundtracks
+Experimental
+Experimental Comp
+Spoo
+Spoo Comp
+Holiday
+Holiday Comp

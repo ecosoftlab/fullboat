@@ -11,7 +11,9 @@ class CreateUsers < ActiveRecord::Migration
                                               
       t.string   :first_name             
       t.string   :last_name                  
-      t.string   :phone                   
+      t.string   :phone
+      
+      t.date     :joined_on            
                                               
       t.string   :remember_token         
       t.datetime :remember_token_expires_at 

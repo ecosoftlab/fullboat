@@ -2,7 +2,7 @@ class AdminController < ApplicationController
   before_filter :login_required
   
   def music
-    render :action => 'admin/sections/music'
+    render :action => 'admin/sections/music', :layout => 'layouts/music'
   end
   
   def production

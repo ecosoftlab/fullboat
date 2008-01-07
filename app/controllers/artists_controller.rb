@@ -1,10 +1,13 @@
 class ArtistsController < ApplicationController
   before_filter :login_required
 
+  # Music Section
+  layout 'music'
+
   # GET /artists
   # GET /artists.xml
   def index
-    @artists = Artist.find(:all, :order => "created_at DESC", :limit => 50)
+    @artists = Artist.find(:all, :order => "name ASC")
 
     options = { :feed => { :title       => "Artists",
                            :description => "",

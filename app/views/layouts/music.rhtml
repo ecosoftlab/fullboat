@@ -1,0 +1,9 @@
+<% content_for :section do %>
+  <h3>Music</h3>
+  <ul>
+    <li><%= link_to_unless_current "Artists", artists_path %></li>
+    <li><%= link_to_unless_current "Albums",  albums_path %></li>
+  </ul>
+<% end %>
+
+<%= render :file => 'layouts/admin' %>

@@ -6,6 +6,9 @@ class AlbumsController < ApplicationController
   auto_complete_for :promoter, :name
   auto_complete_for :artist, :name
   auto_complete_for :user, :login
+  
+  # Music Section
+  layout 'music'
 
   # GET /albums
   # GET /albums.xml

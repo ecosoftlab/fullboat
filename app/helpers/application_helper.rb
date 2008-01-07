@@ -27,15 +27,15 @@ module ApplicationHelper
   
   def hcard(record, options = {})
     h = {}  
-    case record.class
-    when User
+    case klass = record.class.to_s
+    when "User"
       user = record
       h[:fn]    = user.name
       h[:tel]   = user.phone
       h[:email] = user.email
       h[:url]   = user_url(user)
     else
-      raise "Record cannot be represented as hCard"
+      raise "Record of type '#{klass}' cannot be represented as hCard"
     end
     
     content_tag(:div,
@@ -50,7 +50,7 @@ module ApplicationHelper
       content_tag(:span, 
         content_tag(:span, 'work', :class => 'type hide') +
         mail_to(h[:email], h[:email], :encode => :javascript, :class => 'value'), 
-      :class => 'email') +
+      :class => 'email'),
     :class => ['vcard', options[:class]].join(' '))
   end
   

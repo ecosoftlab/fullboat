@@ -1,35 +1,32 @@
-<h1>Listing Albums</h1>
+<h1>Albums</h1>
+
+<fieldset class="sort-options">
+  <%= select_tag "term", options_for_select(["Sort by Artist", "Sort by Title", "Sort by Year", "Sort by Genre"]) %>
+  <br class="space" />
+  
+  <!-- Only used for Artist and Title -->
+  <dl class="letter-navigation">
+  	<dt>Letter</dt>
+  	<%= ('A'..'Z').collect{|l| content_tag(:dd, link_to(l, :anchor => '')) }%>
+  </dl>
+</fieldset>
+
+<%# render(:partial => 'mdtasks') %>
 
 <table>
-	<thead>
-	<tr>
-	    	<th>Name</th>
-	    	<th>Artist</th>
-	    	<th>Label</th>
-	    	<th>Promoter</th>
-	    	<th>Format</th>
-	    	<th>Genre</th>
-	    	<th>Year</th>
-	    	<th>Status</th>
-	    	<th>Status changed on</th>
-	    	<th>Is compilation</th>
-	  	</tr>
-	</thead>
-	
-	<tbody>
-  	<% @albums.each do |album| %>
-  		<tr>
-		    		<td><%=h album.name %></td>
-		    		<td><%=h album.artist_id %></td>
-		    		<td><%=h album.label_id %></td>
-		    		<td><%=h album.promoter_id %></td>
-		    		<td><%=h album.format_id %></td>
-		    		<td><%=h album.genre_id %></td>
-		    		<td><%=h album.year %></td>
-		    		<td><%=h album.status %></td>
-		    		<td><%=h album.status_changed_on %></td>
-		    		<td><%=h album.is_compilation %></td>
-		  		</tr>
-	<% end %>
-	</tbody>
+<thead>
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Released</th>
+    <th>Genre</th>
+    <th>Status</th>
+    <th colspan="3"></th>
+  </tr>
+</thead>
+
+<tbody>
+  <%= render(:collection => @albums, :partial => 'albums/summary/row') %>
+</tbody>
 </table>

@@ -14,8 +14,9 @@
 	<div id="container" class="span-23 prepend-1">
 		<div id="header" class="clear">
 		  <ul class="navigation" id="primary">
-		    <li>Directory</li>
+		    <li><%= link_to_unless_current("Directory", users_path )%></li>
 		    <li>Calendar</li>
+		    <li><%= link_to_unless_current("Create a Playlist", new_playlist_path) %></li>
 		  </ul>
 		  
 		  <ul class="navigation" id="secondary">
@@ -28,14 +29,14 @@
 		  </div>
 		</div>
 
-	  <div id="content" class="column span-17 border">
+	  <div id="content" class="column span-17 colborder">
 		  <%= yield %>
 		</div>
 		
-		<div class="navigation column span-6 last" id="sidebar">
-		  <div class="prepend-1">
-		  <%= yield :record  %>
-		  <%= yield :section %>		  
+		<div class="navigation column span-5 last" id="sidebar">
+		  <div>
+		  <%= (record  = yield :record)  ? record  : render(:partial => 'sidebar') rescue nil %>
+		  <%= (section = yield :section) ? section : render(:partial => 'shared/sidebar') %>
 		  </div>
 		</div>
 		

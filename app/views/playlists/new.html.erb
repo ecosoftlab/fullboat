@@ -1,10 +1,24 @@
 <h1>Create a New Playlist</h1>
 
 <% remote_form_for(:playlist, :url => playlists_path) do |f| %>
-	<fieldset id="playlist_details" name="Playlist Details" class="clearfix">
-		<%= render(:partial => "playlists/form", :locals => {:f => f})%>
-    	<%= submit_tag "Create" %>
+	<fieldset id="program_selection" name="Playlist Details" class="clear">
+	  <fieldset id="" class="column span-6">
+	    <label>Select a Program</label>
+	    <%= select_tag "Something", options_for_select(["Lorem Ipsum"]) %>
+	  </fieldset>
+	  <p class="column span-2">
+	    Or
+	  </p>
+	  <fieldset id="" class="column span-6 last">
+	    <%= button_to_function "Create Random Playlist" %>
+	  </fieldset>
 	</fieldset>
+	
+	<fieldset id="">
+	
+	
+	<%= render(:partial => "playlists/form", :locals => {:f => f})%>
+    <%= submit_tag "Create" %>
 <% end %>
 
 <%= link_to 'Back', playlists_path %>

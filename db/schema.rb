@@ -12,16 +12,17 @@
 ActiveRecord::Schema.define(:version => 15) do
 
   create_table "albums", :force => true do |t|
-    t.string   "name"
     t.integer  "artist_id"
     t.integer  "label_id"
     t.integer  "promoter_id"
     t.integer  "format_id"
     t.integer  "genre_id"
-    t.integer  "year"
+    t.string   "name"
     t.string   "status"
     t.date     "status_changed_on"
     t.boolean  "is_compilation"
+    t.date     "released_on"
+    t.text     "tracks"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -165,6 +166,7 @@ ActiveRecord::Schema.define(:version => 15) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone"
+    t.date     "joined_on"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "activation_code",           :limit => 40

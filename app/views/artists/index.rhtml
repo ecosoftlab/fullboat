@@ -1,21 +1,21 @@
-<h1>Listing Artists</h1>
+<h1>Artists</h1>
+
+<fieldset class="sort-options">
+  <dl class="letter-navigation">
+  	<dt>Letter</dt>
+  	<%= ('A'..'Z').collect{|l| content_tag(:dd, link_to(l, :anchor => '')) }%>
+  </dl>
+</fieldset>
 
 <table>
 	<thead>
-	<tr>
-	    	<th>Name</th>
-	    	<th>Sort name</th>
-	    	<th>Note</th>
-	  	</tr>
+  	<tr>
+    	<th>Name</th>
+		  <th colspan="3"></th>
+  	</tr>
 	</thead>
-	
+  
 	<tbody>
-  	<% @artists.each do |artist| %>
-  		<tr>
-		    		<td><%=h artist.name %></td>
-		    		<td><%=h artist.sort_name %></td>
-		    		<td><%=h artist.note %></td>
-		  		</tr>
-	<% end %>
-	</tbody>
+	  <%= render(:collection => @artists, :partial => 'artists/summary/row') %>
+  </tbody>
 </table>

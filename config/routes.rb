@@ -5,6 +5,8 @@ ActionController::Routing::Routes.draw do |map|
     program.resources :playlists,
                       :collection => {:manage => :get}
   end
+  
+  map.resources :playlists
 
   map.resources :roles,
                 :collection => {:manage => :get}
@@ -12,10 +14,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :reviews,
                 :collection => {:manage => :get}
 
-  map.resources :albums,
-    :collection => {:manage => :get} do |album|
-    album.resource :review,
-                   :collection => {:manage => :get}
+  map.resources :albums do |album|
+    album.resource  :review,
+                    :collection => {:manage => :get}
     album.resources :comments,
                     :collection => { :manage => :get}
   end
