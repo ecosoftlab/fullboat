@@ -3,6 +3,10 @@
   <ul>
     <li><%= link_to_unless_current "Artists", artists_path %></li>
     <li><%= link_to_unless_current "Albums",  albums_path %></li>
+    <li><%= link_to_unless_current "Labels",  manage_labels_path %></li>
+    <li><%= link_to_unless_current "Promoters",  manage_promoters_path %></li>
+    <li><%= link_to_unless_current "Formats",  manage_formats_path %></li>
+    <li><%= link_to_unless_current "Genres",  manage_genres_path %></li>
   </ul>
 <% end %>
 
