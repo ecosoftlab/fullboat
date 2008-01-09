@@ -1,11 +1,11 @@
 class AlbumsController < ApplicationController
   before_filter :login_required
-  auto_complete_for :genre, :name
-  auto_complete_for :format, :name
-  auto_complete_for :label, :name
-  auto_complete_for :promoter, :name
-  auto_complete_for :artist, :name
-  auto_complete_for :user, :login
+#   auto_complete_for :genre, :name
+#   auto_complete_for :format, :name
+#   auto_complete_for :label, :name
+#   auto_complete_for :promoter, :name
+#   auto_complete_for :artist, :name
+#   auto_complete_for :user, :login
   
   # Music Section
   layout 'music'

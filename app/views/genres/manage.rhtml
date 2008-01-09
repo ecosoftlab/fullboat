@@ -15,9 +15,11 @@
     	<td><%= link_to 'Show', genre_path(genre) %></td>
     	<td><%= link_to 'Edit', edit_genre_path(genre) %></td>
     	<td><%= link_to_remote 'Destroy', 
-								:url => genre_path(genre), 
-								:confirm => 'Are you sure?', :method => :delete %></td>
+                :url => genre_path(genre), 
+                :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	</tbody>
 <% end %>
 </table>
+
+<%= link_to 'New', new_genre_path %><br />

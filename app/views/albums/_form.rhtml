@@ -10,15 +10,15 @@
                 </li>
                         <li>
                 <label for="artist_name">Artist</label>
-                <%= text_field_with_auto_complete :artist, :name, {}, :skip_style => true %>
+                <%= text_field :artist, :name %>
                 </li>
                         <li>
                 <label for="label_name">Label</label>
-                <%= text_field_with_auto_complete :label, :name, {}, :skip_style => true %>
+                <%= text_field :label, :name %>
                 </li>
                         <li>
                 <label for="promoter_name">Promoter</label>
-                <%= text_field_with_auto_complete :promoter, :name, {}, :skip_style => true %>
+                <%= text_field :promoter, :name %>
                 </li>
                         <li>
                 <label for="format_id">Format</label>
@@ -54,7 +54,7 @@
                 </li>
                 <li>
                 <label for="review_user">Review User</label>
-                <%= text_field_with_auto_complete :user, :login, {}, :skip_style => true %>
+                <%= text_field :user, :login %>
                 </li>
 
                 </ol>
