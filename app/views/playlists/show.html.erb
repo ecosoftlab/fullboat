@@ -1,23 +1,109 @@
-<p>
-  <b>User:</b>
-  <%=h @playlist.user_id %>
-</p>
+<% content_for :head do %>
+	<%= auto_discovery_link_tag(:rss, formatted_playlist_path(@playlist, :rss)) %>
+<% end %>
 
-<p>
-  <b>Program:</b>
-  <%=h @playlist.program_id %>
-</p>
+<div class="column span-10">
+<% if @playlist.program %>
+  <h1>Playlist for <%= h @playlist.program %></h1>
+<% else %>
+  <h1>Random Playlist</h1>
+<% end %>
+<h2><%= h @playlist.start_time %></h2>
+</div>
+<div class="column span-7 last">
+<% remote_form_for(:playlist, :url => playlists_path) do |f| %>
+  <fieldset id="playlist-details">
+  	<ol>
+  		<li>
+  	    	<label for="start_time">Start Time</label>
+  	    	<%= f.time_select :start_time %>
+  		</li>
+  		<li>
+  	    	<label for="end_time">End Time</label>
+  	    	<%= f.time_select :end_time %>
+  		</li>
+  	</ol>
+  </fieldset>
+<% end %>
+</div>
 
-<p>
-  <b>Start time:</b>
-  <%=h @playlist.start_time %>
-</p>
+<hr />
 
-<p>
-  <b>End time:</b>
-  <%=h @playlist.end_time %>
-</p>
+<ul class="plays">
+  <%= render(:collection => @playlist.plays, :partial => 'plays/summary') %>
+</ul>
 
+<% remote_form_for(:play, :url => playlist_plays_path(@playlist)) do |f| %>
+<div id="error" class="alert error" style="display:none;"></div>
 
-<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
-<%= link_to 'Back', playlists_path %>
+  <%= select_tag :type, options_for_select([["Album Track", 'album-track'], ["PSA", 'psa'], ["Promo", 'promo']]), 
+                 :class => 'column span-3',
+                 :onchange => "$('album-track', 'psa', 'promo').invoke('hide'); Element.show($F(this));" %>
+  <fieldset class="column span-10">
+    <fieldset id="album-track">
+      <ol>
+        <li class="artist">
+          <label>Artist</label>
+          <%= text_field_with_auto_complete :artist, :name, 
+                { :class => 'title' },
+  				      { :skip_style => true, :indicator => "loading-indicator" } %>
+  				<%= loading_indicator %>
+  				
+  				<%= observe_field 'artist_name', :update => 'album',
+                            :with => "artist", 
+                            :url => { :controller => "playlists",
+                                      :action     => "remote_update_albums" } %>
+        </li>
+        <li class="album">
+          <label>Album</label>
+          <%= select_tag :album %>
+					
+					<%= observe_field 'album', :update => 'track',
+                            :with => "album", 
+                            :url => { :controller => "playlists",
+                                      :action     => "remote_update_tracks" } %>
+        </li>                  
+        <li class="track">        
+          <label>Track</label> 
+          <%= select_tag :track %>
+        </li>
+      </ol>
+    </fieldset>
+  
+  
+    <fieldset id="psa" style="display:none;">
+      <ol>
+        <li>
+          <label>PSA ID</label>
+          <%= text_field :psa, :name %>
+        </li>
+        <li>
+          <label>Duration</label>
+          <%= select :psa, :duration, [':15', ':30', ':45', '1:00']%>
+        </li>
+        <li>
+            <label class="inline column span-3"><%= radio_button :psa, :live, true %> Live</label>
+            <label class="inline column span-3"><%= radio_button :psa, :live, false %> Recorded</label>
+        </li>
+      </ol>
+    </fieldset>
+  
+    <fieldset id="promo" style="display:none;">
+      <ol>
+        <li>
+          <label>Promo ID</label>
+          <%= text_field :promo, :name %>
+        </li>
+        <li>
+          <label>Duration</label>
+          <%= select :promo, :duration, [':15', ':30', ':45', '1:00']%>
+        </li>
+        <li>
+            <label class="inline column span-3"><%= radio_button :promo, :live, true %> Live</label>
+            <label class="inline column span-3"><%= radio_button :promo, :live, false %> Recorded</label>
+        </li>
+      </ol>
+    </fieldset>
+  </fieldset>
+  <%= submit_tag "Add to Playlist" %>
+<% end %>

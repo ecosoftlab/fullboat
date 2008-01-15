@@ -1,6 +1,9 @@
 class LabelsController < ApplicationController
   before_filter :login_required
 
+  # Music Section
+  layout 'music'
+
   # GET /labels
   # GET /labels.xml
   def index

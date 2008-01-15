@@ -1,5 +1,8 @@
 class Artist < ActiveRecord::Base
+  acts_as_textiled :note
+  
   has_many :albums
+  has_many :genres, :through => :albums, :uniq => true
 
   validates_presence_of   :name
   validates_uniqueness_of :name
@@ -16,6 +19,14 @@ class Artist < ActiveRecord::Base
   
   def to_s
     self.name
+  end
+  
+  def self.search(name)
+    Artist.find(:all, :conditions => ['name LIKE ?', name.concat("%")])
+  end
+  
+  def genre
+    self.genres.first
   end
   
 private

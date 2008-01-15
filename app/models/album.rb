@@ -1,13 +1,16 @@
 class Album < ActiveRecord::Base
   @@status_values = ["TBR", "Bin", "OOB", "NIB", "N&WC", "Missing", "Library"]
-  cattr_reader
+  cattr_reader :status_values
   
   acts_as_taggable
   
   has_many :comments, 
-           :as        => :commentable, 
+           :as => :commentable, 
            :dependent => :destroy
-           
+  
+  has_many :plays,
+           :as => :playable
+          
   has_one  :review,   
            :dependent => :destroy
 
@@ -21,7 +24,9 @@ class Album < ActiveRecord::Base
 
   validates_presence_of     :artist, 
                             :unless => lambda { |album| album.is_compilation?}
-                            
+  
+  validates_uniqueness_of   :name, :scope => :artist_id, :unless => lambda { |album| album.artist.nil? }
+                           
   validates_inclusion_of    :status,
                             :within    => @@status_values,
                             :allow_nil => true

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 15) do
+ActiveRecord::Schema.define(:version => 16) do
 
   create_table "albums", :force => true do |t|
     t.integer  "artist_id"
@@ -88,6 +88,19 @@ ActiveRecord::Schema.define(:version => 15) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.text     "note"
+  end
+
+  create_table "plays", :force => true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.integer  "playlist_id"
+    t.integer  "playable_id"
+    t.string   "playable_type"
+    t.boolean  "is_request"
+    t.boolean  "is_bincut"
+    t.boolean  "is_live"
+    t.boolean  "is_marked"
+    t.datetime "created_at"
   end
 
   create_table "programs", :force => true do |t|

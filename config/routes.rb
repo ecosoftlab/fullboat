@@ -6,7 +6,8 @@ ActionController::Routing::Routes.draw do |map|
                       :collection => {:manage => :get}
   end
   
-  map.resources :playlists
+  map.resources :playlists,
+                :has_many => :plays
 
   map.resources :roles,
                 :collection => {:manage => :get}

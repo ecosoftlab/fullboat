@@ -40,3 +40,8 @@ dl.letter-navigation dt{
 dl.letter-navigation dd{
 	margin:0 0.3em;
 }
+
+.auto_complete { position:absolute; width:250px; background-color:white; border:1px solid #888; margin:0px; padding:0px; }
+.auto_complete ul { list-style: none; margin:0px; padding:0px; }
+.auto_complete ul li.selected { background-color: #bbf; }
+.auto_complete ul li { color:#222; list-style-type: none; display:block; margin:0; padding:2px; height:16px; }

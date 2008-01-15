@@ -3,7 +3,7 @@
     <dt>Label</dt>
     <dd><%= @album.label ? link_to(h(@album.label), label_path(@album.label)) : "None" %></dd>
     <dt>Release Date</dt>
-    <dd><%= h @album.released_on %></dd>
+    <dd><%= @album.released_on ? h(@album.released_on) : "Unkown" %></dd>
     <dt>Genre</dt>
     <dd><%= h @album.genre %></dd>
   </dl>
@@ -32,6 +32,17 @@
         <%= vcard(@album.review.user, :class => 'reviewer hide') %>
       </cite>
     </div>
+  <% end %>
+    
+    <hr class="space" />
+  
+  <% if @album.tracks.any? %>
+    <h2>Track Listing</h2>
+    <ol>
+      <% @album.tracks.each do |track| %>
+        <li><%= h track %></li>
+      <% end %>
+    </ol>
   <% end %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <% album = row %>
 <tr id="<%= album.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
   <td><%= image_tag("placeholder_album.jpg", :alt => "Cover for #{h(album.name)}", :size => '16x16') %></td>
-  <td><%= link_to(h(album.name), album_path(album)) %></td>
+  <td><strong><%= link_to(truncate(h(album.name), 40), album_path(album)) %></strong></td>
   <td><%= link_to(h(album.artist), artist_path(album.artist)) %></td>
   <td><abbr title="<%= h(album.released_on) %>"><%= h(album.released_on) %></abbr></td>
   <td><%= link_to(h(album.genre), genre_path(album.genre)) %></td>
@@ -11,7 +11,6 @@
     </abbr>
   </td>
   
-  <td><%= link_to 'Show', album_path(album) %></td>
   <td><%= link_to 'Edit', edit_album_path(album) %></td>
   <td><%= link_to_remote 'Destroy',
                          :url => album_path(album),

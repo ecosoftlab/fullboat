@@ -27,7 +27,14 @@ namespace :sample do
   task :labels => [:environment] do
     f = File.read("data/sample/labels.txt")
     f.each do |line|
-      Label.create(:name => line.strip)
+      line.strip!
+      phone = ""; 10.times{phone << rand(10).to_s}
+      contact = ((rand(2) == 0) ? "John" : "Jane") + " Doe"
+      email = "mail@#{line.gsub(/\W/,'')}.egg"
+      Label.create(:name => line, 
+                   :phone => phone, 
+                   :contact_name => contact, 
+                   :email => email)
       puts line
     end
   end
@@ -47,7 +54,11 @@ namespace :sample do
       album = Album.create(:name => $2, 
                            :artist_id => artist.id,
                            :label_id  => labels.rand.id, 
-                           :genre_id => rock.id) if artist
+                           :genre_id => rock.id,
+                           :released_on => Date.today - rand(3000).days) if artist
+      
+      album.tracks = ["Apple Sauce", "Bertrand Russell", "Carotene", "Darth Vader", "Enter the Dragon", "Fortran"]
+      album.save
       
       review = Review.create(:user_id => users.rand.id, 
                              :album_id => album.id, 

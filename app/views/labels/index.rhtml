@@ -2,36 +2,16 @@
 
 <table>
 	<thead>
-	<tr>
-	    	<th>Name</th>
-	    	<th>Contact name</th>
-	    	<th>Email</th>
-	    	<th>Address</th>
-	    	<th>City</th>
-	    	<th>State</th>
-	    	<th>Zip</th>
-	    	<th>Country</th>
-	    	<th>Fax</th>
-	    	<th>Phone</th>
-	    	<th>Note</th>
-	  	</tr>
+	  <tr>
+    	<th>Name</th>
+    	<th>Contact Name</th>
+    	<th>Email</th>
+    	<th>Phone</th>
+    	<th colspan="3"></th>
+  	</tr>
 	</thead>
 	
-	<tbody>
-  	<% @labels.each do |label| %>
-  		<tr>
-		    		<td><%=h label.name %></td>
-		    		<td><%=h label.contact_name %></td>
-		    		<td><%=h label.email %></td>
-		    		<td><%=h label.address %></td>
-		    		<td><%=h label.city %></td>
-		    		<td><%=h label.state %></td>
-		    		<td><%=h label.zip %></td>
-		    		<td><%=h label.country %></td>
-		    		<td><%=h label.fax %></td>
-		    		<td><%=h label.phone %></td>
-		    		<td><%=h label.note %></td>
-		  		</tr>
-	<% end %>
+	<tbody class="directory">
+    <%= render(:collection => @labels, :partial => 'labels/summary/row')%>
 	</tbody>
 </table>

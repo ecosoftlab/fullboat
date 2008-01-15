@@ -25,6 +25,7 @@ module ApplicationHelper
     image_tag("icon_#{name}.#{format}", :size => '16x16', :alt => name.capitalize)
   end
   
+  # TODO: Refactor into template-based method using lighter markup language
   def hcard(record, options = {})
     h = {}  
     case klass = record.class.to_s
@@ -34,15 +35,26 @@ module ApplicationHelper
       h[:tel]   = user.phone
       h[:email] = user.email
       h[:url]   = user_url(user)
+    when "Label"
+      label = record
+      h[:org]   = true
+      h[:fn]    = label.name
+      h[:tel]   = label.phone
+      h[:email] = label.email
+      h[:url]   = label_url(label)
+    when "Artist"
+      return ""
     else
       raise "Record of type '#{klass}' cannot be represented as hCard"
     end
     
     content_tag(:div,
-      content_tag(:span, link_to([content_tag(:span, h[:fn].first, :class => 'given-name'), 
-                                  content_tag(:span, h[:fn].last, :class => 'family-name')].join(' '), 
-                                  h[:url], :class => 'url'), 
-      :class => 'fn n') +
+      (h[:org] ? content_tag(:span, link_to(content_tag(:span, h[:fn], :class => 'fn org'), 
+                                            h[:url], :class => 'url')) :
+                content_tag(:span, link_to([content_tag(:span, h[:fn].first, :class => 'given-name'), 
+                                            content_tag(:span, h[:fn].last, :class => 'family-name')].join(' '), 
+                                            h[:url], :class => 'url'), 
+                            :class => "fn n")) +
       content_tag(:span, 
         content_tag(:span, 'work', :class => 'type hide') +
         content_tag(:span, number_to_phone(h[:tel]), :class => 'value'),

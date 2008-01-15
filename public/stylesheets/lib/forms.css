@@ -13,7 +13,8 @@ label { font-weight: bold; }
 
 
 /* Fieldsets */
-/*fieldset    { padding:1.4em; margin: 0 0 1.5em 0; border: 1px solid #ccc; }*/
+fieldset    { padding:1.4em 0; margin: 0 0 1.5em 0; border: 1px solid #ccc; }
+fieldset fieldset { border: none; }
 legend      { font-weight: bold; font-size:1.2em; }
 
 /* Text fields */
@@ -43,3 +44,9 @@ select:focus        { border:1px solid #999; background:#fff; }
 .error a    { color: #D12F19; }
 .notice a   { color: #817134; }
 .success a  { color: #529214; }
+
+/* Lists within Forms */
+form ul, form ol		{ margin-bottom: 0;}
+form ul li, form ol li	{ list-style: none; margin:0.25em 0;}
+form li label			{ display: block; float:left; width:80px; padding:0.25em 0;}
+label.inline			{ display: inline; width:auto;}

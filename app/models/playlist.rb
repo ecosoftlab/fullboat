@@ -4,7 +4,9 @@ class Playlist < ActiveRecord::Base
   belongs_to :user
   belongs_to :program
   
-  validates_presence_of :user, :program
+  has_many   :plays
+  
+  validates_presence_of :user
   validates_presence_of :start_time
   
   validate :validate_start_time_before_end_time

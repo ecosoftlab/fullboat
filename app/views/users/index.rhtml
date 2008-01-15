@@ -4,6 +4,7 @@
 	<thead>
   	<tr>
 		<th>Name</th>
+		<th>Title</th>
 		<th>E-mail</th>
 		<th colspan="3"></th>
   	</tr>
@@ -13,7 +14,8 @@
 <% @users.each do |user| %>
 	<tr id="<%= user.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
 		<td><strong><%= link_to(h(user.name), user_path(user)) %></strong></td>
-		<td><%= mail_to(user.email, user.email, :encode => :javascript)%></td>
+		<td><!-- TODO --></td>
+		<td><%= mail_to(user.email, user.email, :encode => :javascript) %></td>
 	</tr>
 	</tbody>
 <% end %>

@@ -1,6 +1,9 @@
 class GenresController < ApplicationController
   before_filter :login_required
 
+  # Music Section
+  layout 'music'
+
   # GET /genres
   # GET /genres.xml
   def index
