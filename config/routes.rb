@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :psas
+  map.resources :psas,
+                :controller => "PSA"
 
   map.resources :promos
 

@@ -1,0 +1,25 @@
+<h1>Listing Psas</h1>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>Name</th>
+	    	<th>Body</th>
+	    	<th>Code</th>
+	    	<th>Is live</th>
+	    	<th>Expires on</th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @psas.each do |psa| %>
+  		<tr>
+		    		<td><%=h psa.name %></td>
+		    		<td><%=h psa.body %></td>
+		    		<td><%=h psa.code %></td>
+		    		<td><%=h psa.is_live %></td>
+		    		<td><%=h psa.expires_on %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>

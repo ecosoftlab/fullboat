@@ -49,3 +49,7 @@ dl.letter-navigation dd{
 td img{
 	margin:0;
 }
+
+#content table{
+	width:100%;
+}

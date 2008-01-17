@@ -1,5 +1,5 @@
 namespace :sample do
-  task :all => [:users, :genres, :labels, :albums]
+  task :all => [:users, :genres, :labels, :albums, :psas, :promos]
   
   task :users => [:environment] do
     f = File.read("data/sample/users.txt")
@@ -50,8 +50,8 @@ namespace :sample do
       line =~ /(.*):(.*)/
       next if $1.nil? || $2.nil?
       puts "#{$1}\t\t#{$2}"
-      artist = Artist.find_or_create_by_name($1)
-      album = Album.create(:name => $2, 
+      artist = Artist.find_or_create_by_name($1.strip)
+      album = Album.create(:name => $2.strip, 
                            :artist_id => artist.id,
                            :label_id  => labels.rand.id, 
                            :genre_id => rock.id,
@@ -63,6 +63,19 @@ namespace :sample do
       review = Review.create(:user_id => users.rand.id, 
                              :album_id => album.id, 
                              :body => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+    end
+  end
+  
+  task :psas => [:environment] do
+    ("A".."Z").each do |l|
+      PSA.create(:name => l, :code => l, :length => 30, :body => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+    end
+  end
+  
+  task :promos => [:environment] do
+    ("A".."Z").each do |l|
+      Promo.create(:name => l, :code => l, :length => 5 + rand(20),:body => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      ")
     end
   end
 end

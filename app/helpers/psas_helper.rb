@@ -1,0 +1,2 @@
+module PsasHelper
+end

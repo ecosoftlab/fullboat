@@ -2,7 +2,6 @@ class CreatePlays < ActiveRecord::Migration
   def self.up
     create_table :plays do |t|
       t.string   :name 
-      t.string   :type
       
       t.integer  :playlist_id
       

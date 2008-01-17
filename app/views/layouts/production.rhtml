@@ -1,0 +1,9 @@
+<% content_for :section do %>
+  <h3>Production</h3>
+  <ul>
+    <li><%= link_to_unless_current "PSAs", psas_path %></li>
+    <li><%= link_to_unless_current "Promos",  promos_path %></li>
+  </ul>
+<% end %>
+
+<%= render :file => 'layouts/admin' %>

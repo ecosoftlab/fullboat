@@ -1,0 +1,35 @@
+<div id="error" class="alert error" style="display:none;"></div>
+
+<!--[form:promo]-->
+<fieldset id="promo_details" class="clearfix">
+	<legend>Promo Details</legend>
+	<ol>
+	
+		<li>
+	    	<label for="name">Name</label>
+	    	<%= f.text_field :name %>
+		</li>
+	
+		<li>
+	    	<label for="body">Body</label>
+	    	<%= f.text_area :body %>
+		</li>
+	
+		<li>
+	    	<label for="code">Code</label>
+	    	<%= f.text_field :code %>
+		</li>
+	
+		<li>
+	    	<label for="length">Length</label>
+	    	<%= f.text_field :length %>
+		</li>
+	
+		<li>
+	    	<label for="is_live">Is live</label>
+	    	<%= f.check_box :is_live %>
+		</li>
+	
+	</ol>
+</fieldset>
+<!--[eoform:promo]-->

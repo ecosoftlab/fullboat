@@ -51,20 +51,21 @@ class PlaysController < ApplicationController
   def create
     @play = Play.new(params[:play])
     @play.playlist_id = params[:playlist_id]
-    begin
-      case type = params[:type]
-      when 'album-track'
-        @play.playable = Album.find(params[:album])
-        @play.name = params[:track]
-        @play.type = "Track"
-      when 'psa'
-        # @psa = PSA.find(params[:psa])
-      when 'promo'
-        # 
-      end
-    rescue ActiveRecord::RecordNotFound
-      # 
+    case params[:type]
+    when 'album-track'
+      @play.playable = Album.find(params[:album])
+      @play.name = params[:track]
+    when 'psa'
+      @play.playable = PSA.find_by_code(params[:psa][:code])
+    when 'promo'
+      @play.playable = Promo.find_by_code(params[:promo][:code])
+    when 'comment'
+      comment = Comment.new(params[:comment])
+      comment.user = current_user
+      @play.playable = comment
     end
+    
+    raise ActiveRecord::RecordNotFound if @play.playable.nil?
     
     @play.save!
 
@@ -74,7 +75,14 @@ class PlaysController < ApplicationController
       format.xml  { head :created, :location => play_url(@play) }
       format.js   { render :template => 'plays/success' }
     end
-    
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "No record was found"
+  
+    respond_to do |format|
+      format.html { render :action => :new }
+      format.xml  { render :xml => @play.errors.to_xml }
+      format.js   { render :template => 'plays/error' }
+    end
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }

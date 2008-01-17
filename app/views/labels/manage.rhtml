@@ -1,0 +1,45 @@
+<h1>Manage Labels</h1>
+
+<table>
+	<thead>
+  	<tr>
+    	<th>Name</th>
+    	<th>Contact name</th>
+    	<th>Email</th>
+    	<th>Address</th>
+    	<th>City</th>
+    	<th>State</th>
+    	<th>Zip</th>
+    	<th>Country</th>
+    	<th>Fax</th>
+    	<th>Phone</th>
+    	<th>Note</th>
+		<th colspan="3"></th>
+  	</tr>
+	</thead>
+  
+	<tbody>
+<% @labels.each do |label| %>
+	<tr id="<%= label.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
+		<td><%= h label.name %></td>
+		<td><%= h label.contact_name %></td>
+		<td><%= h label.email %></td>
+		<td><%= h label.address %></td>
+		<td><%= h label.city %></td>
+		<td><%= h label.state %></td>
+		<td><%= h label.zip %></td>
+		<td><%= h label.country %></td>
+		<td><%= h label.fax %></td>
+		<td><%= h label.phone %></td>
+		<td><%= h label.note %></td>
+    	<td><%= link_to 'Show', label_path(label) %></td>
+    	<td><%= link_to 'Edit', edit_label_path(label) %></td>
+    	<td><%= link_to_remote 'Destroy', 
+								:url => label_path(label), 
+								:confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+	</tbody>
+<% end %>
+</table>
+
+<%= link_to 'New', new_label_path %><br />

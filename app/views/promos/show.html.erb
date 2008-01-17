@@ -1,0 +1,11 @@
+<% content_for :record do %>
+  <dl>
+    <dt>Duration</dt>
+    <dd><%= h(@promo.length || "N/A") %></dd>
+  </dl>
+<% end %>
+
+<h1>PSA: "<%= h @promo.name %>"</h1>
+<h2><%= h @promo.code %></h2>
+
+<%= @promo.body %>

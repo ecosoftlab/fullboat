@@ -8,7 +8,7 @@
 <% else %>
   <h1>Random Playlist</h1>
 <% end %>
-<h2><%= h @playlist.start_time %></h2>
+<h2><%= @playlist.start_time.to_ordinalized_s(:mdy) %></h2>
 </div>
 <div class="column span-7 last">
 <% remote_form_for(:playlist, :url => playlists_path) do |f| %>
@@ -35,7 +35,7 @@
       <th></th>
       <th>Name</th>
       <th>Type</th>
-      <th>?</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
   
@@ -45,9 +45,11 @@
 <% remote_form_for(:play, :url => playlist_plays_path(@playlist), :html => {:id => 'play_form'}) do |f| %>
 <div id="error" class="alert error" style="display:none;"></div>
 
-  <%= select_tag :type, options_for_select([["Album Track", 'album-track'], ["PSA", 'psa'], ["Promo", 'promo']]), 
-                 :class => 'column span-3',
-                 :onchange => "$('album-track', 'psa', 'promo').invoke('hide'); Element.show($F(this));" %>
+  <%= select_tag :type, options_for_select([["Album Track", 'album-track'], 
+                                            ["PSA", 'psa'], ["Promo", 'promo'], 
+                                            ["Comment", 'comment']]), 
+                 :class    => 'column span-3',
+                 :onchange => "$('album-track', 'psa', 'promo', 'comment').invoke('hide'); Element.show($F(this));" %>
   <fieldset class="column span-10">
     <fieldset id="album-track">
       <ol>
@@ -86,7 +88,7 @@
       <ol>
         <li>
           <label>PSA ID</label>
-          <%= text_field :psa, :name %>
+          <%= text_field :psa, :code %>
         </li>
         <li>
           <label>Duration</label>
@@ -103,7 +105,16 @@
       <ol>
         <li>
           <label>Promo ID</label>
-          <%= text_field :promo, :name %>
+          <%= text_field :promo, :code %>
+        </li>
+      </ol>
+    </fieldset>
+    
+    <fieldset id="comment" style="display:none;">
+      <ol>
+        <li>
+          <label>Comment</label>
+          <%= text_area :comment, :body %>
         </li>
       </ol>
     </fieldset>

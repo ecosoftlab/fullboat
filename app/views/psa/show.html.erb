@@ -1,0 +1,14 @@
+<% content_for :record do %>
+  <dl>
+    <dt>Expires On:</dt>
+    <dd><%= h(@psa.expires_on || "N/A") %></dd>
+  </dl>
+<% end %>
+
+<h1>PSA: "<%= h @psa.name %>"</h1>
+<h2><%= h @psa.code %></h2>
+
+<%= @psa.body %>
+
+<%= link_to 'Edit', edit_psa_path(@psa) %> |
+<%= link_to 'Back', psas_path %>
