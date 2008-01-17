@@ -29,11 +29,20 @@
 
 <hr />
 
-<ul class="plays">
-  <%= render(:collection => @playlist.plays, :partial => 'plays/summary') %>
-</ul>
+<table id="plays">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>?</th>
+    </tr>
+  </thead>
+  
+  <%= render(:collection => @playlist.plays, :partial => 'plays/summary/row') %>
+</table>
 
-<% remote_form_for(:play, :url => playlist_plays_path(@playlist)) do |f| %>
+<% remote_form_for(:play, :url => playlist_plays_path(@playlist), :html => {:id => 'play_form'}) do |f| %>
 <div id="error" class="alert error" style="display:none;"></div>
 
   <%= select_tag :type, options_for_select([["Album Track", 'album-track'], ["PSA", 'psa'], ["Promo", 'promo']]), 
@@ -50,6 +59,7 @@
   				<%= loading_indicator %>
   				
   				<%= observe_field 'artist_name', :update => 'album',
+  				                  :frequency => 1.0,
                             :with => "artist", 
                             :url => { :controller => "playlists",
                                       :action     => "remote_update_albums" } %>
@@ -59,6 +69,7 @@
           <%= select_tag :album %>
 					
 					<%= observe_field 'album', :update => 'track',
+  				                  :frequency => 1.0,
                             :with => "album", 
                             :url => { :controller => "playlists",
                                       :action     => "remote_update_tracks" } %>
@@ -93,14 +104,6 @@
         <li>
           <label>Promo ID</label>
           <%= text_field :promo, :name %>
-        </li>
-        <li>
-          <label>Duration</label>
-          <%= select :promo, :duration, [':15', ':30', ':45', '1:00']%>
-        </li>
-        <li>
-            <label class="inline column span-3"><%= radio_button :promo, :live, true %> Live</label>
-            <label class="inline column span-3"><%= radio_button :promo, :live, false %> Recorded</label>
         </li>
       </ol>
     </fieldset>

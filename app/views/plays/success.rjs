@@ -1,1 +1,4 @@
-page.redirect_to play_url(@play)
+page.hide 'error'
+page.insert_html :bottom, 'plays', :partial => 'plays/summary/row', :object => @play
+page.visual_effect :highlight, @play.dom_id
+page['play_form'].reset

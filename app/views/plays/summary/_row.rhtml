@@ -1,0 +1,10 @@
+<% play = row %>
+<tr id="<%= play.dom_id %>">
+  <% if play.playable.type == "Promo" %>
+  <% else %>
+  <td><%= image_tag("placeholder_album.jpg", :alt => "Cover for #{h(play.playable.name)}", :size => '16x16') %></td>
+  <% end %>
+  <td><%= h play %></td>
+  <td><%= h play.type %></td>
+  <td><%= link_to_remote("Destroy", :url => playlist_play_path(play.playlist, play), :method => :delete, :confirm => "Are you sure?") %></td>
+</tr>

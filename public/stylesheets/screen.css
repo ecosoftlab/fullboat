@@ -45,3 +45,7 @@ dl.letter-navigation dd{
 .auto_complete ul { list-style: none; margin:0px; padding:0px; }
 .auto_complete ul li.selected { background-color: #bbf; }
 .auto_complete ul li { color:#222; list-style-type: none; display:block; margin:0; padding:2px; height:16px; }
+
+td img{
+	margin:0;
+}

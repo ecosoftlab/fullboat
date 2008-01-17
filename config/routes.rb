@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :psas
+
+  map.resources :promos
+
   map.resources :programs,
                 :collection => {:manage => :get} do |program|
   

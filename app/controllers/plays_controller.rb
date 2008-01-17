@@ -56,6 +56,7 @@ class PlaysController < ApplicationController
       when 'album-track'
         @play.playable = Album.find(params[:album])
         @play.name = params[:track]
+        @play.type = "Track"
       when 'psa'
         # @psa = PSA.find(params[:psa])
       when 'promo'
