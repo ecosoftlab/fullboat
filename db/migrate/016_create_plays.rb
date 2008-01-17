@@ -2,9 +2,10 @@ class CreatePlays < ActiveRecord::Migration
   def self.up
     create_table :plays do |t|
       t.string   :name 
-      
+            
       t.integer  :playlist_id
-      
+      t.integer  :position
+
       t.integer  :playable_id
       t.string   :playable_type 
            

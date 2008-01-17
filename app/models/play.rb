@@ -1,4 +1,6 @@
 class Play < ActiveRecord::Base
+  acts_as_list :scope => :playlist_id
+  
   belongs_to :playlist
   belongs_to :playable,
              :polymorphic => true

@@ -29,7 +29,7 @@
 
 <hr />
 
-<table id="plays">
+<table>
   <thead>
     <tr>
       <th></th>
@@ -39,8 +39,18 @@
     </tr>
   </thead>
   
-  <%= render(:collection => @playlist.plays, :partial => 'plays/summary/row') %>
+  <tbody id="plays">
+    <%= render(:collection => @playlist.plays, :partial => 'plays/summary/row') %>
+  </tbody>
 </table>
+
+<%= sortable_element("plays", 
+    :handle => 'handle',
+    :tag => :tr,
+    # :update => "sort-status",
+    # :loading => visual_effect(:fade, "sort-status-alert", :duration => 0.1), 
+    # :complete => visual_effect(:appear, "sort-status-alert"), 
+    :url => '/') %>
 
 <% remote_form_for(:play, :url => playlist_plays_path(@playlist), :html => {:id => 'play_form'}) do |f| %>
 <div id="error" class="alert error" style="display:none;"></div>

@@ -1,7 +1,6 @@
 <% play = row %>
 <tr id="<%= play.dom_id %>">
-  <%# TODO: Make Elegant %>
-  
+  <td class="handle">&#8597;</td>
   <td><%= image_tag("placeholder_album.jpg", :alt => "Cover for #{h(play.playable.name)}", :size => '16x16') if play.playable_type == "Album" %></td>
   <td><%= h play %></td>
   <td><%= h play.playable_type %></td>

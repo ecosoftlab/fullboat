@@ -53,3 +53,7 @@ td img{
 #content table{
 	width:100%;
 }
+
+td.handle:hover{
+	cursor: move;
+}

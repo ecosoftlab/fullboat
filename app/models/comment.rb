@@ -5,7 +5,8 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   has_one :play, 
-          :as => :playable
+          :as => :playable,
+          :dependent => :destroy
 
   validates_presence_of :body
   validates_presence_of :user
