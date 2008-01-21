@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :slots
+
+  map.resources :schedules
+
   map.resources :psas,
                 :controller => "PSA"
 
@@ -6,10 +10,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :programs,
                 :collection => {:manage => :get} do |program|
-  
     program.resources :playlists,
                       :collection => {:manage => :get}
   end
+  
+  # No
+  map.resources :music_programs, :controller => 'programs'
+  map.resources :public_affairs_programs, :controller => 'programs'
   
   map.resources :playlists,
                 :has_many => :plays
@@ -50,9 +57,9 @@ ActionController::Routing::Routes.draw do |map|
   map.welcome '/', :controller => 'wrct', :action => 'index'
   map.admin   'admin', :controller => 'admin', :action => 'index'
   
-  map.music   'music', :controller => 'admin', :action => 'music'
+  map.music        'music', :controller => 'admin', :action => 'music'
   map.production   'production', :controller => 'admin', :action => 'production'
-  map.exec   'exec', :controller => 'admin', :action => 'exec'
+  map.exec         'exec', :controller => 'admin', :action => 'exec'
 
   map.login   'login', :controller => 'sessions', :action => 'new'
   map.logout  'logout', :controller => 'sessions', :action => 'destroy'

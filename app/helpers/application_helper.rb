@@ -1,6 +1,6 @@
 module ApplicationHelper
   def dynamic_page_title(*args)
-    return ["WRCT", ((args << [@user, @page].compact.first.to_s) rescue nil)].flatten.delete_if{|x| x.blank?}.join(" / ")
+    return ["R!otGear", ((args << [@section, @user].compact.first.to_s) rescue nil)].flatten.delete_if{|x| x.blank?}.join(" / ")
   end
     
   def loading_indicator(id = nil, options = {})

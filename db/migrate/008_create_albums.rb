@@ -7,7 +7,8 @@ class CreateAlbums < ActiveRecord::Migration
       t.integer  :format_id       
       t.integer  :genre_id
       
-      t.string   :name            
+      t.string   :name
+      t.string   :slug
       t.string   :status          
       t.date     :status_changed_on
       t.boolean  :is_compilation     

@@ -1,10 +1,11 @@
 <% artist = row %>
 
 <tr id="<%= artist.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
-	<td><strong><%= link_to(h(artist), artist_path(artist)) %></strong></td>
+	<td><strong><%= h artist %></strong></td>
 	<td><%= h artist.genres.to_sentence %></td>
 	<td class="hide"><%= hcard(artist) %></td>
-
+	
+	<td><%= link_to 'Show', artist_path(artist) %></td>
 	<td><%= link_to 'Edit', edit_artist_path(artist) %></td>
 	<td><%= link_to_remote 'Destroy', 
 						              :url => artist_path(artist), 

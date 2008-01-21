@@ -1,0 +1,42 @@
+<h1><%= h @schedule %></h1>
+<%= @schedule.description %>
+
+<!-- Frankly, this is terrifying -->
+<table class="schedule">
+  <colgroup span="8">
+    <column class="time"></column>
+  <% %w{sunday monday tuesday wednesday thursday friday saturday}.each do |day| -%>
+    <column class="<%= day %>"></column>
+  <% end -%>
+  </colgroup>
+  
+  <thead>
+    <th class="time">Time</th>
+  <% %w{sunday monday tuesday wednesday thursday friday saturday}.each do |day| -%>
+    <th class="day"><%= day.capitalize %></th>
+  <% end -%>
+  </thead>
+  
+  <tbody>
+  <% (0..23).collect{|h| Time.parse("%d:00" % h)}.each do |time| %>
+    <tr id="hour-<%= time.hour %>" class="<%= cycle('odd', 'even') %>">
+      <td><%= time.to_ordinalized_s(:time_only) %>
+    <% (0..6).each do |day| -%>
+      <% slot = @schedule.slot_starting_at(day, time) -%>
+      <% schedulable = slot.schedulable rescue nil -%>
+      <% if schedulable -%>
+        <td class="" rowspan="<%= slot.duration %>">
+          <div>
+            <%= link_to(h(schedulable), schedulable) -%>
+          </div>
+        </td>
+      <% elsif @schedule.slot_at(day, time) -%>
+        <!-- Empty Slot -->
+      <% else -%>
+        <td></td>
+      <% end -%>
+    <% end -%>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

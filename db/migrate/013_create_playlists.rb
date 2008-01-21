@@ -5,9 +5,7 @@ class CreatePlaylists < ActiveRecord::Migration
       t.integer  :program_id
                             
       t.datetime :start_time
-      t.datetime :end_time 
-                            
-      t.text     :note  
+      t.datetime :end_time                            
     end
   end
 

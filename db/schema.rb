@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 18) do
+ActiveRecord::Schema.define(:version => 20) do
 
   create_table "albums", :force => true do |t|
     t.integer  "artist_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 18) do
     t.integer  "format_id"
     t.integer  "genre_id"
     t.string   "name"
+    t.string   "slug"
     t.string   "status"
     t.date     "status_changed_on"
     t.boolean  "is_compilation"
@@ -31,8 +32,7 @@ ActiveRecord::Schema.define(:version => 18) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
-    t.string   "sort_name"
-    t.text     "note"
+    t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -87,12 +87,12 @@ ActiveRecord::Schema.define(:version => 18) do
     t.integer  "program_id"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.text     "note"
   end
 
   create_table "plays", :force => true do |t|
     t.string   "name"
     t.integer  "playlist_id"
+    t.integer  "position"
     t.integer  "playable_id"
     t.string   "playable_type"
     t.boolean  "is_request"
@@ -105,9 +105,6 @@ ActiveRecord::Schema.define(:version => 18) do
   create_table "programs", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "day"
-    t.integer  "start_hour"
-    t.integer  "end_hour"
     t.string   "type"
     t.string   "url"
     t.datetime "created_at"
@@ -120,11 +117,12 @@ ActiveRecord::Schema.define(:version => 18) do
   end
 
   create_table "promos", :force => true do |t|
+    t.integer  "promotable_id"
+    t.string   "promotable_type"
     t.string   "name"
     t.text     "body"
     t.string   "code"
     t.integer  "length"
-    t.boolean  "is_live"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -175,6 +173,27 @@ ActiveRecord::Schema.define(:version => 18) do
     t.integer "user_id"
   end
 
+  create_table "schedules", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "is_current"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "slots", :force => true do |t|
+    t.integer  "schedule_id"
+    t.integer  "schedulable_id"
+    t.string   "schedulable_type"
+    t.integer  "day"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -190,7 +209,6 @@ ActiveRecord::Schema.define(:version => 18) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "type"
     t.string   "login"
     t.string   "email"
     t.string   "crypted_password",          :limit => 40

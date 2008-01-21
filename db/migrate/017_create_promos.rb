@@ -1,11 +1,13 @@
 class CreatePromos < ActiveRecord::Migration
   def self.up
     create_table :promos do |t|
+      t.integer  :promotable_id
+      t.string   :promotable_type
+      
       t.string   :name   
       t.text     :body   
       t.string   :code   
       t.integer  :length   
-      t.boolean  :is_live
                             
       t.datetime :created_at
       t.datetime :updated_at

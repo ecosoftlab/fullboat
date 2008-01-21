@@ -1,6 +1,8 @@
 class ProgramsController < ApplicationController
-  
   before_filter :login_required
+  
+  # Production Section
+  layout 'production'
   
   # GET /programs
   # GET /programs.xml

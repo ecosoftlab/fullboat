@@ -3,9 +3,6 @@ class CreatePrograms < ActiveRecord::Migration
     create_table :programs do |t|
       t.string   :name       
       t.text     :description
-      t.integer  :day        
-      t.integer  :start_hour 
-      t.integer  :end_hour   
       t.string   :type       
       t.string   :url        
                               

@@ -1,25 +1,31 @@
-<h1>Listing Psas</h1>
+<h1>Listing PSAs</h1>
 
 <table>
 	<thead>
-	<tr>
-	    	<th>Name</th>
-	    	<th>Body</th>
-	    	<th>Code</th>
-	    	<th>Is live</th>
-	    	<th>Expires on</th>
-	  	</tr>
+	  <tr>
+  	  <th>Code</th>
+  	  <th>Name</th>
+  	  <th>Duration</th>
+  	  <th></th>
+  	  <th>Expiration Date</th>
+  	  <th colspan="3"></th>
+    </tr>
 	</thead>
 	
 	<tbody>
   	<% @psas.each do |psa| %>
   		<tr>
-		    		<td><%=h psa.name %></td>
-		    		<td><%=h psa.body %></td>
-		    		<td><%=h psa.code %></td>
-		    		<td><%=h psa.is_live %></td>
-		    		<td><%=h psa.expires_on %></td>
-		  		</tr>
+    	  <td><strong><%= link_to(h(psa.code), psa_path(psa)) %></strong></td>
+  	    <td><%= h psa.name %></td>
+  	    <td><%= h psa.length %></td>
+    	  <td><%= truncate(h(psa.body_source), 200) %></td>
+    	  <td><%= h psa.expires_on %></td>
+		    <td><%= link_to 'Show', psa_path(psa) %></td>
+    	  <td><%= link_to 'Edit', edit_psa_path(psa) %></td>
+    	  <td><%= link_to_remote 'Destroy', 
+								:url => promo_path(psa), 
+								:confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
 	<% end %>
 	</tbody>
 </table>

@@ -1,5 +1,5 @@
 namespace :sample do
-  task :all => [:users, :genres, :labels, :albums, :psas, :promos]
+  task :all => [:users, :genres, :labels, :albums, :psas, :promos, :programs]
   
   task :users => [:environment] do
     f = File.read("data/sample/users.txt")
@@ -78,4 +78,30 @@ namespace :sample do
       ")
     end
   end
+  
+  task :programs => [:environment] do
+    require 'program'
+    
+    Schedule.create(:name => "Spring 2008", :description => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", :starts_at => Time.parse("1/21/2008 00:00"), :ends_at => Time.parse("5/5/2008 00:00"))
+    
+    
+    create_program("Aeroflot",                        "Sunday", "00:00", "2:00" )
+    create_program("One to One",                      "Sunday", "6:00",  "12:00")
+    create_program("Something Fell",                  "Sunday", "12:00", "14:00")
+    create_program("The Best of Broadway",            "Sunday", "14:00", "15:00")
+    create_program("Classics",                        "Sunday", "15:00", "16:00")
+    create_program("Scams, Scandals and Skulduggery", "Sunday", "16:00", "18:00")
+    create_program("The Best Kept Secret Radio Show", "Sunday", "19:00", "21:00")
+    create_program("Sound Smorgasbord",               "Sunday", "21:00", "23:00")
+  end
+end
+
+def create_program(name, day, start_time, end_time)
+  days = %w{Sunday Monday Tuesday Wednesday Thursday Friday Saturday}
+  day = days.index(day) || day
+  program = MusicProgram.create!(:name => name, :description => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+  slot = Slot.new(:schedule_id => Schedule.find(:first).id, 
+           :day => day, :start_time => Time.parse(start_time), :end_time => Time.parse(end_time))
+  slot.schedulable = program
+  slot.save!
 end

@@ -1,0 +1,25 @@
+<h1>Listing Slots</h1>
+
+<table>
+	<thead>
+	<tr>
+	    	<th>Schedule</th>
+	    	<th>Schedulable</th>
+	    	<th>Day</th>
+	    	<th>Start time</th>
+	    	<th>End time</th>
+	  	</tr>
+	</thead>
+	
+	<tbody>
+  	<% @slots.each do |slot| %>
+  		<tr>
+		    		<td><%=h slot.schedule_id %></td>
+		    		<td><%=h slot.schedulable_id %></td>
+		    		<td><%=h slot.day %></td>
+		    		<td><%=h slot.start_time %></td>
+		    		<td><%=h slot.end_time %></td>
+		  		</tr>
+	<% end %>
+	</tbody>
+</table>
