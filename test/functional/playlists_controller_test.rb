@@ -28,7 +28,7 @@ class PlaylistsControllerTest < Test::Unit::TestCase
     old_count = Playlist.count
     create_playlist
     assert_equal old_count+1, Playlist.count
-    assert_redirected_to manage_playlists_path
+    assert_redirected_to playlists_path
   end
 
   def test_should_show_playlist
@@ -43,7 +43,7 @@ class PlaylistsControllerTest < Test::Unit::TestCase
   
   def test_should_update_playlist
     put :update, :id => 1, :playlist => { }
-    assert_redirected_to manage_playlists_path
+    assert_redirected_to playlists_path
   end
   
   def test_should_destroy_playlist

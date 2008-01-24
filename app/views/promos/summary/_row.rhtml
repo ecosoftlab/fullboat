@@ -1,0 +1,12 @@
+<% promo = row %>
+<tr id="<%= promo.dom_id %>">
+  <td><strong><%= link_to(h(promo.code), promo_path(promo)) %></strong></td>
+  <td><%= h promo.name %></td>
+  <td><%= h promo.length %></td>
+  <td><%= truncate(h(promo.body_source), 200) %></td>
+  <td><%= link_to 'Show', promo_path(promo) %></td>
+  <td><%= link_to 'Edit', edit_promo_path(promo) %></td>
+  <td><%= link_to_remote 'Destroy', 
+					:url => promo_path(promo), 
+					:confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

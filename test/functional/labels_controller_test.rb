@@ -28,7 +28,7 @@ class LabelsControllerTest < Test::Unit::TestCase
     old_count = Label.count
     create_label
     assert_equal old_count+1, Label.count
-    assert_redirected_to manage_labels_path
+    assert_redirected_to labels_path
   end
 
   def test_should_show_label
@@ -43,7 +43,7 @@ class LabelsControllerTest < Test::Unit::TestCase
   
   def test_should_update_label
     put :update, :id => 1, :label => { }
-    assert_redirected_to manage_labels_path
+    assert_redirected_to labels_path
   end
   
   def test_should_destroy_label

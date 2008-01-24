@@ -1,53 +1,65 @@
 <div id="error" class="alert error" style="display:none;"></div>
 
 <!--[form:label]-->
-<fieldset id="label_details" class="clearfix">
+<fieldset id="label_details">
 	<legend>Label Details</legend>
 	<ol>
-			<li>
+		<li>
 	    	<label for="name">Name</label>
-	    	<%= f.text_field :name %>
+	    	<%= f.text_field :name, :class => 'title' %>
 		</li>
-			<li>
-	    	<label for="contact_name">Contact name</label>
+		<li>
+	    	<label for="contact_name">Contact Name</label>
 	    	<%= f.text_field :contact_name %>
 		</li>
-			<li>
-	    	<label for="email">Email</label>
+	</ol>
+</fieldset>
+
+<fieldset id="label_contact">
+  <legend>Contact Information</legend>
+  <ol>
+    <li>
+	    	<label for="email">E-mail</label>
 	    	<%= f.text_field :email %>
 		</li>
-			<li>
-	    	<label for="address">Address</label>
+		<li>
+	    	<label for="url">Website URL</label>
+	    	<%= f.text_field :url %>
+		</li>
+		<li>
+	    	<label for="phone">Phone</label>
+	    	<%= f.text_field :phone, :size => 20 %>
+		</li>
+		<li>
+	    	<label for="fax">Fax</label>
+	    	<%= f.text_field :fax, :size => 20 %>
+		</li>
+	</ol>
+</fieldset>
+<fieldset>
+  <legend>Address</legend>
+	<ol>
+		<li>
+	    	<label for="address">Street</label>
 	    	<%= f.text_field :address %>
 		</li>
-			<li>
+		<li>
 	    	<label for="city">City</label>
-	    	<%= f.text_field :city %>
+	    	<%= f.text_field :city, :size => 20 %>
 		</li>
-			<li>
+		<li>
 	    	<label for="state">State</label>
-	    	<%= f.text_field :state %>
+	    	<%= f.us_state_select :state %>
 		</li>
-			<li>
+		<li>
 	    	<label for="zip">Zip</label>
-	    	<%= f.text_field :zip %>
+	    	<%= f.text_field :zip, :size => 10 %>
 		</li>
-			<li>
+		<li>
 	    	<label for="country">Country</label>
-	    	<%= f.text_field :country %>
+	    	<%= f.country_select :country, ["United States", "Canada", "United Kingdom"] %>
 		</li>
-			<li>
-	    	<label for="fax">Fax</label>
-	    	<%= f.text_field :fax %>
-		</li>
-			<li>
-	    	<label for="phone">Phone</label>
-	    	<%= f.text_field :phone %>
-		</li>
-			<li>
-	    	<label for="note">Note</label>
-	    	<%= f.text_area :note %>
-		</li>
+		
 		</ol>
 </fieldset>
 <!--[eoform:label]-->

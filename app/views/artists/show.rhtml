@@ -1,18 +1,26 @@
-<h1><%= h @artist.name %></h1>
-<%= @artist.note %>
-
-<% @artist.albums.each do |album| %>
-  <!-- hReview microformat -->
-  <div id="<%= album.dom_id %>">
-    <a href="<%= album_path(album)%>" class="column span-7 clear box">
-      <div class="column span-2">
-        <%= image_tag("placeholder_album.jpg", :size => '50x55', :alt => "Cover for #{h(album.name)}" )%>
-      </div>
-  
-      <div class="column span-4 last">
-        <h2><%= h(album.name) %></h2>
-        <h3><%= content_tag(:abbr, h(album.released_on), :title => album.released_on.year) if album.released_on %></h3>
-      </div>
-    </a>
-  </div>
+<% content_for :record do %>
+  <p><%= link_to "Edit '#{h(@artist)}'", edit_artist_path(@artist) %></p>
 <% end %>
+
+<div class="column span-9">
+  <h1><%= h @artist.name %></h1>
+  <%= @artist.description %>
+</div>
+
+<div class="column span-6 last">
+  <% @artist.albums.each do |album| %>
+    <!-- hReview microformat -->
+    <div id="<%= album.dom_id %>">
+      <a href="<%= album_path(album)%>" class="column span-7 clear box">
+        <div class="column span-2">
+          <%= image_tag("placeholder_album.jpg", :size => '50x55', :alt => "Cover for #{h(album.name)}" )%>
+        </div>
+  
+        <div class="column span-4 last">
+          <h2><%= h(album.name) %></h2>
+          <h3><%= content_tag(:abbr, h(album.released_on), :title => album.released_on.year) if album.released_on %></h3>
+        </div>
+      </a>
+    </div>
+  <% end %>
+</div>

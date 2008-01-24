@@ -28,7 +28,7 @@ class PromotersControllerTest < Test::Unit::TestCase
     old_count = Promoter.count
     create_promoter
     assert_equal old_count+1, Promoter.count
-    assert_redirected_to manage_promoters_path
+    assert_redirected_to promoters_path
   end
 
   def test_should_show_promoter
@@ -43,7 +43,7 @@ class PromotersControllerTest < Test::Unit::TestCase
   
   def test_should_update_promoter
     put :update, :id => 1, :promoter => { }
-    assert_redirected_to manage_promoters_path
+    assert_redirected_to promoters_path
   end
   
   def test_should_destroy_promoter

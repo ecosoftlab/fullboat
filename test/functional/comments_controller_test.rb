@@ -28,7 +28,7 @@ class CommentsControllerTest < Test::Unit::TestCase
     old_count = Comment.count
     create_comment
     assert_equal old_count+1, Comment.count
-    assert_redirected_to manage_comments_path
+    assert_redirected_to comments_path
   end
 
   def test_should_show_comment
@@ -43,7 +43,7 @@ class CommentsControllerTest < Test::Unit::TestCase
   
   def test_should_update_comment
     put :update, :id => 1, :comment => { }
-    assert_redirected_to manage_comments_path
+    assert_redirected_to comments_path
   end
   
   def test_should_destroy_comment

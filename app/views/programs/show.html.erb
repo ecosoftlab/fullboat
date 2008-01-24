@@ -1,7 +1,9 @@
 <h1><%= h @program %></h1>
-<h2><%= h @program.type %></h2>
+<h2><%= h @program.type.titleize %></h2>
 <%= @program.description %>
 
+<!-- TODO -->
 <% @program.schedules.each do |schedule| %>
   <h3><%= h schedule %></h3>
+  <p><%= h @program.slots %></p>
 <% end %>

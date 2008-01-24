@@ -28,7 +28,7 @@ class SchedulesControllerTest < Test::Unit::TestCase
     old_count = Schedule.count
     create_schedule
     assert_equal old_count+1, Schedule.count
-    assert_redirected_to manage_schedules_path
+    assert_redirected_to schedules_path
   end
 
   def test_should_show_schedule
@@ -43,7 +43,7 @@ class SchedulesControllerTest < Test::Unit::TestCase
   
   def test_should_update_schedule
     put :update, :id => 1, :schedule => { }
-    assert_redirected_to manage_schedules_path
+    assert_redirected_to schedules_path
   end
   
   def test_should_destroy_schedule

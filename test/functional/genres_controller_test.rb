@@ -28,7 +28,7 @@ class GenresControllerTest < Test::Unit::TestCase
     old_count = Genre.count
     create_genre
     assert_equal old_count+1, Genre.count
-    assert_redirected_to manage_genres_path
+    assert_redirected_to genres_path
   end
 
   def test_should_show_genre
@@ -43,7 +43,7 @@ class GenresControllerTest < Test::Unit::TestCase
   
   def test_should_update_genre
     put :update, :id => 1, :genre => { }
-    assert_redirected_to manage_genres_path
+    assert_redirected_to genres_path
   end
   
   def test_should_destroy_genre

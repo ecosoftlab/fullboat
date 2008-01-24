@@ -28,7 +28,7 @@ class ArtistsControllerTest < Test::Unit::TestCase
     old_count = Artist.count
     create_artist
     assert_equal old_count+1, Artist.count
-    assert_redirected_to manage_artists_path
+    assert_redirected_to artists_path
   end
 
   def test_should_show_artist
@@ -43,7 +43,7 @@ class ArtistsControllerTest < Test::Unit::TestCase
   
   def test_should_update_artist
     put :update, :id => 1, :artist => { }
-    assert_redirected_to manage_artists_path
+    assert_redirected_to artists_path
   end
   
   def test_should_destroy_artist

@@ -28,7 +28,7 @@ class PlaysControllerTest < Test::Unit::TestCase
     old_count = Play.count
     create_play
     assert_equal old_count+1, Play.count
-    assert_redirected_to manage_plays_path
+    assert_redirected_to plays_path
   end
 
   def test_should_show_play
@@ -43,7 +43,7 @@ class PlaysControllerTest < Test::Unit::TestCase
   
   def test_should_update_play
     put :update, :id => 1, :play => { }
-    assert_redirected_to manage_plays_path
+    assert_redirected_to plays_path
   end
   
   def test_should_destroy_play

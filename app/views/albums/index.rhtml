@@ -7,11 +7,11 @@
   <!-- Only used for Artist and Title -->
   <dl class="letter-navigation">
   	<dt>Letter</dt>
-  	<%= ('A'..'Z').collect{|l| content_tag(:dd, link_to(l, :anchor => '')) }%>
+  	<%= ('A'..'Z').collect{|l| content_tag(:dd, link_to_unless(params[:letter] == l, l, albums_path(:letter => l))) }%>
   </dl>
 </fieldset>
 
-<%# render(:partial => 'mdtasks') %>
+<%= will_paginate @albums %>
 
 <table>
 <thead>
@@ -30,3 +30,5 @@
   <%= render(:collection => @albums, :partial => 'albums/summary/row') %>
 </tbody>
 </table>
+
+<%= will_paginate @albums %>

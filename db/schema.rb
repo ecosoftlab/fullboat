@@ -32,7 +32,8 @@ ActiveRecord::Schema.define(:version => 20) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
-    t.string   "slug"
+    t.string   "sort_name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20) do
     t.string   "country"
     t.string   "fax"
     t.string   "phone"
-    t.text     "note"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -157,9 +158,9 @@ ActiveRecord::Schema.define(:version => 20) do
     t.datetime "updated_at"
   end
 
-  add_index "reviews", ["user_id", "album_id"], :name => "index_reviews_on_user_id_and_album_id"
   add_index "reviews", ["album_id"], :name => "index_reviews_on_album_id", :unique => true
   add_index "reviews", ["user_id"], :name => "index_reviews_on_user_id"
+  add_index "reviews", ["user_id", "album_id"], :name => "index_reviews_on_user_id_and_album_id"
 
   create_table "roles", :force => true do |t|
     t.string   "title"
@@ -188,8 +189,8 @@ ActiveRecord::Schema.define(:version => 20) do
     t.integer  "schedulable_id"
     t.string   "schedulable_type"
     t.integer  "day"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.time     "start_time"
+    t.time     "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -201,8 +202,8 @@ ActiveRecord::Schema.define(:version => 20) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
 
   create_table "tags", :force => true do |t|
     t.string "name"

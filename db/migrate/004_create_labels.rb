@@ -10,8 +10,8 @@ class CreateLabels < ActiveRecord::Migration
       t.string   :zip         
       t.string   :country     
       t.string   :fax         
-      t.string   :phone       
-      t.text     :note        
+      t.string   :phone  
+      t.string   :url     
                                
       t.datetime :created_at  
       t.datetime :updated_at  

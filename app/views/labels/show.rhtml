@@ -34,18 +34,10 @@
 <div class="column span-6">
   <% if @label.artists.any? %>
     <h2>Label Artists</h2>
-    <table>
-  	<thead>
-    	<tr>
-      	<th>Name</th>
-      	<th>Genres</th>
-  		  <th colspan="4"></th>
-    	</tr>
-  	</thead>
-  
-  	<tbody>
-  	  <%= render(:collection => @label.artists, :partial => 'artists/summary/row') %>
-    </tbody>
-  </table>
+    <ul>
+    <% @label.artists.each do |artist| %>
+      <li><%= link_to(h(artist), artist_path(artist)) %></li>
+  	<% end %>
+    </ul>
   <% end %>
 </div>

@@ -1,4 +1,6 @@
 <% content_for :record do %>
+  <p><%= link_to "Edit '#{h(@album)}'", edit_album_path(@album) %></p>
+
   <dl>
     <dt>Label</dt>
     <dd><%= @album.label ? link_to(h(@album.label), label_path(@album.label)) : "None" %></dd>

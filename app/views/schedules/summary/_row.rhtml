@@ -1,0 +1,13 @@
+<% schedule = row%>
+
+<tr id="<%= schedule.dom_id %>">
+  <td><strong><%= h schedule %></strong></td>
+  <td><%= truncate(h(schedule.description_source), 200) %></td>
+  <td><%= h schedule.starts_at %></td>
+  <td><%= h schedule.ends_at %></td>
+  <td><%= link_to 'Show', schedule_path(schedule) %></td>
+  <td><%= link_to 'Edit', edit_schedule_path(schedule) %></td>
+  <td><%= link_to_remote 'Destroy', 
+					:url => schedule_path(schedule), 
+					:confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

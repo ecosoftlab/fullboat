@@ -28,7 +28,7 @@ class SlotsControllerTest < Test::Unit::TestCase
     old_count = Slot.count
     create_slot
     assert_equal old_count+1, Slot.count
-    assert_redirected_to manage_slots_path
+    assert_redirected_to slots_path
   end
 
   def test_should_show_slot
@@ -43,7 +43,7 @@ class SlotsControllerTest < Test::Unit::TestCase
   
   def test_should_update_slot
     put :update, :id => 1, :slot => { }
-    assert_redirected_to manage_slots_path
+    assert_redirected_to slots_path
   end
   
   def test_should_destroy_slot

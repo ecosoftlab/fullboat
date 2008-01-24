@@ -6,6 +6,7 @@
 	<td><%= number_to_phone(label.phone) %></td>
 	<td class="hide"><%= hcard(label) %></td>
 	
+	<td><%= link_to 'Show', label_path(label) %></td>
 	<td><%= link_to 'Edit', edit_label_path(label) %></td>
   <td><%= link_to_remote 'Destroy',
                          :url => label_path(label),

@@ -1,20 +1,19 @@
 class Artist < ActiveRecord::Base
-  acts_as_textiled :note
+  acts_as_textiled :description
+  
+  @@per_page = 50
+  cattr_reader :per_page
   
   has_many :albums
   has_many :genres, :through => :albums, :uniq => true
 
-  validates_presence_of   :name
+  validates_presence_of   :name, :sort_name
   validates_uniqueness_of :name
-  validates_length_of     :name, :maximum => 100
-
-  validates_presence_of   :sort_name
-  validates_length_of     :sort_name, :maximum => 100
   
   before_validation_on_create :initialize_sort_name
   
   def to_param
-    return "#{self.id}-#{self.name.gsub(/\W/, '')}"
+    return "#{self.id}-#{self.sort_name.gsub(/\W/, '')}"
   end
   
   def to_s
@@ -32,7 +31,7 @@ class Artist < ActiveRecord::Base
 private
 
   def initialize_sort_name
-    self[:sort_name] ||= self[:name].gsub(/^(the|a)\s+/i, "").strip
+    self[:sort_name] ||= self[:name].strip.gsub(/^([^a-zA-z\d]*|(the|a|))\s+/i, "")
   end
 
 end

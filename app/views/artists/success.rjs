@@ -1,1 +1,1 @@
-page.redirect_to manage_artists_url
+page.redirect_to artist_url(@artist)

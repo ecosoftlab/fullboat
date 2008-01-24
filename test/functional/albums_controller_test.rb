@@ -28,7 +28,7 @@ class AlbumsControllerTest < Test::Unit::TestCase
     old_count = Album.count
     create_album
     assert_equal old_count+1, Album.count
-    assert_redirected_to manage_albums_path
+    assert_redirected_to albums_path
   end
 
   def test_should_show_album
@@ -43,7 +43,7 @@ class AlbumsControllerTest < Test::Unit::TestCase
   
   def test_should_update_album
     put :update, :id => 1, :album => { }
-    assert_redirected_to manage_albums_path
+    assert_redirected_to albums_path
   end
   
   def test_should_destroy_album

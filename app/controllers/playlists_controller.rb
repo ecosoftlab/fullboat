@@ -124,7 +124,7 @@ class PlaylistsController < ApplicationController
   
   # GET /playlists;manage
   def manage
-    redirect_to manage_programs_url
+    redirect_to programs_url
   end
   
   def remote_update_albums

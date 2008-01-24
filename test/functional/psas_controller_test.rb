@@ -28,7 +28,7 @@ class PsasControllerTest < Test::Unit::TestCase
     old_count = Psa.count
     create_psa
     assert_equal old_count+1, Psa.count
-    assert_redirected_to manage_psas_path
+    assert_redirected_to psas_path
   end
 
   def test_should_show_psa
@@ -43,7 +43,7 @@ class PsasControllerTest < Test::Unit::TestCase
   
   def test_should_update_psa
     put :update, :id => 1, :psa => { }
-    assert_redirected_to manage_psas_path
+    assert_redirected_to psas_path
   end
   
   def test_should_destroy_psa

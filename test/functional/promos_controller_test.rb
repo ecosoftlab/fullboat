@@ -28,7 +28,7 @@ class PromosControllerTest < Test::Unit::TestCase
     old_count = Promo.count
     create_promo
     assert_equal old_count+1, Promo.count
-    assert_redirected_to manage_promos_path
+    assert_redirected_to promos_path
   end
 
   def test_should_show_promo
@@ -43,7 +43,7 @@ class PromosControllerTest < Test::Unit::TestCase
   
   def test_should_update_promo
     put :update, :id => 1, :promo => { }
-    assert_redirected_to manage_promos_path
+    assert_redirected_to promos_path
   end
   
   def test_should_destroy_promo

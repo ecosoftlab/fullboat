@@ -28,7 +28,7 @@ class ProgramsControllerTest < Test::Unit::TestCase
     old_count = Program.count
     create_program
     assert_equal old_count+1, Program.count
-    assert_redirected_to manage_programs_path
+    assert_redirected_to programs_path
   end
 
   def test_should_show_program
@@ -43,7 +43,7 @@ class ProgramsControllerTest < Test::Unit::TestCase
   
   def test_should_update_program
     put :update, :id => 1, :program => { }
-    assert_redirected_to manage_programs_path
+    assert_redirected_to programs_path
   end
   
   def test_should_destroy_program

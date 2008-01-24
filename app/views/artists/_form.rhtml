@@ -4,17 +4,17 @@
 <fieldset id="artist_details" class="clearfix">
 	<legend>Artist Details</legend>
 	<ol>
-			<li>
-	    	<label for="name">Name</label>
-	    	<%= f.text_field :name %>
+		<li>
+	    <label for="name">Name</label>
+	    <%= f.text_field :name, :class => 'title' %>
+		</li>		
+		<li>
+	    <label for="sort_name">Sort Name</label>
+	    <%= f.text_field :sort_name, :class => 'title' %>
 		</li>
-			<li>
-	    	<label for="sort_name">Sort name</label>
-	    	<%= f.text_field :sort_name %>
-		</li>
-			<li>
-	    	<label for="note">Note</label>
-	    	<%= f.text_area :note %>
+		<li>
+	    <label for="description">Description</label>
+	    <%= f.text_area :description %>
 		</li>
 		</ol>
 </fieldset>

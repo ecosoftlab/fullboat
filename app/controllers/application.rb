@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_wrct_session_id'
   
-  layout :determine_layout
+  layout 'application'
   
   def permission_granted
     logger.info("[authentication] Permission granted to %s at %s for %s" %
@@ -21,10 +21,5 @@ class ApplicationController < ActionController::Base
     flash[:access_denied] = true
     redirect_to login_url
   end
-  
-private
 
-  def determine_layout
-    params[:_admin] ? 'admin' : 'application'
-  end
 end

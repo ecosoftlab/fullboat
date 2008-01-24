@@ -28,7 +28,7 @@ class FormatsControllerTest < Test::Unit::TestCase
     old_count = Format.count
     create_format
     assert_equal old_count+1, Format.count
-    assert_redirected_to manage_formats_path
+    assert_redirected_to formats_path
   end
 
   def test_should_show_format
@@ -43,7 +43,7 @@ class FormatsControllerTest < Test::Unit::TestCase
   
   def test_should_update_format
     put :update, :id => 1, :format => { }
-    assert_redirected_to manage_formats_path
+    assert_redirected_to formats_path
   end
   
   def test_should_destroy_format

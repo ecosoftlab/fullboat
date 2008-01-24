@@ -1,0 +1,12 @@
+<% program = row %>
+<tr id="<%= program.dom_id %>">
+	<td><strong><%=h program.name %></strong></td>
+	<td><%= truncate(h(program.description_source), 200) %></td>
+	<td><%=h program.type.titleize %></td>
+	<td><%=h program.url %></td>
+  <td><%= link_to 'Show', program_path(program) %></td>
+  <td><%= link_to 'Edit', edit_program_path(program) %></td>
+  <td><%= link_to_remote 'Destroy', 
+					:url => program_path(program), 
+					:confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

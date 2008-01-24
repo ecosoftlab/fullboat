@@ -17,7 +17,7 @@
 	
 		<li>
 	    	<label for="type">Type</label>
-	    	<%= f.select :type, [""] %>
+	    	<%= f.select :type, subclasses_of(Program).collect{|sc| [sc.to_s.titleize, sc.to_s]} %>
 		</li>
 	
 		<li>

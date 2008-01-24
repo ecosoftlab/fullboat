@@ -1,9 +1,12 @@
 class Album < ActiveRecord::Base
+  acts_as_taggable
+
   @@status_values = ["TBR", "Bin", "OOB", "NIB", "N&WC", "Missing", "Library"]
   cattr_reader :status_values
   
-  acts_as_taggable
-  
+  @@per_page = 50
+  cattr_reader :per_page
+    
   has_many :comments, 
            :as => :commentable, 
            :dependent => :destroy

@@ -7,7 +7,12 @@ class ArtistsController < ApplicationController
   # GET /artists
   # GET /artists.xml
   def index
-    @artists = Artist.find(:all, :order => "name ASC")
+    conditions = []; values = {}
+    if params[:letter] then conditions << "name LIKE :letter"; values[:letter] = "#{params[:letter]}%" end
+    
+    @artists = Artist.paginate(:all, :conditions => [conditions.join(" AND "), values], 
+                               :page => params[:page],
+                               :order => "sort_name ASC")
 
     options = { :feed => { :title       => "Artists",
                            :description => "",
@@ -65,9 +70,9 @@ class ArtistsController < ApplicationController
 
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
-        format.html { render :action => :new }
-        format.xml  { render :xml => @artist.errors.to_xml }
-        format.js   { render :template => 'artists/error' }
+      format.html { render :action => :new }
+      format.xml  { render :xml => @artist.errors.to_xml }
+      format.js   { render :template => 'artists/error' }
     end
   end
 
@@ -98,14 +103,9 @@ class ArtistsController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = "Artist '#{@artist.name}' was destroyed."
-      format.html { redirect_to manage_artists_url }
+      format.html { redirect_to artists_url }
       format.xml  { head :ok }
       format.js   # destroy.rjs
     end
-  end
-
-  # GET /artists;manage
-  def manage
-    @artists = Artist.find(:all, :order => "name ASC")
   end
 end

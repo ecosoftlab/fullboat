@@ -28,7 +28,7 @@ class RolesControllerTest < Test::Unit::TestCase
     old_count = Role.count
     create_role
     assert_equal old_count+1, Role.count
-    assert_redirected_to manage_roles_path
+    assert_redirected_to roles_path
   end
 
   def test_should_show_role
@@ -43,7 +43,7 @@ class RolesControllerTest < Test::Unit::TestCase
   
   def test_should_update_role
     put :update, :id => 1, :role => { }
-    assert_redirected_to manage_roles_path
+    assert_redirected_to roles_path
   end
   
   def test_should_destroy_role

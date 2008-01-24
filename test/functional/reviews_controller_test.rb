@@ -28,7 +28,7 @@ class ReviewsControllerTest < Test::Unit::TestCase
     old_count = Review.count
     create_review
     assert_equal old_count+1, Review.count
-    assert_redirected_to manage_reviews_path
+    assert_redirected_to reviews_path
   end
 
   def test_should_show_review
@@ -43,7 +43,7 @@ class ReviewsControllerTest < Test::Unit::TestCase
   
   def test_should_update_review
     put :update, :id => 1, :review => { }
-    assert_redirected_to manage_reviews_path
+    assert_redirected_to reviews_path
   end
   
   def test_should_destroy_review

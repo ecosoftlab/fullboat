@@ -13,8 +13,13 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.xml
   def index
-    @albums = Album.find(:all)
-
+    conditions = []; values = {}
+    if params[:letter] then conditions << "name LIKE :letter"; values[:letter] = "#{params[:letter]}%" end
+    
+    @albums = Album.paginate(:all, :conditions => [conditions.join(" AND "), values], 
+                               :page => params[:page],
+                               :order => "name ASC")
+                               
     options = { :feed => { :title       => "Albums",
                            :description => "",
                            :language    => "en-us" },
@@ -100,30 +105,14 @@ class AlbumsController < ApplicationController
   # PUT /albums/1.xml
   def update
     @album = Album.find(params[:id])
-
-    if @album.status != params[:album][:status]
-      @album.status_changed_on = Time.now
-    end
-
+    @album.status_changed_on = Time.now if @album.status != params[:album][:status]
+ 
     @album.update_attributes(params[:album])
-    @album.artist = Artist.find_by_name(params[:artist][:name], :limit => 1)
-    @album.label = Label.find_by_name(params[:label][:name], :limit => 1)
-    @album.promoter = Promoter.find_by_name(params[:promoter][:name], :limit => 1)
+    @album.artist   = Artist.find_by_name(params[:artist][:name])
+    @album.label    = Label.find_by_name(params[:label][:name])
+    @album.promoter = Promoter.find_by_name(params[:promoter][:name])
+    
     @album.save!
-
-    if params[:review][:body] != "" && params[:user][:login] != ""
-      if !@album.review
-        @review = Review.new(params[:review])
-        @review.user = User.find_by_login(params[:user][:login], :limit => 1)
-        @review.album = @album
-        @review.save!
-      else
-        @review = @album.review
-        @review.body = params[:review][:body]
-        @review.user = User.find_by_login(params[:user][:login], :limit => 1)
-        @review.save!
-      end
-    end
 
     respond_to do |format|
       if @album.update_attributes(params[:album])
@@ -151,10 +140,5 @@ class AlbumsController < ApplicationController
       format.xml  { head :ok }
       format.js   # destroy.rjs
     end
-  end
-
-  # GET /albums;manage
-  def manage
-    @albums = Album.find(:all)
   end
 end

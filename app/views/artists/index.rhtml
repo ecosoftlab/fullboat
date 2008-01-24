@@ -3,9 +3,11 @@
 <fieldset class="sort-options">
   <dl class="letter-navigation">
   	<dt>Letter</dt>
-  	<%= ('A'..'Z').collect{|l| content_tag(:dd, link_to(l, :anchor => '')) }%>
+  	<%= ('A'..'Z').collect{|l| content_tag(:dd, link_to_unless(params[:letter] == l, l, artists_path(:letter => l))) }%>
   </dl>
 </fieldset>
+
+<%= will_paginate @artists %>
 
 <table>
 	<thead>
@@ -20,3 +22,5 @@
 	  <%= render(:collection => @artists, :partial => 'artists/summary/row') %>
   </tbody>
 </table>
+
+<%= will_paginate @artists %>
