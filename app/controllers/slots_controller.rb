@@ -32,6 +32,7 @@ class SlotsController < ApplicationController
   # GET /slots/1.xml
   def show
     @slot = Slot.find(params[:id])
+    @schedule = @slot.schedule
 
     respond_to do |format|
       format.html # show.rhtml
@@ -42,6 +43,7 @@ class SlotsController < ApplicationController
   # GET /slots/new
   def new
     @slot = Slot.new
+    @schedule = Schedule.find(params[:schedule_id])
   end
 
   # GET /slots/1;edit

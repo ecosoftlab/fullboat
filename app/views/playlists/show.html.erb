@@ -8,19 +8,19 @@
 <% else %>
   <h1>Random Playlist</h1>
 <% end %>
-<h2><%= @playlist.start_time.to_ordinalized_s(:mdy) %></h2>
+<h2><%= @playlist.starts_at.to_ordinalized_s(:mdy) %></h2>
 </div>
 <div class="column span-7 last">
 <% remote_form_for(:playlist, :url => playlists_path) do |f| %>
   <fieldset id="playlist-details">
   	<ol>
   		<li>
-  	    	<label for="start_time">Start Time</label>
-  	    	<%= f.time_select :start_time %>
+  	    	<label for="starts_at">Start Time</label>
+  	    	<%= f.time_select :starts_at %>
   		</li>
   		<li>
-  	    	<label for="end_time">End Time</label>
-  	    	<%= f.time_select :end_time %>
+  	    	<label for="ends_at">End Time</label>
+  	    	<%= f.time_select :ends_at %>
   		</li>
   	</ol>
   </fieldset>
@@ -44,13 +44,13 @@
   </tbody>
 </table>
 
-<%= sortable_element("plays", 
-    :handle => 'handle',
-    :tag => :tr,
-    # :update => "sort-status",
-    # :loading => visual_effect(:fade, "sort-status-alert", :duration => 0.1), 
-    # :complete => visual_effect(:appear, "sort-status-alert"), 
-    :url => '/') %>
+<%= sortable_element "plays", 
+                      :handle => 'handle',
+                      :tag    => :tr,
+                      # :update => "sort-status",
+                      # :loading => visual_effect(:fade, "sort-status-alert", :duration => 0.1), 
+                      # :complete => visual_effect(:appear, "sort-status-alert"), 
+                      :url => '/' %>
 
 <% remote_form_for(:play, :url => playlist_plays_path(@playlist), :html => {:id => 'play_form'}) do |f| %>
 <div id="error" class="alert error" style="display:none;"></div>

@@ -1,0 +1,26 @@
+<% content_for :record do %>
+  <p><%= link_to("Edit '#{h @event}'", edit_event_path(@event)) %></p>
+  
+  <dl>
+    <dt>Phone</dt>
+    <dd><%= number_to_phone @event.phone %></dd>
+    <dt>URL</dt>
+    <dd><%= link_to(@event.url, @event.url, :popup => true) %></dd>
+  </dl>
+<% end %>
+
+<h1><%= h @event %></h1>
+<h2>Location: <%= h @event.location %></h2>
+
+<%= @event.description %>
+
+
+<p>
+  <b>Starts at:</b>
+  <%=h @event.starts_at %>
+</p>
+
+<p>
+  <b>Ends at:</b>
+  <%=h @event.ends_at %>
+</p>

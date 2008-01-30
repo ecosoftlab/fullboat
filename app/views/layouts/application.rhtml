@@ -7,7 +7,8 @@
 	<title><%= dynamic_page_title(@page_title) %></title>
 	<%= yield :head %>
 	<%= stylesheet_link_tag 'screen' %>
-	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_tag :defaults, 'reflection' %>
+	<%= unobtrusive_datepicker_includes %>
 </head>
 
 <% content_tag :body, (@options_for_body_tag || {:id => 'standard'}) do %>
@@ -17,6 +18,12 @@
 		</div>
 
 	  <div id="content" class="column span-17 colborder">
+	    <% if flash[:notice] %>
+	      <div id="error" class="alert notice">
+	       <%= flash[:notice]%>
+	      </div>
+	    <% end %>
+	    
 		  <%= yield %>
 		</div>
 		

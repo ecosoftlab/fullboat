@@ -1,7 +1,7 @@
 <ul class="navigation" id="primary">
   <li><%= link_to_unless_current("Schedule", schedules_path )%></li>
   <li><%= link_to_unless_current("Directory", users_path )%></li>
-  <li>Calendar</li>
+  <li><%= link_to_unless_current("Calendar", events_path)%></li>
 </ul>
 
 <ul class="navigation" id="secondary">

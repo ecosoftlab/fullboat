@@ -14,7 +14,8 @@
 <!-- hReview microformat -->
 <div id="<%= @album.dom_id %>" class="hreview">
   <div class="column span-4 append-1">
-    <%= image_tag("placeholder_album.jpg", :alt => "Cover for #{h(@album.name)}", :class => 'photo' )%>
+    <%= placeholder_album_cover %>
+    <%# image_tag("placeholder_album.jpg", :alt => "Cover for #{h(@album.name)}", :class => 'photo reflect' )%>
   </div>
   
   <div class="column span-12 last">
@@ -45,6 +46,11 @@
         <li><%= h track %></li>
       <% end %>
     </ol>
+  <% end %>
+  
+  <% if @album.comments.any? %>
+    <h2>Comments</h2>
+    <%= render(:collection => @album.comments, :partial => 'comments/summary')%>
   <% end %>
   </div>
 </div>

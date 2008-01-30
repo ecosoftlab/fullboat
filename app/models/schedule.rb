@@ -8,6 +8,10 @@ class Schedule < ActiveRecord::Base
   
   validate :validate_start_time_before_end_time
   
+  def to_param
+    return "#{self.id}-#{self.name.gsub(/\W/, '')}"
+  end
+  
   def to_s
     self.name
   end

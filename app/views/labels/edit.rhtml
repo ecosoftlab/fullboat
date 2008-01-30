@@ -1,3 +1,7 @@
+<% content_for :record do %>
+  <p><%= link_to("Back to '#{@label}'", label_path(@label)) %></p>
+<% end %>
+
 <h1>Editing Label '<%= @label%>'</h1>
 
 <% remote_form_for(:label, :url => label_path(@label), :html => { :method => :put }) do |f| %>
@@ -6,6 +10,3 @@
     	<%= submit_tag "Update" %>
 	</fieldset>
 <% end %>
-
-<%= link_to 'Show', label_path(@label) %> |
-<%= link_to 'Back', labels_path %>

@@ -1,28 +1,6 @@
-<p>
-  <b>Schedule:</b>
-  <%=h @slot.schedule_id %>
-</p>
+<% content_for :record do %>
+  <p><%= link_to("Edit this Time Slot", edit_schedule_slot_path(@slot.schedule, @slot)) %></p>
+<% end %>
 
-<p>
-  <b>Schedulable:</b>
-  <%=h @slot.schedulable_id %>
-</p>
-
-<p>
-  <b>Day:</b>
-  <%=h @slot.day %>
-</p>
-
-<p>
-  <b>Start time:</b>
-  <%=h @slot.start_time %>
-</p>
-
-<p>
-  <b>End time:</b>
-  <%=h @slot.end_time %>
-</p>
-
-
-<%= link_to 'Edit', edit_slot_path(@slot) %> |
-<%= link_to 'Back', slots_path %>
+<h1><%= h @slot %></h1>
+<h2><%= h @slot.program %></h2>

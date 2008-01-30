@@ -1,11 +1,8 @@
-<h1>Editing Slot '<%= @slot%>'</h1>
+<h1>Editing Slot '<%= @slot %>'</h1>
 
-<% remote_form_for(:slot, :url => slot_path(@slot), :html => { :method => :put }) do |f| %>
+<% remote_form_for(:slot, :url => schedule_slot_path(@slot.schedule, @slot), :html => { :method => :put }) do |f| %>
 	<fieldset id="slot_details" name="Slot Details" class="clearfix">
 		<%= render(:partial => "slots/form", :locals => {:f => f})%>
     	<%= submit_tag "Update" %>
 	</fieldset>
 <% end %>
-
-<%= link_to 'Show', slot_path(@slot) %> |
-<%= link_to 'Back', slots_path %>

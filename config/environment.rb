@@ -73,4 +73,6 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update \
   :w3c       => '%Y-%m-%dT%H:%M:%S+00:00',
   :rss       => '%a, %d %b %Y %H:%M:%S %z',
   :atom      => '%Y-%m-%dT%H:%M:%S-08:00'
-  
+
+
+require 'icalendar'

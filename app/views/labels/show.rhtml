@@ -1,11 +1,8 @@
 <% content_for :record do %>
+  <p><%= link_to("Edit '#{@label}'", edit_label_path(@label)) %></p>
+
   <h3>Contact Information</h3>
   <dl>
-    <% if @label.contact_name %>
-    <dt>Primary Contact</dt>
-    <dd><%= h @label.contact_name %></dd>
-    <% end %>
-    
     <% if @label.email %>
     <dt>Email</dt>
     <dd><%= mail_to(@label.email, @label.email) %></dd>

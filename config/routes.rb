@@ -1,32 +1,29 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :slots
+  map.resources :events
 
-  map.resources :schedules
+  map.resources :schedules do |schedule|
+    schedule.resources :slots
+  end
 
+  map.resources :promos
   map.resources :psas,
                 :controller => "PSA"
 
-  map.resources :promos
 
-  map.resources :programs,
-                :collection => {:manage => :get} do |program|
+  map.resources :programs do |program|
     program.resources :playlists,
-                      :collection => {:manage => :get}
+                      :has_many => :plays
   end
-  
-  # No
-  map.resources :music_programs, :controller => 'programs'
-  map.resources :public_affairs_programs, :controller => 'programs'
   
   map.resources :playlists,
                 :has_many => :plays
+  
+  # No
+  map.resources :music_programs,          :controller => 'programs'
+  map.resources :public_affairs_programs, :controller => 'programs'
+  
 
-  map.resources :roles,
-                :collection => {:manage => :get}
-                
-  map.resources :reviews,
-                :collection => {:manage => :get}
-
+  
   map.resources :albums do |album|
     album.resource  :review,
                     :collection => {:manage => :get}
@@ -34,25 +31,17 @@ ActionController::Routing::Routes.draw do |map|
                     :collection => { :manage => :get}
   end
 
-  map.resources :artists,
-                :collection => {:manage => :get}
-
-  map.resources :promoters,
-                :collection => {:manage => :get}
-
-  map.resources :labels,
-                :collection => {:manage => :get}
-
-  map.resources :formats,
-                :collection => {:manage => :get}
-
-  map.resources :genres,
-                :collection => {:manage => :get}
+  map.resources :artists
+  map.resources :labels
+  map.resources :formats
+  map.resources :genres
 
   map.resources :sessions
-  map.resources :users,
-                :collection => {:manage => :get}
+  map.resources :users
+  map.resources :roles
 
+  map.login   'login', :controller => 'sessions', :action => 'new'
+  map.logout  'logout', :controller => 'sessions', :action => 'destroy'
 
   map.welcome '/', :controller => 'wrct', :action => 'index'
   map.admin   'admin', :controller => 'admin', :action => 'index'
@@ -61,9 +50,7 @@ ActionController::Routing::Routes.draw do |map|
   map.production   'production', :controller => 'admin', :action => 'production'
   map.exec         'exec', :controller => 'admin', :action => 'exec'
 
-  map.login   'login', :controller => 'sessions', :action => 'new'
-  map.logout  'logout', :controller => 'sessions', :action => 'destroy'
-
+  
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id'

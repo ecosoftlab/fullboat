@@ -21,6 +21,10 @@ module ApplicationHelper
     tag("br")
   end
   
+  def placeholder_album_cover(options={})
+    image_tag("albums/#{rand(7)}.jpg", {:alt => "Placeholder", :class => 'photo reflect'}.update(options))
+  end
+  
   def icon(name, format = 'png')
     image_tag("icon_#{name}.#{format}", :size => '16x16', :alt => name.capitalize)
   end

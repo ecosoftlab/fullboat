@@ -1,36 +1,37 @@
 <div id="error" class="alert error" style="display:none;"></div>
 
-<!--[form:slot]-->
-<fieldset id="slot_details" class="clearfix">
-	<legend>Slot Details</legend>
+<!--[form:slot:program]-->
+<fieldset id="slot_program">
+	<legend>Schedule &amp; Program</legend>
 	<ol>
 	
 		<li>
 	    	<label for="schedule_id">Schedule</label>
-	    	<%= f.text_field :schedule_id %>
+	    	<%= f.select :schedule_id, Schedule.find(:all, :order => :created_at) %>
 		</li>
-	
 		<li>
-	    	<label for="schedulable_id">Schedulable</label>
-	    	<%= f.text_field :schedulable_id %>
+	    	<label for="program_id">Program</label>
+	    	<%= f.select :program_id, Program.find(:all, :order => :name) %>
 		</li>
-	
+	</ol>
+</fieldset>
+
+<fieldset id="slot_times">
+  <legend>Times</legend>
+	<ol>
 		<li>
 	    	<label for="day">Day</label>
-	    	<%= f.select :day, [["Sunday", 0], ["Monday", 1], ["Tuesday", 2], ["Wednesday", 3],
+	    	<%= f.select :day, [["Sunday",   0], ["Monday", 1], ["Tuesday",  2], ["Wednesday", 3],
 	    	                    ["Thursday", 4], ["Friday", 5], ["Saturday", 6]] %>
 		</li>
-	
 		<li>
-	    	<label for="start_time">Start hour</label>
+	    	<label for="start_time">Start Time</label>
 	    	<%= f.time_select :start_time, {:minute_step => 15} %>
-		</li>
-	
+		</li>	
 		<li>
-	    	<label for="end_time">End hour</label>
+	    	<label for="end_time">End Time</label>
 	    	<%= f.time_select :end_time, {:minute_step => 15} %>
-		</li>
-	
+		</li>	
 	</ol>
 </fieldset>
 <!--[eoform:slot]-->

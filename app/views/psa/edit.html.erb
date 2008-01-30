@@ -1,4 +1,8 @@
-<h1>Editing Psa '<%= @psa%>'</h1>
+<% content_for :record do %>
+  <p><%= link_to("Back to '#{@psa}'", label_path(@psa)) %></p>
+<% end %>
+
+<h1>Editing PSA '<%= @psa %>'</h1>
 
 <% remote_form_for(:psa, :url => psa_path(@psa), :html => { :method => :put }) do |f| %>
 	<fieldset id="psa_details" name="Psa Details" class="clearfix">
@@ -6,6 +10,3 @@
     	<%= submit_tag "Update" %>
 	</fieldset>
 <% end %>
-
-<%= link_to 'Show', psa_path(@psa) %> |
-<%= link_to 'Back', psas_path %>

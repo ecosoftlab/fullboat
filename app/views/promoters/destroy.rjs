@@ -1,1 +1,0 @@
-page[@promoter.dom_id].visual_effect :fade

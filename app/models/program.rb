@@ -7,13 +7,17 @@ class Program < ActiveRecord::Base
   has_and_belongs_to_many :users
   
   has_many :promos,    :as => :promotable
-  has_many :slots,     :as => :schedulable
+  has_many :slots
   has_many :schedules, :through => :slots
   has_many :playlists
     
   validates_presence_of     :name
   validates_uniqueness_of   :name
   
+  def to_param
+    return "#{self.id}-#{self.name.gsub(/\W/, '')}"
+  end  
+
   def to_s
     self.name
   end

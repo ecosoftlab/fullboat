@@ -1,5 +1,25 @@
+<% content_for :record do %>
+  <p><%= link_to("Edit '#{@program}'", edit_program_path(@program))%></p>
+  <dl>
+    <dt>Type</dt>
+    <dd><%= h @program.type.titleize %></dd>
+    <dt>Slots</dt>
+    <dd>
+      <% if @program.schedules.any? %>
+        <ul>
+        <% @program.slots.each do |slot| %>
+          <li><%= link_to(h(slot), schedule_slot_path(slot.schedule, slot)) %></li>
+        <% end %>
+        </ul>
+      <% else %>
+        N/A
+      <% end %>
+    </dd>
+  </dl>
+<% end %>
+
 <h1><%= h @program %></h1>
-<h2><%= h @program.type.titleize %></h2>
+<h2><%= h @program.users.to_sentence %></h2>
 <%= @program.description %>
 
 <!-- TODO -->

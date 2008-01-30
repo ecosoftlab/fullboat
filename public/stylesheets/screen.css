@@ -211,3 +211,5 @@ td[rowspan="24"] div	{ height: 960px; }
     border: 1px solid #eee;
     color: #ddd;
   }
+
+.monthName{font-size:2.0em;}

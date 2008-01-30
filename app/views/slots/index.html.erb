@@ -1,25 +1,20 @@
 <h1>Listing Slots</h1>
 
-<table>
-	<thead>
-	<tr>
-	    	<th>Schedule</th>
-	    	<th>Schedulable</th>
-	    	<th>Day</th>
-	    	<th>Start time</th>
-	    	<th>End time</th>
+<% @slots.group_by(&:schedule).each do |schedule, slots| %>
+  <h2><%= h schedule %></h2>
+  <table>
+	  <thead>
+  	  <tr>
+  	    <th>Day</th>
+	    	<th>Start Time</th>
+	    	<th>End Time</th>
+	    	<th>Program</th>
+	    	<th colspan="2"></th>
 	  	</tr>
-	</thead>
+  	</thead>
 	
-	<tbody>
-  	<% @slots.each do |slot| %>
-  		<tr>
-		    		<td><%=h slot.schedule_id %></td>
-		    		<td><%=h slot.schedulable_id %></td>
-		    		<td><%=h slot.day %></td>
-		    		<td><%=h slot.start_time %></td>
-		    		<td><%=h slot.end_time %></td>
-		  		</tr>
-	<% end %>
-	</tbody>
-</table>
+  	<tbody>
+      <%= render(:collection => slots, :partial => 'slots/summary/row')%>
+  	</tbody>
+  </table>
+<% end %>

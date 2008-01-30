@@ -1,14 +1,15 @@
 class Address
-	attr_reader :street, :city, :state, :zip
+	attr_reader :street, :extended, :city, :state, :zip
 
-	def initialize(street, city, state, zip) 
-		@street = street
-		@city   = city
-		@state  = state  
-		@zip    = zip
+	def initialize(street, extended, city, state, zip) 
+		@street   = street
+		@extended = extended
+		@city     = city
+		@state    = state  
+		@zip      = zip
 	end
 	
 	def to_s(options = {})
-	  [@street, @city && @state && @zip ? "%s, %s %s" % [@city, @state, @zip] : nil].compact.join("\n")
+	  [@street, @extended, @city && @state && @zip ? "%s, %s %s" % [@city, @state, @zip] : nil].compact.join("\n")
   end
 end

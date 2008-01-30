@@ -19,9 +19,7 @@ class Album < ActiveRecord::Base
 
   belongs_to :artist
   belongs_to :label
-  belongs_to :promoter
   belongs_to :genre
-  belongs_to :format
   
   serialize  :tracks
 
@@ -40,5 +38,10 @@ class Album < ActiveRecord::Base
 
   def to_s
     self.name
+  end
+  
+  def change_status(status, options = {})
+    self.comments << Comment.create(:body => "Status was changed from %s on %s" % [self[:status], Date.today])
+    self.update_attribute(:status, status)
   end
 end

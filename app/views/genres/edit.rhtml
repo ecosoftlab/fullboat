@@ -1,4 +1,8 @@
-<h1>Editing Genre '<%= @genre%>'</h1>
+<% content_for :record do %>
+  <p><%= link_to("Back to '#{@genre}'", label_path(@genre)) %></p>
+<% end %>
+
+<h1>Editing Genre '<%= @genre %>'</h1>
 
 <% remote_form_for(:genre, :url => genre_path(@genre), :html => { :method => :put }) do |f| %>
 	<fieldset id="genre_details" name="Genre Details" class="clearfix">

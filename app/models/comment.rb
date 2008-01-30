@@ -9,7 +9,6 @@ class Comment < ActiveRecord::Base
           :dependent => :destroy
 
   validates_presence_of :body
-  validates_presence_of :user
 
   def to_s
     self.body_source

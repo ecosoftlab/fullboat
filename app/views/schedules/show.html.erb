@@ -1,3 +1,8 @@
+<% content_for :record do %>
+  <p><%= link_to("Manage Slots", schedule_slots_path(@schedule)) %></p>
+  <p><%= link_to("Add a New Slot", new_schedule_slot_path(@schedule)) %></p>
+<% end %>
+
 <h1><%= h @schedule %></h1>
 <%= @schedule.description %>
 
@@ -23,11 +28,11 @@
       <td><%= time.to_ordinalized_s(:time_only) %>
     <% (0..6).each do |day| -%>
       <% slot = @schedule.slot_starting_at(day, time) -%>
-      <% schedulable = slot.schedulable rescue nil -%>
-      <% if schedulable -%>
+      <% program = slot.program rescue nil -%>
+      <% if program -%>
         <td class="" rowspan="<%= slot.duration %>">
           <div>
-            <%= link_to(h(schedulable), schedulable) -%>
+            <%= link_to(h(program), program_path(program)) -%>
           </div>
         </td>
       <% elsif @schedule.slot_at(day, time) -%>

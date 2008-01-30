@@ -2,7 +2,7 @@
 
 <!--[form:album]-->
 <fieldset id="album_details" class="clearfix">
-          <legend>Album Details</legend>
+  <legend>Album Details</legend>
   <ol>
     <li>
       <label for="name">Album Name</label>
@@ -17,16 +17,12 @@
       <%= text_field :label, :name %>
     </li>
     <li>
-      <label for="promoter_name">Promoter</label>
-      <%= text_field :promoter, :name %>
-    </li>
-    <li>
-      <label for="format_id">Format</label>
-      <%= select_tag "album[format_id]", options_for_select(Format.find(:all).map{|format| [format.name,format.id]},@album.format_id) %>
+      <label for="format">Format</label>
+      <%= f.select :format, ["CD", "Vinyl", "Digital"] %>
     </li>
     <li>
       <label for="genre_id">Genre</label>
-      <%= select_tag "album[genre_id]", options_for_select(Genre.find(:all).map{|genre| [genre.name,genre.id]},@album.genre_id) %>
+      <%= select :genre, :id, Genre.find(:all).collect{|g| [g.to_s, g.id] } %>
     </li>
     <li>
       <label for="released_on">Release Date</label>
@@ -39,6 +35,10 @@
     <li>
       <label for="is_compilation">Compilation?</label>
       <%= f.check_box :is_compilation %>
+    </li>
+    <li>
+      <label for="tracks">Tracks</label>
+      <%= f.text_area :tracks %>
     </li>
   </ol>
 </fieldset>

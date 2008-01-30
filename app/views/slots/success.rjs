@@ -1,1 +1,1 @@
-page.redirect_to slot_url(@slot)
+page.redirect_to schedule_path(@slot.schedule)

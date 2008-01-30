@@ -1,7 +1,6 @@
 <% label = row %>
 <tr id="<%= label.dom_id %>">
-	<td><%= link_to(h(label), label_path(label)) %></td>
-	<td><%= h label.contact_name %></td>
+	<td><strong><%= h label %></strong></td>
 	<td><%= mail_to(label.email, label.email) %></td>
 	<td><%= number_to_phone(label.phone) %></td>
 	<td class="hide"><%= hcard(label) %></td>

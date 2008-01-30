@@ -36,6 +36,17 @@ class SchedulesController < ApplicationController
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @schedule.to_xml }
+      format.ics  { cal = Icalendar::Calendar.new
+                    @schedule.slots.each do |slot|
+                      cal.event do
+                        dtstart       slot.start_time
+                        dtend         slot.end_time
+                        summary       slot.schedulable.to_s
+                        description   slot.schedulable.description_source
+                      end
+                    end
+                    render :text => cal.to_ical
+                  }
     end
   end
 

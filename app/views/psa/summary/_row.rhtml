@@ -1,0 +1,13 @@
+<% psa = row %>
+<tr id="<%= psa.dom_id %>">
+  <td><strong><%= link_to(h(psa.code), psa_path(psa)) %></strong></td>
+  <td><%= h psa.name %></td>
+  <td><%= h psa.duration %></td>
+  <td><%= truncate(h(psa.body_source), 200) %></td>
+  <td><%= h psa.expires_on %></td>
+  <td><%= link_to 'Show', psa_path(psa) %></td>
+  <td><%= link_to 'Edit', edit_psa_path(psa) %></td>
+  <td><%= link_to_remote 'Destroy', 
+					:url => promo_path(psa), 
+					:confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

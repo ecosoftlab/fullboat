@@ -7,15 +7,22 @@ class Playlist < ActiveRecord::Base
   has_many   :plays
   
   validates_presence_of :user
-  validates_presence_of :start_time
+  validates_presence_of :starts_at
   
-  validate :validate_start_time_before_end_time
+  validate :validate_starts_at_before_ends_at
+  validate :validate_duration_less_than_24_hours
   
 private
 
-  def validate_start_time_before_end_time
-    if self[:end_time] && self[:start_time] > self[:end_time]
+  def validate_starts_at_before_ends_at
+    if self[:ends_at] && self[:starts_at] > self[:ends_at]
       errors.add "Start time must be before end time"
+    end
+  end
+  
+  def validate_duration_less_than_24_hours
+    if self[:ends_at] - self[:starts_at] > 24.hours
+      errors.add "Playlist cannot exceed 24 hours in duration"
     end
   end
 end

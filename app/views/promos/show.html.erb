@@ -1,7 +1,8 @@
 <% content_for :record do %>
+  <p><%= link_to("Edit '#{@promo}'", edit_promo_path(@promo))%></p>
   <dl>
     <dt>Duration</dt>
-    <dd><%= h(@promo.length || "N/A") %></dd>
+    <dd><%= h(@promo.duration || "N/A") %></dd>
   </dl>
 <% end %>
 

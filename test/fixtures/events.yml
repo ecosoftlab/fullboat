@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  name: MyString
+  type: MyString
+  location: MyString
+  description: MyText
+  phone: MyString
+  url: MyString
+  starts_at: 2008-01-25 16:42:48
+  ends_at: 2008-01-25 16:42:48
+  is_approved: false
+two:
+  id: 2
+  name: MyString
+  type: MyString
+  location: MyString
+  description: MyText
+  phone: MyString
+  url: MyString
+  starts_at: 2008-01-25 16:42:48
+  ends_at: 2008-01-25 16:42:48
+  is_approved: false

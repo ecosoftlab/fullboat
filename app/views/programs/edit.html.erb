@@ -1,3 +1,7 @@
+<% content_for :record do %>
+  <p><%= link_to("Back to '#{@program}'", label_path(@program)) %></p>
+<% end %>
+
 <h1>Editing Program '<%= @program%>'</h1>
 
 <% remote_form_for(:program, :url => program_path(@program), :html => { :method => :put }) do |f| %>
@@ -6,6 +10,3 @@
     	<%= submit_tag "Update" %>
 	</fieldset>
 <% end %>
-
-<%= link_to 'Show', program_path(@program) %> |
-<%= link_to 'Back', programs_path %>

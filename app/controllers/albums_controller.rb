@@ -58,33 +58,20 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1;edit
   def edit
-    @album = Album.find(params[:id])
+    @album  = Album.find(params[:id])
     @artist = @album.artist
-    @label = @album.label
-    @promoter = @album.promoter
-    @review = @album.review
-    if @review
-      @user = @review.user
-    end
+    @label  = @album.label
+    @genre  = @album.genre
   end
 
   # POST /albums
   # POST /albums.xml
   def create
     @album = Album.new(params[:album])
-    # what if these don't exist??????
-    @album.artist = Artist.find_by_name(params[:artist][:name], :limit => 1)
-    @album.label = Label.find_by_name(params[:label][:name], :limit => 1)
-    @album.promoter = Promoter.find_by_name(params[:promoter][:name], :limit => 1)
-    @album.status_changed_on = Time.now
+    @album.artist   = Artist.find_by_name(params[:artist][:name])
+    @album.label    = Label.find_by_name(params[:label][:name])
+    
     @album.save!
-
-    if params[:review][:body] != "" && params[:user][:login] != ""
-      @review = Review.new(params[:review])
-      @review.user = User.find_by_login(params[:user][:login], :limit => 1)
-      @review.album = @album
-      @review.save!
-    end
 
     respond_to do |format|
       flash[:notice] = 'Album was successfully created.'
@@ -105,12 +92,14 @@ class AlbumsController < ApplicationController
   # PUT /albums/1.xml
   def update
     @album = Album.find(params[:id])
-    @album.status_changed_on = Time.now if @album.status != params[:album][:status]
+    
+    if @album.status != params[:album][:status]
+      @album.change_status(params[:album][:status], :user => current_user)
+    end
  
-    @album.update_attributes(params[:album])
     @album.artist   = Artist.find_by_name(params[:artist][:name])
     @album.label    = Label.find_by_name(params[:label][:name])
-    @album.promoter = Promoter.find_by_name(params[:promoter][:name])
+    @album.genre    = Genre.find(params[:genre][:id])
     
     @album.save!
 

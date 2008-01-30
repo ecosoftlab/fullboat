@@ -9,18 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "albums", :force => true do |t|
     t.integer  "artist_id"
     t.integer  "label_id"
-    t.integer  "promoter_id"
-    t.integer  "format_id"
     t.integer  "genre_id"
     t.string   "name"
-    t.string   "slug"
+    t.string   "sort_name"
     t.string   "status"
-    t.date     "status_changed_on"
+    t.string   "format"
     t.boolean  "is_compilation"
     t.date     "released_on"
     t.text     "tracks"
@@ -49,16 +47,23 @@ ActiveRecord::Schema.define(:version => 20) do
     t.datetime "updated_at"
   end
 
-  create_table "formats", :force => true do |t|
+  create_table "events", :force => true do |t|
     t.string   "name"
+    t.string   "type"
+    t.string   "location"
+    t.text     "description"
+    t.string   "phone"
+    t.string   "url"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "formats", ["name"], :name => "index_formats_on_name"
-
   create_table "genres", :force => true do |t|
     t.string   "name"
+    t.string   "description"
+    t.integer  "color_code_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,9 +72,9 @@ ActiveRecord::Schema.define(:version => 20) do
 
   create_table "labels", :force => true do |t|
     t.string   "name"
-    t.string   "contact_name"
     t.string   "email"
-    t.string   "address"
+    t.string   "street"
+    t.string   "extended"
     t.string   "city"
     t.string   "state"
     t.string   "zip"
@@ -86,14 +91,14 @@ ActiveRecord::Schema.define(:version => 20) do
   create_table "playlists", :force => true do |t|
     t.integer  "user_id"
     t.integer  "program_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
   end
 
   create_table "plays", :force => true do |t|
     t.string   "name"
-    t.integer  "playlist_id"
     t.integer  "position"
+    t.integer  "playlist_id"
     t.integer  "playable_id"
     t.string   "playable_type"
     t.boolean  "is_request"
@@ -112,6 +117,8 @@ ActiveRecord::Schema.define(:version => 20) do
     t.datetime "updated_at"
   end
 
+  add_index "programs", ["name"], :name => "index_programs_on_name"
+
   create_table "programs_users", :id => false, :force => true do |t|
     t.integer "program_id"
     t.integer "user_id"
@@ -123,27 +130,16 @@ ActiveRecord::Schema.define(:version => 20) do
     t.string   "name"
     t.text     "body"
     t.string   "code"
-    t.integer  "length"
+    t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "promoters", :force => true do |t|
-    t.string   "name"
-    t.string   "contact_name"
-    t.string   "email"
-    t.string   "phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "promoters", ["name"], :name => "index_promoters_on_name"
 
   create_table "psas", :force => true do |t|
     t.string   "name"
     t.text     "body"
     t.string   "code"
-    t.integer  "length"
+    t.integer  "duration"
     t.boolean  "is_live"
     t.datetime "expires_on"
     t.datetime "created_at"
@@ -186,8 +182,7 @@ ActiveRecord::Schema.define(:version => 20) do
 
   create_table "slots", :force => true do |t|
     t.integer  "schedule_id"
-    t.integer  "schedulable_id"
-    t.string   "schedulable_type"
+    t.integer  "program_id"
     t.integer  "day"
     t.time     "start_time"
     t.time     "end_time"
