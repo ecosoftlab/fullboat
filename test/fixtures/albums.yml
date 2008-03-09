@@ -1,25 +1,11 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-  name: Kensington Blues
-  artist_id: 1
-  label_id: 1
-  promoter_id:
-  format_id: 1
-  genre_id: 1
-  year: 2004
-  status: oob
-  status_changed_on: <%= 5.days.ago.to_date.to_s(:db) %>
-  is_compilation: false
-two:
-  id: 2
-  name: Dj Kicks
-  artist_id: 2
-  label_id: 2
-  promoter_id:
-  format_id: 1
-  genre_id: 2
-  year: 2006
-  status: oob
-  status_changed_on: <%= 2.days.ago.to_date.to_s(:db) %>
-  is_compilation: true
+default:
+    id: 1
+    artist_id:  1
+    label_id:   1
+    genre_id:   1
+    
+    name: In Rainbows
+    status: OOB
+    format: CD
+    released_on: <%= Date.new(2007, 12, 31).to_s :db %>
+    

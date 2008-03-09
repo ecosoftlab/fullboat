@@ -1,2 +1,12 @@
+<% content_for :record do %>
+  <dl>
+    <dt>Member Since</dt>
+    <dd><%= @user.joined_on || "Unknown" %></dd>
+    <dt>Kind</dt>
+    <dd><%= h @user.type.to_s.titleize %></dd>
+  </dl>
+<% end %>
+
 <h1><%= h @user %></h1>
-<h2>Last Login: <%= h time_ago_in_words(@user.updated_at) << " ago" %></h2>
+
+<h2>Roles / Permissions</h2>

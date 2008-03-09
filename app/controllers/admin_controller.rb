@@ -9,11 +9,12 @@ class AdminController < ApplicationController
     render :action => 'admin/sections/music', :layout => 'layouts/music'
   end
   
-  def production
-    render :action => 'admin/sections/production', :layout => 'layouts/production'
+  def programming
+    render :action => 'admin/sections/programming', :layout => 'layouts/programming'
   end
   
   def exec
     render :action => 'admin/sections/exec'
   end
+
 end

@@ -1,7 +1,7 @@
 class PromosController < ApplicationController
   
-  # Production Section
-  layout 'production'
+  # Programming Section
+  layout 'programming'
   
   # GET /promos
   # GET /promos.xml

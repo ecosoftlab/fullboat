@@ -13,7 +13,7 @@ class Play < ActiveRecord::Base
   def to_s
     case klass = self.playable.class.to_s
     when "Album"
-      "%s - %s (%s)" % [self.name, self.playable.artist, self.playable]
+      "'%s' - %s (%s)" % [self.name, self.playable.artist, self.playable]
     else
       self.name
     end

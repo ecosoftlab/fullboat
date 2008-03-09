@@ -2,6 +2,7 @@ class Schedule < ActiveRecord::Base
   acts_as_textiled :description
   
   has_many :slots, :dependent => :destroy
+  has_many :programs, :through => :slots
   
   validates_presence_of :name
   validates_presence_of :starts_at, :ends_at
@@ -38,7 +39,7 @@ class Schedule < ActiveRecord::Base
 protected
 
   def validate_start_time_before_end_time
-    if self[:starts_at] > self[:ends_at]
+    if (self[:starts_at] && self[:ends_at]) && self[:starts_at] > self[:ends_at]
       errors.add "Start time must be before end time"
     end
   end

@@ -1,31 +1,21 @@
 class ProgramsController < ApplicationController
   before_filter :login_required
   
-  # Production Section
-  layout 'production'
+  # Programming Section
+  layout 'programming'
   
   # GET /programs
   # GET /programs.xml
   def index
+    @schedules = Schedule.find(:all, :include => :programs)
+    @schedule  = Schedule.find(params[:schedule_id])
+    @programs  = @schedule.programs
+  rescue ActiveRecord::RecordNotFound
     @programs = Program.find(:all)
-
-    options = { :feed => { :title       => "Programs",
-                           :description => "",
-                           :language    => "en-us" },
-                :item => { :title       => :title,
-                           :description => :description,
-                           :pub_date    => :created_at }
-              }
-
+  ensure
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @programs.to_xml }
-      format.rss  { render_rss_feed_for @programs, 
-                      options.update({:link => formatted_programs_url(:rss)}) 
-                  }
-      format.atom { render_atom_feed_for @programs, 
-                      options.update({:link => formatted_programs_url(:atom)}) 
-                  }
     end
   end
 

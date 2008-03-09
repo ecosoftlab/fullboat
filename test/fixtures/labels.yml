@@ -1,27 +1,4 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-  name: Revolver
-  contact_name:
-  email:
-  address:
-  city:
-  state:
-  zip:
-  country:
-  fax:
-  phone:
-  note:
-two:
-  id: 2
-  name: !K7 Records USA
-  contact_name:
-  email:
-  address:
-  city:
-  state:
-  zip:
-  country:
-  fax:
-  phone:
-  note:
+default:
+    id: 1
+    name: TBD Records
+    url: http://www.tbdrecords.com/

@@ -8,6 +8,7 @@ class Comment < ActiveRecord::Base
           :as => :playable,
           :dependent => :destroy
 
+  validates_presence_of :commentable
   validates_presence_of :body
 
   def to_s

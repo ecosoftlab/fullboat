@@ -59,6 +59,10 @@ class PlaysController < ApplicationController
       @play.playable = PSA.find_by_code(params[:psa][:code])
     when 'promo'
       @play.playable = Promo.find_by_code(params[:promo][:code])
+    when 'radio-calendar'
+      comment = Comment.new
+      comment.user = current_user
+      comment.body = "Radio Calendar at #{@play.created_at}}"
     when 'comment'
       comment = Comment.new(params[:comment])
       comment.user = current_user

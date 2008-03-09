@@ -31,7 +31,6 @@ class Artist < ActiveRecord::Base
 private
 
   def initialize_sort_name
-    self[:sort_name] ||= self[:name].strip.gsub(/^([^a-zA-z\d]*|(the|a|))\s+/i, "")
+    self[:sort_name] ||= self[:name].strip.gsub(/^([^a-zA-z\d]*|(the))\s+/i, "") if self[:name]
   end
-
 end

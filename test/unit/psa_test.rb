@@ -1,10 +1,18 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class PsaTest < Test::Unit::TestCase
+class PSATest < Test::Unit::TestCase
   fixtures :psas
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_should_create_psa
+    assert_difference 'PSA.count' do
+      psa = create_psa
+      assert ! psa.new_record?, "#{psa.errors.full_messages.to_sentence}"
+    end
+  end
+  
+protected
+
+  def create_psa(options = {})
+    PSA.create(@@psa_default_values.merge(options))
   end
 end

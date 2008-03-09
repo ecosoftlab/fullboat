@@ -1,7 +1,10 @@
 <h1>Listing Programs</h1>
 
 <label>Active Schedule</label>
-<%= select_tag :active, options_from_collection_for_select(Schedule.find(:all), :id, :to_s) %>
+<%= select_tag :type, options_from_collection_for_select(@schedules, :id, :to_s), 
+               :class    => 'column span-3',
+               :onchange => "" %>
+               
 <hr class="space"/>
 
 <table>

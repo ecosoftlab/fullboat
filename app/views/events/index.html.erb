@@ -1,6 +1,6 @@
 <h1>Events</h1>
 
-<%= calendar :year => Date.today.year, :month => Date.today.month, 
+<%= calendar :year => @year || Date.today.year, :month => @month || Date.today.month, 
              :show_today => true, :abbrev => (0..-1) do |d|
       cell_text  = "#{d.mday}<br />" 
       cell_attrs = {:class => 'day'}

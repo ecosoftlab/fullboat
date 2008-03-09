@@ -13,7 +13,8 @@ class CreatePlays < ActiveRecord::Migration
       t.boolean  :is_bincut
       t.boolean  :is_live
       t.boolean  :is_marked
-                            
+      
+      t.integer  :duration
       t.datetime :created_at
     end
   end

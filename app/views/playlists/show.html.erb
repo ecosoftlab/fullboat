@@ -2,6 +2,12 @@
 	<%= auto_discovery_link_tag(:rss, formatted_playlist_path(@playlist, :rss)) %>
 <% end %>
 
+<% content_for :record do %>
+  <ul>
+    <li><%= link_to("View Enlarged for Radio", formatted_playlist_path(@playlist, :enlarged))%></li>
+  </ul>
+<% end %>
+
 <div class="column span-10">
 <% if @playlist.program %>
   <h1>Playlist for <%= h @playlist.program %></h1>
@@ -33,6 +39,7 @@
   <thead>
     <tr>
       <th></th>
+      <th></th>
       <th>Name</th>
       <th>Type</th>
       <th colspan="2"></th>
@@ -57,10 +64,20 @@
 
   <%= select_tag :type, options_for_select([["Album Track", 'album-track'], 
                                             ["PSA", 'psa'], ["Promo", 'promo'], 
+                                            ["Radio Calendar", 'radio-calendar'],
                                             ["Comment", 'comment']]), 
                  :class    => 'column span-3',
-                 :onchange => "$('album-track', 'psa', 'promo', 'comment').invoke('hide'); Element.show($F(this));" %>
+                 :onchange => "$('album-track', 'psa', 'promo', 'radio-calendar', 'comment').invoke('hide'); Element.show($F(this));" %>
   <fieldset class="column span-10">
+    <fieldset>
+      <ol>
+        <li>
+          <label>Timestamp</label>
+          <%= f.time_select :created_at %>
+        </li>
+      </ol>
+    </fieldset>
+          
     <fieldset id="album-track">
       <ol>
         <li class="artist">
@@ -118,6 +135,10 @@
           <%= text_field :promo, :code %>
         </li>
       </ol>
+    </fieldset>
+    
+    <fieldset id="radio-calendar" style="display:none;">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </fieldset>
     
     <fieldset id="comment" style="display:none;">

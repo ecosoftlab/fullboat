@@ -76,3 +76,5 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update \
 
 
 require 'icalendar'
+
+Mime::Type.register "text/html", :enlarged

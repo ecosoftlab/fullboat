@@ -38,6 +38,9 @@ class PlaylistsController < ApplicationController
       format.atom { render_atom_feed_for @playlist.plays, 
                       options.update({:link => formatted_playlists_url(:atom)}) 
                   }
+      format.enlarged { render :layout => 'enlarged'
+        
+                  }
     end
   end
 
@@ -66,7 +69,7 @@ class PlaylistsController < ApplicationController
     @playlist.save!
 
     respond_to do |format|
-      flash[:notice] = 'Playlist was successfully created.'
+      # flash[:notice] = 'Playlist was successfully created.'
       format.html { redirect_to @playlist.album ?
                       program_playlist_url(@program, @playlist) :
                       playlist_url(@playlist)

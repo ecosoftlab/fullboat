@@ -1,19 +1,6 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-  name: MyString
-  description: MyText
-  day: 
-  start_hour: 
-  end_hour: 
-  type: MyString
-  url: MyString
-two:
-  id: 2
-  name: MyString
-  description: MyText
-  day: 
-  start_hour: 
-  end_hour: 
-  type: MyString
-  url: MyString
+default:
+    id: 1
+    name: "Goodbye, Blue Monday"
+    type: MusicProgram
+    description: 'Is there such a thing as transcendental radio? Tune into "Goodbye, Blue Monday" every Monday from 4-5:30 pm to explore the divine through an eclectic mix of jazz, classical, and indie rock.'
+    

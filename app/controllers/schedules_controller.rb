@@ -1,7 +1,7 @@
 class SchedulesController < ApplicationController
  
-  # Production Section
-  layout 'production' 
+  # Programming Section
+  layout 'programming'
   
   # GET /schedules
   # GET /schedules.xml

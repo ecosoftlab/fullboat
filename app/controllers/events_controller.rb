@@ -1,9 +1,15 @@
 class EventsController < ApplicationController
   
+  layout 'calendar'
+  
   # GET /events
   # GET /events.xml
   def index
     @events = Event.find(:all)
+    if params[:year] && params[:month]
+      @year = params[:year]
+      @month = params[:month]
+    end
 
     options = { :feed => { :title       => "Events",
                            :description => "",

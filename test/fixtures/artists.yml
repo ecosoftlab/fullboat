@@ -1,11 +1,4 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-  name: Jack Rose
-  sort_name: roseja
-  note:
-two:
-  id: 2
-  name: Hot Chip
-  sort_name: hotchi
-  note:
+default:
+    id: 1
+    name: Radiohead
+    description: Radiohead are an English alternative rock band from Oxfordshire. The band is composed of Thom Yorke (lead vocals, rhythm guitar, piano, electronics), Jonny Greenwood (lead guitar, other instruments), Ed O'Brien (guitar, backing vocals), Colin Greenwood (bass guitar, synthesisers) and Phil Selway (drums, percussion). Radiohead have released seven albums and have sold over 23 million records over their career.

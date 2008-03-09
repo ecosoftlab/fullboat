@@ -1,13 +1,6 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-  user_id: 
-  program_id: 
-  start_time: 
-  end_time: 2008-01-05 09:21:46
-two:
-  id: 2
-  user_id: 
-  program_id: 
-  start_time: 
-  end_time: 2008-01-05 09:21:46
+default:
+    id: 1
+    user_id: 1
+    program_id: 1
+    starts_at: <%= Time.now.to_s :db %> 
+    ends_at:   <%= (Time.now + 1.hour).to_s :db %> 

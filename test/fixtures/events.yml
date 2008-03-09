@@ -1,23 +1,7 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-  name: MyString
-  type: MyString
-  location: MyString
-  description: MyText
-  phone: MyString
-  url: MyString
-  starts_at: 2008-01-25 16:42:48
-  ends_at: 2008-01-25 16:42:48
-  is_approved: false
-two:
-  id: 2
-  name: MyString
-  type: MyString
-  location: MyString
-  description: MyText
-  phone: MyString
-  url: MyString
-  starts_at: 2008-01-25 16:42:48
-  ends_at: 2008-01-25 16:42:48
-  is_approved: false
+default:
+    id: 1
+    name: "WRCT: a dance party"
+    location: "Shadow Lounge"
+    description: "Last time was awesome, so we're doing it again: 5 hours of slamming beats by WRCT's own DJs for only $5! This time we're going 18+, so there's no excuse!"
+    starts_at:  <%= Time.gm(2008, 3, 1, 21).to_s :db %>
+    ends_at:    <%= Time.gm(2008, 3, 2, 2).to_s  :db %>

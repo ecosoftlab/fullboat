@@ -1,7 +1,7 @@
 class PSAController < ApplicationController
   
-  # Production Section
-  layout 'production'
+  # Programming Section
+  layout 'programming'
   
   # GET /psas
   # GET /psas.xml

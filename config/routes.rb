@@ -1,5 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :events
+  
+  map.with_options :controller => 'events', :action => 'index' do |events|
+    events.connect ':year/:month',  :year => /\d{4}/, :month => /\d{1,2}/ 
+  end
 
   map.resources :schedules do |schedule|
     schedule.resources :slots
@@ -46,9 +50,9 @@ ActionController::Routing::Routes.draw do |map|
   map.welcome '/', :controller => 'wrct', :action => 'index'
   map.admin   'admin', :controller => 'admin', :action => 'index'
   
-  map.music        'music', :controller => 'admin', :action => 'music'
-  map.production   'production', :controller => 'admin', :action => 'production'
-  map.exec         'exec', :controller => 'admin', :action => 'exec'
+  map.music        'music',       :controller => 'admin', :action => 'music'
+  map.programming   'programming', :controller => 'admin', :action => 'programming'
+  map.exec         'exec',        :controller => 'admin', :action => 'exec'
 
   
   # Install the default route as the lowest priority.

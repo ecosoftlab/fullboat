@@ -1,65 +1,82 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AlbumTest < Test::Unit::TestCase
-  fixtures :albums, :artists, :genres, :formats, :labels, :promoters, :users
+  fixtures :albums, :artists, :labels, :genres
 
-  # Replace this with your real tests.
-  def test_artist
-    raag = Album.new(:name => "Raag Manifestos", :artist => Artist.find(1), :label => Label.find(1), :format => Format.find(1), :genre => Genre.find(1), :year => 2004, :status => :oob, :status_changed_on => Time.now, :is_compilation => false)
-    assert raag.save
-    raag2 = Album.new(:name => "Raag Manifestos", :label => Label.find(1), :format => Format.find(1), :genre => Genre.find(1), :year => 2004, :status => :oob, :status_changed_on => Time.now, :is_compilation => false)
-    assert !raag2.save
-    raag3 = Album.new(:name => "Raag Manifestos", :label => Label.find(1), :format => Format.find(1), :genre => Genre.find(1), :year => 2004, :status => :oob, :status_changed_on => Time.now, :is_compilation => true)
-    assert raag3.save
+  def test_should_create_album
+    assert_difference 'Album.count' do
+      album = create_album
+      assert ! album.new_record?, "#{album.errors.full_messages.to_sentence}"
+    end
   end
-
-  def test_label
-    raag = Album.new(:name => "Raag Manifestos", :artist => Artist.find(1), :format => Format.find(1), :genre => Genre.find(1), :year => 2004, :status => :oob, :status_changed_on => Time.now, :is_compilation => false)
-    assert !raag.save
+  
+  def test_should_require_name
+    assert_not_nil create_album(:name => nil).errors.on(:name)
   end
-
-  def test_genre
-    raag = Album.new(:name => "Raag Manifestos", :artist => Artist.find(1), :label => Label.find(1), :format => Format.find(1), :year => 2004, :status => :oob, :status_changed_on => Time.now, :is_compilation => false)
-    assert !raag.save
+  
+  def test_should_generate_sort_name
+    assert_not_nil create_album[:sort_name]
   end
-
-  def test_format
-    raag = Album.new(:name => "Raag Manifestos", :artist => Artist.find(1), :label => Label.find(1), :genre => Genre.find(1), :year => 2004, :status => :oob, :status_changed_on => Time.now, :is_compilation => false)
-    assert !raag.save
+  
+  def test_should_preserve_specified_sort_name
+    album = create_album(:name      => "_why's poignant guide to ruby soundtrack", 
+                         :sort_name => "why's poignant guide to ruby" )
+    assert_equal album[:sort_name], "why's poignant guide to ruby"
   end
-
-  def test_year
-    raag = Album.new(:name => "Raag Manifestos", :artist => Artist.find(1), :label => Label.find(1), :format => Format.find(1), :genre => Genre.find(1), :year => 20004, :status => :oob, :status_changed_on => Time.now, :is_compilation => false)
-    assert !raag.save
+  
+  def test_should_remove_leading_article_or_special_characters_from_sort_name
+    # Difference 
+    assert_equal create_album(:name => "The Magic Position")[:sort_name],       "Magic Position"
+    assert_equal create_album(:name => "A Minor Revival")[:sort_name],          "Minor Revival"
+    
+    # No Difference
+    assert_equal create_album(:name => "There Will Be A Light")[:sort_name],    "There Will Be A Light"
+    assert_equal create_album(:name => "At War With The Mystics")[:sort_name],  "At War With The Mystics"
+    assert_equal create_album(:name => "54.40")[:sort_name],                    "54.40"
   end
-
-  def test_status
-    raag = Album.new(:name => "Raag Manifestos", :artist => Artist.find(1), :label => Label.find(1), :format => Format.find(1), :genre => Genre.find(1), :year => 2004, :status => :crapola, :status_changed_on => Time.now, :is_compilation => false)
-    assert !raag.save
+  
+  # belongs_to :artist
+  def test_should_belong_to_artist
+    assert_nothing_thrown do
+      album = create_album
+      assert_not_nil album.artist
+      assert_kind_of Artist, album.artist      
+    end
   end
-
-  def test_status_changed_on
-    raag = Album.new(:name => "Raag Manifestos", :artist => Artist.find(1), :label => Label.find(1), :format => Format.find(1), :genre => Genre.find(1), :year => 2004, :status => :crapola, :is_compilation => false)
-    assert !raag.save
+  
+  def test_should_require_artist
+    assert_no_difference 'Album.count' do
+      album = create_album(:artist_id => nil)
+      assert album.new_record?
+    end
   end
-
-  def test_is_compilation
-    raag = Album.new(:name => "Raag Manifestos", :artist => Artist.find(1), :label => Label.find(1), :format => Format.find(1), :genre => Genre.find(1), :year => 2004, :status => :oob, :status_changed_on => Time.now)
-    assert !raag.save
+  
+  def test_should_not_require_artist_if_compilation
+    assert_nothing_thrown do
+      album = create_album(:artist_id => nil, :is_compilation => true)
+      assert_nil album.artist
+    end
   end
-
-  def test_tags
-    kb = Album.find(1)
-    assert kb.tag_list.add("Blues","picking","raw","beard")
-    assert kb.save
-    assert Album.find_tagged_with("raw").include?(kb)
+  
+  # belongs_to :label
+  def test_should_belong_to_label
+    assert_nothing_thrown do
+      album = create_album
+      assert_not_nil album.label
+      assert_kind_of Label, album.label      
+    end
   end
-
-  def test_comments
-    kb = Album.find(1)
-    kb.comments << Comment.new(:body => "hey this is a comment", :user => User.find(1))
-    assert kb.save
-    assert 1,kb.comments.count
+  
+  def test_should_not_require_label
+    assert_nothing_thrown do
+      album = create_album(:label_id => nil)
+      assert_nil album.label
+    end
   end
+  
+protected
 
+  def create_album(options = {})
+    Album.create(@@album_default_values.merge(options))
+  end
 end

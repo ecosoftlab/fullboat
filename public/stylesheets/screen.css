@@ -156,6 +156,11 @@ th.time{
 	font-weight:bold;
 }
 
+.schedule tbody tr:hover{background:#ccc;}
+.schedule tbody tr:hover td div{
+	background:#f3f3f3;
+}
+
 td[rowspan="1"]  div	{ height: 40px; }
 td[rowspan="2"]  div	{ height: 80px; }
 td[rowspan="3"]  div	{ height: 120px; }

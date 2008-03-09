@@ -1,7 +1,7 @@
 class SlotsController < ApplicationController
   
-  # Production Section
-  layout 'production'
+  # Programming Section
+  layout 'programming'
     
   # GET /slots
   # GET /slots.xml
