@@ -10,7 +10,7 @@ class Review < ActiveRecord::Base
   validates_presence_of :body
 
   def to_s
-    self.body
+    "%s by %s" % [self.album, self.user]
   end
 
 end

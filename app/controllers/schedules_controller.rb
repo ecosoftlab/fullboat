@@ -7,6 +7,7 @@ class SchedulesController < ApplicationController
   # GET /schedules.xml
   def index
     @schedules = Schedule.find(:all)
+    @schedule  = Schedule.current
 
     options = { :feed => { :title       => "Schedules",
                            :description => "",

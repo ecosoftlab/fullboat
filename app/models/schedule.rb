@@ -21,6 +21,10 @@ class Schedule < ActiveRecord::Base
   #   Slot.find(:all, :conditions => ["schedule_id = :id AND :start_time"])
   # end
   
+  def self.current
+    Schedule.find(:all).detect{|s| s.is_current? } || Schedule.find(:first, :order => "starts_at DESC")
+  end
+  
   def slot_at(day, time)
     Slot.find(:first, :conditions => ["schedule_id = :id AND day = :day AND :time BETWEEN start_time AND end_time", 
                                        {:id => self.id, :day => day, :time => time}])

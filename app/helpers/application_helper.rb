@@ -25,8 +25,12 @@ module ApplicationHelper
     image_tag("albums/#{rand(7)}.jpg", {:alt => "Placeholder", :class => 'photo reflect'}.update(options))
   end
   
-  def icon(name, format = 'png')
-    image_tag("icon_#{name}.#{format}", :size => '16x16', :alt => name.capitalize)
+
+  def schedules_drop_down
+    content_tag(:select,
+                options_for_select(Schedule.find(:all, :order => "starts_at DESC").collect{|s|
+                                    [h(s), schedule_path(s)]}, (schedule_path(@schedule) rescue nil)),
+                :onchange => "location=''+this.options[this.selectedIndex].value;")
   end
   
   # TODO: Refactor into template-based method using lighter markup language

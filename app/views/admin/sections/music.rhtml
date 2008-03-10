@@ -1,4 +1,33 @@
 <h1>Music</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+
+<div class="column span-8 colborder">
+  <h2>Top Albums This Week</h2>
+  <table>  
+    <tbody>
+    <% @albums.each do |album| %>
+      <tr id="<%= album.dom_id%>">
+        <td><%= placeholder_album_cover :size => '25x25' %></td>
+        <td>
+          <%= link_to(h(album), album_path(album)) %><br/>
+          <%= h(album.artist) %>
+        </td>
+      </tr>
+    <% end %>  
+    </tbody>
+  </table>
+</div>
+
+<div class="column span-8 last">
+  <h2>Recently Reviewed</h2>
+  <table>  
+    <tbody>
+    <% @reviews.each do |review| %>
+      <tr id="<%= review.dom_id%>">
+        <td><%= placeholder_album_cover :size => '25x25' %></td>
+        <td><%= link_to(h(review), album_path(review.album))%></td>
+      </tr>
+    <% end %>  
+    </tbody>
+  </table>
+</div>
