@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr class="hide">
+      <th></th>
+      <th>Name</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  
+  <tbody id="plays">
+    <% @playlist.plays.each do |play| %>
+      <tr id="<%= play.dom_id %>">
+        <td><%= image_tag("placeholder_album.jpg", :alt => "Cover for #{h(play.playable.name)}", :size => '32x32') if play.playable_type == "Album" %></td>
+        <td><%= h play %></td>
+        <td><%= h play.created_at.to_ordinalized_s(:time_only) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

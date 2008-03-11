@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :schedules do |schedule|
+    schedule.resources :programs
     schedule.resources :slots
   end
 
@@ -51,8 +52,9 @@ ActionController::Routing::Routes.draw do |map|
   map.admin   'admin', :controller => 'admin', :action => 'index'
   
   map.music        'music',       :controller => 'admin', :action => 'music'
-  map.programming   'programming', :controller => 'admin', :action => 'programming'
-  map.exec         'exec',        :controller => 'admin', :action => 'exec'
+  map.programming  'programming', :controller => 'admin', :action => 'programming'
+  map.calendar     'calendar',    :controller => 'admin', :action => 'calendar'
+  map.staph        'staph',       :controller => 'admin', :action => 'staph'
 
   
   # Install the default route as the lowest priority.

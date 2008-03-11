@@ -1,12 +1,12 @@
 <h1>Music</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
 
-<div class="column span-8 colborder">
+<div class="column span-5 colborder">
   <h2>Top Albums This Week</h2>
   <table>  
     <tbody>
     <% @albums.each do |album| %>
-      <tr id="<%= album.dom_id%>">
+      <tr>
         <td><%= placeholder_album_cover :size => '25x25' %></td>
         <td>
           <%= link_to(h(album), album_path(album)) %><br/>
@@ -18,14 +18,31 @@
   </table>
 </div>
 
-<div class="column span-8 last">
-  <h2>Recently Reviewed</h2>
+<div class="column span-5 colborder">
+  <h2>New Reviews</h2>
   <table>  
     <tbody>
     <% @reviews.each do |review| %>
-      <tr id="<%= review.dom_id%>">
+      <tr>
         <td><%= placeholder_album_cover :size => '25x25' %></td>
         <td><%= link_to(h(review), album_path(review.album))%></td>
+      </tr>
+    <% end %>  
+    </tbody>
+  </table>
+</div>
+
+<div class="column span-5 last">
+  <h2>Recently Played</h2>
+  <table>  
+    <tbody>
+    <% @plays.each do |play| %>
+      <tr>
+        <td><%= placeholder_album_cover :size => '25x25' %></td>
+        <td>
+          <%= link_to(h(play), album_path(play.playable))%><br/>
+          <%= h(play.created_at.to_s :time_only) %>
+        </td>
       </tr>
     <% end %>  
     </tbody>

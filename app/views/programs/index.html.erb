@@ -1,21 +1,22 @@
 <h1>Listing Programs</h1>
 
-<label>Active Schedule</label>
-<%= select_tag :type, options_from_collection_for_select(@schedules, :id, :to_s), 
+<label>Showing Programs for Schedule</label>
+<%= select_tag :type, options_for_select([Schedule.current] + Schedule.find(:all, :conditions => ["is_current = ?", false], :order => "starts_at DESC").collect{|s|
+                                    [h(s), schedule_programs_path(s)]}, (schedule_programs_path(@schedule) rescue nil)), 
                :class    => 'column span-3',
-               :onchange => "" %>
-               
+               :onchange => "location=''+this.options[this.selectedIndex].value;" %>
+
 <hr class="space"/>
 
 <table>
 	<thead>
-	<tr>
-	    	<th>Name</th>
-	    	<th>Description</th>
-	    	<th>Type</th>
-	    	<th>URL</th>
-	    	<th colspan="3"></th>
-	  	</tr>
+	  <tr>
+	  	<th>Name</th>
+	  	<th>Users</th>
+	  	<th>Description</th>
+	  	<th>Type</th>
+	  	<th colspan="3"></th>
+	  </tr>
 	</thead>
 	
 	<tbody>

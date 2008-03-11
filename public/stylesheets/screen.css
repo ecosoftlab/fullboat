@@ -156,9 +156,14 @@ th.time{
 	font-weight:bold;
 }
 
+.schedule{overflow:hidden;}
 .schedule tbody tr:hover{background:#ccc;}
 .schedule tbody tr:hover td div{
 	background:#f3f3f3;
+}
+
+.schedule tbody tr.current td{
+	background:#D6F1FF;
 }
 
 td[rowspan="1"]  div	{ height: 40px; }
@@ -218,3 +223,30 @@ td[rowspan="24"] div	{ height: 960px; }
   }
 
 .monthName{font-size:2.0em;}
+
+
+
+.calendar span.number{
+	position:relative;
+	font-size:2em;
+	color:#777;
+	margin:0;
+}
+
+.calendar ul{
+	padding:0.3em;
+	margin:0 0 0 15px;
+}
+
+.calendar .otherMonth{
+	font-size:2em;
+	color:#ccc;
+}
+
+.calendar td{
+	height:70px;
+}
+
+.calendar td:hover{
+	background:#F1F1F1;
+}

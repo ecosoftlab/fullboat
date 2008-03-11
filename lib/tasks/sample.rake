@@ -115,6 +115,8 @@ def create_program(name, day, start_time, end_time)
   days = %w{Sunday Monday Tuesday Wednesday Thursday Friday Saturday}
   day = days.index(day) || day
   program = MusicProgram.create!(:name => name, :description => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+  (rand(2) + 1).times{program.users << User.find(rand(User.count) + 1)}
+  program.save
   slot = Slot.new(:schedule_id => Schedule.find(:first).id, 
            :day => day, :start_time => Time.parse(start_time), :end_time => Time.parse(end_time))
   slot.program = program

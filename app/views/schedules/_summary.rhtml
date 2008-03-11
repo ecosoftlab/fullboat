@@ -16,14 +16,17 @@
   </thead>
   
   <tbody>
-  <% (0..23).collect{|h| Time.parse("%d:00" % h)}.each do |time| %>
-    <tr id="hour-<%= time.hour %>" class="<%= cycle('odd', 'even') %>">
+  <% start_hour ||= 0 %>
+  <% end_hour   ||= 23 %>
+  <% current_hour = Time.now.hour %>
+  <% (start_hour..end_hour).collect{|h| Time.parse("%d:00" % h)}.each do |time| %>
+    <tr id="hour-<%= time.hour %>" class="<%= cycle('odd', 'even') %> <%='current' if current_hour == time.hour%>">
       <td><%= time.to_ordinalized_s(:time_only) %>
     <% (0..6).each do |day| -%>
       <% slot = schedule.slot_starting_at(day, time) -%>
       <% program = slot.program rescue nil -%>
       <% if program -%>
-        <td class="" rowspan="<%= slot.duration %>">
+        <td class="" rowspan="<%= [slot.duration, (end_hour - time.hour) + 1].min %>">
           <div>
             <%= link_to(h(program), program_path(program)) -%>
           </div>

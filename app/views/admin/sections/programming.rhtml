@@ -1,5 +1,6 @@
 <h1>Programming</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-<h2><%= h(@schedule) %></h2>
-<%= render(:partial => 'schedules/summary', :object => @schedule) %>
+<h2>Now Playing on WRCT</h2>
+<%= render(:partial => 'schedules/summary', :object => @schedule, 
+           :locals => {:start_hour => Time.now.hour, :end_hour => (Time.now.hour + 4) % 24}) %>

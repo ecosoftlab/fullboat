@@ -1,6 +1,8 @@
 class RolesController < ApplicationController
   before_filter :login_required
   
+  layout 'staph'
+  
   # GET /roles
   # GET /roles.xml
   def index

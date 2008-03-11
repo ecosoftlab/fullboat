@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   
   access_rule 'admin || staph_director', :only => [:manage, :destroy]
 
+  layout 'staph'
+
   # GET /users
   def index
-    @users = User.find(:all)
+    redirect_to staph_url
   end
 
   # GET /users/new

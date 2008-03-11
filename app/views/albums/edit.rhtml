@@ -1,5 +1,5 @@
 <% content_for :record do %>
-  <p><%= link_to("Back to '#{@album}'", label_path(@album)) %></p>
+  <p><%= link_to("Back to '#{@album}'", album_path(@album)) %></p>
 <% end %>
 
 <h1>Editing Album '<%= @album.name %>'</h1>

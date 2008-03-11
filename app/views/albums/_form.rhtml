@@ -9,6 +9,10 @@
       <%= f.text_field :name, :class => 'title' %>
     </li>
     <li>
+      <label for="is_compilation">Compilation?</label>
+      <%= f.check_box :is_compilation %>
+    </li>
+    <li>
       <label for="artist_name">Artist</label>
       <%= text_field :artist, :name %>
     </li>
@@ -31,10 +35,6 @@
     <li>
       <label for="status">Status</label>
       <%= f.select :status, Album.status_values %>
-    </li>
-    <li>
-      <label for="is_compilation">Compilation?</label>
-      <%= f.check_box :is_compilation %>
     </li>
     <li>
       <label for="tracks">Tracks</label>

@@ -9,6 +9,8 @@ class Schedule < ActiveRecord::Base
   
   validate :validate_start_time_before_end_time
   
+  after_save :update_current
+  
   def to_param
     return "#{self.id}-#{self.name.gsub(/\W/, '')}"
   end
@@ -41,6 +43,16 @@ class Schedule < ActiveRecord::Base
   end
   
 protected
+
+  def update_current
+    @schedules = Schedule.find(:all) - [self]
+    if self.is_current?
+      @schedules.each{|s| s.update_attribute(:is_current, false)}
+    elsif ! @schedules.select{|s| s.is_current? }.length == 1
+      @schedules.each{|s| s.update_attribute(:is_current, false)}
+      Schedule.find(:first, :order => "starts_at DESC").update_attribute(:is_current, true)
+    end
+  end
 
   def validate_start_time_before_end_time
     if (self[:starts_at] && self[:ends_at]) && self[:starts_at] > self[:ends_at]

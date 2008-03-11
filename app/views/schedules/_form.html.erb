@@ -4,12 +4,14 @@
 <fieldset id="schedule_details" class="clearfix">
 	<legend>Schedule Details</legend>
 	<ol>
-	
 		<li>
 	    	<label for="name">Name</label>
 	    	<%= f.text_field :name %>
 		</li>
-	
+		<li>
+	      <label for="is_current">Current?</label>
+	      <%= f.check_box :is_current, :disabled => @schedule.is_current? %>
+	  </li>
 		<li>
 	    	<label for="description">Description</label>
 	    	<%= f.text_area :description %>
