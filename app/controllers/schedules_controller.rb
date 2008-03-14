@@ -114,9 +114,4 @@ class SchedulesController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
-  # GET /schedules;manage
-  def manage
-    @schedules = Schedule.find(:all)
-  end
 end

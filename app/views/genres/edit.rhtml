@@ -2,14 +2,9 @@
   <p><%= link_to("Back to '#{@genre}'", label_path(@genre)) %></p>
 <% end %>
 
-<h1>Editing Genre '<%= @genre %>'</h1>
+<h1>Editing Genre '<%= h @genre %>'</h1>
 
 <% remote_form_for(:genre, :url => genre_path(@genre), :html => { :method => :put }) do |f| %>
-	<fieldset id="genre_details" name="Genre Details" class="clearfix">
-		<%= render(:partial => "genres/form", :locals => {:f => f})%>
-    	<%= submit_tag "Update" %>
-	</fieldset>
+	<%= render(:partial => "genres/form", :locals => {:f => f})%>
+  <%= submit_tag "Update" %>
 <% end %>
-
-<%= link_to 'Show', genre_path(@genre) %> |
-<%= link_to 'Back', genres_path %>

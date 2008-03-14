@@ -14,7 +14,7 @@ class PlaysController < ApplicationController
               }
 
     respond_to do |format|
-      format.html # index.rhtml
+      format.html { redirect_to playlist_url(params[:playlist_id]) }
       format.xml  { render :xml => @plays.to_xml }
       format.rss  { render_rss_feed_for @plays, 
                       options.update({:link => formatted_plays_url(:rss)}) 
@@ -31,19 +31,20 @@ class PlaysController < ApplicationController
     @play = Play.find(params[:id])
 
     respond_to do |format|
-      format.html # show.rhtml
+      format.html { redirect_to playlist_url(@play.playlist)}
       format.xml  { render :xml => @play.to_xml }
     end
   end
 
   # GET /plays/new
   def new
-    @play = Play.new
+    redirect_to playlist_url(params[:playlist_id])
   end
 
   # GET /plays/1;edit
   def edit
     @play = Play.find(params[:id])
+    redirect_to playlist_url(@play.playlist)
   end
 
   # POST /plays
@@ -122,14 +123,9 @@ class PlaysController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = "Play '#{@play}' was destroyed."
-      format.html { redirect_to plays_url }
+      format.html { redirect_to playlist_url(@play.playlist) }
       format.xml  { head :ok }
       format.js   # destroy.rjs
     end
-  end
-  
-  # GET /plays;manage
-  def manage
-    @plays = Play.find(:all)
   end
 end

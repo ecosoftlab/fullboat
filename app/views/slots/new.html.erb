@@ -1,8 +1,6 @@
 <h1>Create a New Slot</h1>
 
 <% remote_form_for(:slot, :url => schedule_slots_path) do |f| %>
-	<fieldset id="slot_details" name="Slot Details" class="clearfix">
-		<%= render(:partial => "slots/form", :locals => {:f => f})%>
-    	<%= submit_tag "Create" %>
-	</fieldset>
+	<%= render(:partial => "slots/form", :locals => {:f => f})%>
+  <%= submit_tag "Create" %>
 <% end %>

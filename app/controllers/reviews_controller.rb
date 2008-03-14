@@ -1,15 +1,10 @@
 class ReviewsController < ApplicationController
-  before_filter :login_required, :get_album
-
-  private
-  def get_album
-    @album = Album.find(params[:album_id])
-  end
+  before_filter :login_required
 
   # GET /reviews
   # GET /reviews.xml
   def index
-    @reviews = @Album.review
+    @reviews = Review.find(:all)
 
     options = { :feed => { :title       => "Reviews",
                            :description => "",
@@ -104,10 +99,5 @@ class ReviewsController < ApplicationController
       format.xml  { head :ok }
       format.js   # destroy.rjs
     end
-  end
-
-  # GET /reviews;manage
-  def manage
-    @reviews = @album.review
   end
 end

@@ -1,15 +1,18 @@
-<% content_for :section do %>
-  <label>Search</label>
-  <input type="search" />
-  <hr class="space"/>
+<% unless @content_for_section %>
+  <% content_for :section do %>
+    <label>Search</label>
+    <input type="search" />
+    <hr class="space"/>
 
-  <h3>Production</h3>
-  <ul>
-    <li><%= link_to_unless_current "Schedules", schedules_path %></li>
-    <li><%= link_to_unless_current "Programs", programs_path %></li>
-    <li><%= link_to_unless_current "PSAs", psas_path %></li>
-    <li><%= link_to_unless_current "Promos",  promos_path %></li>
-  </ul>
+    <h3>Programming</h3>
+    <ul>
+      <li><%= link_to_unless_current "Schedules", schedules_path %></li>
+      <li><%= link_to_unless_current "Programs", programs_path %></li>
+      <li><%= link_to_unless_current "PSAs", psas_path %></li>
+      <li><%= link_to_unless_current "Promos",  promos_path %></li>
+    </ul>
+  <% end %>
 <% end %>
 
+<% @section = "Programming" %>
 <%= render :file => 'layouts/application' %>

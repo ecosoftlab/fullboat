@@ -2,49 +2,17 @@ class CommentsController < ApplicationController
   
   # GET /comments
   # GET /comments.xml
-  def index
-    @comments = Comment.find(:all)
-
-    options = { :feed => { :title       => "Comments",
-                           :description => "",
-                           :language    => "en-us" },
-                :item => { :title       => :title,
-                           :description => :description,
-                           :pub_date    => :created_at }
-              }
-
-    respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @comments.to_xml }
-      format.rss  { render_rss_feed_for @comments, 
-                      options.update({:link => formatted_comments_url(:rss)}) 
-                  }
-      format.atom { render_atom_feed_for @comments, 
-                      options.update({:link => formatted_comments_url(:atom)}) 
-                  }
-    end
-  end
-
+  def index; end
+  
   # GET /comments/1
   # GET /comments/1.xml
-  def show
-    @comment = Comment.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @comment.to_xml }
-    end
-  end
+  def show; end
 
   # GET /comments/new
-  def new
-    @comment = Comment.new
-  end
+  def new;  end
 
   # GET /comments/1;edit
-  def edit
-    @comment = Comment.find(params[:id])
-  end
+  def edit; end 
 
   # POST /comments
   # POST /comments.xml
@@ -98,10 +66,5 @@ class CommentsController < ApplicationController
       format.xml  { head :ok }
       format.js   # destroy.rjs
     end
-  end
-  
-  # GET /comments;manage
-  def manage
-    @comments = Comment.find(:all)
   end
 end

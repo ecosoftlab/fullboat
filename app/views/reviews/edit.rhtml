@@ -1,11 +1,10 @@
-<h1>Editing Review '<%= @review%>'</h1>
-
-<% remote_form_for(:review, :url => review_path(@review), :html => { :method => :put }) do |f| %>
-	<fieldset id="review_details" name="Review Details" class="clearfix">
-		<%= render(:partial => "reviews/form", :locals => {:f => f})%>
-    	<%= submit_tag "Update" %>
-	</fieldset>
+<% content_for :record do %>
+  <p><%= link_to("Back to '#{@review}'", review_path(@review)) %></p>
 <% end %>
 
-<%= link_to 'Show', review_path(@review) %> |
-<%= link_to 'Back', reviews_path %>
+<h1>Editing Review '<%= h @review%>'</h1>
+
+<% remote_form_for(:review, :url => review_path(@review), :html => { :method => :put }) do |f| %>
+  <%= render(:partial => "reviews/form", :locals => {:f => f})%>
+  <%= submit_tag "Update" %>
+<% end %>

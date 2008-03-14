@@ -103,9 +103,4 @@ class GenresController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-
-  # GET /genres;manage
-  def manage
-    @genres = Genre.find(:all)
-  end
 end

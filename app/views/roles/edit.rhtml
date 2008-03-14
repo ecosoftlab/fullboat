@@ -1,11 +1,10 @@
-<h1>Editing Role '<%= @role%>'</h1>
-
-<% remote_form_for(:role, :url => role_path(@role), :html => { :method => :put }) do |f| %>
-	<fieldset id="role_details" name="Role Details" class="clearfix">
-		<%= render(:partial => "roles/form", :locals => {:f => f})%>
-    	<%= submit_tag "Update" %>
-	</fieldset>
+<% content_for :record do %>
+  <p><%= link_to("Back to '#{@role}'", role_path(@role)) %></p>
 <% end %>
 
-<%= link_to 'Show', role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+<h1>Editing Role '<%= h @role %>'</h1>
+
+<% remote_form_for(:role, :url => role_path(@role), :html => { :method => :put }) do |f| %>
+	<%= render(:partial => "roles/form", :locals => {:f => f})%>
+  <%= submit_tag "Update" %>
+<% end %>

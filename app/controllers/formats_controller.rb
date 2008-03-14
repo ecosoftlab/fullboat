@@ -100,9 +100,4 @@ class FormatsController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-
-  # GET /formats;manage
-  def manage
-    @formats = Format.find(:all)
-  end
 end

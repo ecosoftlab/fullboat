@@ -86,7 +86,6 @@ class UsersController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
 
   def activate
     self.current_user = User.find_by_activation_code(params[:activation_code])
@@ -96,16 +95,6 @@ class UsersController < ApplicationController
     end
     redirect_back_or_default('/')
   end
-  
-  def callback_programs
-    @user = User.find(params[:id])
-    @albums = @user.albums
-    render :template => 'callbacks/programs'
-  end
-  
-  def manage
-    @users = User.find(:all)
-  end
 
 private
 
@@ -114,5 +103,4 @@ private
     @user.roles = roles.collect{|r| Role.find_by_title(r)}.compact
     @user.save
   end
-
 end

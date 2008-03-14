@@ -1,8 +1,6 @@
 <h1>Create a New Artist</h1>
 
 <% form_for(:artist, :url => artists_path) do |f| %>
-        <fieldset id="artist_details" name="Artist Details" class="clearfix">
-                <%= render(:partial => "artists/form", :locals => {:f => f})%>
-        <%= submit_tag "Create" %>
-        </fieldset>
+  <%= render(:partial => "artists/form", :locals => {:f => f})%>
+  <%= submit_tag "Create" %>
 <% end %>

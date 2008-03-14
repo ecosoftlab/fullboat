@@ -1,10 +1,8 @@
 <h1>Create a New Program</h1>
 
 <% remote_form_for(:program, :url => programs_path) do |f| %>
-	<fieldset id="program_details" name="Program Details" class="clearfix">
-		<%= render(:partial => "programs/form", :locals => {:f => f})%>
-    	<%= submit_tag "Create" %>
-	</fieldset>
+	<%= render(:partial => "programs/form", :locals => {:f => f})%>
+  <%= submit_tag "Create" %>
 <% end %>
 
 <%= link_to 'Back', programs_path %>

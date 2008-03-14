@@ -1,13 +1,21 @@
-<% content_for :section do %>
-  <label>Search</label>
-  <input type="search" />
-  <hr class="space"/>
+<% unless @content_for_section %>
+  <% content_for :section do %>
+    <label>Search</label>
+    <input type="search" />
+    <hr class="space"/>
 
-  <h3>Staph</h3>
-  <ul>
-    <li><%= link_to_unless_current "Users", users_path %></li>
-    <li><%= link_to_unless_current "Roles & Permissions", roles_path %></li>
-  </ul>
+    <h3>Options</h3>
+    <ul>
+      <li><%= link_to_unless_current "Create a New User", new_user_path %></li>
+    </ul>
+
+    <h3>Staph</h3>
+    <ul>
+      <li><%= link_to_unless_current "Users", users_path %></li>
+      <li><%= link_to_unless_current "Roles & Permissions", roles_path %></li>
+    </ul>
+  <% end %>
 <% end %>
 
+<% @section = "Staph" %>
 <%= render :file => 'layouts/application' %>

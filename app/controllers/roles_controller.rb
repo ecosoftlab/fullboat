@@ -102,9 +102,4 @@ class RolesController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
-  # GET /roles;manage
-  def manage
-    @roles = Role.find(:all)
-  end
 end

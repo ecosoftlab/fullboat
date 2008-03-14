@@ -93,9 +93,4 @@ class ProgramsController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
-  # GET /programs;manage
-  def manage
-    @programs = Program.find(:all)
-  end
 end

@@ -1,11 +1,10 @@
-<h1>Editing Event '<%= @event%>'</h1>
-
-<% remote_form_for(:event, :url => event_path(@event), :html => { :method => :put }) do |f| %>
-	<fieldset id="event_details" name="Event Details" class="clearfix">
-		<%= render(:partial => "events/form", :locals => {:f => f})%>
-    	<%= submit_tag "Update" %>
-	</fieldset>
+<% content_for :record do %>
+  <p><%= link_to("Back to '#{@event}'", event_path(@event)) %></p>
 <% end %>
 
-<%= link_to 'Show', event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<h1>Editing Event '<%= h @event %>'</h1>
+
+<% remote_form_for(:event, :url => event_path(@event), :html => { :method => :put }) do |f| %>
+	<%= render(:partial => "events/form", :locals => {:f => f})%>
+  <%= submit_tag "Update" %>
+<% end %>

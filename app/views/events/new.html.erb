@@ -1,10 +1,8 @@
 <h1>Create a New Event</h1>
 
 <% remote_form_for(:event, :url => events_path) do |f| %>
-	<fieldset id="event_details" name="Event Details" class="clearfix">
-		<%= render(:partial => "events/form", :locals => {:f => f})%>
-    	<%= submit_tag "Create" %>
-	</fieldset>
+	<%= render(:partial => "events/form", :locals => {:f => f})%>
+  <%= submit_tag "Create" %>
 <% end %>
 
 <%= link_to 'Back', events_path %>

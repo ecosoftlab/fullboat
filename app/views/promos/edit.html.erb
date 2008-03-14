@@ -2,14 +2,9 @@
   <p><%= link_to("Back to '#{@promo}'", label_path(@promo)) %></p>
 <% end %>
 
-<h1>Editing Promo '<%= @promo%>'</h1>
+<h1>Editing Promo '<%= h @promo %>'</h1>
 
 <% remote_form_for(:promo, :url => promo_path(@promo), :html => { :method => :put }) do |f| %>
-	<fieldset id="promo_details" name="Promo Details" class="clearfix">
-		<%= render(:partial => "promos/form", :locals => {:f => f})%>
-    	<%= submit_tag "Update" %>
-	</fieldset>
+	<%= render(:partial => "promos/form", :locals => {:f => f})%>
+  <%= submit_tag "Update" %>
 <% end %>
-
-<%= link_to 'Show', promo_path(@promo) %> |
-<%= link_to 'Back', promos_path %>

@@ -55,6 +55,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1;edit
   def edit
     @playlist = Playlist.find(params[:id])
+    redirect_to playlist_url(@playlist)
   end
 
   # POST /playlists
@@ -144,5 +145,4 @@ class PlaylistsController < ApplicationController
     @tracks = @album.tracks || []
     render :action => "playlists/remote_update_tracks", :layout => false
   end
-
 end

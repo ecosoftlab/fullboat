@@ -2,11 +2,9 @@
   <p><%= link_to("Back to '#{@label}'", label_path(@label)) %></p>
 <% end %>
 
-<h1>Editing Label '<%= @label%>'</h1>
+<h1>Editing Label '<%= h @label %>'</h1>
 
 <% remote_form_for(:label, :url => label_path(@label), :html => { :method => :put }) do |f| %>
-	<fieldset id="label_details" name="Label Details" class="clearfix">
-		<%= render(:partial => "labels/form", :locals => {:f => f})%>
-    	<%= submit_tag "Update" %>
-	</fieldset>
+	<%= render(:partial => "labels/form", :locals => {:f => f})%>
+  <%= submit_tag "Update" %>
 <% end %>

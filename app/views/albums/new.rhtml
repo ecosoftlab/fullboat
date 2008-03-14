@@ -1,10 +1,8 @@
 <h1>Create a New Album</h1>
 
 <% remote_form_for(:album, :url => albums_path) do |f| %>
-	<fieldset id="album_details" name="Album Details" class="clearfix">
-		<%= render(:partial => "albums/form", :locals => {:f => f})%>
-    	<%= submit_tag "Create" %>
-	</fieldset>
+	<%= render(:partial => "albums/form", :locals => {:f => f})%>
+  <%= submit_tag "Create" %>
 <% end %>
 
 <%= link_to 'Back', albums_path %>

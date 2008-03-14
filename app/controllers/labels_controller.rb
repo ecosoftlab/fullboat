@@ -103,9 +103,4 @@ class LabelsController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-
-  # GET /labels;manage
-  def manage
-    @labels = Label.find(:all)
-  end
 end

@@ -104,9 +104,4 @@ class SlotsController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
-  # GET /slots;manage
-  def manage
-    @slots = Slot.find(:all)
-  end
 end

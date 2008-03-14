@@ -82,9 +82,4 @@ class EventsController < ApplicationController
       format.js   # destroy.rjs
     end
   end
-  
-  # GET /events;manage
-  def manage
-    @events = Event.find(:all)
-  end
 end
