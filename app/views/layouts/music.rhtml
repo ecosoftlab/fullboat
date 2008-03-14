@@ -1,15 +1,23 @@
-<% content_for :section do %>
-  <label>Search</label>
-  <input type="search" />
-  <hr class="space"/>
+<% unless @content_for_section %>
+  <% content_for :section do %>
+    <label>Search</label>
+    <input type="search" />
+    <hr class="space"/>
 
-  <h3>Music</h3>
-  <ul>
-    <li><%= link_to_unless_current "Artists", artists_path %></li>
-    <li><%= link_to_unless_current "Albums",  albums_path %></li>
-    <li><%= link_to_unless_current "Labels",  labels_path %></li>
-    <li><%= link_to_unless_current "Genres",  genres_path %></li>
-  </ul>
+    <h3>Options</h3>
+    <ul>
+      <li><%= link_to_unless_current "Create a New Playlist", new_playlist_path %></li>
+      <li><%= link_to_unless_current "Write a Review",  :anchor => '' %></li>
+    </ul>
+
+    <h3>Music</h3>
+    <ul>
+      <li><%= link_to_unless_current "Artists", artists_path %></li>
+      <li><%= link_to_unless_current "Albums",  albums_path %></li>
+      <li><%= link_to_unless_current "Labels",  labels_path %></li>
+      <li><%= link_to_unless_current "Genres",  genres_path %></li>
+    </ul>
+  <% end %>
 <% end %>
 
 <% @section = "Music" %>

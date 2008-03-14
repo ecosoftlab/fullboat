@@ -1,3 +1,5 @@
+<h1 id="logo"><span>WRCT: a full boat</span></h1>
+
 <ul class="navigation" id="primary">
   <li><%= link_to_unless_current("Music",       music_path )%></li>
   <li><%= link_to_unless_current("Programming", programming_path )%></li>
@@ -7,10 +9,3 @@
 
 <ul class="navigation" id="secondary">
 </ul>
-
-<div id="profile-box">
-  <p>Logged in as <%= h current_user %></p>
-  <ul>
-    <li><%= link_to_unless_current("Create a Playlist", new_playlist_path) %></li>
-  </ul>
-</div>

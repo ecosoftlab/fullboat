@@ -1,15 +1,17 @@
-<% content_for :section do %>
-  <label>Search</label>
-  <input type="search" />
-  <hr class="space"/>
+<% unless @content_for_section %>
+  <% content_for :section do %>
+    <label>Search</label>
+    <input type="search" />
+    <hr class="space"/>
 
-  <p><%= link_to_unless_current "Create a New Event", new_event_path %></p>
+    <p><%= link_to_unless_current "Create a New Event", new_event_path %></p>
 
-  <h3>Events</h3>
-  <ul>
-    <li><%= check_box_tag "calendar", "music", true %> <label class="inline">Music</label></li>
-    <li><%= check_box_tag "calendar", "music", true %> <label class="inline">Other</label></li>
-  </ul>
+    <h3>Events</h3>
+    <ul>
+      <li><%= check_box_tag "calendar", "music", true %> <label class="inline">Music</label></li>
+      <li><%= check_box_tag "calendar", "music", true %> <label class="inline">Other</label></li>
+    </ul>
+  <% end %>
 <% end %>
 
 <% @section = "Events" %>

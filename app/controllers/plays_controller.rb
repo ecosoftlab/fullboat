@@ -51,24 +51,24 @@ class PlaysController < ApplicationController
   def create
     @play = Play.new(params[:play])
     @play.playlist_id = params[:playlist_id]
-    case params[:type]
-    when 'album-track'
-      @play.playable = Album.find(params[:album])
-      @play.name = params[:track]
-    when 'psa'
-      @play.playable = PSA.find_by_code(params[:psa][:code])
-    when 'promo'
-      @play.playable = Promo.find_by_code(params[:promo][:code])
-    when 'radio-calendar'
-      comment = Comment.new
-      comment.user = current_user
-      comment.body = "Radio Calendar at #{@play.created_at}}"
-    when 'comment'
-      comment = Comment.new(params[:comment])
-      comment.user = current_user
-      @play.playable = comment
-    end
-    
+    @play.playable = case params[:type]
+                     when 'album-track'
+                       @play.name    = params[:track]
+                       Album.find(params[:album])
+                     when 'psa'
+                       PSA.find_by_code(params[:psa][:code])
+                     when 'promo'
+                       Promo.find_by_code(params[:promo][:code])
+                     when 'radio-calendar'
+                       Comment.create(:user_id => current_user,
+                                      :body => "Radio Calendar at #{@play.created_at}}")
+                     when 'station-id'
+                       Comment.create(:user_id => current_user,
+                                      :body => "Station ID at #{@play.created_at}}")
+                     when 'comment'
+                       Comment.create(params[:comment].update({:user_id => current_user}))
+                     end
+                     
     raise ActiveRecord::RecordNotFound if @play.playable.nil?
     
     @play.save!

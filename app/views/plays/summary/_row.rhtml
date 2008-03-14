@@ -4,6 +4,7 @@
   <td><%= image_tag("placeholder_album.jpg", :alt => "Cover for #{h(play.playable.name)}", :size => '16x16') if play.playable_type == "Album" %></td>
   <td><%= h play %></td>
   <td><%= h play.playable_type %></td>
+  <td><%= h play.created_at.to_s :time_only %></td>
   <td><%= link_to("View", play.playable) rescue nil %>
   <td><%= link_to_remote("Destroy", :url => playlist_play_path(play.playlist, play), 
                                     :method => :delete, 

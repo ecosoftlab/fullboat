@@ -8,4 +8,7 @@ class PSA < ActiveRecord::Base
     self.code
   end
   
+  def expires?
+    !! self[:expires_on]
+  end
 end

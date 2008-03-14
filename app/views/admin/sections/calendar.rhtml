@@ -1,0 +1,19 @@
+<%= calendar :year => @year || Date.today.year, :month => @month || Date.today.month, 
+             :show_today => true, :abbrev => (0..-1) do |d|
+      cell_text  = content_tag(:span, d.mday, :class => 'number') + br_tag
+      cell_attrs = {:class => 'day'}
+      
+      entries    = @events.select{|e| e.starts_at.day == d.day}
+      if entries.any?
+        cell_text << content_tag(:ul,
+          entries.collect do |e|
+            content_tag(:li, link_to(h(e), event_path(e)))
+          end,
+          :class => 'events'
+        )
+        cell_attrs[:class] = 'event'
+      end
+    
+      [cell_text, cell_attrs]
+    end
+%>

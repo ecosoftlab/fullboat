@@ -17,9 +17,10 @@
    See the readme files for each plugin. Example:
    @import 'plugins/buttons/buttons.css'; */
    
-/* See the grid:
-   Uncomment the line below to see the grid and baseline.
-   .container { background: url(lib/grid.png); } */
+/*/ See the grid:
+   Uncomment the line below to see the grid and baseline./
+   #container { background: url(lib/grid.png); } 
+/**/
 
 dl.letter-navigation{
 	margin:0;
@@ -67,8 +68,9 @@ td.handle:hover{
 }
 
 ul.navigation{
+	float:left;
 	margin:0;
-	clear:both;
+	margin-left:80px;
 }
 
 ul.navigation li{
@@ -77,12 +79,13 @@ ul.navigation li{
 }
 
 ul.navigation#primary{
+	float:left;
 }
 
 ul.navigation#primary li{
 	font-size:1.5em;
-	width:170px;
-	padding:9px;
+	width:140px;
+	padding:10px;
 	border:1px #ccc solid;
 }
 
@@ -249,4 +252,26 @@ td[rowspan="24"] div	{ height: 960px; }
 
 .calendar td:hover{
 	background:#F1F1F1;
+}
+
+
+
+
+h1#logo{
+	width:160px;
+	height:64px;
+	background:url(../images/wrct.png) no-repeat top left;
+	float:left;
+}
+
+h1#logo span{
+	display:none;
+}
+
+hr.space{
+	margin:1.4em 0;
+}
+
+fieldset hr.space{
+	margin:2em 0;
 }

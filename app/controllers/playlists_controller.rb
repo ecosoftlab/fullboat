@@ -4,6 +4,9 @@ class PlaylistsController < ApplicationController
   # Music Section
   layout 'music'
   
+  in_place_edit_for :playlist, :starts_at
+  in_place_edit_for :playlist, :ends_at
+  
   # in_place_edit_for :start_time, :end_time
   
   # GET /playlists

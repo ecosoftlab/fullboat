@@ -4,7 +4,7 @@
   <td><%= h psa.name %></td>
   <td><%= h psa.duration %></td>
   <td><%= truncate(h(psa.body_source), 200) %></td>
-  <td><%= h psa.expires_on %></td>
+  <td><%= psa.expires? ? h(psa.expires_on) : content_tag(:em, "None") %></td>
   <td><%= link_to 'Show', psa_path(psa) %></td>
   <td><%= link_to 'Edit', edit_psa_path(psa) %></td>
   <td><%= link_to_remote 'Destroy', 
