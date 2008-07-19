@@ -1,0 +1,30 @@
+[submodule "vendor/plugins/acts_as_list"]
+	path = vendor/plugins/acts_as_list
+	url = git://github.com/rails/acts_as_list.git
+[submodule "vendor/plugins/acts_as_taggable_on_steroids"]
+	path = vendor/plugins/acts_as_taggable_on_steroids
+	url = git://github.com/mattetti/acts_as_taggable_on_steroids.git
+[submodule "vendor/plugins/acts_as_textiled"]
+	path = vendor/plugins/acts_as_textiled
+	url = git://github.com/defunkt/acts_as_textiled.git
+[submodule "vendor/plugins/auto_complete"]
+	path = vendor/plugins/auto_complete
+	url = git://github.com/rails/auto_complete.git
+[submodule "vendor/plugins/calendar_helper"]
+	path = vendor/plugins/calendar_helper
+	url = git://github.com/adzap/calendar_helper.git
+[submodule "in_place_editing"]
+	path = in_place_editing
+	url = git://github.com/rails/in_place_editing.git
+[submodule "vendor/plugins/in_place_editing"]
+	path = vendor/plugins/in_place_editing
+	url = git://github.com/rails/in_place_editing.git
+[submodule "vendor/plugins/restful-authentication"]
+	path = vendor/plugins/restful-authentication
+	url = git://github.com/technoweenie/restful-authentication.git
+[submodule "vendor/plugins/unobtrusive_date_picker"]
+	path = vendor/plugins/unobtrusive_date_picker
+	url = git://github.com/brianjlandau/unobtrusive_date_picker.git
+[submodule "vendor/plugins/will_paginate"]
+	path = vendor/plugins/will_paginate
+	url = git://github.com/mislav/will_paginate.git
