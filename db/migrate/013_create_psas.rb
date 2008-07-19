@@ -8,8 +8,7 @@ class CreatePsas < ActiveRecord::Migration
       t.boolean  :is_live
       t.datetime :expires_on
                             
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.timestamps
     end
   end
 

@@ -7,8 +7,7 @@ class CreateSchedules < ActiveRecord::Migration
       t.datetime :starts_at
       t.datetime :ends_at
                             
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.timestamps
     end
   end
 

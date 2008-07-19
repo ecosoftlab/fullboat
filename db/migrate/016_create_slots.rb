@@ -8,8 +8,7 @@ class CreateSlots < ActiveRecord::Migration
       t.time     :start_time   
       t.time     :end_time    
 
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.timestamps
     end
   end
 

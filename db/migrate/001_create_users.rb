@@ -9,7 +9,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :status
                                               
       t.string   :first_name             
-      t.string   :last_name                  
+      t.string   :last_name
+      t.string   :dj_name
       t.string   :phone
       
       t.date     :joined_on            
@@ -20,8 +21,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :activation_code,  :limit => 40
       t.datetime :activated_at          
                                               
-      t.datetime :created_at                
-      t.datetime :updated_at                 
+      t.timestamps             
     end
   end
 

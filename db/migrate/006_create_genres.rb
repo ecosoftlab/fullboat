@@ -5,8 +5,7 @@ class CreateGenres < ActiveRecord::Migration
       t.string   :description
       t.integer  :color_code_id
                             
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.timestamps
     end
     
     add_index    :genres, :name

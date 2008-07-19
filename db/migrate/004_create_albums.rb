@@ -14,8 +14,7 @@ class CreateAlbums < ActiveRecord::Migration
   
       t.text     :tracks
                 
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.timestamps
     end
     
     add_index    :albums, :name

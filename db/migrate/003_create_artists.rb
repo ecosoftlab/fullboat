@@ -5,8 +5,7 @@ class CreateArtists < ActiveRecord::Migration
       t.string   :sort_name
       t.text     :description
                             
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.timestamps
     end
     
     add_index    :artists, :name

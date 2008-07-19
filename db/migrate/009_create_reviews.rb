@@ -5,8 +5,7 @@ class CreateReviews < ActiveRecord::Migration
       t.integer  :user_id
       t.integer  :album_id
 
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.timestamps
     end
 
     add_index    :reviews, :user_id

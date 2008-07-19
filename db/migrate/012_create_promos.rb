@@ -9,8 +9,7 @@ class CreatePromos < ActiveRecord::Migration
       t.string   :code   
       t.integer  :duration
                             
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.timestamps
     end
   end
 
