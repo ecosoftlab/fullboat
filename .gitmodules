@@ -13,9 +13,6 @@
 [submodule "vendor/plugins/calendar_helper"]
 	path = vendor/plugins/calendar_helper
 	url = git://github.com/adzap/calendar_helper.git
-[submodule "in_place_editing"]
-	path = in_place_editing
-	url = git://github.com/rails/in_place_editing.git
 [submodule "vendor/plugins/in_place_editing"]
 	path = vendor/plugins/in_place_editing
 	url = git://github.com/rails/in_place_editing.git

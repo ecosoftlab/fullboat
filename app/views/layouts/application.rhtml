@@ -8,7 +8,7 @@
 	<%= yield :head %>
 	<%= stylesheet_link_tag 'screen' %>
 	<%= javascript_include_tag :defaults, 'reflection' %>
-	<%= unobtrusive_datepicker_includes %>
+	<%# unobtrusive_datepicker_includes %>
 </head>
 
 <% content_tag :body, (@options_for_body_tag || {:id => 'standard'}) do %>
