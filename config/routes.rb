@@ -54,6 +54,7 @@ ActionController::Routing::Routes.draw do |map|
   map.music        'music',       :controller => 'admin', :action => 'music'
   map.programming  'programming', :controller => 'admin', :action => 'programming'
   map.calendar     'calendar',    :controller => 'admin', :action => 'calendar'
+  map.connect     'calendar.:format',    :controller => 'admin', :action => 'calendar'
   map.staph        'staph',       :controller => 'admin', :action => 'staph'
 
   

@@ -1,6 +1,6 @@
 module ApplicationHelper
   def dynamic_page_title(*args)
-    return ["R!otGear", ((args << [@section, @user].compact.first.to_s) rescue nil)].flatten.delete_if{|x| x.blank?}.join(" / ")
+    return ["Full Boat", ((args << [@section, @user].compact.first.to_s) rescue nil)].flatten.delete_if{|x| x.blank?}.join(" / ")
   end
     
   def loading_indicator(id = nil, options = {})
@@ -13,8 +13,9 @@ module ApplicationHelper
         :id => id.nil? ? "loading-indicator" : "#{id}-loading-indicator"}.update(options))
   end
   
-  def navigation_tab(name, url)
-    content_tag(:li, link_to(name, url), :class => current_page?(url) ? 'current' : nil)
+  def navigation_tab(name, url, options = {})
+    section = name
+    content_tag(:li, link_to(name, url), {:class => @section == section ? 'current' : nil}.merge(options))
   end
   
   def br_tag

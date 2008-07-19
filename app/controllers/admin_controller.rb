@@ -1,6 +1,10 @@
 class AdminController < ApplicationController
   before_filter :login_required
 
+  def index
+    @section = "Welcome"
+  end
+
   def music
     @plays = Play.find(:all, 
                        :conditions => ["playable_type = ? AND created_at BETWEEN ? AND ?", 
@@ -58,7 +62,7 @@ class AdminController < ApplicationController
   end
   
   def staph
-    @users = User.find(:all)
+    @users = User.paginate(:all, :page => params[:page], :order => "login ASC")
     
     render :action => 'admin/sections/staph', :layout => 'layouts/staph'
   end

@@ -1,50 +1,39 @@
 <h1>Music</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
 
-<div class="column span-5 colborder">
-  <h2>Top Albums This Week</h2>
-  <table>  
+ <table class="charts">
+    <thead>
+      <th colspan="2">Top Albums This Week</th>
+      <th colspan="2">New Reviews</th>
+      <th colspan="2">Recently Played</th>
+    </thead>
     <tbody>
-    <% @albums.each do |album| %>
-      <tr>
-        <td><%= placeholder_album_cover :size => '25x25' %></td>
-        <td>
-          <%= link_to(h(album), album_path(album)) %><br/>
-          <%= h(album.artist) %>
-        </td>
-      </tr>
-    <% end %>  
+<% @albums.each_with_index do |album, i| %>
+    <tr>
+      <td class="span-1">
+        <%= placeholder_album_cover :size => '25x25' %>
+      </td>
+      <td class="span-4">
+        <%= link_to(h(album), album_path(album)) %><br/>
+        <%= h(album.artist) %>
+      </td>
+    <% if review = @reviews[i] %>
+      <td class="span-1"><%= placeholder_album_cover :size => '25x25' %></td>
+      <td class="span-4"><%= link_to(h(review), album_path(review.album))%></td>
+    <% else %>
+      <td colspan="2"></td>
+    <% end %>
+    
+    <% if play = @plays[i]%>
+      <td class="span-1"><%= placeholder_album_cover :size => '25x25' %></td>
+      <td class="span-4">
+        <%= link_to(h(play), album_path(play.playable))%><br/>
+        <%= h(play.created_at.to_s :time_only) %>
+      </td>
+    <% else %>
+      <td colspan="2"></td>
+    <% end %>
+    </tr>
+<% end %>
     </tbody>
-  </table>
-</div>
-
-<div class="column span-5 colborder">
-  <h2>New Reviews</h2>
-  <table>  
-    <tbody>
-    <% @reviews.each do |review| %>
-      <tr>
-        <td><%= placeholder_album_cover :size => '25x25' %></td>
-        <td><%= link_to(h(review), album_path(review.album))%></td>
-      </tr>
-    <% end %>  
-    </tbody>
-  </table>
-</div>
-
-<div class="column span-5 last">
-  <h2>Recently Played</h2>
-  <table>  
-    <tbody>
-    <% @plays.each do |play| %>
-      <tr>
-        <td><%= placeholder_album_cover :size => '25x25' %></td>
-        <td>
-          <%= link_to(h(play), album_path(play.playable))%><br/>
-          <%= h(play.created_at.to_s :time_only) %>
-        </td>
-      </tr>
-    <% end %>  
-    </tbody>
-  </table>
-</div>
+</table>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :login_required
   
-  access_rule 'admin || staph_director', :only => [:manage, :destroy]
+  access_rule 'admin || staph_director', :only => [:destroy]
 
   layout 'staph'
 

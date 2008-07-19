@@ -1,9 +1,5 @@
 <% unless @content_for_section %>
   <% content_for :section do %>
-    <label>Search</label>
-    <input type="search" />
-    <hr class="space"/>
-
     <h3>Programming</h3>
     <ul>
       <li><%= link_to_unless_current "Schedules", schedules_path %></li>

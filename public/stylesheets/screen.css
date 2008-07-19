@@ -22,6 +22,11 @@
    #container { background: url(lib/grid.png); } 
 /**/
 
+a{
+	color:#046380;
+}
+
+
 dl.letter-navigation{
 	margin:0;
 }
@@ -59,6 +64,7 @@ td.handle:hover{
 }
 
 #header{
+	border:1px #111 solid;
 	margin-bottom:50px;
 }
 
@@ -67,10 +73,11 @@ td.handle:hover{
 	width:190px;
 }
 
-ul.navigation{
+.navigation{
 	float:left;
 	margin:0;
 	margin-left:80px;
+	width:668px;
 }
 
 ul.navigation li{
@@ -79,25 +86,42 @@ ul.navigation li{
 }
 
 ul.navigation#primary{
+	background:#111;
 	float:left;
 }
 
 ul.navigation#primary li{
 	font-size:1.5em;
-	width:140px;
+	width:149px;
+	border-right:1px #fff solid;
+}
+
+ul.navigation#primary li.current{
+	background:#046380;
+}
+
+ul.navigation#primary li a:hover{
+	background:#ccc;
+	
+}
+
+ul.navigation#primary li a{
+	text-shadow:1px 1px 1px #555;
+	color:#fff;
+	display:block;
+	width:130px;
 	padding:10px;
-	border:1px #ccc solid;
+	text-decoration:none;
 }
 
-ul.navigation#secondary{
-	margin:10px;
-	padding:9px;
+
+
+.navigation#secondary{
+
 }
 
-ul.navigation#secondary li{
-	margin:0 30px 0 0;
-	display: list-item;
-	list-style:square;
+.navigation#secondary {
+
 }
 
 
@@ -202,20 +226,20 @@ td[rowspan="24"] div	{ height: 960px; }
   .pagination a {
     padding: 2px 5px 2px 5px;
     margin: 2px;
-    border: 1px solid #aaaadd;
+    border: 1px solid #046380;
     text-decoration: none;
-    color: #000099;
+    color: #046380;
   }
   .pagination a:hover, .pagination a:active {
-    border: 1px solid #000099;
+    border: 1px solid #046380;
     color: #000;
   }
   .pagination span.current {
     padding: 2px 5px 2px 5px;
     margin: 2px;
-    border: 1px solid #000099;
+    border: 1px solid #046380;
     font-weight: bold;
-    background-color: #000099;
+    background-color: #046380;
     color: #FFF;
   }
   .pagination span.disabled {
@@ -260,8 +284,11 @@ td[rowspan="24"] div	{ height: 960px; }
 h1#logo{
 	width:160px;
 	height:64px;
-	background:url(../images/wrct.png) no-repeat top left;
 	float:left;
+}
+
+h1#logo img{
+	margin:5px 0;
 }
 
 h1#logo span{
@@ -274,4 +301,8 @@ hr.space{
 
 fieldset hr.space{
 	margin:2em 0;
+}
+
+table.charts th{
+	font-size:1.3em;
 }

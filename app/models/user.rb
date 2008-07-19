@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   @@status_values = ["Active", "Inactive", "Banned"]
   cattr_reader :status_values
   
+  @@per_page = 30
+  cattr_reader :per_page
+  
   has_and_belongs_to_many :roles
   
   has_and_belongs_to_many :programs

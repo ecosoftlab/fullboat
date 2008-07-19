@@ -1,7 +1,7 @@
 desc 'Creates a test User account'
 task :admin => [:environment] do
   configure_database
-  u = User.create(:login => 'admin', :password => 'katamari', :password_confirmation => 'katamari', :email => 'nobody@localhost')
+  u = User.create(:login => 'admin', :password => 'katamari', :password_confirmation => 'katamari', :email => 'nobody@localhost', :name => "Admin McCloud")
   u.activate
 end
 
@@ -9,7 +9,7 @@ desc 'Populates databse with sample Roles'
 task :roles => [:environment] do
   configure_database
   
-  ['admin', 'exec', 'dj', 'producer', 'ism'].each do |r|
+  ['admin', 'exec-staph', 'exec-board', 'dj'].each do |r|
     Role.create!(:title => r)
   end
 end

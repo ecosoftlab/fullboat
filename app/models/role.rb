@@ -4,7 +4,7 @@ class Role < ActiveRecord::Base
   validates_presence_of   :title
   validates_uniqueness_of :title
   validates_format_of     :title,
-                          :with => /[^@\.\s]/
+                          :with => /[^\W\d]/
                           
   before_validation       :format_title
   
@@ -15,6 +15,6 @@ class Role < ActiveRecord::Base
 private
 
   def format_title
-    self[:title] = self[:title].gsub(/\s+/, "_").downcase if self[:title]
+    self[:title] = self[:title].gsub(/\s+/, "-").downcase if self[:title]
   end
 end

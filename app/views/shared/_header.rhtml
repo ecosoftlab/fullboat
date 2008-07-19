@@ -1,11 +1,17 @@
-<h1 id="logo"><span>WRCT: a full boat</span></h1>
+<h1 id="logo">
+  <%= link_to(image_tag("full_boat.png"), admin_path) %>
+  <span>WRCT: a full boat</span>
+</h1>
 
 <ul class="navigation" id="primary">
-  <li><%= link_to_unless_current("Music",       music_path )%></li>
-  <li><%= link_to_unless_current("Programming", programming_path )%></li>
-  <li><%= link_to_unless_current("Calendar",    calendar_path )%></li>
-  <li><%= link_to_unless_current("Staph",       staph_path )%></li>
+  <%= navigation_tab("Music",       music_path )%>
+  <%= navigation_tab("Programming", programming_path )%>
+  <%= navigation_tab("Calendar",    calendar_path )%>
+  <%= navigation_tab("Staph",       staph_path )%>
 </ul>
 
-<ul class="navigation" id="secondary">
-</ul>
+<% if current_user %>
+<div class="navigation" id="secondary">
+  <p>Logged in as: <%= h current_user %></p>
+</div>
+<% end %>
