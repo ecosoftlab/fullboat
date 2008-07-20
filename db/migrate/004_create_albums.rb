@@ -18,6 +18,7 @@ class CreateAlbums < ActiveRecord::Migration
     end
     
     add_index    :albums, :name
+    add_index    :albums, :artist_id
   end
 
   def self.down

@@ -5,7 +5,11 @@ class Label < ActiveRecord::Base
   has_many :artists,   :through => :albums
   has_many :promoters, :through => :albums
   has_many :genres,    :through => :albums
-
+  
+  has_many :comments, 
+           :as => :commentable, 
+           :dependent => :destroy
+           
   composed_of :address, 
               :class_name => "Address", 
               :mapping => [ # database 	ruby 

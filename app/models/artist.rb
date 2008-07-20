@@ -5,7 +5,11 @@ class Artist < ActiveRecord::Base
   cattr_reader :per_page
   
   has_many :albums
-  has_many :genres, :through => :albums, :uniq => true
+  # has_many :genres, :through => :albums, :uniq => true
+
+  has_many :comments, 
+           :as => :commentable, 
+           :dependent => :destroy
 
   validates_presence_of   :name, :sort_name
   validates_uniqueness_of :name
@@ -22,6 +26,10 @@ class Artist < ActiveRecord::Base
   
   def self.search(name)
     Artist.find(:all, :conditions => ['name LIKE ?', name.concat("%")])
+  end
+  
+  def genres
+    []
   end
   
   def genre

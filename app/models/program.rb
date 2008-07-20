@@ -21,6 +21,14 @@ class Program < ActiveRecord::Base
   def to_s
     self.name
   end
+  
+  def type
+    self["type"] || ""
+  end
+  
+  def description
+    self[:description] || self.promos.first.body rescue ""
+  end
 end
 
 class MusicProgram         < Program; end

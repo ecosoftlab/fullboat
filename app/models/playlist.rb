@@ -7,7 +7,7 @@ class Playlist < ActiveRecord::Base
   has_many   :plays
   
   validates_presence_of :user
-  validates_presence_of :starts_at
+  validates_presence_of :starts_at, :ends_at
   
   validate :validate_starts_at_before_ends_at
   validate :validate_duration_less_than_24_hours
