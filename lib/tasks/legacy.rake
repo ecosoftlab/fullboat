@@ -8,6 +8,44 @@ namespace :legacy do
       end
     end
     
+    task :schedules => [:environment] do
+      (2001..2008).each do |year|
+        [["Spring", "jan", "may"], ["Summer", "jun", "aug"], ["Fall", "sep", "dec"]].each do |set|
+          season, start_month, end_month = set          
+          
+          break if season == "Fall" && year == 2008
+          
+          schedule = Schedule.create do |s|
+                      s.name = "#{season} #{year} Schedule"
+                      s.starts_at = Time.gm(year, start_month, 1)
+                      s.ends_at   = Time.gm(year, end_month, 31)
+                     end
+                   
+          puts schedule
+        
+          Playlist.find(:all, :conditions => ["starts_at BETWEEN ? AND ?", 
+                                              schedule.starts_at, schedule.ends_at]
+                                              ).group_by(&:program).each do |program, playlists|
+                                
+            next if program.nil?
+            
+            playlist = playlists.first
+  
+            puts [program, playlist.starts_at, playlist.ends_at].join("\t")
+          
+            schedule.slots << Slot.create do |s|
+                                s.program_id = program.id
+                                s.schedule_id = schedule.id
+                                s.day = playlist.starts_at.wday
+                                s.start_time = playlist.starts_at
+                                s.end_time = playlist.ends_at
+                              end
+            schedule.save
+          end
+        end
+      end
+    end
+    
     task :users => [:connect] do
       Proxy.set_table_name "Users"
       Proxy.find_by_sql("SELECT * FROM Users").each do |row|
