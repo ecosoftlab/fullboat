@@ -43,6 +43,24 @@ class Album < ActiveRecord::Base
     self.name
   end
   
+  def self.most_played(options = {})    
+    self.find_by_sql(["SELECT COUNT(plays.id) AS count, 
+	    	                albums.*, 
+		                    artists.id as artist_id, artists.name as artist_name
+		                    FROM plays INNER JOIN albums
+		                    	ON plays.playable_id = albums.id && plays.playable_type = 'Album'
+		                    INNER JOIN artists
+		                    	ON albums.artist_id = artists.id
+		                    WHERE (plays.created_at BETWEEN ? AND ?)
+		                    GROUP BY plays.playable_id
+		                    ORDER BY count DESC
+		                    LIMIT ?",
+		                    options[:start_date] || Time.now - 1.week,
+		                    options[:end_date]   || Time.now,
+		                    options[:limit] || 10
+		                ])
+  end
+  
   def change_status(status, options = {})
     self.comments << Comment.create(:body => "Status was changed from %s on %s" % [self[:status], Date.today])
     self.update_attribute(:status, status)

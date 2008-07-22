@@ -11,8 +11,8 @@ class Play < ActiveRecord::Base
   validates_presence_of :name
     
   def to_s
-    case klass = self.playable.class.to_s
-    when "Album"
+    case self.playable
+    when Album
       "'%s' - %s (%s)" % [self.name, self.playable.artist, self.playable]
     else
       self.name

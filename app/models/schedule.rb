@@ -7,6 +7,7 @@ class Schedule < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :starts_at, :ends_at
   
+  validates_uniqueness_of :name
   validate :validate_start_time_before_end_time
   
   after_save :update_current

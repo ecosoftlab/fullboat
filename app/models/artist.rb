@@ -25,7 +25,7 @@ class Artist < ActiveRecord::Base
   end
   
   def self.search(name)
-    Artist.find(:all, :conditions => ['name LIKE ?', name.concat("%")])
+    Artist.find(:all, :conditions => ['name LIKE ?', name.concat("%")], :limit => 20)
   end
   
   def genres

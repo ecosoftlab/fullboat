@@ -9,6 +9,8 @@ class Slot < ActiveRecord::Base
   validates_numericality_of :day
   validates_inclusion_of    :day, :within => Date::DAYS.values
   
+  validates_uniqueness_of   :program_id, :scope => :schedule_id
+  
   validate :validate_start_time_before_end_time
   validate :validate_avaibility_of_timespan
   
@@ -43,8 +45,9 @@ protected
   end
   
   def validate_avaibility_of_timespan
-    if Slot.find(:all, :conditions => ["start_time BETWEEN ? AND ?", self[:start_time], self[:end_time]]).any?
-      errors.add "Time span not available"
-    end
+    conflict = Slot.find(:first, :conditions => ["schedule_id = ? AND day = ? AND start_time = ?", 
+                                                  self[:schedule_id], self[:day], self[:start_time]])
+  
+    errors.add "Time span not available (already taken by #{conflict})" if conflict
   end
 end
