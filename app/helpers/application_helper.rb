@@ -23,7 +23,8 @@ module ApplicationHelper
   end
   
   def placeholder_album_cover(options={})
-    image_tag("albums/#{rand(7)}.jpg", {:alt => "Placeholder", :class => 'photo reflect'}.update(options))
+    image_tag("albums/#{rand(7)}.jpg", {:alt => "Placeholder"}.update(options)) +
+    (options[:jewelcase] ? content_tag(:span, nil, :class => 'jewelcase') : '')
   end
   
 

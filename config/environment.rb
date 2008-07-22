@@ -13,11 +13,14 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.load_paths += %W[
     #{RAILS_ROOT}/app/models/aggregations
+    #{RAILS_ROOT}/app/models/notifiers
+    #{RAILS_ROOT}/app/models/observers
+    #{RAILS_ROOT}/app/models/webservices
   ]
   
   config.action_controller.session = { :session_key => "_wrct_session", 
                                        :secret      => "lYcY0aHucGRH8Ehf43BqxezUVkW4S2dB5LtbaYVw" }
-  # config.active_record.observers   = :last_fm_observer                                      
+  config.active_record.observers   = []#[:last_fm_scrobbling_observer, :twitter_observer]                                   
 end
 
 ActiveRecord::Base.class_eval do
@@ -74,6 +77,14 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update \
   :rss       => '%a, %d %b %Y %H:%M:%S %z',
   :atom      => '%Y-%m-%dT%H:%M:%S-08:00'
 
+
+class String
+  def truncate(length = 30, truncate_string = "...")
+    l = length - truncate_string.chars.length
+    chars = self.chars
+    (chars.length > length ? chars[0...l] + truncate_string : self).to_s
+  end
+end
 
 require 'icalendar'
 

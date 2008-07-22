@@ -5,7 +5,7 @@ class Artist < ActiveRecord::Base
   cattr_reader :per_page
   
   has_many :albums
-  # has_many :genres, :through => :albums, :uniq => true
+  has_many :genres, :through => :albums, :uniq => true
 
   has_many :comments, 
            :as => :commentable, 
@@ -28,9 +28,6 @@ class Artist < ActiveRecord::Base
     Artist.find(:all, :conditions => ['name LIKE ?', name.concat("%")], :limit => 20)
   end
   
-  def genres
-    []
-  end
   
   def genre
     self.genres.first
