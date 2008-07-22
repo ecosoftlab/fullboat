@@ -59,6 +59,7 @@ td img{
 	width:100%;
 }
 
+
 td.handle:hover{
 	cursor: move;
 }
@@ -164,10 +165,12 @@ th.time{
 	border:1px #333 solid;
 	margin:0 auto;
 	overflow:hidden;
+	position:absolute;
 }
 .schedule td{
 	width:108px;
 	padding:0;
+	height:3em;
 	margin:1px;
 }
 
@@ -272,6 +275,7 @@ td[rowspan="24"] div	{ height: 960px; }
 
 .calendar td{
 	height:70px;
+	width:14.28%;
 }
 
 .calendar td:hover{
@@ -305,4 +309,41 @@ fieldset hr.space{
 
 table.charts th{
 	font-size:1.3em;
+}
+
+
+body.widescreen #sidebar{
+	display:none;
+}
+
+body.widescreen #content{
+	width:100%;
+	margin-right:0;
+	border-right:none;
+}
+
+.album-cover img{
+	position:absolute;
+	float:left;
+	width:141px;
+	height:134px;
+}
+
+.jewelcase{
+	position:absolute;
+	width:141px;
+	height:134px;
+	background:url(../images/jewelcase.png);
+	z-index:1000;
+}
+
+
+.charts .bar {
+	display:block;
+	width:100%;
+}
+
+.charts .bar span{
+	display:block;
+	background:#f00;
 }
