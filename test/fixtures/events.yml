@@ -1,7 +1,0 @@
-default:
-    id: 1
-    name: "WRCT: a dance party"
-    location: "Shadow Lounge"
-    description: "Last time was awesome, so we're doing it again: 5 hours of slamming beats by WRCT's own DJs for only $5! This time we're going 18+, so there's no excuse!"
-    starts_at:  <%= Time.gm(2008, 3, 1, 21).to_s :db %>
-    ends_at:    <%= Time.gm(2008, 3, 2, 2).to_s  :db %>

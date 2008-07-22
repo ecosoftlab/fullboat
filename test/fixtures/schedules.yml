@@ -1,7 +1,0 @@
-default:
-    id: 1
-    name: Spring 2008
-    description: Regular programming schedule for the Spring Semester
-    is_current: true
-    starts_at: <%= Time.gm(2008, 1, 14).to_s :db %>
-    ends_at:   <%= Time.gm(2008, 5, 2).to_s  :db %>
