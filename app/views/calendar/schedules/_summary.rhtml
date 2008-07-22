@@ -1,0 +1,45 @@
+<%# @options_for_body_tag = {:class => 'widescreen'} %>
+<% schedule = summary %>
+
+<table class="schedule">
+  <colgroup span="8">
+    <column class="time"></column>
+  <% %w{sunday monday tuesday wednesday thursday friday saturday}.each do |day| -%>
+    <column class="<%= day %>"></column>
+  <% end -%>
+  </colgroup>
+  
+  <thead>
+    <th class="time">Time</th>
+  <% %w{sunday monday tuesday wednesday thursday friday saturday}.each do |day| -%>
+    <th class="day"><%= day.capitalize %></th>
+  <% end -%>
+  </thead>
+  
+  <tbody>
+  <% start_hour ||= 0 %>
+  <% end_hour   ||= 23 %>
+  <% current_hour = Time.now.hour %>
+  <% (start_hour..end_hour).collect{|h| Time.parse("%d:00" % h)}.each do |time| %>
+    <tr id="hour-<%= time.hour %>" class="<%= cycle('odd', 'even') %> <%='current' if current_hour == time.hour%>">
+      <td><%= time.to_ordinalized_s(:time_only) %></td>
+    <% (0..6).each do |day| -%>
+      <% slot = schedule.slot_starting_at(day, time) -%>
+      <% program = slot.program rescue nil -%>
+      <% if program -%>
+        <td class="" rowspan="<%# [slot.duration, (end_hour - time.hour) + 1].min %>">
+          <div style="height:<%= [slot.duration, (end_hour - time.hour) + 1].min * 3 %>em">
+            <%= link_to(h(program), program_path(program)) -%>
+          </div>
+        </td>
+      <% elsif schedule.slot_at(day, time) -%>
+      <td></td>
+        <!-- Empty Slot -->
+      <% else -%>
+        <td></td>
+      <% end -%>
+    <% end -%>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

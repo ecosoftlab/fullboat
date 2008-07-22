@@ -1,0 +1,20 @@
+<h1>Listing Labels</h1>
+
+<%= will_paginate @albums %>
+
+<table>
+	<thead>
+	  <tr>
+    	<th>Name</th>
+    	<th>Email</th>
+    	<th>Phone</th>
+    	<th colspan="4"></th>
+  	</tr>
+	</thead>
+	
+	<tbody class="directory">
+    <%= render(:collection => @labels, :partial => 'music/labels/summary/row')%>
+	</tbody>
+</table>
+
+<%= will_paginate @albums %>

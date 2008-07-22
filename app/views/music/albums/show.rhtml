@@ -1,0 +1,60 @@
+<% content_for :record do %>
+  <p><%= link_to "Edit '#{h(@album)}'", edit_album_path(@album) %></p>
+
+  <dl>
+    <dt>Label</dt>
+    <dd><%= @album.label ? link_to(h(@album.label), label_path(@album.label)) : "None" %></dd>
+    <dt>Release Date</dt>
+    <dd><%= @album.released_on ? h(@album.released_on) : "Unkown" %></dd>
+    <dt>Genre</dt>
+    <dd><%= h @album.genre %></dd>
+  </dl>
+<% end %>
+
+<!-- hReview microformat -->
+<div id="<%= @album.dom_id %>" class="hreview">
+  <div class="column span-4 append-1">
+    <div class="album-cover">
+      <%= placeholder_album_cover(:jewelcase => true) %>
+      &nbsp;
+    </div>
+  </div>
+  
+  <div class="column span-12 last">
+    <div class="item">
+      <h1 class="fn"><%= h @album.name %></h1>
+      <h2><%= link_to @album.artist.name, artist_path(@album.artist_id) %></h2>
+    </div>
+    
+    <hr class="space" />
+
+  <% if @album.review %>
+    <div class="description">
+      <blockquote>
+      <%= @album.review.body %>
+      </blockquote>
+      <!-- hReview microformat -->
+      <cite>
+        Review by <%= link_to(h(@album.review.user), user_path(@album.review.user)) %>
+        <%= vcard(@album.review.user, :class => 'reviewer hide') %>
+      </cite>
+    </div>
+  <% end %>
+    
+    <hr class="space" />
+  
+  <% unless @album.tracks.blank? %>
+    <h2>Track Listing</h2>
+    <ol>
+      <% @album.tracks.each do |track| %>
+        <li><%= h track %></li>
+      <% end %>
+    </ol>
+  <% end %>
+  
+  <% if @album.comments.any? %>
+    <h2>Comments</h2>
+    <%= render(:collection => @album.comments, :partial => 'comments/summary')%>
+  <% end %>
+  </div>
+</div>

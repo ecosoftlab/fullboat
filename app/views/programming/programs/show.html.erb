@@ -1,0 +1,36 @@
+<% content_for :record do %>
+  <p><%= link_to("Edit '#{@program}'", edit_program_path(@program))%></p>
+  <dl>
+    <dt>Type</dt>
+    <dd><%= h @program.type.titleize %></dd>
+    <dt>Slots</dt>
+    <dd>
+      <% if @program.schedules.any? %>
+        <ul>
+        <% @program.slots.each do |slot| %>
+          <li><%= link_to(h(slot), schedule_slot_path(slot.schedule, slot)) %></li>
+        <% end %>
+        </ul>
+      <% else %>
+        N/A
+      <% end %>
+    </dd>
+  </dl>
+<% end %>
+
+<h1><%= h @program %></h1>
+<h2><%= @program.users.collect{|u| link_to(h(u), user_path(u))}.to_sentence %></h2>
+<%= @program.description %>
+
+<!-- TODO -->
+<% @program.schedules.each do |schedule| %>
+  <h3><%= h schedule %></h3>
+  <p><%= h @program.slots %></p>
+  <table>
+    <% @program.playlists.each do |p| %>
+    <tr>
+      <td><%= link_to(h(p), playlist_path(p))%></td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>

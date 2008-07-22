@@ -1,13 +1,13 @@
 <h1 id="logo">
-  <%= link_to(image_tag("full_boat.png"), admin_path) %>
+  <%= link_to(image_tag("full_boat.png"), root_path) %>
   <span>WRCT: a full boat</span>
 </h1>
 
 <ul class="navigation" id="primary">
-  <%= navigation_tab("Music",       music_path )%>
-  <%= navigation_tab("Programming", programming_path )%>
-  <%= navigation_tab("Calendar",    calendar_path )%>
-  <%= navigation_tab("Staph",       staph_path )%>
+  <%= navigation_tab("Music",       music_root_path )%>
+  <%= navigation_tab("Programming", programming_root_path )%>
+  <%= navigation_tab("Calendar",    calendar_root_path )%>
+  <%= navigation_tab("Staph",       staph_root_path )%>
 </ul>
 
 <% if current_user %>

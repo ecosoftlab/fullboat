@@ -1,0 +1,34 @@
+<h1>Albums</h1>
+
+<fieldset class="sort-options">
+  <%# select_tag "term", options_for_select(["Sort by Artist", "Sort by Title", "Sort by Year", "Sort by Genre"]) %>
+  <br class="space" />
+  
+  <!-- Only used for Artist and Title -->
+  <dl class="letter-navigation">
+  	<dt>Letter</dt>
+  	<%= ('A'..'Z').collect{|l| content_tag(:dd, link_to_unless(params[:letter] == l, l, albums_path(:letter => l))) }%>
+  </dl>
+</fieldset>
+
+<%= will_paginate @albums %>
+
+<table>
+<thead>
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Released</th>
+    <th>Genre</th>
+    <th>Status</th>
+    <th colspan="4"></th>
+  </tr>
+</thead>
+
+<tbody>
+  <%= render(:collection => @albums, :partial => 'music/albums/summary/row') %>
+</tbody>
+</table>
+
+<%= will_paginate @albums %>

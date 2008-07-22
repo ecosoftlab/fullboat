@@ -1,0 +1,56 @@
+<h1>Music</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+
+<table class="charts column span-8 colborder">
+    <thead>
+      <tr>
+        <th colspan="3">This Week's Top Albums</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @albums.each_with_index do |album, i| %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td></td>
+        <td>
+          <%= link_to(h(album), album_path(album))%>
+          <div class="bar">
+            <span style="width:56%;">1 Play</span>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<table class="charts column span-8 last">
+    <thead>
+      <tr>
+        <th colspan="3">This Week's Top Albums</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @albums.each_with_index do |album, i| %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td></td>
+        <td>
+          <%= link_to(h(album), album_path(album))%>
+          <div class="bar">
+            <span style="width:56%;">1 Play</span>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+</table>

@@ -1,62 +1,50 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :events
+  map.with_options :name_prefix => nil do |section|  
+    section.namespace :music do |music|
+      # music.root      :controller => 'sections', :action => 'music'
+      music.resources :artists
+      music.resources :albums, :has_one => [:review]
+      music.resources :labels
+      music.resources :formats
+      music.resources :genres
+      music.resources :playlists, :has_many => [:plays]
+    end
   
-  map.with_options :controller => 'events', :action => 'index' do |events|
-    events.connect ':year/:month',  :year => /\d{4}/, :month => /\d{1,2}/ 
+    section.namespace :programming do |programming|
+      # programming.root      :controller => 'sections', :action => 'programming'
+      programming.resources :programs, :has_many => [:playlists]
+      programming.resources :psas, :controller => "PSA"
+      programming.resources :promos
+    end
+  
+    section.namespace :calendar do |calendar|
+      # calendar.root         :controller => 'sections', :action => 'calendar'
+      calendar.resources    :schedules, :has_many => [:programs, :slots]
+      calendar.resources    :events
+      calendar.with_options :controller => 'events', :action => 'index' do |events|
+        events.connect ':year/:month',  :year => /\d{4}/, :month => /\d{1,2}/ 
+      end
+    end
+  
+    section.namespace :staph do |staph|
+      # staph.root         :controller => 'sections', :action => 'staph'
+      staph.resources :users
+      staph.resources :roles
+    end
   end
-
-  map.resources :schedules do |schedule|
-    schedule.resources :programs
-    schedule.resources :slots
+  
+  # Manually set namespacing for section indexes
+  map.with_options :controller => 'sections' do |sections|
+    ['music', 'programming', 'calendar', 'staph'].each do |section|
+      sections.send("#{section}_root", "/#{section}", {:action => section})
+    end
   end
-
-  map.resources :promos
-  map.resources :psas,
-                :controller => "PSA"
-
-
-  map.resources :programs do |program|
-    program.resources :playlists,
-                      :has_many => :plays
-  end
-  
-  map.resources :playlists,
-                :has_many => :plays
-  
-  # No
-  map.resources :music_programs,          :controller => 'programs'
-  map.resources :public_affairs_programs, :controller => 'programs'
-  
-
-  
-  map.resources :albums do |album|
-    album.resource  :review,
-                    :collection => {:manage => :get}
-    album.resources :comments,
-                    :collection => { :manage => :get}
-  end
-
-  map.resources :artists
-  map.resources :labels
-  map.resources :formats
-  map.resources :genres
 
   map.resources :sessions
-  map.resources :users
-  map.resources :roles
-
-  map.login   'login', :controller => 'sessions', :action => 'new'
+  map.login   'login',  :controller => 'sessions', :action => 'new'
   map.logout  'logout', :controller => 'sessions', :action => 'destroy'
 
-  map.welcome '/', :controller => 'wrct', :action => 'index'
-  map.admin   'admin', :controller => 'admin', :action => 'index'
-  
-  map.music        'music',       :controller => 'admin', :action => 'music'
-  map.programming  'programming', :controller => 'admin', :action => 'programming'
-  map.calendar     'calendar',    :controller => 'admin', :action => 'calendar'
-  map.connect     'calendar.:format',    :controller => 'admin', :action => 'calendar'
-  map.staph        'staph',       :controller => 'admin', :action => 'staph'
-
+  map.root :controller => 'wrct', :action => 'index'
   
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'
