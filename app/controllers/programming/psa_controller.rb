@@ -1,7 +1,4 @@
-class Programming::PSAController < ApplicationController
-  
-  # Programming Section
-  layout 'programming'
+class Programming::PSAController < ProgrammingController
   
   # GET /psas
   # GET /psas.xml

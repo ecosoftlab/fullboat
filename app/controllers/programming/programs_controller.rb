@@ -1,8 +1,4 @@
-class Programming::ProgramsController < ApplicationController
-  before_filter :login_required
-  
-  # Programming Section
-  layout 'programming'
+class Programming::ProgramsController < ProgrammingController
   
   # GET /programs
   # GET /programs.xml

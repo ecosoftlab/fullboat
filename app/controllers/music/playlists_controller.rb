@@ -1,8 +1,4 @@
-class Music::PlaylistsController < ApplicationController
-  before_filter :login_required
-
-  # Music Section
-  layout 'music'
+class Music::PlaylistsController < MusicController
   
   in_place_edit_for :playlist, :starts_at
   in_place_edit_for :playlist, :ends_at

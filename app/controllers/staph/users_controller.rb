@@ -1,9 +1,6 @@
-class Staph::UsersController < ApplicationController
-  before_filter :login_required
+class Staph::UsersController < StaphController
   
   access_rule 'admin || staph_director', :only => [:destroy]
-
-  layout 'staph'
 
   # GET /users
   def index

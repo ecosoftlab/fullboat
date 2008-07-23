@@ -1,8 +1,4 @@
-class Music::ArtistsController < ApplicationController
-  before_filter :login_required
-
-  # Music Section
-  layout 'music'
+class Music::ArtistsController < MusicController
 
   # GET /artists
   # GET /artists.xml

@@ -1,8 +1,5 @@
-class Calendar::SlotsController < ApplicationController
-  
-  # Programming Section
-  layout 'programming'
-    
+class Programming::SlotsController < ProgrammingController
+
   # GET /slots
   # GET /slots.xml
   def index
@@ -15,7 +12,7 @@ class Calendar::SlotsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to calendar_root_url }
+        format.html { redirect_to programming_root_url }
       end
     end
   end
@@ -53,14 +50,14 @@ class Calendar::SlotsController < ApplicationController
       flash[:notice] = 'Slot was successfully created.'
       format.html { redirect_to slot_url(@slot) }
       format.xml  { head :created, :location => slot_url(@slot) }
-      format.js   { render :template => 'calendar/slots/success' }
+      format.js   { render :template => 'programming/slots/success' }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @slot.errors.to_xml }
-        format.js   { render :template => 'calendar/slots/error' }
+        format.js   { render :template => 'programming/slots/error' }
     end
   end
 
@@ -74,11 +71,11 @@ class Calendar::SlotsController < ApplicationController
         flash[:notice] = "Slot '#{@slot}' was successfully updated."
         format.html { redirect_to slot_url(@slot) }
         format.xml  { head :ok }
-        format.js   { render :template => 'calendar/slots/success' }
+        format.js   { render :template => 'programming/slots/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @slot.errors.to_xml }
-        format.js   { render :template => 'calendar/slots/error' }
+        format.js   { render :template => 'programming/slots/error' }
       end
     end
   end

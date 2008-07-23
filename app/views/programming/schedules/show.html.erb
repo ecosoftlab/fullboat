@@ -6,7 +6,7 @@
 <h1><%= h @schedule %></h1>
 <%= @schedule.description %>
 
-<%= render(:partial => 'calendar/schedules/summary', :object => @schedule) %>
+<%= render(:partial => 'programming/schedules/summary', :object => @schedule) %>
   <table>
     <thead>
   	  <tr>
@@ -23,7 +23,7 @@
 	  <tr>
     	<th colspan="7"><%= h wday.capitalize %></th>
   	</tr>
-    <%= render(:collection => @schedule.slots.select{|slot| slot.day == n}, :partial => 'calendar/slots/summary/row')%>
+    <%= render(:collection => @schedule.slots.select{|slot| slot.day == n}, :partial => 'programming/slots/summary/row')%>
 <% end %>
   	</tbody>
 </table>

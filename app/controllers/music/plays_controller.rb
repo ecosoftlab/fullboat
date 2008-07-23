@@ -1,4 +1,4 @@
-class Music::PlaysController < ApplicationController
+class Music::PlaysController < MusicController
   
   # GET /plays
   # GET /plays.xml

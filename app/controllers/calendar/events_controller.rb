@@ -1,11 +1,9 @@
-class Calendar::EventsController < ApplicationController
-  
-  layout 'calendar'
+class Calendar::EventsController < CalendarController
   
   # GET /events
   # GET /events.xml
   def index
-    redirect_to calendar_url
+    redirect_to calendar_root_url
   end
 
   # GET /events/1

@@ -4,8 +4,10 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   
+  before_filter :login_required
+  
   # Pick a unique cookie name to distinguish our session data from others'
-  session :session_key => '_wrct_session_id'
+  session :session_key => '_fullboat_session_id'
   
   layout 'application'
   
@@ -21,5 +23,4 @@ class ApplicationController < ActionController::Base
     flash[:access_denied] = true
     redirect_to login_url
   end
-
 end

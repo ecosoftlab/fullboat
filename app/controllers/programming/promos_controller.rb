@@ -1,7 +1,4 @@
-class Programming::PromosController < ApplicationController
-  
-  # Programming Section
-  layout 'programming'
+class Programming::PromosController < ProgrammingController
   
   # GET /promos
   # GET /promos.xml

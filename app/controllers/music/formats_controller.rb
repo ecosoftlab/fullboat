@@ -1,5 +1,4 @@
-class Music::FormatsController < ApplicationController
-  before_filter :login_required
+class Music::FormatsController < MusicController
 
   # GET /formats
   # GET /formats.xml

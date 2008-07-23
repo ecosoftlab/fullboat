@@ -1,0 +1,2 @@
+module StaphHelper
+end

@@ -1,9 +1,6 @@
-class Music::AlbumsController < ApplicationController
+class Music::AlbumsController < MusicController
   before_filter :login_required
   
-  # Music Section
-  layout 'music'
-
   # GET /albums
   # GET /albums.xml
   def index

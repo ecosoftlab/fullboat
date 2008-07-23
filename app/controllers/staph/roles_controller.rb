@@ -1,7 +1,4 @@
-class Staph::RolesController < ApplicationController
-  before_filter :login_required
-  
-  layout 'staph'
+class Staph::RolesController < StaphController
   
   # GET /roles
   # GET /roles.xml

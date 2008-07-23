@@ -1,8 +1,5 @@
-class Calendar::SchedulesController < ApplicationController
- 
-  # Programming Section
-  layout 'programming'
-  
+class Programming::SchedulesController < ProgrammingController
+
   # GET /schedules
   # GET /schedules.xml
   def index
@@ -71,14 +68,14 @@ class Calendar::SchedulesController < ApplicationController
       flash[:notice] = 'Schedule was successfully created.'
       format.html { redirect_to schedule_url(@schedule) }
       format.xml  { head :created, :location => schedule_url(@schedule) }
-      format.js   { render :template => 'calendar/schedules/success' }
+      format.js   { render :template => 'programming/schedules/success' }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @schedule.errors.to_xml }
-        format.js   { render :template => 'calendar/schedules/error' }
+        format.js   { render :template => 'programming/schedules/error' }
     end
   end
 
@@ -92,11 +89,11 @@ class Calendar::SchedulesController < ApplicationController
         flash[:notice] = "Schedule '#{@schedule}' was successfully updated."
         format.html { redirect_to schedule_url(@schedule) }
         format.xml  { head :ok }
-        format.js   { render :template => 'calendar/schedules/success' }
+        format.js   { render :template => 'programming/schedules/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @schedule.errors.to_xml }
-        format.js   { render :template => 'calendar/schedules/error' }
+        format.js   { render :template => 'programming/schedules/error' }
       end
     end
   end

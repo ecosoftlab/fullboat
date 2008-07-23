@@ -1,5 +1,4 @@
-class Music::ReviewsController < ApplicationController
-  before_filter :login_required
+class Music::ReviewsController < MusicController
 
   # GET /reviews
   # GET /reviews.xml
