@@ -3,7 +3,6 @@ class CreateGenres < ActiveRecord::Migration
     create_table :genres do |t|
       t.string   :name
       t.string   :description
-      t.integer  :color_code_id
                             
       t.timestamps
     end
