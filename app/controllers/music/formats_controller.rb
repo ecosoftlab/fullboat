@@ -57,14 +57,14 @@ class Music::FormatsController < ApplicationController
       flash[:notice] = 'Format was successfully created.'
       format.html { redirect_to format_url(@format) }
       format.xml  { head :created, :location => format_url(@format) }
-      format.js   { render :template => 'formats/success' }
+      format.js   { render :template => 'music/formats/success' }
     end
 
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @format.errors.to_xml }
-        format.js   { render :template => 'formats/error' }
+        format.js   { render :template => 'music/formats/error' }
     end
   end
 
@@ -78,11 +78,11 @@ class Music::FormatsController < ApplicationController
         flash[:notice] = "Format '#{@format}' was successfully updated."
         format.html { redirect_to format_url(@format) }
         format.xml  { head :ok }
-        format.js   { render :template => 'formats/success' }
+        format.js   { render :template => 'music/formats/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @format.errors.to_xml }
-        format.js   { render :template => 'formats/error' }
+        format.js   { render :template => 'music/formats/error' }
       end
     end
   end

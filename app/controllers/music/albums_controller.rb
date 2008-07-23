@@ -1,11 +1,5 @@
 class Music::AlbumsController < ApplicationController
   before_filter :login_required
-#   auto_complete_for :genre, :name
-#   auto_complete_for :format, :name
-#   auto_complete_for :label, :name
-#   auto_complete_for :promoter, :name
-#   auto_complete_for :artist, :name
-#   auto_complete_for :user, :login
   
   # Music Section
   layout 'music'
@@ -68,8 +62,8 @@ class Music::AlbumsController < ApplicationController
   # POST /albums.xml
   def create
     @album = Album.new(params[:album])
-    @album.artist   = Artist.find_by_name(params[:artist][:name])
-    @album.label    = Label.find_by_name(params[:label][:name])
+    @album.artist   = Artist.find_or_create_by_name(params[:artist][:name])
+    # @album.label    = Label.find_or_create_by_name(params[:label][:name])
     
     @album.save!
 
@@ -77,14 +71,14 @@ class Music::AlbumsController < ApplicationController
       flash[:notice] = 'Album was successfully created.'
       format.html { redirect_to album_url(@album) }
       format.xml  { head :created, :location => album_url(@album) }
-      format.js   { render :template => 'albums/success' }
+      format.js   { render :template => 'music/albums/success' }
     end
 
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @album.errors.to_xml }
-        format.js   { render :template => 'albums/error' }
+        format.js   { render :template => 'music/albums/error' }
     end
   end
 
@@ -108,11 +102,11 @@ class Music::AlbumsController < ApplicationController
         flash[:notice] = "Album '#{@album}' was successfully updated."
         format.html { redirect_to album_url(@album) }
         format.xml  { head :ok }
-        format.js   { render :template => 'albums/success' }
+        format.js   { render :template => 'music/albums/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @album.errors.to_xml }
-        format.js   { render :template => 'albums/error' }
+        format.js   { render :template => 'music/albums/error' }
       end
     end
   end

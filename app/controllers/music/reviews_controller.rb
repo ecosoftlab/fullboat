@@ -57,14 +57,14 @@ class Music::ReviewsController < ApplicationController
       flash[:notice] = 'Review was successfully created.'
       format.html { redirect_to review_url(@review) }
       format.xml  { head :created, :location => review_url(@review) }
-      format.js   { render :template => 'reviews/success' }
+      format.js   { render :template => 'music/reviews/success' }
     end
 
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @review.errors.to_xml }
-        format.js   { render :template => 'reviews/error' }
+        format.js   { render :template => 'music/reviews/error' }
     end
   end
 
@@ -78,11 +78,11 @@ class Music::ReviewsController < ApplicationController
         flash[:notice] = "Review '#{@review}' was successfully updated."
         format.html { redirect_to review_url(@review) }
         format.xml  { head :ok }
-        format.js   { render :template => 'reviews/success' }
+        format.js   { render :template => 'music/reviews/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @review.errors.to_xml }
-        format.js   { render :template => 'reviews/error' }
+        format.js   { render :template => 'music/reviews/error' }
       end
     end
   end

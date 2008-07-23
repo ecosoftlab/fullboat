@@ -65,14 +65,14 @@ class Music::ArtistsController < ApplicationController
       flash[:notice] = 'Artist was successfully created.'
       format.html { redirect_to artist_url(@artist.id) }
       format.xml  { head :created, :location => artist_url(@artist) }
-      format.js   { render :template => 'artists/success' }
+      format.js   { render :template => 'music/artists/success' }
     end
 
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
       format.html { render :action => :new }
       format.xml  { render :xml => @artist.errors.to_xml }
-      format.js   { render :template => 'artists/error' }
+      format.js   { render :template => 'music/artists/error' }
     end
   end
 
@@ -86,11 +86,11 @@ class Music::ArtistsController < ApplicationController
         flash[:notice] = "Artist '#{@artist.name}' was successfully updated."
         format.html { redirect_to artist_url(@artist) }
         format.xml  { head :ok }
-        format.js   { render :template => 'artists/success' }
+        format.js   { render :template => 'music/artists/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @artist.errors.to_xml }
-        format.js   { render :template => 'artists/error' }
+        format.js   { render :template => 'music/artists/error' }
       end
     end
   end

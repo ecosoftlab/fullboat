@@ -59,14 +59,14 @@ class Programming::PSAController < ApplicationController
       flash[:notice] = 'PSA was successfully created.'
       format.html { redirect_to psa_url(@psa) }
       format.xml  { head :created, :location => psa_url(@psa) }
-      format.js   { render :template => 'psas/success' }
+      format.js   { render :template => 'programming/psas/success' }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @psa.errors.to_xml }
-        format.js   { render :template => 'psas/error' }
+        format.js   { render :template => 'programming/psas/error' }
     end
   end
 
@@ -80,11 +80,11 @@ class Programming::PSAController < ApplicationController
         flash[:notice] = "PSA '#{@psa}' was successfully updated."
         format.html { redirect_to psa_url(@psa) }
         format.xml  { head :ok }
-        format.js   { render :template => 'psas/success' }
+        format.js   { render :template => 'programming/psas/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @psa.errors.to_xml }
-        format.js   { render :template => 'psas/error' }
+        format.js   { render :template => 'programming/psas/error' }
       end
     end
   end

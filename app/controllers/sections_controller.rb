@@ -62,7 +62,7 @@ class SectionsController < ApplicationController
   end
   
   def staph
-    @users = User.paginate(:all, :page => params[:page], :order => "login ASC")
+    @users = User.paginate(:all, :page => params[:page], :order => "last_name ASC")
     
     render :action => 'sections/staph', :layout => 'layouts/staph'
   end

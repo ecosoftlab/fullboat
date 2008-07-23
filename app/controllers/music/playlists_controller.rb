@@ -15,7 +15,7 @@ class Music::PlaylistsController < ApplicationController
     @playlists = Playlist.find(:all)
 
     respond_to do |format|
-      format.html # index.rhtml
+      format.html { redirect_to music_root_url}
       format.xml  { render :xml => @playlists.to_xml }
     end
   end
@@ -125,7 +125,7 @@ class Music::PlaylistsController < ApplicationController
   
   def auto_complete_for_artist_name
     name = params[:artist][:name]
-    @artists = Artist.search(name) unless name.blank?
+    @artists = Artist.search(:name => name) unless name.blank?
     render :partial => "music/artists/autocomplete"
   end
   

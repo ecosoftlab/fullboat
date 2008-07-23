@@ -7,7 +7,7 @@ class Programming::ProgramsController < ApplicationController
   # GET /programs
   # GET /programs.xml
   def index
-    @schedules = Schedule.find(:all, :include => :programs)
+    @schedules = Schedule.find(:all, :include => :programs, :order => 'starts_at DESC')
     @schedule  = Schedule.find(params[:schedule_id])
     @programs  = @schedule.programs
   rescue ActiveRecord::RecordNotFound
@@ -23,10 +23,11 @@ class Programming::ProgramsController < ApplicationController
   # GET /programs/1.xml
   def show
     @program = Program.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @program.to_xml }
+      format.atom # show.atom.builder
     end
   end
 
@@ -50,14 +51,14 @@ class Programming::ProgramsController < ApplicationController
       flash[:notice] = 'Program was successfully created.'
       format.html { redirect_to program_url(@program) }
       format.xml  { head :created, :location => program_url(@program) }
-      format.js   { render :template => 'programs/success' }
+      format.js   { render :template => 'programming/programs/success' }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @program.errors.to_xml }
-        format.js   { render :template => 'programs/error' }
+        format.js   { render :template => 'programming/programs/error' }
     end
   end
 
@@ -71,11 +72,11 @@ class Programming::ProgramsController < ApplicationController
         flash[:notice] = "Program '#{@program}' was successfully updated."
         format.html { redirect_to program_url(@program) }
         format.xml  { head :ok }
-        format.js   { render :template => 'programs/success' }
+        format.js   { render :template => 'programming/programs/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @program.errors.to_xml }
-        format.js   { render :template => 'programs/error' }
+        format.js   { render :template => 'programming/programs/error' }
       end
     end
   end

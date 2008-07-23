@@ -41,12 +41,10 @@ class Staph::UsersController < ApplicationController
     
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:notice] = 'User was successfully updated.'
-        redirect_url = users_path
-        
-        format.html { redirect_to redirect_url }
+        flash[:notice] = 'User was successfully updated.'        
+        format.html { redirect_to user_path(@user) }
         format.xml  { head :ok }
-        format.js   { render :action => "success"}
+        format.js   { render :action => :success}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors.to_xml }

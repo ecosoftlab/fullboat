@@ -59,14 +59,14 @@ class Programming::PromosController < ApplicationController
       flash[:notice] = 'Promo was successfully created.'
       format.html { redirect_to promo_url(@promo) }
       format.xml  { head :created, :location => promo_url(@promo) }
-      format.js   { render :template => 'promos/success' }
+      format.js   { render :template => 'programming/promos/success' }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @promo.errors.to_xml }
-        format.js   { render :template => 'promos/error' }
+        format.js   { render :template => 'programming/promos/error' }
     end
   end
 
@@ -80,11 +80,11 @@ class Programming::PromosController < ApplicationController
         flash[:notice] = "Promo '#{@promo}' was successfully updated."
         format.html { redirect_to promo_url(@promo) }
         format.xml  { head :ok }
-        format.js   { render :template => 'promos/success' }
+        format.js   { render :template => 'programming/promos/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @promo.errors.to_xml }
-        format.js   { render :template => 'promos/error' }
+        format.js   { render :template => 'programming/promos/error' }
       end
     end
   end

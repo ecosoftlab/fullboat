@@ -39,14 +39,14 @@ class Calendar::EventsController < ApplicationController
       flash[:notice] = 'Event was successfully created.'
       format.html { redirect_to event_url(@event) }
       format.xml  { head :created, :location => event_url(@event) }
-      format.js   { render :template => 'events/success' }
+      format.js   { render :template => 'calendar/events/success' }
     end
     
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @event.errors.to_xml }
-        format.js   { render :template => 'events/error' }
+        format.js   { render :template => 'calendar/events/error' }
     end
   end
 
@@ -60,11 +60,11 @@ class Calendar::EventsController < ApplicationController
         flash[:notice] = "Event '#{@event}' was successfully updated."
         format.html { redirect_to event_url(@event) }
         format.xml  { head :ok }
-        format.js   { render :template => 'events/success' }
+        format.js   { render :template => 'calendar/events/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @event.errors.to_xml }
-        format.js   { render :template => 'events/error' }
+        format.js   { render :template => 'calendar/events/error' }
       end
     end
   end

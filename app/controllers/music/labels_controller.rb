@@ -62,14 +62,14 @@ class Music::LabelsController < ApplicationController
       flash[:notice] = 'Label was successfully created.'
       format.html { redirect_to label_url(@label) }
       format.xml  { head :created, :location => label_url(@label) }
-      format.js   { render :template => 'labels/success' }
+      format.js   { render :template => 'music/labels/success' }
     end
 
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @label.errors.to_xml }
-        format.js   { render :template => 'labels/error' }
+        format.js   { render :template => 'music/labels/error' }
     end
   end
 
@@ -83,11 +83,11 @@ class Music::LabelsController < ApplicationController
         flash[:notice] = "Label '#{@label}' was successfully updated."
         format.html { redirect_to label_url(@label) }
         format.xml  { head :ok }
-        format.js   { render :template => 'labels/success' }
+        format.js   { render :template => 'music/labels/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @label.errors.to_xml }
-        format.js   { render :template => 'labels/error' }
+        format.js   { render :template => 'music/labels/error' }
       end
     end
   end

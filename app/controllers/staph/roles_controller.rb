@@ -66,7 +66,7 @@ class Staph::RolesController < ApplicationController
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @role.errors.to_xml }
-        format.js   { render :template => 'roles/error' }
+        format.js   { render :template => 'staph/roles/error' }
     end
   end
 
@@ -84,7 +84,7 @@ class Staph::RolesController < ApplicationController
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @role.errors.to_xml }
-        format.js   { render :template => 'roles/error' }
+        format.js   { render :template => 'staph/roles/error' }
       end
     end
   end

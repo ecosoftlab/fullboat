@@ -60,14 +60,14 @@ class Music::GenresController < ApplicationController
       flash[:notice] = 'Genre was successfully created.'
       format.html { redirect_to genre_url(@genre) }
       format.xml  { head :created, :location => genre_url(@genre) }
-      format.js   { render :template => 'genres/success' }
+      format.js   { render :template => 'music/genres/success' }
     end
 
   rescue ActiveRecord::RecordInvalid
     respond_to do |format|
         format.html { render :action => :new }
         format.xml  { render :xml => @genre.errors.to_xml }
-        format.js   { render :template => 'genres/error' }
+        format.js   { render :template => 'music/genres/error' }
     end
   end
 
@@ -81,11 +81,11 @@ class Music::GenresController < ApplicationController
         flash[:notice] = "Genre '#{@genre}' was successfully updated."
         format.html { redirect_to genre_url(@genre) }
         format.xml  { head :ok }
-        format.js   { render :template => 'genres/success' }
+        format.js   { render :template => 'music/genres/success' }
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @genre.errors.to_xml }
-        format.js   { render :template => 'genres/error' }
+        format.js   { render :template => 'music/genres/error' }
       end
     end
   end
