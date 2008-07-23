@@ -1,6 +1,7 @@
 namespace :legacy do
   namespace :migrate do
     task :all => [:users, :artists, :labels, :genres, :albums, :reviews, :programs, :playlists]
+    task :some => [:albums, :reviews, :programs, :playlists]
     
     task :connect => [:environment] do
       class Proxy < ActiveRecord::Base
@@ -57,7 +58,7 @@ namespace :legacy do
         
           u.phone = row["Phone"].gsub(/\D/, '') rescue nil
           u.email = row["Email"]
-          u.email += "@andrew.cmu.edu" if u.email !=~ /@/
+          # u.email += "@andrew.cmu.edu" if u.email !=~ /@/
           
           pw = "Pa55word"
           u.password = pw
