@@ -4,15 +4,28 @@
 <fieldset id="user_details" class="clearfix">
 	<legend>User Information</legend>
 	<ol>
-		<li><label for="Name">Name</label>
-			<%= f.text_field :name %></li>
+		<li><label for="Name">First Name</label>
+			<%= f.text_field :first_name %></li>
+		<li><label for="Name">:Last Name</label>
+			<%= f.text_field :last_name %></li>
+		<li><label for="Name">DJ Name</label>
+			<%= f.text_field :dj_name %></li>
 		<li><label for="email">E-mail</label>
 			<%= f.text_field :email %></li>
 		<% restrict_to 'admin || staph_director' do %>
 		  <li><label>Status</label>
-  			<%= select nil, nil, [["Active", "Active"], ["Inactive", "Inactive"], ["Banned", "Banned"]]%></li>
+  			<%= select nil, nil, User.status_values.collect{|v| [v,v]} %></li>
   	<% end %>
 	</ol>
+</fieldset>
+
+<fieldset id="user-avatar" class="clearfix">
+  <legend>User Avatar</legend>
+  <%= image_tag(@user.avatar.url(:large), :class => 'right') %>
+  <ol>
+    <li><label for="avatar">Upload an avatar</label>
+        <%= f.file_field :avatar %></li>
+  </ol>
 </fieldset>
 
 <% restrict_to 'admin' do %>

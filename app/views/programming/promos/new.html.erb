@@ -1,7 +1,7 @@
 <h1>Create a New Promo</h1>
 
 <% remote_form_for(:promo, :url => promos_path) do |f| %>
-		<%= render(:partial => "promos/form", :locals => {:f => f})%>
+		<%= render(:partial => "programming/promos/form", :locals => {:f => f})%>
     <%= submit_tag "Create" %>
 <% end %>
 

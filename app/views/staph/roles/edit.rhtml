@@ -5,6 +5,6 @@
 <h1>Editing Role '<%= h @role %>'</h1>
 
 <% remote_form_for(:role, :url => role_path(@role), :html => { :method => :put }) do |f| %>
-	<%= render(:partial => "roles/form", :locals => {:f => f})%>
+	<%= render(:partial => "staph/roles/form", :locals => {:f => f})%>
   <%= submit_tag "Update" %>
 <% end %>

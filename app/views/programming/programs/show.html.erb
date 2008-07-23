@@ -1,3 +1,7 @@
+<% content_for :head do %>
+	<%= auto_discovery_link_tag(:atom, formatted_program_path(@program, :atom)) %>
+<% end %>
+
 <% content_for :record do %>
   <p><%= link_to("Edit '#{@program}'", edit_program_path(@program))%></p>
   <dl>
@@ -22,15 +26,21 @@
 <h2><%= @program.users.collect{|u| link_to(h(u), user_path(u))}.to_sentence %></h2>
 <%= @program.description %>
 
-<!-- TODO -->
 <% @program.schedules.each do |schedule| %>
   <h3><%= h schedule %></h3>
-  <p><%= h @program.slots %></p>
-  <table>
-    <% @program.playlists.each do |p| %>
-    <tr>
-      <td><%= link_to(h(p), playlist_path(p))%></td>
-    </tr>
-    <% end %>
-  </table>
+  <% @program.slots.select{|slot| slot.schedule == schedule}.each do |slot| %>
+  <h4><%= h slot %></h4>
+    <table>
+      <% slot.playlists.each do |playlist| %>
+      <tr id="<%= playlist.dom_id %>" class="<%= cycle(nil, 'stripe') %>">
+      	<td><%= h playlist.starts_at.to_ordinalized_s(:mdy) %></td>
+        <td><%= link_to 'Show', playlist_path(playlist) %></td>
+        <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
+        <td><%= link_to_remote 'Destroy', 
+      							            :url => playlist_path(playlist), 
+      							            :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+      <% end %>
+    </table>
+  <% end %>
 <% end %>

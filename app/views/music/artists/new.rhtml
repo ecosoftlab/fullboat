@@ -1,6 +1,6 @@
 <h1>Create a New Artist</h1>
 
 <% form_for(:artist, :url => artists_path) do |f| %>
-  <%= render(:partial => "artists/form", :locals => {:f => f})%>
+  <%= render(:partial => "music/artists/form", :locals => {:f => f})%>
   <%= submit_tag "Create" %>
 <% end %>

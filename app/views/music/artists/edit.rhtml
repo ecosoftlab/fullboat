@@ -5,6 +5,6 @@
 <h1>Editing Artist '<%= h @artist %>'</h1>
 
 <% remote_form_for(:artist, :url => artist_path(@artist), :html => { :method => :put }) do |f| %>
-  <%= render(:partial => "artists/form", :locals => {:f => f})%>
+  <%= render(:partial => "music/artists/form", :locals => {:f => f})%>
   <%= submit_tag "Update" %>
 <% end %>

@@ -1,7 +1,6 @@
 <% album = row %>
 <tr id="<%= album.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
-  <td><%# image_tag("placeholder_album.jpg", :alt => "Cover for #{h(album.name)}", :size => '16x16') %>
-      <%= placeholder_album_cover(:size => '16x16', :class => '')%></td>
+  <td><%= image_tag(album.cover.url, :size => '24x24', :class => '')%></td>
   <td><strong><%= truncate(h(album.name), 40) %></strong></td>
   <td><%= link_to(h(album.artist), artist_path(album.artist)) %></td>
   <td><abbr title="<%= h(album.released_on) %>"><%= h(album.released_on) %></abbr></td>

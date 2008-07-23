@@ -1,7 +1,7 @@
 <h1>Create a New Album</h1>
 
 <% remote_form_for(:album, :url => albums_path) do |f| %>
-	<%= render(:partial => "albums/form", :locals => {:f => f})%>
+	<%= render(:partial => "music/albums/form", :locals => {:f => f})%>
   <%= submit_tag "Create" %>
 <% end %>
 

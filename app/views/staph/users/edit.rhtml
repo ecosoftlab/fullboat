@@ -4,7 +4,7 @@
 
 <h1>Editing User '<%= h @user %>'</h1>
 
-<% remote_form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |f| -%>
-	<%= render(:partial => 'users/form', :locals => {:f => f})%>
+<% remote_form_for(:user, :url => user_path(@user), :html => { :multipart => true, :method => :put }) do |f| -%>
+	<%= render(:partial => 'staph/users/form', :locals => {:f => f})%>
 	<%= submit_tag 'Update' %>
 <% end -%>

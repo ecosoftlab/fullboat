@@ -1,6 +1,6 @@
 <h1>Create a New User</h1>
 
 <% remote_form_for(:user, :url => users_path) do |f| -%>
-	<%= render(:partial => 'users/form', :locals => {:f => f})%>
+	<%= render(:partial => 'staph/users/form', :locals => {:f => f})%>
 	<%= submit_tag 'Create' %>
 <% end -%>

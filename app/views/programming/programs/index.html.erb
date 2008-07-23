@@ -6,20 +6,22 @@
                :class    => 'column span-3',
                :onchange => "location=''+this.options[this.selectedIndex].value;" %>
 
-<hr class="space"/>
-
-<table>
-	<thead>
-	  <tr>
-	  	<th>Name</th>
-	  	<th>Users</th>
-	  	<th>Description</th>
-	  	<th>Type</th>
-	  	<th colspan="3"></th>
-	  </tr>
-	</thead>
+<% @schedules.each do |schedule| %>
+  <% next if schedule.programs.empty? %>
+  <h2><%= h schedule %></h2>
+  <table>
+  	<thead>
+  	  <tr>
+  	  	<th>Name</th>
+  	  	<th>Users</th>
+  	  	<th>Description</th>
+  	  	<th>Type</th>
+  	  	<th colspan="3"></th>
+  	  </tr>
+  	</thead>
 	
-	<tbody>
-	  <%= render(:collection => @programs, :partial => 'programming/programs/summary/row')%>
-	</tbody>
-</table>
+  	<tbody>
+  	  <%= render(:collection => schedule.programs.compact, :partial => 'programming/programs/summary/row')%>
+  	</tbody>
+  </table>
+<% end %>

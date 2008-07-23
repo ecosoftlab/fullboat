@@ -1,7 +1,7 @@
 <% program = row %>
 <tr id="<%= program.dom_id %>">
 	<td><strong><%= h program.name %></strong></td>
-	<td><%= h program.users.to_sentence %></td>
+	<td><%= program.users.collect{|u| link_to(h(u), user_path(u))}.to_sentence %></td>
 	<td><%= truncate(h(program.description_source), 100) %></td>
 	<td><%= h program.type.titleize %></td>
   <td><%= link_to 'Show', program_path(program) %></td>

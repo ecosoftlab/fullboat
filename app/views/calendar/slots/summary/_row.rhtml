@@ -1,9 +1,10 @@
 <% slot = row %>
 <tr id="<%= slot.dom_id %>">
-	<td><%= h Date::DAYS.invert[slot.day].titleize %></td>
+	<td></td>
 	<td><%= h slot.start_time.to_ordinalized_s(:time_only) %></td>
+	<td>&mdash;</td>
 	<td><%= h slot.end_time.to_ordinalized_s(:time_only) %></td>
-	<td><%= h slot.program %></td>
+	<td><%= link_to(h(slot.program), program_path(slot.program)) %></td>
 	
   <td><%= link_to 'Edit', edit_schedule_slot_path(slot.schedule, slot) %></td>
   <td><%= link_to_remote 'Destroy', 

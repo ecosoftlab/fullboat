@@ -5,6 +5,6 @@
 <h1>Editing Album '<%= h @album %>'</h1>
 
 <% remote_form_for(:album, :url => album_path(@album), :html => { :method => :put }) do |f| %>
-  <%= render(:partial => "albums/form", :locals => {:f => f})%>
+  <%= render(:partial => "music/albums/form", :locals => {:f => f})%>
   <%= submit_tag "Update" %>
 <% end %>

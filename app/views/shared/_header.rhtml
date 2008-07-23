@@ -10,8 +10,17 @@
   <%= navigation_tab("Staph",       staph_root_path )%>
 </ul>
 
-<% if current_user %>
-<div class="navigation" id="secondary">
-  <p>Logged in as: <%= h current_user %></p>
+<div class="search">
+  <% form_tag(search_url, :method => :get) do %>
+    <%= text_field_tag(:q, params[:q], 
+                       :value => params[:q].blank? ? "Enter search terms..." : 
+                                                      params[:q], 
+                       :onfocus => 'this.clear();')%>
+    <%= loading_indicator %>
+    <div id="quick-results" class="auto_complete"></div>
+    <%= auto_complete_field :q,
+                            :url => live_search_url,
+                            :update => 'quick-results',
+                            :indicator => "loading-indicator"  %>
+  <% end %>
 </div>
-<% end %>

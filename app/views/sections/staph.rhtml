@@ -5,6 +5,7 @@
 <table>
 	<thead>
   	<tr>
+  	  <th></th>
 		<th>Name</th>
 		<th>Title</th>
 		<th>E-mail</th>
@@ -13,17 +14,8 @@
 	</thead>
   
 	<tbody class="directory">
-<% @users.each do |user| %>
-	<tr id="<%= user.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
-		<td><strong><%= h user %></strong></td>
-		<td><!-- TODO --></td>
-		<td><%= mail_to(user.email, user.email, :encode => :javascript) %></td>
-		<td class="hide"><%= hcard(user) %></td>
-		<td><%= link_to("Show", user_path(user)) %></td>
-		<td colspan="2"></td>
-	</tr>
-	</tbody>
-<% end %>
+    <%= render(:collection => @users, :partial => 'staph/users/summary/row')%>
+  </tbody>
 </table>
 
 <%= will_paginate @users %>

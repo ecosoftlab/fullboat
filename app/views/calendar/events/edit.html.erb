@@ -5,6 +5,6 @@
 <h1>Editing Event '<%= h @event %>'</h1>
 
 <% remote_form_for(:event, :url => event_path(@event), :html => { :method => :put }) do |f| %>
-	<%= render(:partial => "events/form", :locals => {:f => f})%>
+	<%= render(:partial => "calendar/events/form", :locals => {:f => f})%>
   <%= submit_tag "Update" %>
 <% end %>

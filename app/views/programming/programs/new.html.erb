@@ -1,7 +1,7 @@
 <h1>Create a New Program</h1>
 
 <% remote_form_for(:program, :url => programs_path) do |f| %>
-	<%= render(:partial => "programs/form", :locals => {:f => f})%>
+	<%= render(:partial => "programming/programs/form", :locals => {:f => f})%>
   <%= submit_tag "Create" %>
 <% end %>
 

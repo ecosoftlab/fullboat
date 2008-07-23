@@ -1,5 +1,6 @@
 <% content_for :record do %>
   <p><%= link_to "Edit '#{h(@album)}'", edit_album_path(@album) %></p>
+  <p><%= link_to "Destroy '#{h(@album)}'", album_path(@album), :method => :delete, :confirm => "You sure?" %></p>
 
   <dl>
     <dt>Label</dt>
@@ -15,7 +16,7 @@
 <div id="<%= @album.dom_id %>" class="hreview">
   <div class="column span-4 append-1">
     <div class="album-cover">
-      <%= placeholder_album_cover(:jewelcase => true) %>
+      <%= jewelcase(@album) %>
       &nbsp;
     </div>
   </div>
@@ -47,7 +48,7 @@
     <h2>Track Listing</h2>
     <ol>
       <% @album.tracks.each do |track| %>
-        <li><%= h track %></li>
+        <li><%= h track.name %></li>
       <% end %>
     </ol>
   <% end %>

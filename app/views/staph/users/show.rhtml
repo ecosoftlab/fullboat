@@ -1,4 +1,8 @@
 <% content_for :record do %>
+  <% if current_user == @user %>
+    <p><%= link_to("Edit '#{h(@user)}'", edit_user_path(@user)) %></p>
+  <% end %>
+  
   <dl>
     <dt>Member Since</dt>
     <dd><%= @user.joined_on || "Unknown" %></dd>
@@ -6,6 +10,7 @@
     <dd><%= h @user.type.to_s.titleize %></dd>
   </dl>
 <% end %>
+  <%= image_tag(@user.avatar.url(:large), :class => 'right') %>
 
 <h1><%= h @user %></h1>
 

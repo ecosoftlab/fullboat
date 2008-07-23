@@ -1,8 +1,8 @@
 <% playlist = row %>
 
 <tr id="<%= playlist.dom_id %>" class="<%= cycle(nil, 'stripe') %>">
-	<td><%= h playlist.start_time %></td>
-	<td><%= h playlist.end_time %></td>
+	<td><%= h playlist.starts_at %></td>
+	<td><%= h playlist.ends_at %></td>
   <td><%= link_to 'Show', playlist_path(playlist) %></td>
   <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
   <td><%= link_to_remote 'Destroy', 

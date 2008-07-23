@@ -27,6 +27,12 @@
 		</div>
 		
 		<div class="column span-5 last" id="sidebar">
+		  <% if current_user %>
+      <div class="profile-box" id="secondary">
+        <p>Logged in as: <%= link_to(h(current_user), user_path(current_user)) %></p>
+      </div>
+      <% end %>
+      
 		  <div>
 		  <%= render(:partial => 'sidebar') rescue nil %>
 		  <%= yield :record %>

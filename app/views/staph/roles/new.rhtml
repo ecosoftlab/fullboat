@@ -1,7 +1,7 @@
 <h1>Create a New Role</h1>
 
 <% remote_form_for(:role, :url => roles_path) do |f| %>
-	<%= render(:partial => "roles/form", :locals => {:f => f})%>
+	<%= render(:partial => "staph/roles/form", :locals => {:f => f})%>
   <%= submit_tag "Create" %>
 <% end %>
 
