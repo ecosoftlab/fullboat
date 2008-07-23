@@ -3,6 +3,8 @@ class Promo < ActiveRecord::Base
 
   belongs_to :promotable, :polymorphic => true
 
+  searchify :code, :body
+
   validates_presence_of     :code
   validates_numericality_of :duration, :allow_nil => true
   

@@ -12,6 +12,14 @@ class Playlist < ActiveRecord::Base
   validate :validate_starts_at_before_ends_at
   validate :validate_duration_less_than_24_hours
   
+  def to_s
+    self.starts_at.to_ordinalized_s(:mdy)
+  end
+  
+  def description
+    self.plays.collect{|play| play.to_s}.join("\n")
+  end
+  
 private
 
   def validate_starts_at_before_ends_at

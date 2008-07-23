@@ -1,5 +1,7 @@
-class Album < ActiveRecord::Base
-  acts_as_taggable
+class Album < ActiveRecord::Base  
+  has_attached_file :cover, :styles => { :large => "300x300>", :jewelcase => "126x126#", :tiny => '24x24' },
+                            :default_style => :jewelcase,
+                            :default_url => "/images/missing-cover.gif"
 
   @@status_values = ["TBR", "Bin", "OOB", "NIB", "N&WC", "Missing", "Library"]
   cattr_reader :status_values
@@ -20,6 +22,8 @@ class Album < ActiveRecord::Base
   belongs_to :artist
   belongs_to :label
   belongs_to :genre
+  
+  searchify :name, :released_on, :artist => [:name], :review => [:body]
   
   serialize  :tracks
 

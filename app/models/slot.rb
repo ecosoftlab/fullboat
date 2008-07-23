@@ -2,6 +2,13 @@ class Slot < ActiveRecord::Base
   belongs_to :schedule
   belongs_to :program
   
+  has_many   :playlists,
+             :finder_sql => 'SELECT playlists.* FROM playlists
+	                              INNER JOIN slots on playlists.program_id = slots.program_id
+	                              INNER JOIN schedules on schedules.id = slots.schedule_id
+	                              WHERE slots.id = #{id} AND 
+	                                    playlists.starts_at BETWEEN schedules.starts_at AND schedules.ends_at '
+  
   before_validation :numeralize_day
   
   validates_presence_of     :schedule, :program
@@ -19,7 +26,7 @@ class Slot < ActiveRecord::Base
   end
   
   def to_s
-    [self.weekday, [self.start_time, self.end_time].collect{|t| t.to_ordinalized_s(:time_only)}.join(' - '), self.schedule].join(" ")
+    [self.weekday, [self.start_time, self.end_time].collect{|t| t.to_ordinalized_s(:time_only)}.join(' - ')].join(" ")
   end
   
   def duration

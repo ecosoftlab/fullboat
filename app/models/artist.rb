@@ -10,6 +10,8 @@ class Artist < ActiveRecord::Base
   has_many :comments, 
            :as => :commentable, 
            :dependent => :destroy
+  
+  searchify :name, :description
 
   validates_presence_of   :name, :sort_name
   validates_uniqueness_of :name
@@ -24,10 +26,9 @@ class Artist < ActiveRecord::Base
     self.name
   end
   
-  def self.search(name)
-    Artist.find(:all, :conditions => ['name LIKE ?', name.concat("%")], :limit => 20)
-  end
-  
+  # def self.search(name)
+  #   Artist.find(:all, :conditions => ['name LIKE ?', name.concat("%")], :limit => 20)
+  # end
   
   def genre
     self.genres.first

@@ -22,6 +22,13 @@
    #container { background: url(lib/grid.png); } 
 /**/
 
+
+h3{
+	border-bottom:1px #ccc solid;
+	padding-bottom:1em;
+	margin-top:2em;
+}
+
 a{
 	color:#046380;
 }
@@ -137,7 +144,7 @@ ul.navigation#primary li a{
 }
 
 .schedule tbody tr{
-	height:40px;
+	height:3em;
 }
 
 th.time{
@@ -160,6 +167,10 @@ th.time{
 }
 
 .schedule td div{
+	background:#fff;
+	opacity: 0.7;
+	-moz-opacity: 0.7;
+	filter:alpha(opacity=70);
 	width:94px;
 	padding:5px;
 	border:1px #333 solid;
@@ -167,6 +178,11 @@ th.time{
 	overflow:hidden;
 	position:absolute;
 }
+
+.schedule td.current div{
+	background:#f00;
+}
+
 .schedule td{
 	width:108px;
 	padding:0;
@@ -346,4 +362,8 @@ body.widescreen #content{
 .charts .bar span{
 	display:block;
 	background:#f00;
+}
+
+.right{
+	float:right;
 }

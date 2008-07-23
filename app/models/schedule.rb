@@ -29,18 +29,20 @@ class Schedule < ActiveRecord::Base
   end
   
   def slot_at(day, time)
-    Slot.find(:first, :conditions => ["schedule_id = :id AND day = :day AND :time BETWEEN start_time AND end_time", 
-                                       {:id => self.id, :day => day, :time => time}])
+    Slot.find(:first, :conditions => ["schedule_id = :id AND (
+                                        (day = :day AND :time BETWEEN start_time AND end_time) XOR
+                                        (start_time > end_time AND (day = ((:day + 6) % 7) AND :time < end_time)))", 
+                                       {:id => self.id, :day => day, :time => time.strftime('%H:%M:%S')}])
   end
   
   def slot_starting_at(day, time)
     Slot.find(:first, :conditions => ["schedule_id = :id AND day = :day AND :time = start_time", 
-                                       {:id => self.id, :day => day, :time => time}])
+                                       {:id => self.id, :day => day, :time => time.strftime('%H:%M:%S')}])
   end
   
   def slot_ending_at(day, time)
     Slot.find(:first, :conditions => ["schedule_id = :id AND day = :day AND :time = end_time", 
-                                       {:id => self.id, :day => day, :time => time}])
+                                       {:id => self.id, :day => day, :time => time.strftime('%H:%M:%S')}])
   end
   
 protected

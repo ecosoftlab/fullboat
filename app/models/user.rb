@@ -1,11 +1,15 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
-  @@status_values = ["Active", "Inactive", "Banned"]
-  cattr_reader :status_values
-  
+  @@status_values = ["Active", "Inactive", "Banned"].freeze 
   @@per_page = 30
-  cattr_reader :per_page
+  cattr_reader :status_values, :per_page
   
+  searchify :login, :first_name, :last_name, :dj_name
+  
+  has_attached_file :avatar, :styles => { :large => "300x300>", :thumb => "64x64#", :tiny => '24x24' },
+                             :default_style => :thumb,
+                             :default_url => '/images/missing-avatar.jpg'
+    
   has_and_belongs_to_many :roles
   
   has_and_belongs_to_many :programs
@@ -38,7 +42,9 @@ class User < ActiveRecord::Base
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation
+  attr_accessible :login, :email, :password, :password_confirmation,
+                  :first_name, :last_name, :dj_name
+  attr_accessible :avatar #, :avatar_file_name, :avatar_content_type, :avatar_file_size
   
   def to_s
     self.name.to_s

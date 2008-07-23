@@ -39,6 +39,9 @@ ActionController::Routing::Routes.draw do |map|
       sections.send("#{section}_root", "/#{section}", {:action => section})
     end
   end
+  
+  map.search      'search',   :controller => 'search', :action => 'query'
+  map.live_search 'search/live', :controller => 'search', :action => 'remote_live_search'
 
   map.resources :sessions
   map.login   'login',  :controller => 'sessions', :action => 'new'

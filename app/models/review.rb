@@ -3,6 +3,8 @@ class Review < ActiveRecord::Base
 
   belongs_to :album
   belongs_to :user
+  
+  searchify :body, :user => [:first_name, :last_name, :dj_name, :login]
 
   validates_presence_of :album_id
   validates_presence_of :user_id

@@ -6,10 +6,13 @@ class Program < ActiveRecord::Base
   
   has_and_belongs_to_many :users
   
-  has_many :promos,    :as => :promotable
-  has_many :slots
+  has_many :playlists, :order => 'starts_at DESC'
+  
+  has_many :slots,     :order => 'created_at DESC'
   has_many :schedules, :through => :slots
-  has_many :playlists
+  has_many :promos,    :as => :promotable
+  
+  searchify :name, :description, :promos => [:body], :users => [:first_name, :last_name, :dj_name]
     
   validates_presence_of     :name
   validates_uniqueness_of   :name

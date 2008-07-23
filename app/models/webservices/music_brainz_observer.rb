@@ -14,8 +14,7 @@ class MusicBrainzObserver < ActiveRecord::Observer
     :counts         => true,
     :release_events => true,
     :discs          => true,
-    :tracks         => true,
-    :tags           => true
+    :tracks         => true
   )
   
   # observe :artist, :album

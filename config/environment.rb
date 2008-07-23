@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   
   config.action_controller.session = { :session_key => "_wrct_session", 
                                        :secret      => "lYcY0aHucGRH8Ehf43BqxezUVkW4S2dB5LtbaYVw" }
-  config.active_record.observers   = []#[:last_fm_scrobbling_observer, :twitter_observer]                                   
+  config.active_record.observers   = [:last_fm_observer]#[:last_fm_scrobbling_observer, :twitter_observer]                                   
 end
 
 ActiveRecord::Base.class_eval do
@@ -83,6 +83,16 @@ class String
     l = length - truncate_string.chars.length
     chars = self.chars
     (chars.length > length ? chars[0...l] + truncate_string : self).to_s
+  end
+end
+
+# fix Tempfile to work with mogrify by removing filename extension
+class Tempfile
+  def make_tmpname(basename, n)
+    # force tempfile to use basename's extension if provided
+    ext = File::extname(basename)
+    # force hyphens instead of periods in name
+    sprintf('%s%d-%d%s', File::basename(basename, ext), $$, n, ext)
   end
 end
 
