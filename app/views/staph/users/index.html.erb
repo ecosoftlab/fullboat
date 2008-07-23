@@ -1,0 +1,20 @@
+<h1>Users</h1>
+
+<%= will_paginate @users %>
+
+<table>
+	<thead>
+  	<tr>
+		<th>Name</th>
+		<th>Title</th>
+		<th>E-mail</th>
+		<th colspan="4"></th>
+  	</tr>
+	</thead>
+  
+	<tbody class="directory">
+    <%= render(:collection => @users, :partial => 'staph/users/summary/row')%>
+  </tbody>
+</table>
+
+<%= will_paginate @users %>

@@ -1,0 +1,10 @@
+<% user = row %>
+<tr id="<%= user.dom_id %>" class="<%= cycle(nil, 'stripe')%>">
+  <td><%= image_tag(user.avatar.url(:tiny), :size => '24x24') %></td>
+	<td><strong><%= h user %></strong></td>
+	<td><!-- TODO --></td>
+	<td><%= mail_to(user.email, user.email, :encode => :javascript) %></td>
+	<td class="hide"><%= hcard(user) %></td>
+	<td><%= link_to("Show", user_path(user)) %></td>
+	<td colspan="2"></td>
+</tr>
