@@ -1,21 +1,30 @@
-<h1>Listing Reviews</h1>
+<% content_for :head do %>
+	<%= auto_discovery_link_tag(:atom, formatted_reviews_url(:atom)) %>
+<% end %>
+
+<h1>Recent Reviews</h1>
 
 <table>
 	<thead>
-	<tr>
-	    	<th>Body</th>
-	    	<th>User</th>
-	    	<th>Album</th>
-	  	</tr>
+	  <tr>
+    	<th></th>
+    	<th></th>
+    	<th></th>
+    	<th></th>
+    	<th colspan="3"></th>
+  	</tr>
 	</thead>
 	
 	<tbody>
   	<% @reviews.each do |review| %>
   		<tr>
-		    		<td><%=h review.body %></td>
-		    		<td><%=h review.user_id %></td>
-		    		<td><%=h review.album_id %></td>
-		  		</tr>
+  		  <td><%= image_tag(review.album.cover.url(:tiny), :size => '32x32') %></td>
+  		  <td><%= review.album %></td>
+    		<td><%= review.body %></td>
+    		<td><%= review.user %></td>
+    		<td><%= link_to("Show", review_path(review)) %></td>
+    		<td colspan="2"></td>
+  		</tr>
 	<% end %>
 	</tbody>
 </table>

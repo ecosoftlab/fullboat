@@ -12,8 +12,7 @@
   </dl>
 <% end %>
 
-<!-- hReview microformat -->
-<div id="<%= @album.dom_id %>" class="hreview">
+<div id="<%= @album.dom_id %>">
   <div class="column span-4 append-1">
     <div class="album-cover">
       <%= jewelcase(@album) %>
@@ -32,14 +31,13 @@
   <% if @album.review %>
     <div class="description">
       <blockquote>
-      <%= @album.review.body %>
+        <%= @album.review.body %>
       </blockquote>
-      <!-- hReview microformat -->
       <cite>
         Review by <%= link_to(h(@album.review.user), user_path(@album.review.user)) %>
-        <%= vcard(@album.review.user, :class => 'reviewer hide') %>
       </cite>
     </div>
+    <%= hreview(@album.review, :class => 'hide') %>
   <% end %>
     
     <hr class="space" />
