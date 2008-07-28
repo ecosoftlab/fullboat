@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
       music.resources :artists
       music.resources :albums, :has_one => [:review]
       music.resources :labels
+      music.resources :reviews
       music.resources :formats
       music.resources :genres
       music.resources :playlists, :has_many => [:plays]
