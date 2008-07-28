@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   
   searchify :login, :first_name, :last_name, :dj_name
   
-  has_attached_file :avatar, :styles => { :large => "300x300>", :thumb => "64x64#", :tiny => '24x24' },
+  has_attached_file :avatar, :styles => { :large => "230x230>", :thumb => "64x64#", :tiny => '24x24' },
                              :default_style => :thumb,
                              :default_url => '/images/missing-avatar.jpg'
     

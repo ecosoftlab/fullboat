@@ -10,7 +10,7 @@
     <dd><%= h @user.type.to_s.titleize %></dd>
   </dl>
 <% end %>
-  <%= image_tag(@user.avatar.url(:large), :class => 'right') %>
+  <%= image_tag(@user.avatar.url(:large), :size => '230x230', :class => 'right') %>
 
 <h1><%= h @user %></h1>
 
