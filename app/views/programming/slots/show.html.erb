@@ -2,5 +2,5 @@
   <p><%= link_to("Edit this Time Slot", edit_schedule_slot_path(@slot.schedule, @slot)) %></p>
 <% end %>
 
-<h1><%= h @slot %></h1>
+<h1><%= simple_format h(@slot) %></h1>
 <h2><%= h @slot.program %></h2>

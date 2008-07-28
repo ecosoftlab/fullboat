@@ -26,7 +26,7 @@ class Slot < ActiveRecord::Base
   end
   
   def to_s
-    [self.weekday, [self.start_time, self.end_time].collect{|t| t.to_ordinalized_s(:time_only)}.join(' - ')].join(" ")
+    [self.schedule, [self.weekday, [self.start_time, self.end_time].collect{|t| t.to_ordinalized_s(:time_only)}.join(' - ')].join(" ")].join("\n")
   end
   
   def duration
