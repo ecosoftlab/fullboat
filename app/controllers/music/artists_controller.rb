@@ -10,23 +10,9 @@ class Music::ArtistsController < MusicController
                                :page => params[:page],
                                :order => "sort_name ASC")
 
-    options = { :feed => { :title       => "Artists",
-                           :description => "",
-                           :language    => "en-us" },
-                :item => { :title       => :title,
-                           :description => :description,
-                           :pub_date    => :created_at }
-              }
-
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @artists.to_xml }
-      format.rss  { render_rss_feed_for @artists,
-                      options.update({:link => formatted_artists_url(:rss)})
-                  }
-      format.atom { render_atom_feed_for @artists,
-                      options.update({:link => formatted_artists_url(:atom)})
-                  }
     end
   end
 

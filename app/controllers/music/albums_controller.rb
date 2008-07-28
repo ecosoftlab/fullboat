@@ -10,24 +10,10 @@ class Music::AlbumsController < MusicController
     @albums = Album.paginate(:all, :conditions => [conditions.join(" AND "), values], 
                                :page => params[:page],
                                :order => "name ASC")
-                               
-    options = { :feed => { :title       => "Albums",
-                           :description => "",
-                           :language    => "en-us" },
-                :item => { :title       => :title,
-                           :description => :description,
-                           :pub_date    => :created_at }
-              }
 
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @albums.to_xml }
-      format.rss  { render_rss_feed_for @albums,
-                      options.update({:link => formatted_albums_url(:rss)})
-                  }
-      format.atom { render_atom_feed_for @albums,
-                      options.update({:link => formatted_albums_url(:atom)})
-                  }
     end
   end
 

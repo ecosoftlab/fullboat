@@ -1,27 +1,16 @@
 class Music::ReviewsController < MusicController
+  
+  skip_before_filter :login_required
 
   # GET /reviews
   # GET /reviews.xml
   def index
-    @reviews = Review.find(:all)
-
-    options = { :feed => { :title       => "Reviews",
-                           :description => "",
-                           :language    => "en-us" },
-                :item => { :title       => :title,
-                           :description => :description,
-                           :pub_date    => :created_at }
-              }
+    @reviews = Review.find(:all, :conditions => ["created_at > ?", Date.today.last_month])
 
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @reviews.to_xml }
-      format.rss  { render_rss_feed_for @reviews,
-                      options.update({:link => formatted_reviews_url(:rss)})
-                  }
-      format.atom { render_atom_feed_for @reviews,
-                      options.update({:link => formatted_reviews_url(:atom)})
-                  }
+      format.atom { render :layout => false}
     end
   end
 
@@ -30,9 +19,12 @@ class Music::ReviewsController < MusicController
   def show
     @review = Review.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @review.to_xml }
+    if @review.album
+      respond_to do |format|
+        format.html { redirect_to album_url(@review.album) }
+        format.xml  { render :xml => @review.to_xml }
+      end
+    else
     end
   end
 
