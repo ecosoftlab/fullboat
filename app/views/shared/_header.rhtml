@@ -3,24 +3,4 @@
   <span>WRCT: a full boat</span>
 </h1>
 
-<ul class="navigation" id="primary">
-  <%= navigation_tab("Music",       music_root_path )%>
-  <%= navigation_tab("Programming", programming_root_path )%>
-  <%= navigation_tab("Calendar",    calendar_root_path )%>
-  <%= navigation_tab("Staph",       staph_root_path )%>
-</ul>
-
-<div class="search">
-  <% form_tag(search_url, :method => :get) do %>
-    <%= text_field_tag(:q, params[:q], 
-                       :value => params[:q].blank? ? "Enter search terms..." : 
-                                                      params[:q], 
-                       :onfocus => 'this.clear();')%>
-    <%= loading_indicator %>
-    <div id="quick-results" class="auto_complete"></div>
-    <%= auto_complete_field :q,
-                            :url => live_search_url,
-                            :update => 'quick-results',
-                            :indicator => "loading-indicator"  %>
-  <% end %>
-</div>
+<%= render(:partial => 'shared/navigation') %>

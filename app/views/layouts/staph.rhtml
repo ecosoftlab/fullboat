@@ -6,10 +6,7 @@
     </ul>
 
     <h3>Staph</h3>
-    <ul>
-      <li><%= link_to_unless_current "Users", users_path %></li>
-      <li><%= link_to_unless_current "Roles & Permissions", roles_path %></li>
-    </ul>
+    <%= render(:partial => 'staph/navigation') %>
   <% end %>
 <% end %>
 

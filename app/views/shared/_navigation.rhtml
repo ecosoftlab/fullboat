@@ -1,0 +1,17 @@
+<ul class="navigation dropdown">
+  <li>
+    <%= link_to("Music", music_root_path) %>
+    <%= render(:partial => 'music/navigation') %>
+  </li>
+  <li>
+    <%= link_to("Programming", programming_root_path) %>
+    <%= render(:partial => 'programming/navigation') %>
+  </li>
+  <li>
+    <%= link_to("Calendar", calendar_root_path) %>
+  </li>
+  <li>
+    <%= link_to("Staph", staph_root_path) %>
+    <%= render(:partial => 'staph/navigation') %>
+  </li>
+</ul>

@@ -1,12 +1,7 @@
 <% unless @content_for_section %>
   <% content_for :section do %>
     <h3>Programming</h3>
-    <ul>
-      <li><%= link_to_unless_current "Schedules", schedules_path %></li>
-      <li><%= link_to_unless_current "Programs", programs_path %></li>
-      <li><%= link_to_unless_current "PSAs", psas_path %></li>
-      <li><%= link_to_unless_current "Promos",  promos_path %></li>
-    </ul>
+    <%= render(:partial => 'programming/navigation')%>
   <% end %>
 <% end %>
 

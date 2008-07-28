@@ -19,9 +19,15 @@
    
 /*/ See the grid:
    Uncomment the line below to see the grid and baseline./
-   #container { background: url(lib/grid.png); } 
 /**/
+   #container { background: url(lib/grid.png); } 
 
+#container{width: 960px; margin:0 30px;}
+
+html, body{
+	padding:0;
+	margin:0;
+}
 
 h3{
 	border-bottom:1px #ccc solid;
@@ -72,7 +78,6 @@ td.handle:hover{
 }
 
 #header{
-	border:1px #111 solid;
 	margin-bottom:50px;
 }
 
@@ -81,56 +86,122 @@ td.handle:hover{
 	width:190px;
 }
 
-.navigation{
+ul.navigation{
 	float:left;
-	margin:0;
-	margin-left:80px;
-	width:668px;
+	background:#111;
+	width:800px;
 }
 
 ul.navigation li{
 	float:left;
 	display:block;
-}
-
-ul.navigation#primary{
-	background:#111;
-	float:left;
-}
-
-ul.navigation#primary li{
 	font-size:1.5em;
-	width:149px;
 	border-right:1px #fff solid;
 }
 
-ul.navigation#primary li.current{
+ul.navigation li ul li{
+	font-size:0.75em;
+	background:#fff;
+}
+
+ul.navigation li.current{
 	background:#046380;
 }
 
-ul.navigation#primary li a:hover{
+ul.navigation li a:hover{
 	background:#ccc;
 	
 }
 
-ul.navigation#primary li a{
-	text-shadow:1px 1px 1px #555;
+ul.navigation li a{
 	color:#fff;
 	display:block;
-	width:130px;
 	padding:10px;
 	text-decoration:none;
 }
 
-
-
-.navigation#secondary{
-
+ul.navigation li, .dropdown li ul, .dropdown li, .dropdown li ul li, .dropdown li ul li{
+	width:199px !important;/* leaves room for padding */
 }
 
-.navigation#secondary {
-
+ul.navigation li a{
+	width:179px;
 }
+
+
+.dropdown,
+.dropdown * { margin:0;padding:0;}
+/* "Master" UL (the whole Menu) */
+.dropdown {position:relative;
+}
+/* sub-menu ULs */
+.dropdown li ul {
+	cursor:default;
+	position:absolute;
+	height:auto;
+	display:none;
+	left:-10px;
+	margin-top:20px;
+	padding:1px 10px 10px 10px;
+	background:url(/img/clear.gif);/* trick to keep'em open */
+}
+/* All LIs */
+.dropdown li {
+	position:relative;
+	cursor:pointer;
+	float:left;
+	list-style-type:none;
+	font-weight:bold;
+}
+/* sub-menu LIs */
+.dropdown li ul li {
+	padding:0;
+	border:none;
+	border:1px solid #333;
+	border-top:none;
+}
+/* All anchors */
+.dropdown li a {
+	cursor:default;
+	color:#666;
+	text-decoration:none;
+	display:block;
+	float:left;
+	padding:0 0.4em;
+	line-height:2em;
+}
+/* sub-menu Anchors */
+.dropdown li ul li a {
+	position:relative !important; /* ie Mac */
+	cursor:pointer !important;
+	white-space:nowrap;
+	line-height:1.7em;
+	height:1em;
+	font-weight:normal;
+	border:1px solid #fff;
+	color:#666;
+/*	background-position:0 50% !important;
+*/}
+/* :hover and stuff */
+.dropdown li a:hover,
+.dropdown li a:focus,
+.dropdown li a:active {color:#000}
+/* move the declarations from the rule below the one above if you want a background swap on *all* anchors, including the top level ones */
+.dropdown ul a:hover,
+.dropdown ul a:focus,
+.dropdown ul a:active {color:#fff !important;}
+/* display and z-index for the sub-menus */
+.dropdown li:hover ul,
+.dropdown li.msieFix ul {display:block;z-index:10;top:2em !important;}
+/* safari: users can keep sub-menus up by from sub-menus to next top level  */
+/* didn't find a solution for users going back from the last one. I prefer  */
+/* to leave it like that vs. taking the last sub-menu *out of* the wrapper  */
+.dropdown li#AB {z-index:6;}
+.dropdown li#CF {z-index:5;}
+.dropdown li#GJ {z-index:4;}
+.dropdown li#KR {z-index:3;}
+.dropdown li#ST {z-index:2;}
+.dropdown li#UZ {z-index:1;}
 
 
 /* Schedule */
@@ -148,22 +219,26 @@ ul.navigation#primary li a{
 }
 
 th.time{
-	width:70px;
+	width:10%;
 	text-align:left;
 	vertical-align:middle;
 }
 
 .monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday{
-	width:100px;
+	width:12.5%;
 	padding:5px;
 }
 
-.monday{
-	background:#222;
+th.saturday{
+	padding:0;	margin:0;
 }
 
 .dead-air{
 	background:#BBE3DD;
+}
+
+.schedule td{
+	padding:0;
 }
 
 .schedule td div{
@@ -171,7 +246,7 @@ th.time{
 	opacity: 0.7;
 	-moz-opacity: 0.7;
 	filter:alpha(opacity=70);
-	width:94px;
+		width:67px;
 	padding:5px;
 	border:1px #333 solid;
 	margin:0 auto;
@@ -366,4 +441,14 @@ body.widescreen #content{
 
 .right{
 	float:right;
+}
+
+
+#footer{
+	background:#111;
+	padding:5px 0 0 0;
+	display:block;
+	float:none;
+	clear:both;
+	color:#fff;
 }

@@ -11,7 +11,7 @@
 </head>
 
 <% content_tag :body, (@options_for_body_tag || {:id => 'standard'}) do %>
-	<div id="container" class="span-23 prepend-1">
+	<div id="container">
 		<div id="header" class="clear">
 		  <%= render(:partial => 'shared/header') %>
 		</div>
@@ -27,7 +27,7 @@
 		</div>
 		
 		<div class="column span-5 last" id="sidebar">
-		  <% if current_user %>
+		  <% if logged_in? %>
       <div class="profile-box">
         <%= image_tag(current_user.avatar.url(:tiny)) %>
         <p>Logged in as: <%= link_to(h(current_user), user_path(current_user)) %></p>
@@ -41,7 +41,7 @@
 		  </div>
 		</div>
 		
-		<div id="footer" class="clear break">
+		<div id="footer">
 		  <%= render(:partial => 'shared/footer') %>
 		</div>
 	</div>
