@@ -11,8 +11,8 @@
   
   <thead>
     <th class="time">Time</th>
-  <% %w{sunday monday tuesday wednesday thursday friday saturday}.each do |day| -%>
-    <th class="day"><%= day.capitalize %></th>
+  <% %w{sunday monday tuesday wednesday thursday friday saturday}.each do |wday| -%>
+    <th class="day <%= wday %>"><%= wday.capitalize %></th>
   <% end -%>
   </thead>
   
