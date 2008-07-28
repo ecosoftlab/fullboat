@@ -1,0 +1,14 @@
+<div class="search">
+  <% form_tag(search_url, :method => :get) do %>
+    <%= text_field_tag(:q, params[:q], 
+                       :value => params[:q].blank? ? "Enter search terms..." : 
+                                                      params[:q], 
+                       :onfocus => 'this.clear();')%>
+    <%= loading_indicator %>
+    <ul id="quick-results" class="auto_complete"></ul>
+    <%= auto_complete_field :q,
+                            :url => live_search_url,
+                            :update => 'quick-results',
+                            :indicator => "loading-indicator"  %>
+  <% end %>
+</div>
