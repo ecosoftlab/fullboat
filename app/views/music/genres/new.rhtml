@@ -1,8 +1,0 @@
-<h1>Create a New Genre</h1>
-
-<% remote_form_for(:genre, :url => genres_path) do |f| %>
-	<%= render(:partial => "music/genres/form", :locals => {:f => f})%>
-  <%= submit_tag "Create" %>
-<% end %>
-
-<%= link_to 'Back', genres_path %>

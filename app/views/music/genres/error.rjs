@@ -1,3 +1,0 @@
-page['error'].replace_html error_messages_for(:genre)
-page['error'].show
-page << "new Effect.ScrollTo('alert')"
