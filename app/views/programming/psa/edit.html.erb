@@ -1,5 +1,7 @@
 <% content_for :record do %>
-  <p><%= link_to("Back to '#{@psa}'", label_path(@psa)) %></p>
+  <ul>
+    <li><%= link_to("Back to '#{@psa}'", label_path(@psa)) %></li>
+  </ul>
 <% end %>
 
 <h1>Editing PSA '<%= h @psa %>'</h1>

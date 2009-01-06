@@ -1,5 +1,7 @@
 <% content_for :record do %>
-  <p><%= link_to("Edit '#{@psa}'", edit_psa_path(@psa))%></p>
+  <ul>
+    <li><%= link_to("Edit '#{@psa}'", edit_psa_path(@psa))%></li>
+  </ul>
   <dl>
     <dt>Expires On:</dt>
     <dd><%= h(@psa.expires_on || "N/A") %></dd>
