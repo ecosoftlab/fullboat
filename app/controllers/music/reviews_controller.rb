@@ -5,8 +5,10 @@ class Music::ReviewsController < MusicController
   # GET /reviews
   # GET /reviews.xml
   def index
-    @reviews = Review.find(:all, :conditions => ["created_at > ?", Date.today.last_month])
-
+    @reviews = Review.find(:all, :conditions => ["created_at > ?", Date.today.last_month], :limit => 10)
+    @recent = @reviews.slice!(0)
+    @tbr = Album.find_in_state(:all, "TBR", :order => "created_at DESC")
+    
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @reviews.to_xml }
@@ -41,7 +43,9 @@ class Music::ReviewsController < MusicController
   # POST /reviews
   # POST /reviews.xml
   def create
-    @review = @album.review.new(params[:review])
+    @review = Review.new(params[:review])
+    @review.album = Album.find(params[:album_id])
+    @review.user = current_user
     @review.save!
 
     respond_to do |format|

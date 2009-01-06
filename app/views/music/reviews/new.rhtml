@@ -1,8 +1,0 @@
-<h1>Create a New Review</h1>
-
-<% remote_form_for(:review, :url => reviews_path) do |f| %>
-	<%= render(:partial => "music/reviews/form", :locals => {:f => f})%>
-  <%= submit_tag "Create" %>
-<% end %>
-
-<%= link_to 'Back', reviews_path %>

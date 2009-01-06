@@ -1,1 +1,5 @@
-page.redirect_to reviews_url
+page['review'].visual_effect :slide_up, :duration => 1
+page.delay(1) do
+  page.replace_html 'review', :partial => 'music/reviews/summary', :object => @review
+  page['review'].visual_effect(:slide_down)
+end

@@ -1,0 +1,32 @@
+<h3>Search Results</h3>
+<% @results.each do |result| %>
+  <div class="column span-12">
+    <h2><strong><%= h result.title %></strong><br/>
+        <%= result.artists.collect{|artist| artist.name}.to_sentence %></h2>
+    <dl class="column span-6">
+        <dt>Release Date</dt>
+        <dd><%= result.released_on.to_s(:mdy) rescue content_tag(:em, "N/A")  %></dd>
+    </dl>
+    <% if result.tracks.any? %>
+      <dl class="column span-6 last">
+        <dt>Tracks</dt>
+        <dd>
+          <ol>
+            <% result.tracks.slice(0..4).each do |track| %>
+              <li><%= track.title %></li>
+            <% end %>
+            <li>...</li>
+          </ol>
+        </dd>
+      </dl>
+    <% end %>
+  </div>
+  <div class="column span-3 last">
+    <%= button_to("Add Album", albums_path(:album => {:name => result.title,
+                                                      :released_on => result.released_on,
+                                                      :tracks => result.tracks.collect{|t| t.title}
+                                                      },
+                                           :artist => {:name => result.artists.first.name}), 
+                                           :method => :post) %>
+  </div>
+<% end %>

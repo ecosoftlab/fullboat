@@ -1,10 +1,38 @@
 class Album < ActiveRecord::Base  
+  named_scope :recent, :conditions => {:status => ['TBR', 'BIN', 'N&WC'], 
+                                    :created_at => 2.weeks.ago..Time.now },
+                       :order => 'created_at DESC'
+  
+  
   has_attached_file :cover, :styles => { :large => "300x300>", :jewelcase => "126x126#", :tiny => '24x24' },
                             :default_style => :jewelcase,
-                            :default_url => "/images/missing-cover.gif"
-
-  @@status_values = ["TBR", "Bin", "OOB", "NIB", "N&WC", "Missing", "Library"]
-  cattr_reader :status_values
+                            :default_url => "/images/missing-cover.gif"  
+  
+  acts_as_state_machine :initial => "TBR", :column => 'status'
+  
+  # TODO Add notifications
+  state :tbr, :value => "TBR"
+  state :bin, :value => "BIN"
+  state :oob, :value => "OOB"  
+  state :nib, :value => "NIB"
+  state :nwc, :value => "N&WC"
+  state :missing, :value => "Missing"
+  state :library, :value => "Library"
+  
+  event :review do
+    transitions :from => "TBR", :to => "BIN"
+  end
+  
+  event :report_missing do
+    transitions :from => ["TBR", "BIN", "OOB", "NIB", "N&WC", "Library"], :to => "Missing"
+  end
+  
+  event :shelve do
+    transitions :from => "Missing", :to => "Library"
+    transitions :from => "BIN", :to => "OOB"
+    transitions :from => "TBR", :to => "NIB"
+  end
+  
   
   @@per_page = 50
   cattr_reader :per_page
@@ -23,7 +51,7 @@ class Album < ActiveRecord::Base
   belongs_to :label
   belongs_to :genre
   
-  searchify :name, :released_on, :artist => [:name], :review => [:body]
+  searchify :name, :artist => [:name]
   
   serialize  :tracks
 
@@ -32,12 +60,9 @@ class Album < ActiveRecord::Base
   
   validates_presence_of     :name
   validates_uniqueness_of   :name, :scope => :artist_id, :unless => lambda { |album| album.artist.nil? }
-                           
-  validates_inclusion_of    :status,
-                            :within    => @@status_values,
-                            :allow_nil => true
                             
   before_validation_on_create :initialize_sort_name
+  before_validation_on_create :check_for_compilation
   
   def to_param
     return "#{self.id}-#{self.name.gsub(/\W/, '')}"
@@ -45,6 +70,11 @@ class Album < ActiveRecord::Base
 
   def to_s
     self.name
+  end
+  
+  def description
+    "%s\nArtist: %s\nReleased on: %s\nLabel: %s\n\n%s" % \
+      [self.name, self.artist || "N/A", self.released_on || "Unknown", self.label || "Unknown", self.tracks]
   end
   
   def self.most_played(options = {})    
@@ -65,14 +95,13 @@ class Album < ActiveRecord::Base
 		                ])
   end
   
-  def change_status(status, options = {})
-    self.comments << Comment.create(:body => "Status was changed from %s on %s" % [self[:status], Date.today])
-    self.update_attribute(:status, status)
-  end
-  
 protected
 
   def initialize_sort_name
     self[:sort_name] ||= self[:name].strip.gsub(/^([^a-zA-z\d]*|(the|a))\s+/i, "") if self[:name]
+  end
+  
+  def check_for_compilation
+    self[:is_compilation] ||= ! self.artist.valid?
   end
 end

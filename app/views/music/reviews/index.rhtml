@@ -4,27 +4,56 @@
 
 <h1>Recent Reviews</h1>
 
-<table>
-	<thead>
-	  <tr>
-    	<th></th>
-    	<th></th>
-    	<th></th>
-    	<th></th>
-    	<th colspan="3"></th>
-  	</tr>
-	</thead>
+<% if @recent %>
+  <div>
+    <div class="column span-5 append-1">
+      <div class="album-cover">
+        <%= jewelcase(@recent.album) %>
+      </div>
+    </div>
+    <div class="column span-11 last">
+      <h2>
+        <%= link_to(h(@recent.album.name), album_path(@recent.album)) %> by
+        <%= link_to(h(@recent.album.artist.name), artist_path(@recent.album.artist_id)) %>
+      </h2>
+      <p><strong>Review by <%= link_to(h(@recent.user), user_path(@recent.user)) %></strong></p>
+      <%= @recent.body %>
+    </div>
+  </div>
+<% end %>
+
+<hr class="space"/>
+
+<% if @tbr.any? %>
+  <div class="box">
+    <h2>There are <%= link_to(pluralize(@tbr.length, "albums"), tbr_albums_path) %> that still need to be reviewed, including <%= @tbr.slice(0..2).compact.collect{|album| link_to(h(album.name), album_path(album))}.to_sentence %></h2>
+  </div>
+<% end %>
+
+<hr class="space"/>
+
+<% if @reviews.any? %>
+  <h3>Also recently reviewed...</h3>
+  <table>
+  	<thead>
+  	  <tr>
+      	<th class="min-width"></th>
+      	<th colspan="3"></th>
+      	<th colspan="1" class="options"></th>
+    	</tr>
+  	</thead>
 	
-	<tbody>
-  	<% @reviews.each do |review| %>
-  		<tr>
-  		  <td><%= image_tag(review.album.cover.url(:tiny), :size => '32x32') %></td>
-  		  <td><%= review.album %></td>
-    		<td><%= review.body %></td>
-    		<td><%= review.user %></td>
-    		<td><%= link_to("Show", review_path(review)) %></td>
-    		<td colspan="2"></td>
-  		</tr>
-	<% end %>
-	</tbody>
-</table>
+  	<tbody>
+    	<% @reviews.each do |review| %>
+    		<tr>
+    		  <td><%= image_tag(review.album.cover.url(:tiny), :size => '32x32') %></td>
+    		  <td><%= review.album %></td>
+      		<td><%= review.body %></td>
+      		<td><%= review.user %></td>
+      		<td><%= link_to("Show", review_path(review)) %></td>
+      		<td colspan="2"></td>
+    		</tr>
+  	<% end %>
+  	</tbody>
+  </table>
+<% end %>

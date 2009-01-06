@@ -1,0 +1,34 @@
+<h3>Search Result</h3>
+
+<div class="column span-4 clearfix">
+  <%= jewelcase(@result.image_large) %>
+</div>
+<div class="column span-8">
+  <h2><strong><%= h @result.name %></strong><br/>
+      <%= h @result.artist %></h2>
+  <dl class="column span-4">
+      <dt>Release Date</dt>
+      <dd><%= @result.release_date.to_s(:mdy) rescue content_tag(:em, "N/A") %></dd>
+  </dl>
+  <% if @result.tracks.any? %>
+    <dl class="column span-4 last">
+      <dt>Tracks</dt>
+      <dd>
+        <ol>
+          <% @result.tracks.slice(0..6).each do |track| %>
+            <li><%= track.name %></li>
+          <% end %>
+          <li>...</li>
+        </ol>
+      </dd>
+    </dl>
+  <% end %>
+</div>
+<div class="column span-3 last">
+  <%= button_to("Add Album", albums_path(:album => {:name => @result.name,
+                                                    :released_on => @result.release_date,
+                                                    :tracks => @result.tracks.collect{|t| t.name}
+                                                    },
+                                         :artist => {:name => @result.artist.to_s}), 
+                                         :method => :post) %>
+</div>

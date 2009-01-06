@@ -1,0 +1,27 @@
+<% content_for :head do %>
+	<%= auto_discovery_link_tag(:atom, formatted_tbr_albums_url(:atom)) %>
+<% end %>
+
+<h1>TBR Albums</h1>
+
+<%= will_paginate @albums %>
+
+<table>
+<thead>
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Released</th>
+    <th>Genre</th>
+    <th>Status</th>
+    <th colspan="3"></th>
+  </tr>
+</thead>
+
+<tbody>
+  <%= render(:collection => @albums, :partial => 'music/albums/summary/row') %>
+</tbody>
+</table>
+
+<%= will_paginate @albums %>

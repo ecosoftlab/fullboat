@@ -3,8 +3,8 @@
   <td><%= image_tag(album.cover.url, :size => '24x24', :class => '')%></td>
   <td><strong><%= truncate(h(album.name), 40) %></strong></td>
   <td><%= link_to(h(album.artist), artist_path(album.artist)) %></td>
-  <td><abbr title="<%= h(album.released_on) %>"><%= h(album.released_on) %></abbr></td>
-  <td><%= link_to(h(album.genre), genre_path(album.genre)) %></td>
+  <td><abbr title="<%= h(album.released_on) %>"><%= h(album.released_on.to_s(:my)) rescue nil %></abbr></td>
+  <td><%= h(album.genre) %></td>
   <td>
     <abbr title="Status was last changed <%= time_ago_in_words(album.status_changed_on) rescue "N/A" %>" >
       <%= h album.status %>

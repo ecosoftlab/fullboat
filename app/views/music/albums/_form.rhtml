@@ -1,7 +1,7 @@
 <div id="error" class="alert error" style="display:none;"></div>
 
 <!--[form:album]-->
-<fieldset id="album_details" class="clearfix">
+<fieldset id="manual" class="clearfix">
   <legend>Album Details</legend>
   <ol>
     <li>
@@ -16,7 +16,6 @@
       <label for="artist_name">Artist</label>
       <%= text_field :artist, :name %>
     </li>
-    <% if false %>
     <li>
       <label for="label_name">Label</label>
       <%= text_field :label, :name %>
@@ -35,13 +34,12 @@
     </li>
     <li>
       <label for="status">Status</label>
-      <%= f.select :status, Album.status_values %>
+      <%= f.select :status, Album.states %>
     </li>
     <li>
-      <label for="tracks">Tracks</label>
+      <label for="tracks">Tracks <span class="explanatory">Line-Delimited</span></label>
       <%= f.text_area :tracks %>
     </li>
-    <% end %>
   </ol>
 </fieldset>
 <!--[eoform:album]-->

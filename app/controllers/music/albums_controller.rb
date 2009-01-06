@@ -45,8 +45,8 @@ class Music::AlbumsController < MusicController
   # POST /albums.xml
   def create
     @album = Album.new(params[:album])
-    @album.artist   = Artist.find_or_create_by_name(params[:artist][:name])
-    # @album.label    = Label.find_or_create_by_name(params[:label][:name])
+    @album.artist   = Artist.find_or_create_by_name(params[:artist][:name]) rescue nil
+    @album.label    = Label.find_or_create_by_name(params[:label][:name]) rescue nil
     
     @album.save!
 
@@ -105,6 +105,32 @@ class Music::AlbumsController < MusicController
       format.html { redirect_to albums_url }
       format.xml  { head :ok }
       format.js   # destroy.rjs
+    end
+  end
+  
+  def tbr
+    @albums = Album.paginate_in_state(:all, "TBR", 
+                                      :page => params[:page],
+                                      :order => "name ASC")
+    respond_to do |format|
+      format.html # tbr.rhtml
+      format.atom # tbr.atom.builder
+    end
+  end
+  
+  def yahoo_music_lookup
+    require 'yahoo-music'
+    @results = Yahoo::Music::Release.search(params[:yahoo_music_query])
+    respond_to do |format|
+      format.html { render :action => "albums/results/yahoo_music", :layout => false } # if @results
+    end
+  end  
+  
+  def last_fm_lookup
+    require 'scrobbler'
+    @result = Scrobbler::Album.new(params[:last_fm_artist], params[:last_fm_album], :include_info => true)
+    respond_to do |format|
+      format.html { render :action => "albums/results/last_fm", :layout => false } # if @result
     end
   end
 end

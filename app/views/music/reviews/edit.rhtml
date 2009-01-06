@@ -1,5 +1,7 @@
 <% content_for :record do %>
-  <p><%= link_to("Back to '#{@review}'", review_path(@review)) %></p>
+  <ul>
+    <li><%= link_to("Back to '#{@review}'", review_path(@review)) %></li>
+  </ul>
 <% end %>
 
 <h1>Editing Review '<%= h @review%>'</h1>

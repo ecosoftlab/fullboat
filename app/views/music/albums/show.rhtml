@@ -1,52 +1,74 @@
 <% content_for :record do %>
-  <p><%= link_to "Edit '#{h(@album)}'", edit_album_path(@album) %></p>
-  <p><%= link_to "Destroy '#{h(@album)}'", album_path(@album), :method => :delete, :confirm => "You sure?" %></p>
+  <ul>
+    <li><%= link_to "Edit '#{h(@album)}'", edit_album_path(@album) %></li>
+    <li><%= link_to "Destroy '#{h(@album)}'", album_path(@album), :method => :delete, :confirm => "You sure?" %></li>
+  </ul>
+  
+  <%= link_to(image_tag("last_fm_badge.gif", :alt => "Last.fm Badge"), url_for_last_fm(@album)) %>
 
-  <dl>
-    <dt>Label</dt>
-    <dd><%= @album.label ? link_to(h(@album.label), label_path(@album.label)) : "None" %></dd>
-    <dt>Release Date</dt>
-    <dd><%= @album.released_on ? h(@album.released_on) : "Unkown" %></dd>
-    <dt>Genre</dt>
-    <dd><%= h @album.genre %></dd>
-  </dl>
 <% end %>
 
+<%= status_flag(@album) %>
+
 <div id="<%= @album.dom_id %>">
-  <div class="column span-4 append-1">
+  <div class="column span-5 append-1">
     <div class="album-cover">
       <%= jewelcase(@album) %>
-      &nbsp;
     </div>
+    
+    <dl>
+      <dt>Label</dt>
+      <dd><%# @album.label ? link_to(h(@album.label), label_path(@album.label)) : 
+                                                      content_tag(:em, "None") %>
+          <%= @album.label ? h(@album.label): 
+                             content_tag(:em, "None") %></dd>
+      <dt>Release Date</dt>
+      <dd><%= @album.released_on ? h(@album.released_on.to_s(:mdy)) : 
+                                   content_tag(:em, "Unknown") %></dd>
+      <dt>Genre</dt>
+      <dd><%= @album.genre ? h(@album.genre) :
+                            content_tag(:em, "None") %></dd>
+    </dl>    
   </div>
   
-  <div class="column span-12 last">
+  <div class="column span-11 last">
     <div class="item">
       <h1 class="fn"><%= h @album.name %></h1>
       <h2><%= link_to @album.artist.name, artist_path(@album.artist_id) %></h2>
     </div>
     
-    <hr class="space" />
+  <hr class="space" />
 
-  <% if @album.review %>
-    <div class="description">
-      <blockquote>
-        <%= @album.review.body %>
-      </blockquote>
-      <cite>
-        Review by <%= link_to(h(@album.review.user), user_path(@album.review.user)) %>
-      </cite>
-    </div>
-    <%= hreview(@album.review, :class => 'hide') %>
-  <% end %>
+  <div id="review">
+    <% if @album.review %>
+      <%= render(:partial => 'music/reviews/summary', :object => @album.review)%>
+    <% else %>
+      <p id="review-link"><em>Nobody's reviewed this album yet. 
+        Care to <%= link_to_function "write one yourself" do |page| 
+                                        page['review-link'].visual_effect :fade
+                                        page.delay(0.5) do
+                                          page['review-form'].visual_effect :slide_down
+                                        end
+                                      end %>?</em></p>
     
-    <hr class="space" />
+      <% remote_form_for(:review, :url => album_review_path(@album), 
+                         :html => {:id => 'review-form', :style => 'display:none;'}) do |f| %> 
+      <div id="error" class="alert error" style="display:none;"></div>   
+      <ol>
+  	    <li><%= f.text_area :body %></li>
+        <li><%= submit_tag "Create" %></li>
+      </ol>
+      <% end %>
+    <% end %>
+  </div>
+    
+  <hr class="space" />
   
   <% unless @album.tracks.blank? %>
     <h2>Track Listing</h2>
     <ol>
       <% @album.tracks.each do |track| %>
-        <li><%= h track.name %></li>
+        <li class="<%= cycle('odd', 'even')%>"><%= h(track.try(:name) ? track.name : track.to_s) %></li>
       <% end %>
     </ol>
   <% end %>

@@ -1,8 +1,46 @@
 <h1>Create a New Album</h1>
 
-<% remote_form_for(:album, :url => albums_path) do |f| %>
+<select id="type" name="type" class="column span-5" onchange="$$('.panel').invoke('hide'); Element.show($F(this));">
+  <optgroup label="Webservice Lookup"> 
+    <option value="yahoo-music">Yahoo! Music</option>
+    <option value="last-fm">Last.fm</option>
+  </optgroup>
+    <option value="manual">Manually Input</option>
+</select>
+
+<hr class="space" />
+
+<% remote_form_for(:album, :url => yahoo_music_lookup_new_album_path, :update => 'yahoo-music-results',
+                   :html => {:class => 'panel', :id => 'yahoo-music'}) do |f| %>
+  <fieldset>
+    <legend>Yahoo! Music Lookup</legend>
+    <ol>
+      <li><%= label nil, "Search Query" %><%= text_field_tag :yahoo_music_query, nil, :class => 'title' %></li>
+    </ol>
+    <%= submit_tag "Search" %>
+    
+    <div id="yahoo-music-results">
+    </div>
+  </fieldset>
+<% end %>
+
+<% remote_form_for(:album, :url => last_fm_lookup_new_album_path, :update => "last-fm-results",
+                   :html => {:class => 'panel', :id => 'last-fm', :style => 'display:none;'}) do |f| %>
+  <fieldset>
+    <legend>Last.fm Lookup</legend>
+    <ol>
+      <li><%= label nil, "Album Name" %><%= text_field_tag :last_fm_album, nil, :class => 'title' %></li>
+      <li><%= label nil, "Artist Name" %><%= text_field_tag :last_fm_artist, nil %></li>
+    </ol>
+    <%= submit_tag "Search" %>
+    
+    <div id="last-fm-results">
+    </div>
+  </fieldset>
+<% end %>
+
+<% remote_form_for(:album, :url => albums_path, 
+                   :html => {:class => 'panel', :id => 'manual', :style => 'display:none;'}) do |f| %>
 	<%= render(:partial => "music/albums/form", :locals => {:f => f})%>
   <%= submit_tag "Create" %>
 <% end %>
-
-<%= link_to 'Back', albums_path %>

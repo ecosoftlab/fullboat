@@ -1,0 +1,4 @@
+<% review = summary %>
+<%# hreview(review.album.review, :class => 'hide') %>
+<blockquote><%= review.body %></blockquote>
+<cite>Review by <%= link_to(h(review.user), user_path(review.album.review.user)) %></cite>
