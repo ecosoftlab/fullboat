@@ -1,9 +1,2 @@
-<% unless @content_for_section %>
-  <% content_for :section do %>
-    <h3>Programming</h3>
-    <%= render(:partial => 'programming/navigation')%>
-  <% end %>
-<% end %>
-
 <% @section = "Programming" %>
 <%= render :file => 'layouts/application' %>

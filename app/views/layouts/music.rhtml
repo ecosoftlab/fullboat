@@ -1,15 +1,2 @@
-<% unless @content_for_section %>
-  <% content_for :section do %>
-    <h3>Options</h3>
-    <ul>
-      <li><%= link_to_unless_current "Create a New Playlist", new_playlist_path %></li>
-      <li><%= link_to_unless_current "Write a Review",  :anchor => '' %></li>
-    </ul>
-
-    <h3>Music</h3>
-    <%= render(:partial => 'music/navigation') %>
-  <% end %>
-<% end %>
-
 <% @section = "Music" %>
 <%= render :file => 'layouts/application' %>

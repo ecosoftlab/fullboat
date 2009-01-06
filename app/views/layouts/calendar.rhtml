@@ -1,11 +1,7 @@
 <% unless @content_for_section %>
   <% content_for :section do %>
-    <p><%= link_to_unless_current "Create a New Event", new_event_path %></p>
-
-    <h3>Events</h3>
     <ul>
-      <li><%= check_box_tag "calendar", "music", true %> <label class="inline">Music</label></li>
-      <li><%= check_box_tag "calendar", "music", true %> <label class="inline">Other</label></li>
+      <li><%= link_to_unless_current "Create a New Event", new_event_path %></li>
     </ul>
   <% end %>
 <% end %>

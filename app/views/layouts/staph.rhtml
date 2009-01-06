@@ -1,14 +1,2 @@
-<% unless @content_for_section %>
-  <% content_for :section do %>
-    <h3>Options</h3>
-    <ul>
-      <li><%= link_to_unless_current "Create a New User", new_user_path %></li>
-    </ul>
-
-    <h3>Staph</h3>
-    <%= render(:partial => 'staph/navigation') %>
-  <% end %>
-<% end %>
-
 <% @section = "Staph" %>
 <%= render :file => 'layouts/application' %>
