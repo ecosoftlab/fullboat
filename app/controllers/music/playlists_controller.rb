@@ -1,10 +1,5 @@
 class Music::PlaylistsController < MusicController
-  
-  in_place_edit_for :playlist, :starts_at
-  in_place_edit_for :playlist, :ends_at
-  
-  # in_place_edit_for :start_time, :end_time
-  
+    
   # GET /playlists
   # GET /playlists.xml
   def index
@@ -58,6 +53,12 @@ class Music::PlaylistsController < MusicController
   # GET /playlists/1;edit
   def edit
     @playlist = Playlist.find(params[:id])
+    
+    if session[:playlist] && session[:playlist] != @playlist.id
+      flash[:notice] = "There is already an active playlist. 
+                        To create a new one, close tihs one first."
+      redirect_to edit_playlist_url(session[:playlist]) 
+    end
   end
 
   # POST /playlists
@@ -121,10 +122,23 @@ class Music::PlaylistsController < MusicController
     end
   end
   
-  def auto_complete_for_artist_name
-    name = params[:artist][:name]
-    @artists = Artist.search(:all => name, :per_page => 5) unless name.blank?
+  def auto_complete_for_album_artist
+    name = params[:album][:artist]
+    @artists = Artist.search(:all => name, :per_page => 10) rescue []
     render :partial => "music/artists/autocomplete"
+  end
+  
+  def auto_complete_for_album_name
+    name = params[:album][:name]
+    @artist = Artist.find_by_name(params[:album][:artist])
+    @albums = @artist.albums.select{|a| a.to_s =~ /^#{name}/i}
+    render :partial => "music/albums/autocomplete"
+  end  
+  
+  def auto_complete_for_album_track
+    name = params[:album][:track]
+    @tracks = @album.tracks.grep(/^#{name}/i) unless @album.nil?
+    render :partial => "music/tracks/autocomplete"
   end
   
   def close

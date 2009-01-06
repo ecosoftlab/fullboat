@@ -5,7 +5,7 @@
 
 <% if current_user.programs.any? %>
 	<fieldset id="program-select">
-	  <%= radio_button_tag :_type, :program %>
+	  <%= radio_button_tag :_type, :program, true %>
 	  <label>Playlist for Program</label>
 	  <%= select_tag :program_id,  options_from_collection_for_select(current_user.programs, :id, :to_s)  %>
 	</fieldset>

@@ -54,19 +54,24 @@ class Music::PlaysController < MusicController
     @play.playlist_id = params[:playlist_id]
     @play.playable = case params[:type]
                      when 'album-track'
+                       break if params[:track].blank?
                        @play.name = params[:track]
-                       Album.find(params[:album]) || Comment.create(:user_id => current_user,
-                                                                    :body => params[:album].join(", "))
+                       Album.find_by_name(params[:album][:name]) || 
+                       Comment.create(:user_id => current_user,
+                                      :body => "'%s' - %s (%s)" % 
+                                      [params[:album][:track], 
+                                       params[:album][:artist], 
+                                       params[:album][:name]])
                      when 'psa'
                        PSA.find_by_code(params[:psa][:code])
                      when 'promo'
                        Promo.find_by_code(params[:promo][:code])
                      when 'radio-calendar'
                        Comment.create(:user_id => current_user,
-                                      :body => "Radio Calendar at #{Time.now.to_s(:time_only)}")
+                                      :body => "Radio Calendar")
                      when 'station-id'
                        Comment.create(:user_id => current_user,
-                                      :body => "Station ID at #{Time.now.to_s(:time_only)}")
+                                      :body => "Station ID")
                      when 'comment'
                        Comment.create(params[:comment].update({:user_id => current_user}))
                      end
@@ -80,18 +85,12 @@ class Music::PlaysController < MusicController
       format.js   { render :template => 'music/plays/success' }
     end
   rescue #ActiveRecord::RecordNotFound
-    flash[:error] = "No record was found"
+    flash[:error] = "Error in last playlist entry"
   
     respond_to do |format|
       format.html { render :action => :new }
       format.xml  { render :xml => @play.errors.to_xml }
       format.js   { render :template => 'music/plays/error' }
-    end
-  rescue ActiveRecord::RecordInvalid
-    respond_to do |format|
-        format.html { render :action => :new }
-        format.xml  { render :xml => @play.errors.to_xml }
-        format.js   { render :template => 'music/plays/error' }
     end
   end
 
@@ -102,7 +101,7 @@ class Music::PlaysController < MusicController
 
     respond_to do |format|
       if @play.update_attributes(params[:play])
-        flash[:notice] = "Play '#{@play}' was successfully updated."
+        # flash[:notice] = "Play '#{@play}' was successfully updated."
         format.html { redirect_to play_url(@play) }
         format.xml  { head :ok }
         format.js   { render :template => 'music/plays/success' }
@@ -121,7 +120,7 @@ class Music::PlaysController < MusicController
     @play.destroy
 
     respond_to do |format|
-      flash[:notice] = "Play '#{@play}' was destroyed."
+      # flash[:notice] = "Play '#{@play}' was destroyed."
       format.html { redirect_to playlist_url(@play.playlist) }
       format.xml  { head :ok }
       format.js   # destroy.rjs

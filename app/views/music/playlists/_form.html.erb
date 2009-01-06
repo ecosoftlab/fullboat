@@ -4,27 +4,22 @@
 <fieldset id="playlist_details" class="clearfix">
 	<legend>Playlist Details</legend>
 	<ol>
-	
 		<li>
 	    	<label for="user_id">User</label>
 	    	<%= f.text_field :user_id %>
 		</li>
-	
 		<li>
 	    	<label for="program_id">Program</label>
 	    	<%= f.text_field :program_id %>
 		</li>
-	
 		<li>
 	    	<label for="start_time">Start time</label>
 	    	<%= f.unobtrusive_datetime_picker :starts_at %>
 		</li>
-	
 		<li>
 	    	<label for="end_time">End time</label>
 	    	<%= f.unobtrusive_datetime_picker :ends_at %>
 		</li>
-	
 	</ol>
 </fieldset>
 <!--[eoform:playlist]-->

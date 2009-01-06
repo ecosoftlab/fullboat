@@ -4,7 +4,7 @@
 
 <% content_for :record do %>
   <ul>
-    <li><%= link_to("View Enlarged for Radio", formatted_playlist_path(@playlist, :enlarged))%></li>
+    <li><%= link_to("Show in Fullscreen", formatted_playlist_path(@playlist, :enlarged))%></li>
     <li><%= link_to 'Close this Playlist', close_playlists_path, 
 							          :confirm => 'Are you sure?', :method => :delete %></li>
   </ul>
@@ -59,14 +59,6 @@
   </tbody>
 </table>
 
-<%= sortable_element "plays", 
-                      :handle => 'handle',
-                      :tag    => :tr,
-                      # :update => "sort-status",
-                      # :loading => visual_effect(:fade, "sort-status-alert", :duration => 0.1), 
-                      # :complete => visual_effect(:appear, "sort-status-alert"), 
-                      :url => '/' %>
-
 <% remote_form_for(:play, :url => playlist_plays_path(@playlist), :html => {:id => 'play_form'}) do |f| %>
   <div id="error" class="alert error" style="display:none;"></div>
   <fieldset class="padded">
@@ -99,12 +91,11 @@
         <ol>
           <li class="artist">
             <label>Artist</label>
-            <%= text_field_with_auto_complete :artist, :name, 
+            <%= text_field_with_auto_complete :album, :artist, 
                   { :class => 'title' },
-    				      { :skip_style => true, :indicator => "loading-indicator" } %>
+    				      { :skip_style => true, :indicator => "loading-indicator"} %>
     				<%= loading_indicator %>
-  				
-    				<%= observe_field 'artist_name', :update => 'album',
+    				<%# observe_field 'artist_name', :update => 'album',
     				                  :frequency => 1.0,
                               :with => "artist", 
                               :url => { :controller => "playlists",
@@ -113,9 +104,12 @@
           </li>
           <li class="album">
             <label>Album</label>
-            <%= select_tag :album %>
-					
-  					<%= observe_field 'album', :update => 'track',
+              <%= text_field_with_auto_complete :album, :name, 
+                  { :class => 'title' },
+    				      { :skip_style => true, :indicator => "loading-indicator",
+    				        :with => "'album[name]=' + encodeURIComponent(element.value) + 
+    				                  '&album[artist]=' + $('album_artist').value" } %>					
+  					<%# observe_field 'album', :update => 'track',
     				                  :frequency => 1.0,
                               :with => "album", 
                               :url => { :controller => "playlists",
@@ -123,12 +117,11 @@
           </li>                  
           <li class="track">        
             <label>Track</label> 
-            <%= select_tag :track %>
+            <%= text_field :album, :track, :class => 'title' %>
           </li>
         </ol>
       </fieldset>
-  
-  
+      
       <fieldset id="psa" class="panel" style="display:none;">
         <ol>
           <li>

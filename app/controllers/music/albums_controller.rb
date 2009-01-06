@@ -1,6 +1,5 @@
 class Music::AlbumsController < MusicController
-  before_filter :login_required
-  
+    
   # GET /albums
   # GET /albums.xml
   def index

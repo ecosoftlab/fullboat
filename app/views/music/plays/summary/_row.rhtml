@@ -2,7 +2,7 @@
 <tr id="<%= play.dom_id %>">
   <td><%= image_tag(play.playable.cover.url(:tiny), :size => '24x24') if play.playable_type == "Album" %></td>
   <td><%= play.playable_type == "Comment" ? h(play) : link_to(h(play), play.playable) %></td>
-  <td><%= h play.playable_type %></td>
+  <td><%# h play.playable_type %></td>
   <td><%= h play.created_at.to_s(:time_only) %></td>
   <td><%= image_tag("icons/bincut.png", :alt => "Bin Cut") if play.playable.status == "BIN" rescue nil %>
   <td><%= link_to_remote(image_tag("icons/trash.png"), :url => playlist_play_path(play.playlist, play), 
