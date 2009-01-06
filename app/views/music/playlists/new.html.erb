@@ -1,6 +1,6 @@
 <h1>Create a New Playlist</h1>
 
-<% remote_form_for(:playlist, :url => playlists_path) do |f| %>
+<% form_for(:playlist, :url => playlists_path) do |f| %>
 	<div id="error" class="alert error" style="display:none;"></div>
 
 <% if current_user.programs.any? %>
@@ -25,7 +25,7 @@
 	
   		<li>
   	    	<label for="end_time">End Time</label>
-  	    	<%= f.datetime_select :ends_at%>
+  	    	<%= f.datetime_select :ends_at %>
   		</li>
   	</ol>
   </fieldset>

@@ -14,7 +14,6 @@
       <li><%= link_to_unless_current "Artists", artists_path %></li>
       <li><%= link_to_unless_current "Albums",  albums_path %></li>
       <li><%= link_to_unless_current "Labels",  labels_path %></li>
-      <li><%= link_to_unless_current "Genres",  genres_path %></li>
     </ul>
     
     <h3>Production</h3>
@@ -40,28 +39,27 @@
   	<ol>
   		<li>
   	    	<label for="starts_at">Start Time</label>
-  	    	<%# f.time_select :starts_at %>
+  	    	<%= @playlist.starts_at.to_s(:time_only) %>
   		</li>
   		<li>
   	    	<label for="ends_at">End Time</label>
-  	    	<%# f.time_select :ends_at %>
+  	    	<%= @playlist.ends_at.to_s(:time_only) %>
   		</li>
   	</ol>
   </fieldset>
 <% end %>
 </div>
 
-<hr />
+<hr/>
 
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
+      <th class="min-width"></th>
       <th>Name</th>
       <th></th>
       <th>Time</th>
-      <th colspan="2"></th>
+      <th colspan="2" class="options"></th>
     </tr>
   </thead>
   

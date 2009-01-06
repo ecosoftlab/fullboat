@@ -45,13 +45,19 @@ class Music::PlaylistsController < MusicController
 
   # GET /playlists/new
   def new
-    @playlist = Playlist.new
+    if session[:playlist]
+      flash[:notice] = "There is already an active playlist. 
+                        To create a new one, close tihs one first."
+      redirect_to edit_playlist_url(session[:playlist]) 
+    end
+
+    @playlist = Playlist.new(:starts_at => Date.today.to_time + Time.now.hour.hours,
+                             :ends_at => Date.today.to_time + (Time.now.hour + 1).hours)
   end
 
   # GET /playlists/1;edit
   def edit
     @playlist = Playlist.find(params[:id])
-    redirect_to playlist_url(@playlist)
   end
 
   # POST /playlists
@@ -62,18 +68,14 @@ class Music::PlaylistsController < MusicController
     case type = params[:_type]
     when 'program'
       @playlist.program = Program.find(params[:program_id])
-    else
-      # random playlist
+    else # random playlist
     end
     
     @playlist.save!
 
     respond_to do |format|
-      # flash[:notice] = 'Playlist was successfully created.'
-      format.html { redirect_to @playlist.album ?
-                      program_playlist_url(@program, @playlist) :
-                      playlist_url(@playlist)
-                  }
+      session[:playlist] = @playlist.id
+      format.html { redirect_to edit_playlist_url(@playlist) }
       format.xml  { head :created, :location => playlist_url(@playlist) }
       format.js   { render :template => 'music/playlists/success' }
     end
@@ -121,24 +123,32 @@ class Music::PlaylistsController < MusicController
   
   def auto_complete_for_artist_name
     name = params[:artist][:name]
-    @artists = Artist.search(:name => name) unless name.blank?
+    @artists = Artist.search(:all => name, :per_page => 5) unless name.blank?
     render :partial => "music/artists/autocomplete"
   end
   
-  # GET /playlists;manage
-  def manage
-    redirect_to programs_url
+  def close
+    session[:playlist] = nil
+    flash[:notice] = "Playlist was closed."
+    respond_to do |format|
+      format.html { redirect_to playlists_url }
+      format.xml  { head :ok }
+    end
   end
   
   def remote_update_albums
     @artist = Artist.find_by_name(params[:artist])
     @albums = @artist.albums rescue []
-    render :action => "playlists/remote_update_albums", :layout => false if @artist
+    respond_to do |format|
+      format.html { render :action => "playlists/remote_update_albums", :layout => false if @artist }
+    end
   end
   
   def remote_update_tracks
     @album = Album.find(params[:album])
     @tracks = @album.tracks || []
-    render :action => "playlists/remote_update_tracks", :layout => false if @album
+    respond_to do |format|
+      format.html { render :action => "playlists/remote_update_tracks", :layout => false if @album }
+    end
   end
 end

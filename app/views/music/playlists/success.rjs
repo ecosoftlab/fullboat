@@ -1,1 +1,1 @@
-page.redirect_to playlist_url(@playlist)
+page.redirect_to edit_playlist_url(@playlist)

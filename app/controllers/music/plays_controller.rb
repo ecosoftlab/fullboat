@@ -54,33 +54,32 @@ class Music::PlaysController < MusicController
     @play.playlist_id = params[:playlist_id]
     @play.playable = case params[:type]
                      when 'album-track'
-                       @play.name    = params[:track]
-                       Album.find(params[:album])
+                       @play.name = params[:track]
+                       Album.find(params[:album]) || Comment.create(:user_id => current_user,
+                                                                    :body => params[:album].join(", "))
                      when 'psa'
                        PSA.find_by_code(params[:psa][:code])
                      when 'promo'
                        Promo.find_by_code(params[:promo][:code])
                      when 'radio-calendar'
                        Comment.create(:user_id => current_user,
-                                      :body => "Radio Calendar at #{@play.created_at}}")
+                                      :body => "Radio Calendar at #{Time.now.to_s(:time_only)}")
                      when 'station-id'
                        Comment.create(:user_id => current_user,
-                                      :body => "Station ID at #{@play.created_at}}")
+                                      :body => "Station ID at #{Time.now.to_s(:time_only)}")
                      when 'comment'
                        Comment.create(params[:comment].update({:user_id => current_user}))
                      end
-                     
-    raise ActiveRecord::RecordNotFound if @play.playable.nil?
-    
+                         
     @play.save!
 
     respond_to do |format|
-      flash[:notice] = 'Play was successfully created.'
+      # flash[:notice] = 'Play was successfully created.'
       format.html { redirect_to play_url(@play) }
       format.xml  { head :created, :location => play_url(@play) }
       format.js   { render :template => 'music/plays/success' }
     end
-  rescue ActiveRecord::RecordNotFound
+  rescue #ActiveRecord::RecordNotFound
     flash[:error] = "No record was found"
   
     respond_to do |format|

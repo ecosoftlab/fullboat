@@ -5,47 +5,37 @@
 <% content_for :record do %>
   <ul>
     <li><%= link_to("View Enlarged for Radio", formatted_playlist_path(@playlist, :enlarged))%></li>
+    <li><%= link_to 'Close this Playlist', close_playlists_path, 
+							          :confirm => 'Are you sure?', :method => :delete %></li>
   </ul>
 <% end %>
 
 <% content_for :section do %>
-    <h3>Music</h3>
-    <ul>
-      <li><%= link_to_unless_current "Artists", artists_path %></li>
-      <li><%= link_to_unless_current "Albums",  albums_path %></li>
-      <li><%= link_to_unless_current "Labels",  labels_path %></li>
-      <li><%= link_to_unless_current "Genres",  genres_path %></li>
-    </ul>
-    
-    <h3>Production</h3>
-    <ul>
-      <li><%= link_to_unless_current "Schedules", schedules_path %></li>
-      <li><%= link_to_unless_current "Programs",  programs_path %></li>
-      <li><%= link_to_unless_current "PSAs",      psas_path %></li>
-      <li><%= link_to_unless_current "Promos",    promos_path %></li>
-    </ul>
+ 
 <% end %>
 
-<div class="column span-10">
-<% if @playlist.program %>
-  <h1>Playlist for <%= h @playlist.program %></h1>
-<% else %>
-  <h1>Random Playlist</h1>
-<% end %>
-<h2><%= @playlist.starts_at.to_ordinalized_s(:mdy) %></h2>
+<div class="column span-9">
+  <% if @playlist.program %>
+    <h1>Playlist for <%= h @playlist.program %></h1>
+  <% else %>
+    <h1>Random Playlist</h1>
+  <% end %>
+  <h2><%= @playlist.starts_at.to_ordinalized_s(:mdy) %></h2>
 </div>
-<div class="column span-7 last">
+
+<div class="column span-8 last">
 <% remote_form_for(:playlist, :url => playlists_path) do |f| %>
   <fieldset id="playlist-details">
   	<ol>
   		<li>
   	    	<label for="starts_at">Start Time</label>
-  	    	<%# f.time_select :starts_at %>
+  	    	<%= f.time_select :starts_at %>
   		</li>
   		<li>
   	    	<label for="ends_at">End Time</label>
-  	    	<%# f.time_select :ends_at %>
+  	    	<%= f.time_select :ends_at %>
   		</li>
+  		<li class="right"><%= submit_tag "Update Times"%></li>
   	</ol>
   </fieldset>
 <% end %>
@@ -56,12 +46,11 @@
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
+      <th class="min-width"></th>
       <th>Name</th>
       <th></th>
       <th>Time</th>
-      <th colspan="2"></th>
+      <th colspan="2" class="option"></th>
     </tr>
   </thead>
   
@@ -81,29 +70,29 @@
 <% remote_form_for(:play, :url => playlist_plays_path(@playlist), :html => {:id => 'play_form'}) do |f| %>
   <div id="error" class="alert error" style="display:none;"></div>
   <fieldset class="padded">
-    <select id="type" name="type" class="column span-5" onchange="$$('.panel').invoke('hide'); Element.show($F(this));">
-      <optgroup label=""> 
-        <option value="album-track">Album Track</option>
-        <option value="psa">PSA</option>
-        <option value="promo">Promo</option>
-        <option value="comment">Comment</option>
-      </optgroup>
-      <optgroup label="Protocol">
-        <option value="station-id">Station ID</option>
-        <option value="radio-calendar">Radio Calendar</option>
-      </optgroup>
-    </select>
-    
-    <fieldset class="column span-5 prepend-1">
-      <label>Timestamp</label>
-      <%# f.time_select :created_at %>
+    <fieldset class="column span-5">
+      <label>Type</label><br/>
+      <select id="type" name="type" onchange="$$('.panel').invoke('hide'); Element.show($F(this));">
+        <optgroup label=""> 
+          <option value="album-track">Album Track</option>
+          <option value="psa">PSA</option>
+          <option value="promo">Promo</option>
+          <option value="comment">Comment</option>
+        </optgroup>
+        <optgroup label="Protocol">
+          <option value="station-id">Station ID</option>
+          <option value="radio-calendar">Radio Calendar</option>
+        </optgroup>
+      </select>
     </fieldset>
     
-    <fieldset class="column span-3 prepend-1 last">
-      <%= submit_tag "Add to Playlist" %>
+    <fieldset class="column span-3 prepend-7 last">
+      <ol>
+        <li class="right"><%= submit_tag "Add to Playlist" %></li>
+      </ol>
     </fieldset>
     
-    <hr class="space">
+    <hr/>
         
     <fieldset class="column span-8">
       <fieldset id="album-track" class="panel">

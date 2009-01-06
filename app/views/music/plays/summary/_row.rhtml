@@ -1,12 +1,11 @@
 <% play = row %>
 <tr id="<%= play.dom_id %>">
-  <td class="handle">&#8597;</td>
-  <td><%= image_tag("placeholder_album.jpg", :alt => "Cover for #{h(play.playable.name)}", :size => '16x16') if play.playable_type == "Album" %></td>
-  <td><%= h play %></td>
+  <td><%= image_tag(play.playable.cover.url(:tiny), :size => '24x24') if play.playable_type == "Album" %></td>
+  <td><%= play.playable_type == "Comment" ? h(play) : link_to(h(play), play.playable) %></td>
   <td><%= h play.playable_type %></td>
-  <td><%= h play.created_at.to_s :time_only %></td>
-  <td><%= link_to("View", play.playable) rescue nil %>
-  <td><%= link_to_remote("Destroy", :url => playlist_play_path(play.playlist, play), 
+  <td><%= h play.created_at.to_s(:time_only) %></td>
+  <td><%= image_tag("icons/bincut.png", :alt => "Bin Cut") if play.playable.status == "BIN" rescue nil %>
+  <td><%= link_to_remote(image_tag("icons/trash.png"), :url => playlist_play_path(play.playlist, play), 
                                     :method => :delete, 
                                     :confirm => "Are you sure?") %></td>
 </tr>
