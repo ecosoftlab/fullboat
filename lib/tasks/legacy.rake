@@ -1,7 +1,7 @@
 namespace :legacy do
   namespace :migrate do
     task :all => [:users, :artists, :labels, :genres, :albums, :reviews, :programs, :playlists]
-    task :some => [:albums, :reviews, :programs, :playlists]
+    task :some => [:genres, :albums, :reviews, :programs, :playlists]
     
     task :connect => [:environment] do
       class Proxy < ActiveRecord::Base
@@ -51,7 +51,7 @@ namespace :legacy do
       Proxy.set_table_name "Users"
       Proxy.find_by_sql("SELECT * FROM Users").each do |row|
         User.create do |u|
-          u.login      = row["User"].downcase
+          u.login      = row["User"].downcase.gsub(/[^\w\d]/, '')
           u.first_name = row["FName"].titleize
           u.last_name  = row["LName"].titleize
           u.dj_name    = row["DJName"]
@@ -188,22 +188,27 @@ namespace :legacy do
         rescue
           next
         end
+        require 'pp'
         
+        Proxy.set_table_name "Plays"
         Proxy.find_by_sql("SELECT Plays.*,  Artists.Artist, Albums.Album FROM Plays
                             INNER JOIN Artists ON Artists.ArtistID = Plays.ArtistID 
                             INNER JOIN Albums ON Albums.AlbumID = Plays.AlbumID
 			                      WHERE Plays.PlayListID = #{row['PlayListID']}").each do |nested_row|
 			    playlist.plays << Play.create do |p|
+			      nested_row = nested_row.attributes
 		        artist = Artist.find_by_name(nested_row["Artist"].strip)
 		        next if artist.nil?
-		        p.playable  = Album.find_by_artist_id_and_name(artist.id, nested_row["Album"])
+		        p.playable  = Album.find_by_artist_id_and_name(artist.id, nested_row["Album"].strip)
 		        p.name = nested_row["TrackName"]
 		        p.is_request = (nested_row["R"]    == 'Yes') rescue false
 		        p.is_bincut  = (nested_row["B"]    == 'Yes') rescue false
 		        p.is_marked  = (nested_row["Mark"] == 'Yes') rescue false
 		        p.created_at = nested_row["Time"]
+		        p.playlist   = playlist
 		      end
-			  end
+		      playlist.save
+			  end			  
       end
     end
   

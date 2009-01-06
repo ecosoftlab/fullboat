@@ -102,6 +102,6 @@ protected
   end
   
   def check_for_compilation
-    self[:is_compilation] ||= ! self.artist.valid?
+    #self[:is_compilation] ||= ! self.artist.valid? rescue false
   end
 end

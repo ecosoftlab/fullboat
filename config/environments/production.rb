@@ -16,3 +16,5 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+config.active_record.observers   = [:last_fm_observer] #:last_fm_scrobbling_observer, :twitter_observer]   

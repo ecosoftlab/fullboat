@@ -15,8 +15,6 @@ class Artist < ActiveRecord::Base
 
   validates_presence_of   :name, :sort_name
   validates_uniqueness_of :name
-  validates_format_of     :name, :with => /^Various\sArtists$/i, 
-                          :message => "cannot be 'Various Artists'"
   
   before_validation_on_create :initialize_sort_name
   
@@ -36,5 +34,9 @@ private
 
   def initialize_sort_name
     self[:sort_name] ||= self[:name].strip.gsub(/^([^a-zA-z\d]*|(the))\s+/i, "") if self[:name]
+  end
+  
+  def validates_name_is_not_generic_compilation
+    errors.add "Name cannot be 'Various Artists'" if self[:name] =~ /^Various\s+Artists$/i
   end
 end

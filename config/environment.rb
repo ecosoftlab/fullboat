@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   
   config.action_controller.session = { :session_key => "_wrct_session", 
                                        :secret      => "lYcY0aHucGRH8Ehf43BqxezUVkW4S2dB5LtbaYVw" }
-  config.active_record.observers   = [:last_fm_observer]#[:last_fm_scrobbling_observer, :twitter_observer]                                   
+  config.active_record.observers   = []            
 end
 
 ActiveRecord::Base.class_eval do

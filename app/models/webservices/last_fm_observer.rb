@@ -16,8 +16,9 @@ class LastFmObserver < ActiveRecord::Observer
 protected
   
   def lookup_album(album)
-    last_fm_album     = Scrobbler::Album.new(album.artist.name, album.name, :include_info => true)
-    #album.image = last_fm_album.image_large
+    last_fm_album     = Scrobbler::Album.new(album.artist.name, album.name, 
+                                             :include_info => true)
+    # album.image       = last_fm_album.image_large
     # album.mbid        = last_fm_album.mbid
     album.tracks      = last_fm_album.tracks
     album.released_on = last_fm_album.release_date
