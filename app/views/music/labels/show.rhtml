@@ -1,5 +1,7 @@
 <% content_for :record do %>
-  <p><%= link_to("Edit '#{@label}'", edit_label_path(@label)) %></p>
+  <ul>
+    <li><%= link_to("Edit '#{@label}'", edit_label_path(@label)) %></li>
+  </ul>
 
   <h3>Contact Information</h3>
   <dl>
