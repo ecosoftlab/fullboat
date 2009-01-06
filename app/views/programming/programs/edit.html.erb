@@ -1,5 +1,7 @@
 <% content_for :record do %>
-  <p><%= link_to("Back to '#{@program}'", label_path(@program)) %></p>
+  <ul>
+    <li><%= link_to("Back to '#{@program}'", label_path(@program)) %></li>
+  </ul>
 <% end %>
 
 <h1>Editing Program '<%= h @program %>'</h1>

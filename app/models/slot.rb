@@ -52,8 +52,11 @@ protected
   end
   
   def validate_avaibility_of_timespan
-    conflict = Slot.find(:first, :conditions => ["schedule_id = ? AND day = ? AND start_time = ?", 
-                                                  self[:schedule_id], self[:day], self[:start_time]])
+    conflict = Slot.find(:first, 
+                         :conditions => ["schedule_id = ? AND day = ? AND 
+                                          start_time = ? AND id != ?", 
+                                        self[:schedule_id], self[:day], 
+                                        self[:start_time], self.id])
   
     errors.add "Time span not available (already taken by #{conflict})" if conflict
   end

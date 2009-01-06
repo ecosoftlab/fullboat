@@ -1,3 +1,26 @@
 <h1><%= h @schedule %></h1>
 
 <%= render(:partial => 'programming/schedules/summary', :object => @schedule) if @schedule %>
+
+<hr class="space"/>
+
+<table>
+  <thead>
+	  <tr>
+	    <th class="span-2"></th>
+    	<th>Start Time</th>
+    	<th></th>
+    	<th>End Time</th>
+    	<th>Program</th>
+    	<th colspan="2"></th>
+  	</tr>
+	</thead>
+	<tbody>
+<% Date::DAYS.invert.sort.each do |n, wday| %>    
+  <tr>
+  	<th colspan="7"><%= h wday.capitalize %></th>
+	</tr>
+  <%= render(:collection => @schedule.slots.select{|slot| slot.day == n}, :partial => 'programming/slots/summary/row')%>
+<% end %>
+	</tbody>
+</table>

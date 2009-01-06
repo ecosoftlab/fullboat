@@ -65,7 +65,7 @@ class Programming::SlotsController < ProgrammingController
   # PUT /slots/1.xml
   def update
     @slot = Slot.find(params[:id])
-
+    
     respond_to do |format|
       if @slot.update_attributes(params[:slot])
         flash[:notice] = "Slot '#{@slot}' was successfully updated."

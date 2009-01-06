@@ -7,11 +7,11 @@
 	
 		<li>
 	    	<label for="schedule_id">Schedule</label>
-	    	<%= f.select :schedule_id, Schedule.find(:all, :order => :created_at) %>
+	    	<%= f.select :schedule_id, Schedule.find(:all).collect{|s| [s.to_s, s.id]} %>
 		</li>
 		<li>
 	    	<label for="program_id">Program</label>
-	    	<%= f.select :program_id, Program.find(:all, :order => :name) %>
+	    	<%= f.select :program_id, Program.find(:all).collect{|p| [p.to_s, p.id]} %>
 		</li>
 	</ol>
 </fieldset>

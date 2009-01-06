@@ -1,4 +1,6 @@
 class Schedule < ActiveRecord::Base
+  default_scope :order => "starts_at DESC"
+    
   acts_as_textiled :description
   
   has_many :slots, :dependent => :destroy
@@ -25,7 +27,7 @@ class Schedule < ActiveRecord::Base
   # end
   
   def self.current
-    Schedule.find(:all).detect{|s| s.is_current? } || Schedule.find(:first, :order => "starts_at DESC")
+    Schedule.find(:first, :conditions => {:is_current => true}) || Schedule.find(:first)
   end
   
   def slot_at(day, time)

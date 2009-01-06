@@ -3,7 +3,7 @@ class Programming::ProgramsController < ProgrammingController
   # GET /programs
   # GET /programs.xml
   def index
-    @schedules = Schedule.find(:all, :include => :programs, :order => 'starts_at DESC')
+    @schedules = Schedule.find(:all, :include => :programs, :order => 'starts_at DESC', :limit => 1)
     @schedule  = Schedule.find(params[:schedule_id])
     @programs  = @schedule.programs
   rescue ActiveRecord::RecordNotFound

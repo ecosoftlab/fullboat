@@ -1,11 +1,5 @@
 <h1>Listing Programs</h1>
 
-<label>Showing Programs for Schedule</label>
-<%= select_tag :type, options_for_select([Schedule.current] + Schedule.find(:all, :conditions => ["is_current = ?", false], :order => "starts_at DESC").collect{|s|
-                                    [h(s), schedule_programs_path(s)]}, (schedule_programs_path(@schedule) rescue nil)), 
-               :class    => 'column span-3',
-               :onchange => "location=''+this.options[this.selectedIndex].value;" %>
-
 <% @schedules.each do |schedule| %>
   <% next if schedule.programs.empty? %>
   <h2><%= h schedule %></h2>

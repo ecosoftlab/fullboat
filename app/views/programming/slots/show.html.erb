@@ -1,5 +1,7 @@
 <% content_for :record do %>
-  <p><%= link_to("Edit this Time Slot", edit_schedule_slot_path(@slot.schedule, @slot)) %></p>
+  <ul>
+    <li><%= link_to("Edit this Time Slot", edit_schedule_slot_path(@slot.schedule, @slot)) %></li>
+  </ul>
 <% end %>
 
 <h1><%= simple_format h(@slot) %></h1>
