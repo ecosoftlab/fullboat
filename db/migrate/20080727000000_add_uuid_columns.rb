@@ -1,4 +1,4 @@
-class AddUUIDColumns < ActiveRecord::Migration
+class AddUuidColumns < ActiveRecord::Migration
   def self.up
     add_column :artists,  :uuid, :string
     add_column :albums,   :uuid, :string
