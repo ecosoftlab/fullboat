@@ -1,5 +1,7 @@
 <% content_for :record do %>
-  <p><%= link_to("Back to '#{@event}'", event_path(@event)) %></p>
+  <ul>
+    <li><%= link_to("Back to '#{@event}'", event_path(@event)) %></li>
+  </ul>
 <% end %>
 
 <h1>Editing Event '<%= h @event %>'</h1>

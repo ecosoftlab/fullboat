@@ -1,4 +1,3 @@
 page['error'].replace_html error_messages_for(:event)
 page['error'].show
-page << "new Effect.ScrollTo('alert')"
 page.visual_effect :highlight, 'error', :duration => 2.5, :startcolor => '#78191F', :endcolor => '#F73B38'

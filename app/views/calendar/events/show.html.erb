@@ -1,5 +1,7 @@
 <% content_for :record do %>
-  <p><%= link_to("Edit '#{h @event}'", edit_event_path(@event)) %></p>
+  <ul>
+    <li><%= link_to("Edit '#{h @event}'", edit_event_path(@event)) %></li>
+  </ul>
   
   <dl>
     <dt>Phone</dt>
