@@ -71,7 +71,7 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update \
   :time_only => '%I:%M %p',
   :plain     => '%B %d %I:%M %p',
   :mdy       => '%B %d, %Y',
-  :my        => '%B %Y',
+  :my        => '%m / %Y',
   :dmy       => '%d %B %Y',
   :w3c       => '%Y-%m-%dT%H:%M:%S+00:00',
   :rss       => '%a, %d %b %Y %H:%M:%S %z',
@@ -99,3 +99,21 @@ end
 require 'icalendar'
 
 Mime::Type.register "text/html", :enlarged
+
+
+gem 'yahoo-music'
+require 'yahoo-music'
+Yahoo::Music.app_id = "QwqOzR_V34HHT7ZTo5NS0Cw.5fPA4HB0UbB5COtCTJDku.AxFNpMvBmUpTNM5WpBZHglQSg-"
+
+class Date
+  DAYS = {'sunday' => 0, 'monday' => 1, 'tuesday' => 2, 'wednesday' => 3, 'thursday' => 4, 'friday' => 5, 'saturday' => 6}
+  cattr_accessor :days
+  
+  def to_s(format = :default)
+    self.to_time.to_s(format)
+  end
+  
+  def to_ordinalized_s(format = :default)
+    self.to_time.to_ordinalized_s(format)
+  end
+end
