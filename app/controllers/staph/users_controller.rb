@@ -13,14 +13,14 @@ class Staph::UsersController < StaphController
   end
   
   def show
-    @user = User.find_by_login(params[:id])
+    @user = User.find(params[:id])
   end
   
   # GET /users/andrew;edit
   def edit
     @page_title = "Edit User"
         
-    @user = User.find_by_login(params[:id])
+    @user = User.find(params[:id])
     if current_user == @user || has_permission?('admin')
       respond_to do |format|
         format.html # edit.rhtml
@@ -33,7 +33,7 @@ class Staph::UsersController < StaphController
   
   # PUT /users/andrew
   def update
-    @user = User.find_by_login(params[:id])
+    @user = User.find(params[:id])
     update_roles
     
     respond_to do |format|
@@ -72,7 +72,7 @@ class Staph::UsersController < StaphController
   
   # DELETE /users/andrew
   def destroy
-    @user = User.find_by_login(params[:id])
+    @user = User.find(params[:id])
     @user.destroy
     
     respond_to do |format|

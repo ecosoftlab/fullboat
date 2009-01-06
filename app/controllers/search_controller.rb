@@ -36,7 +36,9 @@ class SearchController < ApplicationController
   
   def remote_live_search
     @results = search_results(:all => params[:q], :per_page => 5).flatten
-    render :action => "search/remote_live_search", :layout => false if @results.any?
+    respond_to do |format|
+      format.html { render :action => "search/remote_live_search", :layout => false if @results.any? }
+    end
   end
   
 protected

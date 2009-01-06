@@ -1,6 +1,5 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
-  @@status_values = ["Active", "Inactive", "Banned"].freeze 
   @@per_page = 30
   cattr_reader :status_values, :per_page
   
@@ -9,6 +8,26 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :large => "230x230>", :thumb => "64x64#", :tiny => '24x24' },
                              :default_style => :thumb,
                              :default_url => '/images/missing-avatar.jpg'
+                             
+  acts_as_state_machine :initial => :active, :column => 'status'
+  
+  state :active        # TODO Add notifications
+  state :inactive      # TODO Add notifications
+  state :banned        # TODO Add notifications
+  
+  event :activate do
+    transitions :from => :inactive, :to => :active
+  end
+
+  event :deactivate do
+    transitions :from => :active, :to => :inactive
+  end
+  
+  event :ban do
+    transitions :from => :active,    :to => :banned
+    transitions :from => :inactive,  :to => :banned
+  end
+  
     
   has_and_belongs_to_many :roles
   
@@ -28,11 +47,11 @@ class User < ActiveRecord::Base
   validates_length_of       :login,     :within => 3..40
   validates_length_of       :email,     :within => 3..100
   validates_uniqueness_of   :login,     :email, :case_sensitive => false
-  validates_inclusion_of    :status,    :within => @@status_values
+  
+  validates_format_of       :login, :with => /^[\w\d]+$/
   
   before_save               :encrypt_password
   before_create             :make_activation_code
-  before_validation         :initialize_status
   
   composed_of :name, 
               :class_name => "Name", 
@@ -51,7 +70,7 @@ class User < ActiveRecord::Base
   end
   
   def to_param
-    self.login
+    return "#{self.id}-#{self.login}"
   end
   
   def <=>(person)
@@ -166,12 +185,6 @@ protected
   def make_activation_code
     self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
   end 
-
-private
-
-  def initialize_status
-    self[:status] ||= "Active"
-  end
 end
 
 # Class instances to satisfy Type column

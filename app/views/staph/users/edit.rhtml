@@ -1,5 +1,7 @@
 <% content_for :record do %>
-  <p><%= link_to("Back to '#{@user}'", label_path(@user)) %></p>
+  <ul>
+    <li><%= link_to("Back to '#{@user}'", user_path(@user)) %></li>
+  </ul>
 <% end %>
 
 <h1>Editing User '<%= h @user %>'</h1>
