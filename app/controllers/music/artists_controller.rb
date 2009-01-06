@@ -29,7 +29,8 @@ class Music::ArtistsController < MusicController
 
   # GET /artists/new
   def new
-    @artist = Artist.new
+    flash[:notice] = "Artsits are indexed by their Albums. To add an artist, add an Album by them first."
+    redirect_to new_album_url
   end
 
   # GET /artists/1;edit

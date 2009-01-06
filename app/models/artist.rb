@@ -11,10 +11,12 @@ class Artist < ActiveRecord::Base
            :as => :commentable, 
            :dependent => :destroy
   
-  searchify :name, :description
+  searchify :name
 
   validates_presence_of   :name, :sort_name
   validates_uniqueness_of :name
+  validates_format_of     :name, :with => /^Various\sArtists$/i, 
+                          :message => "cannot be 'Various Artists'"
   
   before_validation_on_create :initialize_sort_name
   
@@ -26,14 +28,10 @@ class Artist < ActiveRecord::Base
     self.name
   end
   
-  # def self.search(name)
-  #   Artist.find(:all, :conditions => ['name LIKE ?', name.concat("%")], :limit => 20)
-  # end
-  
   def genre
     self.genres.first
   end
-  
+    
 private
 
   def initialize_sort_name
