@@ -4,12 +4,14 @@ ActionController::Routing::Routes.draw do |map|
       music.music_root '/', :controller => :music
       
       music.resources :artists
-      music.resources :albums, :has_one => [:review]
+      music.resources :albums, 
+                      :has_one    => [:review],
+                      :collection => {:tbr => :get, :missing => :get},
+                      :new => [:yahoo_music_lookup, :last_fm_lookup]
       music.resources :labels
       music.resources :reviews
-      music.resources :formats
-      music.resources :genres
-      music.resources :playlists, :has_many => [:plays]
+      music.resources :playlists, :has_many => [:plays],
+                      :collection => {:close => :delete}
     end
   
     section.namespace :programming do |programming|

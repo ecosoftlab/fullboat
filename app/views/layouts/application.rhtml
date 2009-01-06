@@ -16,21 +16,36 @@
 		  <%= render(:partial => 'shared/header') %>
 		</div>
 
-	  <div id="content" class="column span-17 colborder">
+	  <div id="content" class="column span-17 colborder clear">
 	    <% if flash[:notice] %>
 	      <div id="error" class="alert notice">
 	       <%= flash[:notice]%>
 	      </div>
 	    <% end %>
 	    
+	    <% if session[:playlist] && ! @playlist %>
+	      <div id="playlist" class="alert notice">
+	       <p>You currently have a playlist open. <%= link_to("Edit Playlist", edit_playlist_path(session[:playlist])) %></p>
+	      </div>
+	    <% end %>
+	    
 		  <%= yield %>
 		</div>
 		
-		<div class="column span-5 last" id="sidebar">
+		<div id="sidebar" class="column span-6 last">
 		  <% if logged_in? %>
-      <div class="profile-box">
-        <%= image_tag(current_user.avatar.url(:tiny)) %>
-        <p>Logged in as: <%= link_to(h(current_user), user_path(current_user)) %></p>
+      <div id="user-profile" class="span-6 last clear">
+        <div class="column span-2">
+          <%= link_to(image_tag(current_user.avatar.url, :size => '64x64', :class => 'photo'), user_path(current_user)) %>
+        </div>
+        <div class="column span-4 last" style="padding-top:10px">
+          <span style="font-size:1.3em;"><strong><%= h current_user %></strong></span><br/>
+          <span>(<%= link_to("Log Out", logout_path) %>)</span>
+        </div>
+      </div>
+      <div style="padding:0.5em; border:1px #ccc solid;margin-bottom:2em;">
+        <label>Search</label>
+        <%= render(:partial => 'shared/search')%>
       </div>
       <% end %>
       

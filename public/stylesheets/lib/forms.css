@@ -11,7 +11,7 @@
 
 label { font-weight: bold; }
 
-input[type^='submit']{}
+input[type^='submit']{margin:1em 0;}
 
 /* Fieldsets */
 fieldset    { padding:1.4em 39px; margin: 0 0 1.5em 0; border: 1px solid #ccc; }
@@ -47,7 +47,7 @@ select:focus        { border:1px solid #999; background:#fff; }
 .success a  { color: #529214; }
 
 /* Lists within Forms */
-form ul, form ol		{ margin: 0;}
+form ul, form ol		{ margin: 0; margin-bottom:1em;}
 form ul li, form ol li	{ list-style: none; margin:0.25em 0;}
 form li label			{ display: block; float:left; width:120px; padding:0.25em 0;}
 label.inline			{ display: inline; width:auto;}

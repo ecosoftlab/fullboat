@@ -9,8 +9,15 @@
 	<%= stylesheet_link_tag 'screen', 'enlarged' %>
 </head>
 
-<% content_tag :body, (@options_for_body_tag || {:id => 'standard'}) do %>
+<% content_tag :body, (@options_for_body_tag || {:id => 'enlarged'}) do %>
 	  <div id="content">
+	    <div id="header">
+	      <h1 id="logo">
+          <%= link_to(image_tag("full_boat.white.png"), root_path) %>
+          <span>WRCT: a full boat</span>
+          <p><a href="javascript:history.back();" class="link-back">&larr; Back to Playlist</a></p>
+        </h1>
+	    </div>
 		  <%= yield %>
 		</div>
 <% end %>

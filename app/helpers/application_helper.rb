@@ -23,13 +23,25 @@ module ApplicationHelper
   end
   
   def jewelcase(album, options = {})
-    image_tag(album.cover.url, options) + content_tag(:span, nil, :class => 'jewelcase')
+    image_url = (album.kind_of?(Album) ? album.cover.url : album) || "missing-cover.gif"
+    content_tag(:div, image_tag(image_url, options) + content_tag(:span, nil) + "&nbsp;",  :class => 'jewelcase')
   end
   
+  def status_flag(album)
+    image_tag("flags/#{album.status.downcase}.png", :class => 'status-flag') if album.status && album.status != 'Library'
+  end
+  
+  def url_for_last_fm(record)
+    parameters = case record
+                 when Artist : [record]
+                 when Album  : [record.artist, record]
+                 end
+    return "http://www.last.fm/music/" + parameters.collect{|s| s.to_s.gsub(/\s+/, '+')}.join('/')
+  end
 
   def schedules_drop_down
     content_tag(:select,
-                options_for_select(Schedule.find(:all, :order => "starts_at DESC").collect{|s|
+                options_for_select(Schedule.find(:all).collect{|s|
                                     [h(s), schedule_path(s)]}, (schedule_path(@schedule) rescue nil)),
                 :onchange => "location=''+this.options[this.selectedIndex].value;")
   end
@@ -37,24 +49,24 @@ module ApplicationHelper
   # TODO: Refactor into template-based method using lighter markup language
   def hcard(record, options = {})
     h = {}  
-    case klass = record.class.to_s
-    when "User"
+    case record
+    when User
       user = record
       h[:fn]    = user.name
       h[:tel]   = user.phone
       h[:email] = user.email
       h[:url]   = user_url(user)
-    when "Label"
+    when Label
       label = record
       h[:org]   = true
       h[:fn]    = label.name
       h[:tel]   = label.phone
       h[:email] = label.email
       h[:url]   = label_url(label)
-    when "Artist"
+    when Artist
       return ""
     else
-      raise "Record of type '#{klass}' cannot be represented as hCard"
+      raise "Record of type '#{record.class}' cannot be represented as hCard"
     end
     
     content_tag(:div,
@@ -76,4 +88,39 @@ module ApplicationHelper
   end
   
   alias_method :vcard, :hcard
+  
+  
+  def hreview(record, options = {})
+    h = {}
+    case record
+    when Review
+      h[:fn]          = record.to_s
+      h[:url]         = album_url(record.album)
+      h[:img]         = record.album.cover.url
+      h[:dtreviewed]  = record.created_at
+      h[:description] = record.body
+      h[:reviewer]    = hcard(record.user)
+    when Album
+      return nil if record.review.nil?
+      h[:fn]          = record.review.to_s
+      h[:url]         = album_url(record)
+      h[:img]         = record.cover.url
+      h[:dtreviewed]  = record.review.created_at
+      h[:description] = record.review.body
+      h[:reviewer]    = hcard(record.review.user)
+    end
+    
+    content_tag(:div,
+      content_tag(:span, 
+        content_tag(:span, h[:fn], :class => 'fn') +
+        link_to(h[:url], h[:url], :class => 'url') +
+        image_tag(h[:img], :class => 'photo')
+      ) +
+      content_tag(:span, 'product', :class => 'type') + 
+      link_to(h[:url], h[:url], :class => 'permalink', :rel => 'bookmark') + 
+      content_tag(:abbr, h[:dtreviewed], :title => h[:dtreviewed].to_s(:w3c), :class => 'dtreviewed') + 
+      content_tag(:p, h[:description], :class => 'description') +
+      content_tag(:div, h[:reviewer], :class => 'reviewer'),
+    :class => ['hreview', options[:class]].join(' '))
+  end
 end

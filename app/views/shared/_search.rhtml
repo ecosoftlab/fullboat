@@ -1,9 +1,16 @@
-<div class="search">
+<div class="search span-5">
+  <% initial_value = "Looking for something?"%>
   <% form_tag(search_url, :method => :get) do %>
     <%= text_field_tag(:q, params[:q], 
-                       :value => params[:q].blank? ? "Enter search terms..." : 
+                       :value => params[:q].blank? ? initial_value : 
                                                       params[:q], 
-                       :onfocus => 'this.clear();')%>
+                       :onblur   => "if(this.value == '')
+  							                    { this.value = '#{initial_value}'; 
+  							                      this.style.color = '#ccc'; }",
+  							       :onfocus  => "if(this.value == '#{initial_value}') 
+  							                    { this.value = ''; 
+  							                      this.style.color = '#222'; }",
+  							       :style    => "color:#ccc" )%>
     <%= loading_indicator %>
     <ul id="quick-results" class="auto_complete"></ul>
     <%= auto_complete_field :q,

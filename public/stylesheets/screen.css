@@ -20,8 +20,8 @@
 /*/ See the grid:
    Uncomment the line below to see the grid and baseline./
 /**/
-   #container { background: url(lib/grid.png); } 
-
+/*   #container { background: url(lib/grid.png); } 
+*/
 #container{width: 960px; margin:0 30px;}
 
 html, body{
@@ -41,14 +41,16 @@ a{
 
 
 dl.letter-navigation{
-	margin:0;
+	margin:0 0 20px 0;
 }
 
 dl.letter-navigation dd, dl.letter-navigation dt{
+  width:auto;
 	display:block;
 	float:left;
+	border:none;
 	padding:0;
-	margin:0 0 1.0em 0;
+	margin:0;
 }
 
 dl.letter-navigation dt{
@@ -66,6 +68,15 @@ dl.letter-navigation dd{
 
 td img{
 	margin:0;
+}
+
+#content, #sidebar{
+  margin-bottom:20px;
+}
+
+
+#content{
+	margin-bottom:30px;
 }
 
 #content table{
@@ -143,7 +154,7 @@ ul.navigation li a{
 	left:-10px;
 	margin-top:20px;
 	padding:1px 10px 10px 10px;
-	background:url(/img/clear.gif);/* trick to keep'em open */
+	background:url(../images/blank.gif);/* trick to keep'em open */
 }
 /* All LIs */
 .dropdown li {
@@ -255,7 +266,7 @@ th.saturday{
 }
 
 .schedule td.current div{
-	background:#f00;
+	background:#FFFDB4;
 }
 
 .schedule td{
@@ -265,11 +276,11 @@ th.saturday{
 	margin:1px;
 }
 
-.schedule tr.odd{
+.odd{
 	background:#f3f3f3;
 }
 
-.schedule tr.even{
+.even{
 	
 }
 
@@ -279,10 +290,6 @@ th.saturday{
 
 .schedule{overflow:hidden;}
 .schedule tbody tr:hover{background:#ccc;}
-.schedule tbody tr:hover td div{
-	background:#f3f3f3;
-}
-
 .schedule tbody tr.current td{
 	background:#D6F1FF;
 }
@@ -413,14 +420,19 @@ body.widescreen #content{
 	border-right:none;
 }
 
-.album-cover img{
+.jewelcase{
+  width:141px;
+	height:134px;
+}
+
+.jewelcase img{
 	position:absolute;
 	float:left;
 	width:141px;
 	height:134px;
 }
 
-.jewelcase{
+.jewelcase span{
 	position:absolute;
 	width:141px;
 	height:134px;
@@ -446,9 +458,111 @@ body.widescreen #content{
 
 #footer{
 	background:#111;
-	padding:5px 0 0 0;
 	display:block;
 	float:none;
 	clear:both;
 	color:#fff;
 }
+
+#footer p{
+	padding:0.3em;
+}
+
+
+blockquote p{
+	margin-bottom:1em;
+}
+
+#user-profile{
+	border:1px #ccc solid;
+	margin-bottom:1.5em;
+}
+
+#user-profile img{
+  margin:4px;
+  padding:2px;
+  border:1px #ccc solid;
+}
+
+
+
+
+.status-flag{
+  position:absolute; left:100px; z-index:5000; margin-top:-15px;
+}
+
+
+dl{
+  margin:20px 0;
+}
+
+dl dt, dl dd{
+    padding-top:10px;
+}
+
+dl dt{
+  clear:left;
+  float:left;
+  width:85px;
+  border-top:2px #222 solid;
+}
+
+dl dd{
+  clear:right;
+  width:100px;
+  padding-left:100px;
+  text-align:left;
+  margin:0;
+  border-top:1px #ccc solid;
+  margin-bottom:0.75em;
+}
+
+.explanatory{
+  display:block;
+  font-style:italic;
+  color:#999;
+}
+
+.search form input{
+  width:100%;
+}
+
+.box{background:#f1f1f1; border:1px #ccc solid;}
+
+th.min-width, th.options{
+  width:0%;
+  font-weight:bold;
+}
+
+#sidebar ul{
+  padding:0;
+  margin:10px 0;
+}
+
+#sidebar ul li{ 
+  list-style:none;
+  border:1px #ccc solid;
+  margin:2px 0;
+}
+
+#sidebar ul li a{
+  font-size:1.1em;
+  text-decoration:none;
+  display:block;
+  width:90%;
+  padding:10px 5%;
+}
+
+#sidebar ul li:hover{
+  background:#eee;
+}
+
+#sidebar ul li a:active{
+  color:#999;
+}
+
+.link-back, .link-back:hover{
+  color:#fff;
+  text-decoration:none;
+}
+

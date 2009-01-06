@@ -2,4 +2,9 @@ html, body{
 	font-size:32px;
 }
 
-td{padding:10px;}
+body#enlarged td{padding:10px;}
+body#enlarged #header{ width:100%; clear:both;float:none;background:#222;margin:0;padding:5px 0 1px 0;}
+body#enlarged #header h1#logo{float:none;display:block;}
+
+body#enlarged .link-back{position:absolute;right:0;top:0;margin:0.5em;font-size:24pt;}
+body#enlarged .link-back a{color:#fff;}
