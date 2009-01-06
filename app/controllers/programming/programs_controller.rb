@@ -3,7 +3,7 @@ class Programming::ProgramsController < ProgrammingController
   # GET /programs
   # GET /programs.xml
   def index
-    @schedules = Schedule.find(:all, :include => :programs, :order => 'starts_at DESC', :limit => 1)
+    @schedules = Schedule.find(:all, :include => :programs, :order => 'starts_at DESC', :include => :programs)
     @schedule  = Schedule.find(params[:schedule_id])
     @programs  = @schedule.programs
   rescue ActiveRecord::RecordNotFound
@@ -41,6 +41,8 @@ class Programming::ProgramsController < ProgrammingController
   # POST /programs.xml
   def create
     @program = Program.new(params[:program])
+    @program.type = params[:program][:type]
+    @program.users = User.find(params[:users])
     @program.save!
 
     respond_to do |format|
@@ -62,6 +64,8 @@ class Programming::ProgramsController < ProgrammingController
   # PUT /programs/1.xml
   def update
     @program = Program.find(params[:id])
+    @program.type = params[:program][:type]
+    @program.users = User.find(params[:users])
 
     respond_to do |format|
       if @program.update_attributes(params[:program])

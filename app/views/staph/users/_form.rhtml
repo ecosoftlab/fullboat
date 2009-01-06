@@ -21,7 +21,7 @@
 
 <fieldset id="user-avatar" class="clearfix">
   <legend>User Avatar</legend>
-  <%= image_tag(@user.avatar.url(:large), :class => 'right') %>
+  <%= image_tag(@user.avatar.url(:large), :class => 'right') rescue nil %>
   <ol>
     <li><label for="avatar">Upload an avatar</label>
         <%= f.file_field :avatar %></li>

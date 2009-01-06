@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   @@per_page = 30
   cattr_reader :status_values, :per_page
   
+  default_scope :order => 'last_name ASC'
+  
   searchify :login, :first_name, :last_name, :dj_name
   
   has_attached_file :avatar, :styles => { :large => "230x230>", :thumb => "64x64#", :tiny => '24x24' },

@@ -1,3 +1,5 @@
-<ul>
-  <li><%= link_to("Create a New User", new_user_path) %></li>
-</ul>
+<% restrict_to 'admin' do %>
+  <ul>
+    <li><%= link_to("Create a New User", new_user_path) %></li>
+  </ul>
+<% end %>
