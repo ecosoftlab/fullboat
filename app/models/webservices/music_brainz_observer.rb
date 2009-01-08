@@ -4,13 +4,13 @@ class MusicBrainzObserver < ActiveRecord::Observer
   
   @@query = Query.new
   
-  @@artist_includes = ArtistIncludes.new (
+  @@artist_includes = ArtistIncludes.new(
     :releases       => ['Album', 'Official'],
     :track_rels     => true,
     :label_rels     => true
   )
   
-  @@release_includes = ReleaseIncludes.new (
+  @@release_includes = ReleaseIncludes.new(
     :counts         => true,
     :release_events => true,
     :discs          => true,
