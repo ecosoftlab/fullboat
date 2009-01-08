@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.with_options :name_prefix => nil do |section|  
-    section.namespace :music do |music|
-      music.music_root '/', :controller => :music
-      
+    
+    section.music_root '/music', :controller => 'music'
+    section.namespace :music do |music|      
       music.resources :artists
       music.resources :albums, 
                       :has_one    => [:review],
@@ -13,10 +13,9 @@ ActionController::Routing::Routes.draw do |map|
       music.resources :playlists, :has_many => [:plays],
                       :collection => {:close => :delete}
     end
-  
+
+    section.programming_root '/programming', :controller => 'programming'
     section.namespace :programming do |programming|
-      programming.programming_root '/', :controller => :programming
-      
       programming.resources :programs, :has_many => [:playlists]
       programming.resources :psas, :controller => "PSA"
       programming.resources :promos
@@ -24,17 +23,16 @@ ActionController::Routing::Routes.draw do |map|
       programming.resources :events
     end
   
+    section.calendar_root '/calendar', :controller => 'calendar'
     section.namespace :calendar do |calendar|
-      calendar.calendar_root '/', :controller => :calendar
       
       calendar.with_options :controller => 'events', :action => 'index' do |events|
         events.connect ':year/:month',  :year => /\d{4}/, :month => /\d{1,2}/ 
       end
     end
   
-    section.namespace :staph do |staph|
-      staph.staph_root '/', :controller => :staph
-      
+    section.staph_root '/staph', :controller => 'staph'
+    section.namespace :staph do |staph|      
       staph.resources :users
       staph.resources :roles
     end
